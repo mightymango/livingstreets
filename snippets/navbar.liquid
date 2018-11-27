@@ -1,0 +1,65 @@
+{% comment %}
+  A word on drop-down menus: Shopify has no concept of them.
+  Drop-down menus in Shopify themes are a hack that relies on a naming convention.
+  To create a drop-down menu, the merchant must create a link list that has the same name as the link he wants the drop-down for.
+  For example, if he wants a drop-down under a 'Shop by brand' link (say, he has such link in his Main Menu), he needs to create a linklist called 'Shop by brand', and populate it with links. Once he has done that, there'll be a drop-down under 'Shop by brand'.
+  Shopify has a visual how-to guide here: http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu.
+  The naming convention hack won't work well if a shop's navigation uses non-English characters. There's a much more verbose coding solution that handles non-English characters here: http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/translations/can-i-have-drop-down-menus-that-use-non-english-characters.
+  A word on sub-categories: Shopify manages sub-categories using product tags: http://docs.shopify.com/manual/configuration/store-customization/page-specific/collections/subcategories
+{% endcomment %}
+
+    <!-- Menu -->
+
+    <section class="headers" id="headers-19">
+        <div id="navbar" class="ph-15 ph-sm-30 ph-lg-70 bg-light fixed-navbar fixed-navbar-notification">
+            <div class="row justify-content-center align-items-center justify-content-sm-between h-100">
+                <div class="col-auto">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-auto" id="company-logo">
+                            <a href="index.html">{{ 'living-streets.svg' | asset_url | img_tag: shop.name }}</a>
+                        </div>
+
+                        <div class="col-auto d-none d-lg-block">
+                            <nav class="navbar navbar-left"><a class="active" href="index.html">WOW</a> <a href="walking-challenge.html">Walking Challenge</a> <a href="little-feet.html">Little Feet</a> <a href="free-your-feet.html">Free Your Feet</a> <a href="catalogue.html">Catalogue</a></nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-auto d-none d-lg-block">
+                    <nav class="navbar">
+                        <div class="dropdown dropdown-right">
+                            <a href="" id="headers-19-dropdown" data-toggle="dropdown"><span class="d-flex align-items-center"><span>{{ 'user-round-50-thick.svg' | asset_url | img_tag: '' }}</span></span></a>
+
+                            <div style="margin-left: 2em" class="dropdown-menu" aria-labelledby="headers-19-dropdown">
+                                <a href="">Submenu one</a><a href="">Submenu two</a><a href="">Submenu three</a>
+
+                                <div class="dropdown-divider"></div><a href="">Submenu four</a>
+                            </div>
+                        </div><a href="cart.html" class="cart">{{ 'cart.svg' | asset_url | img_tag: '' }}</a>
+                    </nav>
+                </div>
+
+                <div class="col-auto d-block d-lg-none">
+                    <nav class="navbar"><a class="hamburger" id="responsive">{{ 'hamburger.svg' | asset_url | img_tag: '' }}</a></nav>
+                </div>
+            </div>
+        </div>
+    </section><!-- Mobile menu -->
+
+    <div class="row justify-content-center align-items-center d-lg-none">
+        <div id="mobile-navbar" class="mobile-navbar">
+            <p><a class="active" href="index.html">WOW</a></p>
+
+            <p><a href="walking-challenge.html">Walking Challenge</a></p>
+
+            <p><a href="little-feet.html">Little Feet</a></p>
+
+            <p><a href="free-your-feet.html">Free Your Feet</a></p>
+
+            <p><a href="catalogue.html">Catalogue</a></p>
+
+            <p><a href="">{{ 'user-round-50-thick.svg' | asset_url | img_tag: '' }}</a></p>
+
+            <p><a href="cart.html">{{ 'cart.svg' | asset_url | img_tag: '' }}</a></p>
+        </div>
+    </div><!-- Menu -->

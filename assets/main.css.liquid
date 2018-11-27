@@ -45,39 +45,39 @@ a.rounded-arrow {
   width: 100%;
 }
 .image.userpic-xl {
-  background-image: url("../img/pics/user-157.svg");
+  background-image: url("{{ 'user-157.svg' | asset_url }}");
   background-size: 157px 152px;
 }
 .image.userpic-lg {
-  background-image: url("../img/pics/user-112.svg");
+  background-image: url("{{ 'user-112.svg' | asset_url }}");
   background-size: 112px 109px;
 }
 .image.userpic-md {
-  background-image: url("../img/pics/user-112.svg");
+  background-image: url("{{ 'user-112.svg' | asset_url }}");
   background-size: 87px 85px;
 }
 .image.userpic-sm {
-  background-image: url("../img/pics/user-112.svg");
+  background-image: url("{{ 'user-112.svg' | asset_url }}");
   background-size: 61px 60px;
 }
 .image.userpic-xs {
-  background-image: url("../img/pics/user-112.svg");
+  background-image: url("{{ 'user-112.svg' | asset_url }}");
   background-size: 36px 36px;
 }
 .image.pic-xl {
-  background-image: url("../img/pics/pic-202.svg");
+  background-image: url("{{ 'pic-202.svg' | asset_url }}");
   background-size: 202px 140px;
 }
 .image.pic-lg {
-  background-image: url("../img/pics/pic-140.svg");
+  background-image: url("{{ 'pic-140.svg' | asset_url }}");
   background-size: 140px 98px;
 }
 .image.pic-md {
-  background-image: url("../img/pics/pic-100.svg");
+  background-image: url("{{ 'pic-100.svg' | asset_url }}");
   background-size: 100px 69px;
 }
 .image.pic-sm {
-  background-image: url("../img/pics/pic-70.svg");
+  background-image: url("{{ 'pic-70.svg' | asset_url }}");
   background-size: 70px 48px;
 }
 .video,
@@ -102,19 +102,19 @@ a.rounded-arrow {
 .video::after {
   width: 57px;
   height: 90px;
-  background-image: url("../img/pics/video.svg");
+  background-image: url("{{ 'video.svg' | asset_url }}");
   background-size: 57px 90px;
 }
 .video-sm::after {
   width: 42px;
   height: 61px;
-  background-image: url("../img/pics/video-sm.svg");
+  background-image: url("{{ 'video-sm.svg' | asset_url }}");
   background-size: 42px 61px;
 }
 .video-circle::after {
   width: 150px;
   height: 150px;
-  background-image: url("../img/pics/video-circle.svg");
+  background-image: url("{{ 'video-circle.svg' | asset_url }}");
   background-size: 150px 150px;
 }
 .video:hover::after,
@@ -270,12 +270,12 @@ a.rounded-arrow {
 }
 .flickity-prev-next-button.previous,
 .flickity-prev-next-button:hover.previous {
-  background-image: url("../img/icons/arrow-left.svg");
+  background-image: url("{{ 'arrow-left.svg' | asset_url }}");
   left: -80px;
 }
 .flickity-prev-next-button.next,
 .flickity-prev-next-button:hover.next {
-  background-image: url("../img/icons/arrow-right.svg");
+  background-image: url("{{ 'arrow-right.svg' | asset_url }}");
   right: -80px;
 }
 .slider-slim .flickity-prev-next-button.previous {
@@ -292,10 +292,10 @@ a.rounded-arrow {
   background-size: 6px 11px;
 }
 .slider-rounded-buttons .flickity-prev-next-button.previous {
-  background-image: url("../img/icons/arrow-xs-left.svg");
+  background-image: url("{{ 'arrow-xs-left.svg' | asset_url }}");
 }
 .slider-rounded-buttons .flickity-prev-next-button.next {
-  background-image: url("../img/icons/arrow-xs-right.svg");
+  background-image: url("{{ 'arrow-xs-right.svg' | asset_url }}");
 }
 .flickity-page-dots {
   line-height: 6px;
@@ -347,7 +347,7 @@ a.rounded-arrow {
   vertical-align: middle;
 }
 .icon-resize {
-  background-image: url("../img/icons/resize.svg");
+  background-image: url("{{ 'resize.svg' | asset_url }}");
   width: 12px;
   height: 12px;
   position: absolute;
@@ -363,41 +363,41 @@ a.rounded-arrow {
   top: 22px;
 }
 .icon-plane {
-  background-image: url("../img/icons/paperplane.svg");
+  background-image: url("{{ 'paperplane.svg' | asset_url }}");
 }
 .icon-plane-light {
-  background-image: url("../img/icons/paperplane-light.svg");
+  background-image: url("{{ 'paperplane-light.svg' | asset_url }}");
 }
 .icon-facebook {
-  background-image: url("../img/icons/facebook-white.svg");
+  background-image: url("{{ 'facebook-white.svg' | asset_url }}");
   width: 10px;
   height: 18px;
   display: inline-block;
   top: -1px;
 }
 .icon-twitter {
-  background-image: url("../img/icons/twitter-white.svg");
+  background-image: url("{{ 'twitter-white.svg' | asset_url }}");
   width: 17px;
   height: 14px;
   display: inline-block;
   top: -2px;
 }
 .icon-pin {
-  background-image: url("../img/icons/pin.svg");
+  background-image: url("{{ 'pin.svg' | asset_url }}");
   width: 11px;
   height: 18px;
   display: inline-block;
   top: -2px;
 }
 .icon-pin-stroke {
-  background-image: url("../img/icons/pin-stroke.svg");
+  background-image: url("{{ 'pin-stroke.svg' | asset_url }}");
   width: 11px;
   height: 17px;
   display: inline-block;
   top: -2px;
 }
 .icon-star {
-  background-image: url("../img/icons/star.svg");
+  background-image: url("{{ 'star.svg' | asset_url }}");
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -418,7 +418,7 @@ a.rounded-arrow {
 }
 .icon-circle-arrow::after {
   content: '';
-  background: url("../img/icons/arrow-xs-right.svg") center no-repeat;
+  background: url("{{ 'arrow-xs-right.svg' | asset_url }}") center no-repeat;
   width: 6px;
   height: 11px;
   display: inline-block;
@@ -739,7 +739,7 @@ h5 {
   margin-top: -5px;
   width: 6px;
   height: 11px;
-  background: url("../img/icons/arrow-xs-right.svg") no-repeat;
+  background: url("{{ 'arrow-xs-right.svg' | asset_url }}") no-repeat;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
@@ -8154,7 +8154,7 @@ h5 {
 @media (min-width: 992px) {
   .headers.bg-iphone-left,
   .headers.bg-iphone-right {
-    background-image: url("../img/bg/iphone-lg.svg");
+    background-image: url("{{ 'iphone-lg.svg' | asset_url }}");
     background-repeat: no-repeat;
     background-size: 412px auto;
   }
@@ -8167,7 +8167,7 @@ h5 {
 }
 @media (min-width: 992px) {
   .headers .bg-iphone-left-small {
-    background-image: url("../img/iphone-330.svg");
+    background-image: url("{{ 'iphone-330.svg' | asset_url }}");
     background-repeat: no-repeat;
     background-size: 330px auto;
     background-position: center;
@@ -8175,7 +8175,7 @@ h5 {
 }
 @media (min-width: 992px) {
   .headers.bg-macbook-left {
-    background-image: url("../img/bg/macbook-full.svg");
+    background-image: url("{{ 'macbook-full.svg' | asset_url }}");
     background-repeat: no-repeat;
     background-position: -8vw 18vh;
     background-size: 50vw auto;
@@ -8183,7 +8183,7 @@ h5 {
 }
 @media (min-width: 992px) {
   .headers.bg-devices {
-    background-image: url("../img/ipad-iphone.svg");
+    background-image: url("{{ 'ipad-iphone.svg' | asset_url }}");
     background-repeat: no-repeat;
     background-position: right 190px;
     background-size: 50% auto;
@@ -8191,14 +8191,14 @@ h5 {
 }
 @media (min-width: 992px) {
   .headers.bg-poster {
-    background-image: url("../img/poster2.svg");
+    background-image: url("{{ 'poster2.svg' | asset_url }}");
     background-repeat: no-repeat;
     background-position: right 190px;
     background-size: 50% auto;
   }
 }
 .headers .bg-browser {
-  background-image: url("../img/browserframe.svg");
+  background-image: url("{{ 'browserframe.svg' | asset_url }}");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: 100% auto;
@@ -8209,7 +8209,7 @@ h5 {
   padding-top: 30%;
 }
 .headers .bg-ipad {
-  background-image: url("../img/ipad.svg");
+  background-image: url("{{ 'ipad.svg' | asset_url }}");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: 100% auto;
@@ -8247,7 +8247,7 @@ h5 {
 @media (min-width: 992px) {
   .contents.bg-iphone-left,
   .contents.bg-iphone-right {
-    background-image: url("../img/bg/iphone-lg.svg");
+    background-image: url("{{ 'iphone-lg.svg' | asset_url }}");
     background-size: 420px 853px;
   }
 }
@@ -8262,13 +8262,13 @@ h5 {
   }
 }
 .contents.bg-devices {
-  background-image: url("../img/bg/ipads.svg");
+  background-image: url("{{ 'ipads.svg' | asset_url }}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .contents.bg-poster {
-  background-image: url("../img/bg/poster.svg");
+  background-image: url("{{ 'poster.svg' | asset_url }}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8279,7 +8279,7 @@ h5 {
 }
 @media (min-width: 576px) {
   .contents.bg-macbook {
-    background-image: url("../img/bg/macbook.svg");
+    background-image: url("{{ 'macbook.svg' | asset_url }}");
     background-size: 473px 280px;
     background-position-x: calc(50% + 55px);
   }
@@ -8292,14 +8292,14 @@ h5 {
 }
 @media (min-width: 992px) {
   .sliders.bg-macbook {
-    background: url("../img/bg/macbook-full.svg") no-repeat;
+    background: url("{{ 'macbook-full.svg' | asset_url }}") no-repeat;
     background-size: 760px 439px;
     background-position: calc(50% - 500px) center;
   }
 }
 .sliders .bg-iphone {
   padding: 53px 0 62px;
-  background: #fff url("../img/bg/iphone-330-noscreen.svg") no-repeat;
+  background: #fff url("{{ 'iphone-330-noscreen.svg' | asset_url }}") no-repeat;
   background-position: center top;
   background-size: auto 462px;
 }
@@ -8364,7 +8364,7 @@ h5 {
   .features.bg-iphone-right,
   .features.bg-iphone-right-top,
   .features.bg-macbook-left {
-    background-image: url("../img/bg/iphone-lg.svg");
+    background-image: url("{{ 'iphone-lg.svg' | asset_url }}");
     background-size: 280px 568px;
   }
 }
@@ -8394,7 +8394,7 @@ h5 {
 }
 @media (min-width: 992px) {
   .features.bg-iphone-center {
-    background-image: url("../img/bg/iphone-lg.svg");
+    background-image: url("{{ 'iphone-lg.svg' | asset_url }}");
     background-position: 50% 260px;
   }
 }
@@ -8420,14 +8420,14 @@ h5 {
 }
 @media (min-width: 576px) {
   .features.bg-macbook-left {
-    background-image: url("../img/bg/macbook-full.svg");
+    background-image: url("{{ 'macbook-full.svg' | asset_url }}");
     background-size: 594px 342px;
     background-position: calc(50% - 372px) center;
   }
 }
 @media (min-width: 992px) {
   .features.bg-macbook-left {
-    background-image: url("../img/bg/macbook-full.svg");
+    background-image: url("{{ 'macbook-full.svg' | asset_url }}");
     background-size: 890px 514px;
     background-position: calc(50% - 475px) 268px;
   }
@@ -8435,7 +8435,7 @@ h5 {
 .features .bg-macbook-center {
   background-size: 121% auto;
   background-position: center top;
-  background-image: url("../img/bg/macbook-full.svg");
+  background-image: url("{{ 'macbook-full.svg' | asset_url }}");
 }
 .features .bg-macbook-center::after {
   content: '';
@@ -8456,7 +8456,7 @@ h5 {
   transition: 0.3s ease border;
   cursor: pointer;
   margin: -16px 0 0 -16px;
-  background: url("../img/icons/plus.svg") center no-repeat #fff;
+  background: url("{{ 'plus.svg' | asset_url }}") center no-repeat #fff;
 }
 .features .icon-feature:hover {
   border-color: #3fa2f7;
@@ -8894,7 +8894,7 @@ h5 {
   }
 }
 .call-to-actions.bg-iphone {
-  background: url("../img/iPhone.svg") center bottom -95px no-repeat;
+  background: url("{{ 'iPhone.svg' | asset_url }}") center bottom -95px no-repeat;
   padding-bottom: 350px;
   background-size: 224px auto;
 }
@@ -8956,7 +8956,7 @@ h5 {
 }
 @media (min-width: 576px) {
   .forms.bg-macbook {
-    background-image: url("../img/bg/macbook-full.svg");
+    background-image: url("{{ 'macbook-full.svg' | asset_url }}");
     background-size: 600px auto;
     background-position-x: calc(80% + 315px);
   }
@@ -8968,13 +8968,13 @@ h5 {
   }
 }
 .forms.bg-devices {
-  background-image: url("../img/bg/ipads.svg");
+  background-image: url("{{ 'ipads.svg' | asset_url }}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .forms.bg-poster {
-  background-image: url("../img/bg/poster.svg");
+  background-image: url("{{ 'poster.svg' | asset_url }}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8988,7 +8988,7 @@ h5 {
   z-index: -1;
 }
 .forms .checkbox input:checked ~ .check-pointer {
-  background: url("../img/icons/verification-mark.svg") center no-repeat;
+  background: url("{{ 'verification-mark.svg' | asset_url }}") center no-repeat;
   background-size: 80%;
 }
 .forms .checkbox .check-pointer {
@@ -9081,7 +9081,7 @@ h5 {
   color: #e4f1fd;
 }
 .contacts .bg-map-right {
-  background: url("../img/maps/map-1.png") no-repeat;
+  background: url("{{ 'map-1.svg' | asset_url }}") no-repeat;
   background-size: cover;
   min-height: calc(100vw - 30px);
   border-radius: 4px;
@@ -9092,7 +9092,7 @@ h5 {
   }
 }
 .contacts .bg-map-left {
-  background-image: url("../img/maps/map-2.png");
+  background-image: url("{{ 'map-2.svg' | asset_url }}");
   background-size: cover;
   border-radius: 4px;
   min-height: calc(100vw - 30px);
@@ -9103,12 +9103,12 @@ h5 {
   }
 }
 .contacts .bg-square-map {
-  background-image: url("../img/maps/map-4.png");
+  background-image: url("{{ 'map-4.svg' | asset_url }}");
   border-radius: 4px;
   background-size: cover;
 }
 .contacts .bg-full-map {
-  background-image: url("../img/maps/map-3.png");
+  background-image: url("{{ 'map-3.svg' | asset_url }}");
   background-size: cover;
 }
 .contacts .pin {
