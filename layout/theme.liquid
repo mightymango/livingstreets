@@ -1,124 +1,373 @@
-<!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->  
+<!DOCTYPE html>
+
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
-
-  <title>
-  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-  </title>
-
-  {% if page_description %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+	<title>
+	{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+	</title>
+  
+   {% if page_description %}
     <meta name="description" content="{{ page_description | escape }}" />
-  {% endif %}
-
-  <link rel="canonical" href="{{ canonical_url }}" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   {% endif %}
+    <link rel="canonical" href="{{ canonical_url }}" />
+ 
+   {% include 'open-graph-tags' %}
+   {% include 'twitter-card' %}
   
-  {% include 'open-graph-tags' %}
-  {% include 'twitter-card' %}
+   {{ content_for_header }}
+   
+   {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
+   {{ 'flickity.css' | asset_url | stylesheet_tag }}
+   {{ 'main.css' | asset_url | stylesheet_tag }}
+   {{ 'custom.css' | asset_url | stylesheet_tag }}
+   
+   {{ 'jquery-3.2.1.min.js' | shopify_asset_url | script_tag }}
 
-  {{ content_for_header }}
-
-  {{ 'style.scss.css' | asset_url | stylesheet_tag }}
-
-  <!--[if lt IE 9]>
-  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
-  <![endif]-->
-
-  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-  {% if template contains 'customers' %}  
-    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
-  {% endif %}
-  
-  <!-- Additional Shopify helpers that will likely be added to the global shopify_common.js some day soon. -->
-  {{ 'shopify_common.js'  | asset_url | script_tag }}
-
-  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
-  <script>jQuery('html').removeClass('no-js').addClass('js');</script>
+   {{ 'bootstrap.min.js' | shopify_asset_url | script_tag }}
+   {{ 'flickity.js' | shopify_asset_url | script_tag }}
+   {{ 'jquery.smoothscroll.js' | shopify_asset_url | script_tag }}
 
 </head>
 
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
-  
-  <header>
-    {% comment %}
-      Note on checkout link: it is a good idea to avoid linking to /checkout directly because shops that use 
-      Paypal Express Checkout and/or Google Checkout have special checkout buttons on the /cart page. Also,
-      special instructions for the seller are entered on the /cart page. Finally, the universal tracking code 
-      of Google Analytics may not work if linking directly to the /checkout page.
-    {% endcomment %}
+<body>
+    <!-- Notification Bar -->
+
+    <div id="notification" class="show">
+        <span class="vertical-align">This is where you can say something...</span>
+    </div>
     
-    <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
-          
-    {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
-      {% else %}
-        {{ 'Log in' | customer_login_link }}
-        {% if shop.customer_accounts_optional %}
-        or {{ 'Create an account' | customer_register_link }}
-        {% endif %}
-      {% endif %}
-    {% endif %}
+    <!-- Menu -->
+
+    <section class="headers" id="headers-19">
+        <div id="navbar" class="ph-15 ph-sm-30 ph-lg-70 bg-light fixed-navbar fixed-navbar-notification">
+            <div class="row justify-content-center align-items-center justify-content-sm-between h-100">
+                <div class="col-auto">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-auto" id="company-logo">
+                            <a href="index.html"><img src="{{ 'living-streets.svg' | asset_url | img_tag: shop.name }}"></a>
+                        </div>
+
+                        <div class="col-auto d-none d-lg-block">
+                            <nav class="navbar navbar-left"><a class="active" href="index.html">WOW</a> <a href="walking-challenge.html">Walking Challenge</a> <a href="little-feet.html">Little Feet</a> <a href="free-your-feet.html">Free Your Feet</a> <a href="catalogue.html">Catalogue</a></nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-auto d-none d-lg-block">
+                    <nav class="navbar">
+                        <div class="dropdown dropdown-right">
+                            <a href="" id="headers-19-dropdown" data-toggle="dropdown"><span class="d-flex align-items-center"><span><img src="img/pics/user-round-50-thick.svg"></span></span></a>
+
+                            <div style="margin-left: 2em" class="dropdown-menu" aria-labelledby="headers-19-dropdown">
+                                <a href="">Submenu one</a><a href="">Submenu two</a><a href="">Submenu three</a>
+
+                                <div class="dropdown-divider"></div><a href="">Submenu four</a>
+                            </div>
+                        </div><a href="cart.html" class="cart"><img src="img/icons/cart.svg"></a>
+                    </nav>
+                </div>
+
+                <div class="col-auto d-block d-lg-none">
+                    <nav class="navbar"><a class="hamburger" id="responsive"><img src="img/icons/hamburger.svg"></a></nav>
+                </div>
+            </div>
+        </div>
+    </section><!-- Mobile menu -->
+
+    <div class="row justify-content-center align-items-center d-lg-none">
+        <div id="mobile-navbar" class="mobile-navbar">
+            <p><a class="active" href="index.html">WOW</a></p>
+
+            <p><a href="walking-challenge.html">Walking Challenge</a></p>
+
+            <p><a href="little-feet.html">Little Feet</a></p>
+
+            <p><a href="free-your-feet.html">Free Your Feet</a></p>
+
+            <p><a href="catalogue.html">Catalogue</a></p>
+
+            <p><a href=""><img src="img/pics/user-round-50-thick.svg"></a></p>
+
+            <p><a href="cart.html"><img src="img/icons/cart.svg"></a></p>
+        </div>
+    </div><!-- Menu -->
+
+    <section class="headers bg-light pt-130 pt-sm-130 pt-lg-170" id="headers-2">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-12 col-sm-10 col-lg-8">
+                    <h1 class="mb-20">WOW: The Year Round Walk To School Challenge</h1>
+
+                    <h4 class="mb-60">Take part in the nation's best loved Walk to School initiative</h4>
+                </div>
+            </div>
+
+            <form class="mb-20">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-4 col-lg-2 mb-20">
+                        <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
+                    </div>
+
+                    <div class="col-12 col-sm-4 col-lg-2 mb-20">
+                        <a href="wow.html" class="btn w-full no-padding"><span>Buy</span></a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row bg-browser justify-content-center align-items-center d-none d-sm-block">
+                <div class="col-12 col-lg-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="grids p-60 p-lg-100 text-center text-sm-left" id="more-info">
+        <div class="container">
+            <h1 class="mb-40 text-center">Platforma Wireframe Kit</h1>
+
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h4>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the</h4>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                    <h4>blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features pt-60 pt-lg-100 pb-20 pb-lg-60" id="features-3">
+        <div class="container">
+            <h1 class="text-center mb-40 mb-lg-60">Features</h1>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature One</h3>
+
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Two</h3>
+
+                        <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Three</h3>
+
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Four</h3>
+
+                        <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Five</h3>
+
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Six</h3>
+
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Seven</h3>
+
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40">
+                    <div class="mr-15"><img src="img/pics/check-36.svg" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">Feature Eight</h3>
+
+                        <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features text-center pt-60 pt-lg-100 pb-45 pb-sm-30 pb-lg-70" id="features-13">
+        <div class="container">
+            <h1 class="mb-60">Purchase a subscription</h1>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 mb-15 mb-sm-30">
+                    <div class="d-flex p-30 panel justify-content-center">
+                        <div class="align-self-center ph-15 ph-lg-100">
+                            <img class="mb-30" src="img/pics/pic-70.svg">
+
+                            <h2 class="mb-15">TravelTracker</h2>
+
+                            <p class="mb-30 mb-lg-50">Far far away, behind the word mountains, far from the countries Vokalia</p><a href="wow.html" class="btn btn-small">Buy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contents text-center p-60 p-lg-100" id="contents-1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-lg-8">
+                    <img class="mb-40" src="img/pics/star-54.svg" alt="">
+
+                    <h4>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials text-center pt-60 pt-lg-100 pb-0 pb-lg-40" id="testimonials-13">
+        <div class="container">
+            <h1 class="mb-40 mb-lg-80">Testimonials</h1>
+
+            <div class="row">
+                <div class="col-12 col-sm-4 mb-60">
+                    <div class="ph-lg-30">
+                        <p class="mb-40">"Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean"</p><img class="mb-20" src="img/pics/user-round-50.svg">
+
+                        <h5>Client One</h5>
+
+                        <p>Position</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-4 mb-60">
+                    <div class="ph-lg-30">
+                        <p class="mb-40">"Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean"</p><img class="mb-20" src="img/pics/user-round-50.svg">
+
+                        <h5>Client Two</h5>
+
+                        <p>Position</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-4 mb-60">
+                    <div class="ph-lg-30">
+                        <p class="mb-40">"Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean"</p><img class="mb-20" src="img/pics/user-round-50.svg">
+
+                        <h5>Client Three</h5>
+
+                        <p>Position</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footers" id="footers-7">
+        <div class="container">
+            <div class="row justify-content-center align-items-stretch p-40 p-lg-40">
+                <div class="col-sm-8 col-lg-7 text-center text-sm-left">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mb-20 mb-sm-0">
+                            <h3 class="mb-5">Hamburg</h3>
+
+                            <p>+49 40 432 91 222</p>
+
+                            <p><a href="">hello@greatsimple.com</a></p>
+
+                            <p>Limpmannstrasse 79, 22769,</p>
+
+                            <p>Hamburg Germany</p>
+                        </div>
+
+                        <div class="col-12 col-sm-6 mb-20 mb-sm-0">
+                            <h3 class="mb-5">Frankfurt</h3>
+
+                            <p>+49 69 484 484 90</p>
+
+                            <p><a href="">hello@greatsimple.com</a></p>
+
+                            <p>Steinstrasse 11, 40212</p>
+
+                            <p>Düsseldorf, Germany</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-lg-5 text-center text-sm-right d-flex flex-column justify-content-between">
+                    <div class="mb-15 mb-lg-0">
+                        <div class="mb-5">
+                            <a href="">Menu One</a>
+                        </div>
+
+                        <div class="mb-5">
+                            <a href="">Menu Two</a>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-end">
+                        <div class="col-12 col-lg-auto mb-20 mb-lg-0">
+                            <p>&copy; 2018 MightyMango Ltd rights reserved</p>
+                        </div>
+
+                        <div class="col-12 col-lg-auto">
+                            <div class="socials">
+                                <a href=""><img src="img/socials/facebook.svg"></a><a href=""><img src="img/socials/twitter.svg"></a><a href=""><img src="img/socials/instagram.svg"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footers" id="designer">
+        <div class="container">
+            <div class="row justify-content-right p-20 p-lg-20">
+                <div class="col-12 text-right">
+                    <span class="designer"><a href="https://mightymango.ltd">Design by MightyMango Ltd</a></span>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    {% comment %}
-      It would be nice if the logo was a shop setting, rather than a theme setting.
-      But for now, it is a theme setting. The shop logo is uploaded on the theme settings page.
-      Link to the theme settings page of currently published theme will always be:
-      http://www.shopify.com/admin/themes/current/settings.
-      To add theme settings to a theme, see this: http://docs.shopify.com/themes/theme-templates/settings
-      Theme settings are added to http://www.shopify.com/admin/themes/current#config/settings.html
-    {% endcomment %}
-
-    {% if settings.use_logo %}
-      <a id="logo" href="/">
-        {{ 'logo.png' | asset_url | img_tag: shop.name }}
-      </a>
-    {% else %}
-      <a id="site-title" href="/">
-        {{ shop.name }}
-      </a>
-    {% endif %}
-
-    {% comment %}
-      Main Navigation 
-    {% endcomment %}
-    {% include 'site-nav' %}
-
-  </header>
-
-  {% comment %}
-    IE8 and IE9 don't support the HTML5 placeholder attribute, so it's a good idea to use JavaScript
-    to show and hide the placeholder text.
-    Have a look in assets/shop.js.liquid to see sample JavaScript for this.
-  {% endcomment %}      
-  <form action="/search" method="get" class="search-form right" role="search">
-    <input name="q" type="search" id="search-field" placeholder="Search store..." value="{{ search.terms | escape }}" />
-    <input type="submit" id="search-submit" value="Search" />
-  </form>
-
-  {% comment %}}
-    We have a template file to render.
-    That's what content_for_layout is for.
-  {% endcomment %}
-  <main role="main">
-    {{ content_for_layout }}
-  </main>
-
-  <footer>
-    Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}.
-  </footer>
-
-  {{ 'shop.js'  | asset_url | script_tag }}
+    {{ 'custom.js' | shopify_asset_url | script_tag }}
 
 </body>
-
 </html>
