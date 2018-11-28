@@ -41,14 +41,19 @@
             {% if section.settings.heading %}
             <h1 class="mb-40 text-center">{{ section.settings.heading | escape }}</h1>
 			{% endif %}
-            <div class="row">
-                <div class="col-12 col-sm-6">
+            <div class="row justify-content-center">
+	            
+	            {% unless section.settings.box-1 == blank %}
+                <div class="col-12 col-sm-6{% if section.settings.box-2 == blank %} text-center{% endif %}">
                     <h4>{{ section.settings.box-1 | escape }}</h4>
                 </div>
+				{% endunless %}
 
+	            {% unless section.settings.box-2 == blank %}
                 <div class="col-12 col-sm-6">
                     <h4>{{ section.settings.box-2 | escape }}</h4>
                 </div>
+				{% endunless %}
             </div>
         </div>
     </section>

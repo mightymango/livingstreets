@@ -22,6 +22,15 @@
         "name": "Feature",
         "settings": [
           {
+		   "type": "select",
+		   "id": "bullet_image",
+		   "options": [
+		      { "value": "check-36.svg", "label": "Checkmark"},
+		      { "value": "", "label": "None"}
+		   ],
+		   "label": "Hero Image"
+		},
+          {
             "id": "name",
             "type": "text",
             "label": "Name"
@@ -52,7 +61,7 @@
 	            
 	            {% for block in section.blocks %}
 	            <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40" {{ block.shopify_attributes }}>
-                    <div class="mr-15"><img src="{{ 'check-36.svg' | asset_url }}" alt=""></div>
+                    <div class="mr-15">{% if block.settings.bullet_image %}<img src="{{ block.settings.bullet_image | asset_url }}" alt="">{% endif %}</div>
 
                     <div>
                         <h3 class="mb-10">{{ block.settings.name | escape }}</h3>

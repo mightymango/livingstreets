@@ -55,7 +55,7 @@
             {% if section.settings.headline %}
             <h1 class="mb-40 mb-lg-80">{{ section.settings.headline | escape }}</h1>
 			{%- endif -%}
-            <div class="row">
+            <div class="row justify-content-center">
                 
                 {% for block in section.blocks %}
                 <div class="col-12 col-sm-4 mb-60" {{ block.shopify_attributes }}>

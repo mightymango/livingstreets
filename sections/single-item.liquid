@@ -1,0 +1,45 @@
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "hero",
+        "name": "Hero",
+        "settings": [
+          {
+            "id": "hero-text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "info",
+        "name": "Information",
+        "settings": [
+          {
+            "id": "info-text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+  {% for block in section.blocks %}
+  <div {{ block.shopify_attributes }}>
+    {% case block.type %}
+
+      {% when 'hero' %}
+      {% include 'section_hero' %}
+
+      {% when 'info' %}
+      {% include 'section_info' %}
+
+    {% endcase %}
+  </div>
+  {% endfor %}
+
+
