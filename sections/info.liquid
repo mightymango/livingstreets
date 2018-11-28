@@ -1,0 +1,48 @@
+{% schema %}
+{
+  "name": "Introduction",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Title"
+	},
+	{
+		"id": "box-1",
+		"type": "textarea",
+		"label": "Left column",
+		"default": "Add your text here"
+	},
+	{
+		"id": "box-2",
+		"type": "textarea",
+		"label": "Right column",
+		"default": "Add your text here"
+	}
+  ],
+  "presets": [
+    {
+      "name": "Introduction",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+    <section class="grids p-60 p-lg-100 text-center text-sm-left" id="info">
+        <div class="container">
+            <h1 class="mb-40 text-center">{{ section.settings.heading | escape }}</h1>
+
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h4>{{ section.settings.box-1 | escape }}</h4>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                    <h4>{{ section.settings.box-2 | escape }}</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    

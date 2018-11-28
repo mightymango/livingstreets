@@ -1,10 +1,36 @@
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Headline",
+        "default": "Title"
+      },
+      {
+        "id": "strapline",
+        "type": "text",
+        "label": "Strapline",
+        "default": "Add your text here"
+      }
+    ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Headings"
+    }
+  ]
+  }
+{% endschema %}
+
     <section class="headers bg-light pt-130 pt-sm-130 pt-lg-170" id="hero">
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-12 col-sm-10 col-lg-8">
-                    <h1 class="mb-20">WOW: The Year Round Walk To School Challenge</h1>
+                    <h1 class="mb-20">{{ section.settings.headline | escape}}</h1>
 
-                    <h4 class="mb-60">Take part in the nation's best loved Walk to School initiative</h4>
+                    <h4 class="mb-60">{{ section.settings.strapline | escape }}</h4>
                 </div>
             </div>
 

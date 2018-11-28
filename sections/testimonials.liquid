@@ -1,0 +1,68 @@
+{% schema %}
+  {
+    "name": "Testimonials",
+    "max_blocks": 3,
+    "settings": [
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Headline",
+        "default": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "quote",
+        "name": "Quote",
+        "settings": [
+          {
+            "id": "quote",
+            "type": "textarea",
+            "label": "Quote"
+          },
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "id": "position",
+            "type": "text",
+            "label": "Position"
+          }
+        ]
+      }
+    ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Text"
+    }
+  ]
+  }
+{% endschema %}
+
+
+
+    <section class="testimonials text-center pt-60 pt-lg-100 pb-0 pb-lg-40" id="testimonials">
+        <div class="container">
+            <h1 class="mb-40 mb-lg-80">{{ section.settings.headline | escape }}</h1>
+
+            <div class="row">
+                
+                {% for block in section.blocks %}
+                <div class="col-12 col-sm-4 mb-60" {{ block.shopify_attributes }}>
+                    <div class="ph-lg-30">
+                        <p class="mb-40">"{{ block.settings.quote | escape }}"</p><img class="mb-20" src="{{ 'user-round-50.svg' | asset_url }}">
+
+                        <h5>{{ block.settings.name | escape }}</h5>
+
+                        <p>{{ block.settings.position | escape }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    

@@ -1,0 +1,60 @@
+{% schema %}
+  {
+    "name": "Features",
+    "max_blocks": 8,
+    "settings": [
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Headline",
+        "default": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Feature",
+        "settings": [
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "id": "info",
+            "type": "textarea",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+  "presets": [
+    {
+      "name": "Features",
+      "category": "Text"
+    }
+  ]
+  }
+{% endschema %}
+
+    <section class="features pt-60 pt-lg-100 pb-20 pb-lg-60" id="features-3">
+        <div class="container">
+            <h1 class="text-center mb-40 mb-lg-60">{{ section.settings.headline | escape}}</h1>
+
+            <div class="row">
+	            
+	            {% for block in section.blocks %}
+	            <div class="col-12 col-sm-6 col-lg-3 d-flex mb-40" {{ block.shopify_attributes }}>
+                    <div class="mr-15"><img src="{{ 'check-36.svg' | asset_url }}" alt=""></div>
+
+                    <div>
+                        <h3 class="mb-10">{{ block.settings.name | escape }}</h3>
+
+                        <p>{{ block.settings.info | escape }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>

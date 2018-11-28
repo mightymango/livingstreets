@@ -1,10 +1,30 @@
+{% schema %}
+{
+  "name": "Call Out",
+  "settings": [
+	{
+		"id": "text",
+		"type": "textarea",
+		"label": "Text",
+		"default": "Add your text here"
+	}
+  ],
+  "presets": [
+    {
+      "name": "Call Out",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+
     <section class="contents text-center p-60 p-lg-100" id="callout">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 col-lg-8">
                     <img class="mb-40" src="{{ 'star-54.svg' | asset_url }}" alt="">
 
-                    <h4>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</h4>
+                    <h4>{{ section.settings.text | escape }}</h4>
                 </div>
             </div>
         </div>
