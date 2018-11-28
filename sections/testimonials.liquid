@@ -8,7 +8,13 @@
         "type": "text",
         "label": "Headline",
         "default": "Title"
-      }
+      },
+	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":false
+	}
     ],
     "blocks": [
       {
@@ -44,7 +50,7 @@
 
 
 
-    <section class="testimonials text-center pt-60 pt-lg-100 pb-0 pb-lg-40" id="testimonials">
+    <section class="testimonials {% if section.settings.coloured_background %}bg-light {% endif %}text-center pt-60 pt-lg-100 pb-0 pb-lg-40" id="testimonials">
         <div class="container">
             <h1 class="mb-40 mb-lg-80">{{ section.settings.headline | escape }}</h1>
 
