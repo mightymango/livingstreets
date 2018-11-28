@@ -38,8 +38,9 @@
 
     <section class="grids {% if section.settings.coloured_background %}bg-light {% endif %}p-60 p-lg-100 text-center text-sm-left" id="info">
         <div class="container">
+            {% if section.settings.heading %}
             <h1 class="mb-40 text-center">{{ section.settings.heading | escape }}</h1>
-
+			{% endif %}
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <h4>{{ section.settings.box-1 | escape }}</h4>

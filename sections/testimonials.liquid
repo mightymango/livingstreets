@@ -52,8 +52,9 @@
 
     <section class="testimonials {% if section.settings.coloured_background %}bg-light {% endif %}text-center pt-60 pt-lg-100 pb-0 pb-lg-40" id="testimonials">
         <div class="container">
+            {% if section.settings.headline %}
             <h1 class="mb-40 mb-lg-80">{{ section.settings.headline | escape }}</h1>
-
+			{%- endif -%}
             <div class="row">
                 
                 {% for block in section.blocks %}

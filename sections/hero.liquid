@@ -14,11 +14,22 @@
         "label": "Strapline",
         "default": "Add your text here"
       },
-	{
+      {
+	  "type": 	"checkbox",
+	  "id": 	"show_more_button",
+	  "label": 	"More info button",
+	  "default":true
+	},
+      	{
+	  "id": "buy_url",
+	  "type": "url",
+	  "label": "Buy button link"
+	},
+      	{
 	  "type": 	"checkbox",
 	  "id": 	"coloured_background",
 	  "label": 	"Coloured background",
-	  "default":true
+	  "default":false
 	}
     ],
   "presets": [
@@ -42,12 +53,13 @@
 
             <form class="mb-20">
                 <div class="row justify-content-center">
+                    {% if section.settings.show_more_button %}
                     <div class="col-12 col-sm-4 col-lg-2 mb-20">
                         <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
                     </div>
-
+					{% endif %}
                     <div class="col-12 col-sm-4 col-lg-2 mb-20">
-                        <a href="wow.html" class="btn w-full no-padding"><span>Buy</span></a>
+                        <a href="{{ buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
                     </div>
                 </div>
             </form>
