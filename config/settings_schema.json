@@ -4,17 +4,25 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. Please see our [help page on theme settings](http:\/\/docs.shopify.com\/themes\/theme-templates\/settings) to learn more about how you can make your theme customizable."
+        "content": "Theme settings provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. "
       }
     ]
   },
   {
-    "name": "Example setting",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Example option"
-      }
-    ]
+	  "name": "Notification",
+	  "settings": [
+		  {
+			  "type": 	"checkbox",
+			  "id": 	"show_notification",
+			  "label": 	"Show the notification",
+			  "default":false
+		  },
+		  {
+			   "type": 		"text",
+			   "id": 		"notification_text",
+			   "default": 	"Say something here.",
+			   "label": 	"Notification text"
+		  }
+	  ]
   }
 ]

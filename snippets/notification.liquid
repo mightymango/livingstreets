@@ -1,6 +1,7 @@
+    {% if settings.show_notification %}
     <!-- Notification Bar -->
-
-    <div id="notification" class="hide">
-        <span class="vertical-align">This is where you can say something...</span>
+    <div id="notification">
+        <span class="vertical-align">{{ settings.notification_text | escape }}</span>
     </div>
+    {% endif %}
     
