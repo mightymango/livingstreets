@@ -59,8 +59,6 @@
                     <h1 class="mb-20">{{ section.settings.headline | escape}}</h1>
 
                     <h4 class="mb-30">{{ section.settings.strapline | escape }}</h4>
-                    
-<!--                     <a href="{{ buy_url }}" class="btn"><span>Buy</span></a> -->
             
 	            <form class="mb-20">
 	                <div class="row justify-content-left">
@@ -70,7 +68,7 @@
 	                    </div>
 						{% endif %}
 	                    <div class="col-12 col-sm-4 col-lg-4 mb-20">
-	                        <a href="{{ buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
+	                        <a href="{{ section.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
 	                    </div>
 	                </div>
 	            </form>
@@ -100,7 +98,7 @@
                     </div>
 					{% endif %}
                     <div class="col-12 col-sm-4 col-lg-2 mb-20">
-                        <a href="{{ buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
+                        <a href="{{ section.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
                     </div>
                 </div>
             </form>

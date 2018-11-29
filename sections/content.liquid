@@ -1,0 +1,228 @@
+{% schema %}
+  {
+    "name": "Content",
+    "blocks": [
+	     {
+    "type" : "hero",
+    "name": "Hero",
+    "settings": [
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Headline",
+        "default": "Title"
+      },
+      {
+        "id": "strapline",
+        "type": "text",
+        "label": "Strapline",
+        "default": "Add your text here"
+      },
+      {
+		   "type": "select",
+		   "id": "background_image",
+		   "options": [
+		      { "value": "", "label": "None"},
+		      { "value": "bg-browser", "label": "Browser"},
+		      { "value": "bg-poster", "label": "Poster"}
+		   ],
+		   "label": "Hero Image"
+		},
+      {
+	  "type": 	"checkbox",
+	  "id": 	"show_more_button",
+	  "label": 	"More info button",
+	  "default":true
+	},
+      	{
+	  "id": "buy_url",
+	  "type": "url",
+	  "label": "Buy button link"
+	},
+      	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":true
+	}
+    ]
+  },
+      {
+          "type": "info",
+          "name": "Information",
+		  "settings": [
+			{
+				"id": "heading",
+				"type": "text",
+				"label": "Heading",
+				"default": "Title"
+			},
+			{
+				"id": "box-1",
+				"type": "textarea",
+				"label": "Left column",
+				"default": "Add your text here"
+			},
+			{
+				"id": "box-2",
+				"type": "textarea",
+				"label": "Right column",
+				"default": "Add your text here"
+			},
+			{
+			  "type": 	"checkbox",
+			  "id": 	"coloured_background",
+			  "label": 	"Coloured background",
+			  "default":false
+			}
+		  ]
+      }, 
+  {
+    "type": "features4",
+    "name": "Features",
+    "settings": [
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Headline",
+        "default": "Title"
+      },
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"coloured_background",
+		  "label": 	"Coloured background",
+		  "default":false
+	  },
+      {
+        "id": "name1",
+        "type": "text",
+        "label": "Feature 1 : Name"
+      },
+      {
+        "id": "info1",
+        "type": "textarea",
+        "label": "Feature 1 : Text"
+      },
+      {
+        "id": "name2",
+        "type": "text",
+        "label": "Feature 2 : Name"
+      },
+      {
+        "id": "info2",
+        "type": "textarea",
+        "label": "Feature 2 : Text"
+      },
+      {
+        "id": "name3",
+        "type": "text",
+        "label": "Feature 3 : Name"
+      },
+      {
+        "id": "info3",
+        "type": "textarea",
+        "label": "Feature 3 : Text"
+      },
+      {
+        "id": "name4",
+        "type": "text",
+        "label": "Feature 4 : Name"
+      },
+      {
+        "id": "info4",
+        "type": "textarea",
+        "label": "Feature 4 : Text"
+      }
+    ]
+  },
+  
+  {
+  "type": "related",
+  "name": "Related Items",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Add your text here"
+	},
+	{
+	   "type": "collection",
+	   "id": "feature_collection",
+	   "label": "Feature collection"
+	},
+	{
+	  "type": 	"checkbox",
+	  "id": 	"scrolling",
+	  "label": 	"Scrolling",
+	  "default":true
+	},			
+	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":false
+	}
+  ]
+}, 
+
+  
+  {
+  "type" : "purchase",
+  "name": "Purchase",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Subheading",
+		"default": "Subheading"
+	},
+	{
+		"id": "strapline",
+		"type": "text",
+		"label": "Strapline",
+		"default": "Strapline"
+	},
+	{
+	  "id": "buy_url",
+	  "type": "url",
+	  "label": "Buy button link"
+	},
+	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":false
+	}  
+  ]
+}
+
+    ]
+  }
+{% endschema %}
+			
+
+  {% for block in section.blocks %}
+  <div {{ block.shopify_attributes }}>
+    {% case block.type %}
+
+      {% when 'hero' %}
+      {% include 'section-hero' %}
+      
+      {% when 'info' %}
+      {% include 'section-info' %}
+
+      {% when 'features4' %}
+      {% include 'section-features4' %}
+
+      {% when 'related' %}
+      {% include 'section-related' %}
+
+      {% when 'purchase' %}
+      {% include 'section-purchase' %}
+                       
+    {% endcase %}
+  </div>
+  {% endfor %}
+
+

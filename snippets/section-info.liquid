@@ -1,0 +1,22 @@
+   <section class="grids {% if block.settings.coloured_background %}bg-light {% endif %}p-60 p-lg-100 text-center text-sm-left" id="info">
+        <div class="container">
+            {% if block.settings.heading %}
+            <h1 class="mb-40 text-center">{{ block.settings.heading | escape }}</h1>
+			{% endif %}
+            <div class="row justify-content-center">
+	            
+	            {% unless block.settings.box-1 == blank %}
+                <div class="col-12 col-sm-6{% if block.settings.box-2 == blank %} text-center{% endif %}">
+                    <h4>{{ block.settings.box-1 | escape }}</h4>
+                </div>
+				{% endunless %}
+
+	            {% unless block.settings.box-2 == blank %}
+                <div class="col-12 col-sm-6">
+                    <h4>{{ block.settings.box-2 | escape }}</h4>
+                </div>
+				{% endunless %}
+            </div>
+        </div>
+    </section>
+    
