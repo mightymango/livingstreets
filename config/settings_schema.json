@@ -1,22 +1,17 @@
 [
   {
-    "name": "Welcome",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "Theme settings provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. "
-      }
-    ]
-  },
-  {
 	  "name": "Notification",
 	  "settings": [
-		  {
-			  "type": 	"checkbox",
-			  "id": 	"show_notification",
-			  "label": 	"Show the notification",
-			  "default":false
-		  },
+		{
+		   "type": "radio",
+		   "id": "display_notification",
+		   "options": [
+		      { "value": "never", "label": "Never"},
+		      { "value": "home", "label": "Home page only"},
+		      { "value": "all", "label": "All pages"}
+		   ],
+		   "label": "Display"
+		},
 		  {
 			   "type": 		"text",
 			   "id": 		"notification_text",

@@ -1,7 +1,20 @@
-    {% if settings.show_notification %}
-    <!-- Notification Bar -->
+	{% assign show_notification = false %}
+	
+	{% case settings.display_notification %}
+	  {% when 'all' %}
+	     {% assign show_notification = true %}
+	  {% when 'home' %}
+	     {% if template == 'index' %}
+	     {% assign show_notification = true %}
+	     {% endif %}
+	  {% else %}
+	     {% assign show_notification = false %}
+	{% endcase %}
+
+	
+	{% if show_notification %}
+	<!-- Notification Bar -->
     <div id="notification">
-        <span class="vertical-align">{{ settings.notification_text | escape }}</span>
+        <span class="vertical-align">{{ settings.notification_text | escape }}{{ show_notification }}</span>
     </div>
     {% endif %}
-    
