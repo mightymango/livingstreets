@@ -1,0 +1,69 @@
+{% schema %}
+  {
+    "name": "Features",
+    "max_blocks": 4,
+    "settings": [
+      {
+        "id": "headline",
+        "type": "text",
+        "label": "Headline",
+        "default": "Title"
+      },
+      {
+		   "type": "product",
+		   "id": "feature_product",
+		   "label": "Feature product"
+		},
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"coloured_background",
+		  "label": 	"Coloured background",
+		  "default":false
+	}
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Feature",
+        "settings": [
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "id": "info",
+            "type": "textarea",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+  "presets": [
+    {
+      "name": "Features",
+      "category": "Info"
+    }
+  ]
+  }
+{% endschema %}
+
+   <section class="grids {% if section.settings.coloured_background %}bg-light {% endif %}pt-60 pb-20 pt-lg-100 pb-lg-30 text-center text-sm-left" id="features4">
+        <div class="container">
+
+	        {%- if section.settings.headline -%}
+            <h1 class="text-center mb-40 mb-lg-60">{{ section.settings.headline | escape}}</h1>
+			{%- endif -%}
+				        
+            <div class="row">
+                {% for block in section.blocks %}
+                <div class="col-12 col-sm-6 mb-40 mb-lg-70">
+                    <h3 class="mb-20">{{ block.settings.name | escape }}</h3>
+
+                    <h4>{{ block.settings.info | escape }}</h4>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
