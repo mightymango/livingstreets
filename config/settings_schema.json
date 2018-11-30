@@ -1,23 +1,32 @@
 [
   {
-	  "name": "Notification",
-	  "settings": [
-		{
-		   "type": "radio",
-		   "id": "display_notification",
-		   "options": [
-		      { "value": "never", "label": "Never"},
-		      { "value": "home", "label": "Home page only"},
-		      { "value": "all", "label": "All pages"}
-		   ],
-		   "label": "Display"
-		},
-		  {
-			   "type": 		"text",
-			   "id": 		"notification_text",
-			   "default": 	"Say something here.",
-			   "label": 	"Notification text"
-		  }
-	  ]
+    "name": "Notification",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "display_notification",
+        "options": [
+          {
+            "value": "never",
+            "label": "Never"
+          },
+          {
+            "value": "home",
+            "label": "Home page only"
+          },
+          {
+            "value": "all",
+            "label": "All pages"
+          }
+        ],
+        "label": "Display"
+      },
+      {
+        "type": "text",
+        "id": "notification_text",
+        "default": "Say something here.",
+        "label": "Notification text"
+      }
+    ]
   }
 ]

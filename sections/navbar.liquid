@@ -12,16 +12,6 @@
 {% endschema %}
 
 
-{% comment %}
-  A word on drop-down menus: Shopify has no concept of them.
-  Drop-down menus in Shopify themes are a hack that relies on a naming convention.
-  To create a drop-down menu, the merchant must create a link list that has the same name as the link he wants the drop-down for.
-  For example, if he wants a drop-down under a 'Shop by brand' link (say, he has such link in his Main Menu), he needs to create a linklist called 'Shop by brand', and populate it with links. Once he has done that, there'll be a drop-down under 'Shop by brand'.
-  Shopify has a visual how-to guide here: http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu.
-  The naming convention hack won't work well if a shop's navigation uses non-English characters. There's a much more verbose coding solution that handles non-English characters here: http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/translations/can-i-have-drop-down-menus-that-use-non-english-characters.
-  A word on sub-categories: Shopify manages sub-categories using product tags: http://docs.shopify.com/manual/configuration/store-customization/page-specific/collections/subcategories
-{% endcomment %}
-
     <!-- Menu -->
 
     <section class="headers" id="headers-19">
@@ -45,7 +35,7 @@
 
                 <div class="col-auto d-none d-lg-block">
                     <nav class="navbar">                       
-                        <a href="" class="cart">{{ 'user-round-50-thick.svg' | asset_url | img_tag: '' }}</a>
+                        <a href="{{ shop.url }}/account" class="cart">{{ 'user-round-50-thick.svg' | asset_url | img_tag: '' }}</a>
                         <a href="{{ shop.url }}/cart" class="cart">{{ 'cart.svg' | asset_url | img_tag: '' }}</a>
                     </nav>
                 </div>
