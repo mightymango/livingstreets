@@ -1,0 +1,65 @@
+
+    {% schema %} 
+    { "name": "Sliders", 
+    	"settings": [ 
+    	{ 	"type": "checkbox", 
+    		"id": "coloured_background", 
+    		"label": "Coloured background", 
+    		"default":false 
+    	} 
+    	], 
+    	"presets": [ { "name": "Sliders", "category": "Header" } ] } 
+    
+    {% endschema %}
+
+    <section class="sliders text-center {% if section.settings.coloured_background %}bg-light {% endif %}p-50" id="sliders-1">
+        <div class="container">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+
+                <ul class="carousel-indicators"></ul>
+                
+                <!-- The slideshow -->
+
+                <div class="carousel-inner">
+                    <div class="slider slider-rounded-buttons carousel-item active">
+                        <div class="slider-item">
+                            <div class="row justify-content-center p-70 p-lg-150">
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <h1 class="mb-20">Platforma wireframe kit</h1>
+
+                                    <h4 class="mb-40">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind of shining texts</h4><button class="btn"><span>Button</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider slider-rounded-buttons carousel-item">
+                        <div class="slider-item">
+                            <div class="row justify-content-center p-70 p-lg-150">
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <h1 class="mb-20">Platforma wireframe kit</h1>
+
+                                    <h4 class="mb-40">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind of shining texts</h4><button class="btn"><span>Button</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider slider-rounded-buttons carousel-item active">
+                        <div class="slider-item">
+                            <div class="row justify-content-center p-70 p-lg-150">
+                                <div class="col-12 col-sm-8 col-lg-6">
+                                    <h1 class="mb-20">Platforma wireframe kit</h1>
+
+                                    <h4 class="mb-40">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind of shining texts</h4><button class="btn"><span>Button</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Left and right controls -->
+                 <a class="carousel-control-prev" href="#demo" data-slide="prev"></a> <a class="carousel-control-next" href="#demo" data-slide="next"></a>
+            </div>
+        </div>
+    </section>
+

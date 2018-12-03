@@ -1,0 +1,146 @@
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Cart"
+    },
+	{
+      "type": "text",
+      "id": "comment",
+      "label": "Comment",
+      "default": "Taxes and shipping will be calculated at checkout."
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_images_enabled",
+      "label": "Enable cart images",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
+
+{% if cart.item_count > 0 %}
+    <section class="p-60 p-lg-100 pt-160" id="cart">
+        <div class="container">
+            <h1>{{ section.settings.heading }}</h1>
+
+			<form action="/cart" method="post">
+				
+            <div class="divTable pt-40">
+                
+                <div class="divTableHeading">
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            Product
+                        </div>
+
+                        <div class="divTableCell">
+                            Price
+                        </div>
+
+                        <div class="divTableCell">
+                            Quantity
+                        </div>
+
+                        <div class="divTableCell text-right">
+                            Total
+                        </div>
+                    </div>
+                </div>
+
+				<div class="divTableBody">
+					
+					{% for item in cart.items %}
+
+					{% comment %}
+					Determining the handle of the collection that was last seen for the 'continue shopping' link.
+					{% endcomment %}
+					
+					{% assign collection_url = item.product.collections.last.url %}
+					{% if collection_url == '/collections/frontpage' or collection_url == blank %}
+					{% assign collection_url = '/collections/all' %}
+					{% endif %}
+					
+					{% if forloop.first %}
+					{% assign continue_shopping_url = collection_url %}
+					{% endif %}
+      					
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+	                        
+	                        {% if section.settings.cart_images_enabled %}
+                           <img src="{{ item | img_url: 'x80' }}"  alt="{{ item.title | escape }}" />{% endif %} {{ item.title }} <a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+                        </div>
+
+                        <div class="divTableCell">
+                            {{ item.price | money }}
+                        </div>
+
+                        <div class="divTableCell">
+                            {{ item.quantity }}
+                        </div>
+
+                        <div class="divTableCell text-right">
+                            {{ item.line_price | money }}
+                        </div>
+                    </div>
+
+					{% endfor %}
+					
+                </div>
+				
+				<div class="divTableFoot">
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            &nbsp;
+                        </div>
+
+                        <div class="divTableCell">
+                            &nbsp;
+                        </div>
+
+                        <div class="divTableCell text-right">
+                            Subtotal:
+                        </div>
+
+                        <div class="divTableCell text-right">
+                            {{ cart.total_price | money }}
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div><!-- divTable -->
+
+            <div class="text-right">
+	            <p>{{ section.settings.comment }}</p>
+            </div>
+                        
+            <div class="p-30 p-lg-50 text-right">
+	            <a href="{{ continue_shopping_url }}" class="btn btn-light mr-15"><span>Continue Shopping</span></a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
+            </div>
+            
+			</form>
+            
+        </div>
+    </section>
+
+{% else %}
+
+<section class="p-60 p-lg-100 pt-160" id="cart">
+  <div class="container">
+  <h2>It appears that your cart is currently empty.</h2>
+  <h3>You can continue browsing <a href="/collections/all">here</a>.</h3>
+  </div>
+</section>
+{% endif %}
+
+
+
+    
+    

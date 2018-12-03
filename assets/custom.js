@@ -26,4 +26,32 @@ $( document ).ready(function() {
 	  $( "#mobile-navbar" ).slideToggle( "fast")
 	});
 	
+	$( ".stepper" ).on( "click", function() {
+		
+		var direction = $(this).data('direction')
+		var input = $(this).parent().parent().children('input').first()
+		var value = parseInt(input.val())
+		var minValue = parseInt(input.attr('min'))
+		var stepValue = parseInt(input.attr('step'))
+		
+		if (direction == 'up') {
+			value = value + stepValue
+		}
+
+		if (direction == 'down') {
+			value = value - stepValue
+		}
+		
+		if (value < minValue) {
+			value = minValue
+		}
+		
+		input.val(value)
+
+		
+	});
+	
+  
+	
+	
 });

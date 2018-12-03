@@ -22,13 +22,14 @@
    {{ content_for_header }}
    
    {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
+   {{ 'bootstrap-carousel.css' | asset_url | stylesheet_tag }}
    {{ 'main.css' | asset_url | stylesheet_tag }}
   
    {{ 'custom.css' | asset_url | stylesheet_tag }}  
    
    {{ '//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' | script_tag }}
 
-   {{ 'bootstrap.min.js' | asset_url | script_tag }}
+   {{ 'bootstrap4.min.js' | asset_url | script_tag }}
    {{ 'jquery.smoothscroll.js' | asset_url | script_tag }}
 
 </head>
