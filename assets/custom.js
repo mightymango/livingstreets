@@ -50,8 +50,34 @@ $( document ).ready(function() {
 
 		
 	});
+
+	$("#related-products").flickity({
+            cellSelector: ".slider-item",
+            resize: true,
+            cellAlign: 'center',
+            contain: true,
+            imagesLoaded: true,
+            wrapAround: false,
+            adaptiveHeight: true,
+            pageDots: false,
+            groupCells: false,
+            prevNextButtons: true
+            })
+
 	
-  
-	
+	$("#sliders-1-slider").flickity({
+    cellSelector:    ".slider-item",
+    resize:          true,
+    cellAlign:       'center',
+    contain:         true,
+    imagesLoaded:    true,
+    wrapAround:      true,
+    adaptiveHeight:  true,
+    pageDots:        true,
+    groupCells:      false,
+    prevNextButtons: true
+  	})	
+  	
+  	$("#sliders-1-slider").removeClass('transparent')
 	
 });

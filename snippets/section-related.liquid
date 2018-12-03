@@ -1,80 +1,20 @@
+<section class="sliders text-center {% if block.settings.coloured_background %}bg-light {% endif %}p-50" id="sliders-1">
+	
+	<div class="container">
+    <div class="slider slider-rounded-buttons" id="sliders-1-slider">
 
+      {% for i in (1..5) %}
+  		    <div class="col-12 col-sm-6 col-lg-4 slider-item">
+		    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
 
+            <h3>Related Item {{ i }}</h3>
 
-    <section class="ecommerces {% if block.settings.coloured_background %}bg-light {% endif %}p-60 p-lg-100 text-center" id="related-products">
-        <div class="container">
-            
-            <h1 class="mb-40 mb-lg-60">{{ block.settings.heading}}</h1>
-            
-              <div class="row{% if block.settings.scrolling %} scrolling-wrapper-flexbox{% endif %}">
-			    
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
+            <p>£348</p>
+            </div>
+      {% endfor %}
+      
+    </div>
+	</div>
 
-                    <h3>Related Item One</h3>
-
-                    <p>£348</p>
-				</div>
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Two</h3>
-
-                    <p>£348</p>
-				</div>
-
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Three</h3>
-
-                    <p>£348</p>
-				</div>
-
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Four</h3>
-
-                    <p>£348</p>
-				</div>
-
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Five</h3>
-
-                    <p>£348</p>
-				</div>
-
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Six</h3>
-
-                    <p>£348</p>
-				</div>
-
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Seven</h3>
-
-                    <p>£348</p>
-				</div>
-
-			    <div class="col-12 col-sm-6 col-lg-4 scroll-item">
-				    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-                    <h3>Related Item Eight</h3>
-
-                    <p>£348</p>
-				</div>
-
-			  </div>
-			
-    
-      </div>
 </section>
-    
-    
+
