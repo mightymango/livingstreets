@@ -1,0 +1,62 @@
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Heading"
+	},
+		{
+		"id": "subheading",
+		"type": "text",
+		"label": "Subheading",
+		"default": "Add text here."
+	},
+		{
+		"id": "price",
+		"type": "text",
+		"label": "Price"
+	}
+  ],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="ecommerces p-60 p-lg-100 text-center" id="ecommerces-7">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 mb-15 mb-sm-30">
+        <div class="image ratio-2-1 pic-md"></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
+        <div class="image ratio-1-1 pic-md"></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
+        <div class="image ratio-1-1 pic-md"></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
+        <div class="card ratio-1-1">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+              <div class="ph-30"><img class="mb-20" src="{{ 'star-54.svg' | asset_url }}" alt=""/>
+                <h3 class="mb-10">{{ section.settings.heading }}</h3>
+                <p class="mb-40">{{ section.settings.subheading }}</p>
+                <p>{{ section.settings.price }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
+        <div class="image ratio-1-1 pic-md"></div>
+      </div>
+    </div>
+  </div>
+</section>

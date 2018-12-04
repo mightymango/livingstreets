@@ -195,7 +195,25 @@
 	  "default":false
 	}  
   ]
-}
+},
+  {
+  "type": "callout",
+  "name": "Call Out",
+  "settings": [
+	{
+		"id": "text",
+		"type": "textarea",
+		"label": "Text",
+		"default": "Add your text here"
+	},
+	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":true
+	}
+    ]
+  }
 
     ]
   }
@@ -220,7 +238,10 @@
 
       {% when 'purchase' %}
       {% include 'section-purchase' %}
-                       
+
+      {% when 'callout' %}
+      {% include 'section-callout' %}
+                             
     {% endcase %}
   </div>
   {% endfor %}

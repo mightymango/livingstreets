@@ -1,0 +1,77 @@
+{% schema %}
+{
+  "name": "Image with Text",
+  "settings": [
+	  {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+	   "type": "radio",
+	   "id": "image_position",
+	   "options": [
+	      { "value": "left", "label": "Left"},
+	      { "value": "right", "label": "Right"}
+	   ],
+	   "label": "Image position"
+	},
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Title"
+	},
+	{
+		"id": "text",
+		"type": "textarea",
+		"label": "Text",
+		"default": "Add your text here"
+	}
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "category": "Info"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="contents text-center text-sm-left p-60 p-lg-100" id="image-with-text">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      {% if section.settings.image_position  == 'left' %}
+      <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
+	      {% if section.settings.image %}
+	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
+		  {% else %}
+	      <img class="image pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt=""/>
+	      {% endif %}
+      </div>
+      <div class="col-12 col-sm-6 col-lg-5">
+        <h1 class="mb-20">{{ section.settings.heading}}</h1>
+        <h4>
+          {{ section.settings.text }}
+        </h4>
+      </div>
+      
+      {% else %}
+      <div class="col-12 col-sm-6 col-lg-5">
+        <h1 class="mb-20">{{ section.settings.heading}}</h1>
+        <h4>
+          {{ section.settings.text }}
+        </h4>
+      </div> 
+            <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
+	      {% if section.settings.image %}
+	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
+		  {% else %}
+	      <img class="image pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt=""/>
+	      {% endif %}
+      </div>     
+      {% endif %}
+    </div>
+  </div>
+</section>
+
