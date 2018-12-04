@@ -75,7 +75,9 @@ $( document ).ready(function() {
     adaptiveHeight:  true,
     pageDots:        true,
     groupCells:      false,
-    prevNextButtons: true
+    prevNextButtons: true,
+    autoPlay: 4000,
+	pauseAutoPlayOnHover: true
   	})	
   	
   	$("#sliders-1-slider").removeClass('transparent')

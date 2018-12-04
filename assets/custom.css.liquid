@@ -292,19 +292,14 @@ input[type=number]::-webkit-outer-spin-button {
 	position: absolute;
 	left: -50px;
 }
-
 .flickity-prev-next-button.next
 {
 	position: absolute;
 	right: -50px;	
 }
-
-
 .transparent {
 	opacity: 0;
 }
-
-
 .flickity-page-dots .dot {
   background: #297FCA;
 }
@@ -312,3 +307,23 @@ input[type=number]::-webkit-outer-spin-button {
 .flickity-page-dots .dot.is-selected {
   opacity: 1;
 }
+
+.flickity-button-icon {
+  fill: HSLA(208, 67%, 47%, 0.20);
+}
+
+.flickity-button:hover .flickity-button-icon, .flickity-button-icon:hover {
+  fill: HSLA(208, 67%, 47%, 0.60);
+}
+
+
+
+/* no circle */
+.flickity-button {
+  background: transparent;
+}
+/* hide disabled button */
+.flickity-button:disabled {
+  display: none;
+}
+
