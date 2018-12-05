@@ -1,0 +1,21 @@
+
+<section class="sliders text-center p-50" id="sliders-1">
+	
+	<div class="container">
+    <div class="slider slider-rounded-buttons" id="related-products-no-dots">    
+	    {% for related in collection.products %}
+		  	{% unless related.handle == product.handle %}     
+	  		    <div class="col-12 col-sm-6 col-lg-4 slider-item">
+			    <a href="{{ related.url }}">
+			    <img class="mb-30 pic-md" src="{{ related | img_url: 'x100'}}" alt="">
+	
+	            <h4>{{ related.title }}</h4>
+	
+	            <p>{{ related.price | money }} </p>
+			    </a>
+	            </div>
+			 {% endunless %}			
+		{% endfor %}
+    </div>
+	</div>
+</section>

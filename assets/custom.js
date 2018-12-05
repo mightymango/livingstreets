@@ -22,8 +22,15 @@ function scrollFunction() {
 
 $( document ).ready(function() {
   
+  	//Set mobile navbar
 	$( "#responsive" ).click(function() {
 	  $( "#mobile-navbar" ).slideToggle( "fast")
+	});
+	
+	//Truncate long descriptions
+	$( ".more-link" ).on( "click", function() {
+	  $(".product-description").removeClass('short-description')
+	  $(this).hide();
 	});
 	
 	$( ".stepper" ).on( "click", function() {
@@ -51,6 +58,7 @@ $( document ).ready(function() {
 		
 	});
 
+	//Carousel stuff
 	$("#related-products").flickity({
             cellSelector: ".slider-item",
             resize: true,
@@ -59,11 +67,38 @@ $( document ).ready(function() {
             imagesLoaded: true,
             wrapAround: false,
             adaptiveHeight: true,
+            pageDots: true,
+            groupCells: false,
+            prevNextButtons: true
+            })
+            
+            
+	$("#related-products-dots").flickity({
+            cellSelector: ".slider-item",
+            resize: true,
+            cellAlign: 'center',
+            contain: true,
+            imagesLoaded: true,
+            wrapAround: false,
+            adaptiveHeight: true,
+            pageDots: true,
+            groupCells: false,
+            prevNextButtons: false
+            })
+
+	$("#related-products-no-dots").flickity({
+            cellSelector: ".slider-item",
+            resize: true,
+            cellAlign: 'center',
+            contain: true,
+            imagesLoaded: true,
+            wrapAround: false,
+            adaptiveHeight: false,
             pageDots: false,
             groupCells: false,
             prevNextButtons: true
             })
-
+            
 	
 	$("#sliders-1-slider").flickity({
     cellSelector:    ".slider-item",
@@ -81,5 +116,11 @@ $( document ).ready(function() {
   	})	
   	
   	$("#sliders-1-slider").removeClass('transparent')
-	
+  	$("#related-products").removeClass('transparent')
+  	$("#related-products-dots").removeClass('transparent')
+  	$("#related-products-no-dots").removeClass('transparent')
+  		
 });
+
+
+

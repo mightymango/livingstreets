@@ -1,0 +1,150 @@
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+	{
+		"id": "add_to_cart",
+		"type": "text",
+		"label": "Add Button",
+		"default": "Add to cart"
+	},
+	{
+	   "type": "radio",
+	   "id": "show_quantity",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Show quantity selector"
+	},
+	{
+	   "type": "radio",
+	   "id": "show_related",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Show related products",
+	   "info": "Related products will only be shown if there is a collection that contains the product."
+	}
+  ]
+}
+{% endschema %}
+
+{% comment %}
+  Collections to ignore.
+  Never pick related items from those.
+{% endcomment %}
+
+{% assign exclusions = 'frontpage,all' | split: ',' %}
+
+{% comment %}
+  Looking for a relevant collection.
+{% endcomment %}
+
+{% if product.metafields.c_f['Related Products'] %}
+  {% assign collection = collections[product.metafields.c_f['Related Products']] %}
+{% endif %}
+
+{% assign found_a_collection = false %}
+{% if collection and collection.all_products_count > 1 %}
+  {% unless exclusions contains collection.handle %}
+    {% assign found_a_collection = true %}
+  {% endunless %}
+{% endif %}
+{% unless found_a_collection %}
+  {% for c in product.collections %}
+    {% unless exclusions contains c.handle or c.all_products_count < 2 %}
+      {% assign found_a_collection = true %}
+      {% assign collection = c %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+{% endunless %}
+
+{% comment %}
+  If we have a relevant collection.
+{% endcomment %}
+
+    	           
+	           
+	            <div class="row justify-content-left justify-content-lg-between">
+	                <div class="col-12 col-sm-10 col-lg-5 order-2 order-lg-1">
+	                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+	                    <h1 class="mb-20">{{ product.title }}</h1>
+	
+	                    <div class="mb-30">
+	                        {{ product.price | money }} (Ex. Vat)
+	                    </div>
+	
+						{%- if product.description.size > 800 -%}
+						{%- assign should_truncate = true -%}
+						{%- else -%}
+						{%- assign should_truncate = false -%}
+						{%- endif -%}
+
+						  <div class="mb-40 product-description{% if should_truncate %} short-description{% endif %}" itemprop="description">
+					        {{ product.description }}
+					        {% if should_truncate %}
+					        <a class="more-link" href="#">More...</a>
+					        {% endif %}
+					      </div>
+					      
+					      {% assign hide_default_title = false %}
+						  {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+						  {% assign hide_default_title = true %}
+						  {% endif %}  
+      
+					      <div id="product-variants" class="pb-20 {% if hide_default_title %} hidden{% endif %}">
+					        <select id="product-select" name="id">
+					        {% for variant in product.variants %}
+					          <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
+					          {{ variant.title }} - {{ variant.price | money }}
+					          </option>
+					        {% endfor %}
+					        </select>
+					      </div> 
+					      
+					    <div class="row">
+						    
+						{% if section.settings.show_quantity == "yes" %}    
+                        <div class="col-6 col-sm-4 mb-20">
+                            <label class="d-block"><strong>Quantity</strong></label>
+                            <div>
+			               <input class="form-control form-control-light" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
+			               <span class="form-control-stepper-wrapper">
+			                	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
+			                	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
+			               </span>
+               
+                            </div>
+                        </div>
+						{% endif %} 
+                        <div class="col-6 col-sm-4 mb-20">
+					      <label class="d-block">&nbsp;</label>
+					      <div id="product-add">
+						  <input class="btn" type="submit" name="add" id="add" value="{{ section.settings.add_to_cart | escape }}">
+	      				  </div>
+                        </div>
+                                               
+					    </div>
+					      
+	                    </form>
+	                </div>
+	
+					{% if found_a_collection and section.settings.show_related == "yes" %}
+	                <div class="col-12 col-sm-10 col-lg-6 order-1 order-lg-2 mb-40 mb-lg-0">
+	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'grande'}}" alt="">
+	                    <div class="row">
+							<div class="col-12">
+							{% include 'related' %}
+							</div> 
+						</div>
+	                </div>
+	                {% endif %}
+	            </div>
+	  
+
+       
