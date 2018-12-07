@@ -1,0 +1,63 @@
+{% schema %}
+{
+  "name": "Introduction",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Title"
+	},
+	{
+		"id": "subheading",
+		"type": "text",
+		"label": "Subheading",
+		"default": "Subheading"
+	},
+	{
+		"id": "box-1",
+		"type": "textarea",
+		"label": "Left column",
+		"default": "Add your text here"
+	},
+	{
+		"id": "box-2",
+		"type": "textarea",
+		"label": "Right column",
+		"default": "Add your text here"
+	},
+	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":false
+	}
+  ]
+}
+{% endschema %}
+
+    <section class="grids {% if section.settings.coloured_background %}bg-light {% endif %}pt-130 pt-lg-220 text-center text-sm-left" id="info-wow">
+        <div class="container">
+            {% if section.settings.heading %}
+            <h1 class="mb-40 text-center">{{ section.settings.heading | escape }}</h1>
+			{% endif %}
+            {% if section.settings.subheading %}
+            <h3 class="mb-40 text-center">{{ section.settings.subheading | escape }}</h3>
+			{% endif %}
+            <div class="row justify-content-center">
+	            
+	            {% unless section.settings.box-1 == blank %}
+                <div class="col-12 col-sm-6{% if section.settings.box-2 == blank %} text-center{% endif %}">
+                    <h4>{{ section.settings.box-1 | escape }}</h4>
+                </div>
+				{% endunless %}
+
+	            {% unless section.settings.box-2 == blank %}
+                <div class="col-12 col-sm-6">
+                    <h4>{{ section.settings.box-2 | escape }}</h4>
+                </div>
+				{% endunless %}
+            </div>
+        </div>
+    </section>
+    

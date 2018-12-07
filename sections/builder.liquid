@@ -1,0 +1,125 @@
+{% schema %}
+{
+  "name": "Builder",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Title"
+	},
+	{
+		"id": "number-on-roll",
+		"type": "text",
+		"label": "Number on roll",
+		"default": "How many children are there in your school?",
+		"info": "The label that appears above the first box."
+	},
+	{
+		"id": "percentage",
+		"type": "text",
+		"label": "Percentage",
+		"default": "What percentage walk to school?",
+		"info": "The label that appears above the second box."
+	},
+	{
+		"id": "quantity",
+		"type": "text",
+		"label": "Quantity",
+		"default": "Subscriptions",
+		"info": "The label for the quantity."
+	},
+		{
+		"id": "alternative",
+		"type": "text",
+		"label": "Alternative option",
+		"default": "I'd like to use wall charts instead of TravelTracker",
+		"info": "Leave blank if you do not want to display the alternative option."
+	},
+		{
+		"id": "add-to-cart",
+		"type": "text",
+		"label": "Button text",
+		"default": "Add to cart"
+	}
+  ]
+}
+{% endschema %}
+
+<section class="forms text-center pt-60 pt-lg-100 pb-40 pb-sm-60 pb-lg-80" id="builder">
+  <div class="container">
+    {% if section.settings.heading %}
+    <h2 class="mb-40 text-center">{{ section.settings.heading | escape }}</h2>
+	{% endif %}
+    <form action="/cart/add" method="post" enctype="multipart/form-data">
+      <div class="row text-left">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
+              <div>
+	            <p>How many children are there in your school?</p>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
+              <div>
+	            <p>What percentage walk to school?</p>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
+              <div>
+	              <p>Subscriptions</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-4 mb-20">
+	          <label class="d-block d-sm-none">How many children are there in your school?</label>
+              <div>
+                <input class="form-control form-control-light" type="number" min="1" step="1" value="200" placeholder=""/>
+                <span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-20">
+	          <label class="d-block d-sm-none">What percentage walk to school?</label>
+              <div>
+                <input class="form-control form-control-light" type="number" min="1" step="1" value="65" placeholder=""/>
+                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
+                <span class="form-control-stepper-wrapper">
+                	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
+                	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
+                </span>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-20">
+	          <label class="d-block d-sm-none">Subscriptions</label>
+              <div>
+               <input class="form-control form-control-light" type="number" min="1" step="1" value="130" placeholder=""/>
+               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+               <span class="form-control-stepper-wrapper d-none">
+                	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
+                	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
+               </span>
+              </div>
+            </div>
+            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong>130 pupils </strong>and will run from <strong>January 1st 2019</strong> until August 31st 2019 at a cost of <strong>£150</strong>.</span></div> 
+          </div>
+        </div>
+       
+        {% if section.settings.alternative %}
+        <div class="col-12 col-sm-9 col-lg-9">
+			
+			<label class="checkbox-wrapper">{{ section.settings.alternative }}
+			  <input type="checkbox">
+			  <span class="checkmark"></span>
+			</label>
+
+        </div>
+        {% endif %}
+        <div class="col-12 col-sm-3 col-lg-3">
+          <button class="btn w-full no-padding"><span>{{ section.settings.add-to-cart }}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

@@ -135,14 +135,7 @@
 	                </div>
 	
 					{% if found_a_collection and section.settings.show_related == "yes" %}
-	                <div class="col-12 col-sm-10 col-lg-6 order-1 order-lg-2 mb-40 mb-lg-0">
-	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'grande'}}" alt="">
-	                    <div class="row">
-							<div class="col-12">
-							{% include 'related' %}
-							</div> 
-						</div>
-	                </div>
+					{% include 'related' %}
 	                {% endif %}
 	            </div>
 	  
