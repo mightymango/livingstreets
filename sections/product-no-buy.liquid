@@ -3,22 +3,6 @@
   "name": "Product",
   "settings": [
 	{
-		"id": "add_to_cart",
-		"type": "text",
-		"label": "Add Button",
-		"default": "Add to cart"
-	},
-	{
-	   "type": "radio",
-	   "id": "show_quantity",
-	   "options": [
-	      { "value": "yes", "label": "Yes"},
-	      { "value": "no", "label": "No"}
-	   ],
-	   "default":   "no",
-	   "label": "Show quantity selector"
-	},
-	{
 	   "type": "radio",
 	   "id": "show_related",
 	   "options": [
@@ -72,12 +56,7 @@
 	           
 	            <div class="row justify-content-left justify-content-lg-between">
 	                <div class="col-12 col-sm-10 col-lg-5 order-2 order-lg-1">
-	                    <form action="/cart/add" method="post" enctype="multipart/form-data">
 	                    <h1 class="mb-20">{{ product.title }}</h1>
-	
-	                    <div class="mb-30">
-	                        {{ product.price | money }} (Ex. Vat)
-	                    </div>
 	
 						{%- if product.description.size > 800 -%}
 						{%- assign should_truncate = true -%}
@@ -92,49 +71,8 @@
 					        {% endif %}
 					      </div>
 					      
-					      {% assign hide_default_title = false %}
-						  {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-						  {% assign hide_default_title = true %}
-						  {% endif %}  
-      
-					      <div id="product-variants" class="pb-20 {% if hide_default_title %} hidden{% endif %}">
-					        <select id="product-select" name="id">
-					        {% for variant in product.variants %}
-					          <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
-					          {{ variant.title }} - {{ variant.price | money }}
-					          </option>
-					        {% endfor %}
-					        </select>
-					      </div> 
-					      
-					    <div class="row">
-						    
-						{% if section.settings.show_quantity == "yes" %}    
-                        <div class="col-6 col-sm-4 mb-20">
-                            <label class="d-block"><strong>Quantity</strong></label>
-                            <div>
-			               <input class="form-control form-control-light" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
-			               <span class="form-control-stepper-wrapper">
-			                	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
-			                	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
-			               </span>
-               
-                            </div>
-                        </div>
-						{% endif %} 
-                        <div class="col-6 col-sm-4 mb-20">
-					      <label class="d-block">&nbsp;</label>
-					      <div id="product-add">
-						  <input class="btn" type="submit" name="add" id="add" value="{{ section.settings.add_to_cart | escape }}">
-	      				  </div>
-                        </div>
-                                               
-					    </div>
-					      
-	                    </form>
 	                </div>
 	
-		
 	                <div class="col-12 col-sm-10 col-lg-6 order-1 order-lg-2 mb-40 mb-lg-0">
 	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'grande'}}" alt="">
 	                    
@@ -145,7 +83,6 @@
 						{% endif %}
 						</div>
 	                </div>
-	                
 	                
 	            </div>
 	  
