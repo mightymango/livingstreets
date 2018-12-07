@@ -41,6 +41,16 @@
 		"type": "text",
 		"label": "Button text",
 		"default": "Add to cart"
+	},
+	{
+	    "type":      "range",
+	    "id":        "rollover_day",
+	    "min":        1,
+	    "max":        31,
+	    "step":       1,
+	    "label":     "Rollover day",
+	    "default":   17,
+	    "info": "The day used to calculate when the month should be rolled over to the next."
 	}
   ]
 }
@@ -57,30 +67,30 @@
           <div class="row">
             <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
               <div>
-	            <p>How many children are there in your school?</p>
+	            <p>{{ section.settings.number-on-roll }}</p>
               </div>
             </div>
             <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
               <div>
-	            <p>What percentage walk to school?</p>
+	            <p>{{ section.settings.percentage }}</p>
               </div>
             </div>
             <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
               <div>
-	              <p>Subscriptions</p>
+	              <p>{{ section.settings.quantity }}</p>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-sm-4 mb-20">
-	          <label class="d-block d-sm-none">How many children are there in your school?</label>
+	          <label class="d-block d-sm-none">{{ section.settings.number-on-roll }}</label>
               <div>
                 <input class="form-control form-control-light" type="number" min="1" step="1" value="200" placeholder=""/>
                 <span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
               </div>
             </div>
             <div class="col-12 col-sm-4 mb-20">
-	          <label class="d-block d-sm-none">What percentage walk to school?</label>
+	          <label class="d-block d-sm-none">{{ section.settings.percentage }}</label>
               <div>
                 <input class="form-control form-control-light" type="number" min="1" step="1" value="65" placeholder=""/>
                 <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
@@ -91,7 +101,7 @@
               </div>
             </div>
             <div class="col-12 col-sm-4 mb-20">
-	          <label class="d-block d-sm-none">Subscriptions</label>
+	          <label class="d-block d-sm-none">{{ section.settings.quantity }}</label>
               <div>
                <input class="form-control form-control-light" type="number" min="1" step="1" value="130" placeholder=""/>
                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -101,7 +111,7 @@
                </span>
               </div>
             </div>
-            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong>130 pupils </strong>and will run from <strong>January 1st 2019</strong> until August 31st 2019 at a cost of <strong>£150</strong>.</span></div> 
+            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong>130 pupils </strong>and will run from <strong><span id="start_month"></span></strong> until the end of the school year, at a cost of <strong>£<span class="product-price" itemprop="price"></span></strong>.</span></div> 
           </div>
         </div>
        
@@ -120,6 +130,42 @@
           </button>
         </div>
       </div>
+      
+      
+      <div id="product-variants" class="pb-20 hidden">
+        <select id="product-select" name="id">
+        {% for variant in product.variants %}
+          <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
+          {{ variant.title }}
+          </option>
+        {% endfor %}
+        </select>
+      </div> 
     </form>
   </div>
 </section>
+
+<script>
+// 	Select variant depending on month rule
+	$( document ).ready(function() {
+		var dt = new Date()
+		var n = dt.getMonth()
+		var d = dt.getDate()
+		if (d > {{ section.settings.rollover_day }}) {
+		  n = n + 1
+		}
+		if (n > 11) {
+		  n = 0
+		}
+		const indexes = [4,5,6,7,8,9,10,0,0,1,2,3]
+		const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October","November", "December"]
+	    $("#product-select").prop('selectedIndex', indexes[n]).trigger('change')
+	    $( "#start_month" ).text(monthNames[n])
+	});
+</script>	
+	
+{% comment %}
+  Adding support for product options. See here for details:  
+  http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options
+{% endcomment %}
+

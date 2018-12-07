@@ -1,7 +1,23 @@
+
 {% schema %}
 {
   "name": "Introduction",
   "settings": [
+	  {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Select an image for the product or leave blank to use the image linked to the product."
+    },
+    {
+	   "type": "radio",
+	   "id": "image_position",
+	   "options": [
+	      { "value": "left", "label": "Left"},
+	      { "value": "right", "label": "Right"}
+	   ],
+	   "label": "Image position"
+	},
 	{
 		"id": "heading",
 		"type": "text",
@@ -15,49 +31,69 @@
 		"default": "Subheading"
 	},
 	{
-		"id": "box-1",
+		"id": "text",
 		"type": "textarea",
-		"label": "Left column",
+		"label": "Text",
 		"default": "Add your text here"
-	},
-	{
-		"id": "box-2",
-		"type": "textarea",
-		"label": "Right column",
-		"default": "Add your text here"
-	},
-	{
-	  "type": 	"checkbox",
-	  "id": 	"coloured_background",
-	  "label": 	"Coloured background",
-	  "default":false
 	}
   ]
 }
 {% endschema %}
 
-    <section class="grids {% if section.settings.coloured_background %}bg-light {% endif %}pt-130 pt-lg-220 text-center text-sm-left" id="info-wow">
-        <div class="container">
-            {% if section.settings.heading %}
-            <h1 class="mb-40 text-center">{{ section.settings.heading | escape }}</h1>
-			{% endif %}
-            {% if section.settings.subheading %}
-            <h3 class="mb-40 text-center">{{ section.settings.subheading | escape }}</h3>
-			{% endif %}
-            <div class="row justify-content-center">
-	            
-	            {% unless section.settings.box-1 == blank %}
-                <div class="col-12 col-sm-6{% if section.settings.box-2 == blank %} text-center{% endif %}">
-                    <h4>{{ section.settings.box-1 | escape }}</h4>
-                </div>
-				{% endunless %}
+<section class="contents text-center text-sm-left pt-160 pt-lg-200" id="image-with-text">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      {% if section.settings.image_position  == 'left' %}
+      <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
+	      {% if section.settings.image %}
+	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
+		  {% else %}
+	      <img class="image pic-md" src="{{ product | img_url: 'grande'}}" alt=""/>
+	      {% endif %}
+      </div>
+      <div class="col-12 col-sm-6 col-lg-5">
+        {% if section.settings.heading %} 
+        <h1 class="mb-20">
+	        {{ section.settings.heading | escape }}  
+        </h1>
+        {% endif %}
+        {% if section.settings.subheading %} 
+        <h2 class="mb-20">        
+	        {{ section.settings.subheading | escape }} 
+        </h2>
+        {% endif %}
+        <h4>
+          {{ section.settings.text | escape | newline_to_br }}
+        </h4>
+      </div>
+      
+      {% else %}
+      <div class="col-12 col-sm-6 col-lg-5">
+        {% if section.settings.heading %} 
+        <h1 class="mb-20">
+	        {{ section.settings.heading | escape }}  
+        </h1>
+        {% endif %}
+        {% if section.settings.subheading %} 
+        <h2 class="mb-20">        
+	        {{ section.settings.subheading | escape }} 
+        </h2>
+        {% endif %}
+        <h4>
+          {{ section.settings.text | escape | newline_to_br }}
+        </h4>
+      </div>
+          <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
+	      {% if section.settings.image %}
+	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
+		  {% else %}
+	      <img class="image pic-md" src="{{ product | img_url: 'grande'}}" alt=""/>
+	      {% endif %}
+      </div>     
+      {% endif %}
+    </div>
+  </div>
+</section>
 
-	            {% unless section.settings.box-2 == blank %}
-                <div class="col-12 col-sm-6">
-                    <h4>{{ section.settings.box-2 | escape }}</h4>
-                </div>
-				{% endunless %}
-            </div>
-        </div>
-    </section>
+
     
