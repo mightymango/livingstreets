@@ -51,6 +51,12 @@
 	    "label":     "Rollover day",
 	    "default":   17,
 	    "info": "The day used to calculate when the month should be rolled over to the next."
+	},
+		{
+	   "type": "product",
+	   "id": "travel_tracker",
+	   "label": "Travel Tracker",
+	   "info": "Select the Travel Tracker product so that it can be added automatically to the order."
 	}
   ]
 }
@@ -84,7 +90,7 @@ Calculate the correct variant index from the month
     {% if section.settings.heading %}
     <h2 class="mb-40 text-center">{{ section.settings.heading | escape }}</h2>
 	{% endif %}
-    <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <form action="/cart/add" method="post" enctype="multipart/form-data" id="builder_form">
 	    
 	  <div id="product-variants" class="pb-20 hidden">
         <select id="product-select" name="id">
@@ -98,6 +104,7 @@ Calculate the correct variant index from the month
           </option>
         {% endfor %}
         </select>
+        <input type="hidden" id="quantity" name="quantity" value="1">
       </div> 
       
       <div class="row text-left">
@@ -164,8 +171,7 @@ Calculate the correct variant index from the month
         </div>
         {% endif %}
         <div class="col-12 col-sm-3 col-lg-3">
-          <button class="btn w-full no-padding"><span>{{ section.settings.add-to-cart }}</span>
-          </button>
+          <input class="btn w-full no-padding" type="submit" name="add" id="add" value="{{ section.settings.add-to-cart | escape }}">
         </div>
       </div>
       
@@ -205,7 +211,7 @@ Calculate the correct variant index from the month
 			var packsRequired = calculatePacksFor(numberOfSubscriptions)
 			var price = (packsRequired * unitPrice) / 100
 			$('#product-price').text('£' + price.toFixed(2))
-			
+			$('#quantity').val(packsRequired)
 					
 		}
 			
@@ -221,6 +227,7 @@ Calculate the correct variant index from the month
 		var price = (packsRequired * unitPrice) / 100
 			
 		$('#product-price').text('£' + price.toFixed(2))
+		$('#quantity').val(packsRequired)
 		
 		//Set listeners
 		$("#numberOnRoll").change(function(){
@@ -236,6 +243,20 @@ Calculate the correct variant index from the month
 		$("#subscriptions").change(function(){
 		    
 		});
+		
+		jQuery(function() {
+           CartJS.init({{ cart | json }});
+        });
+		
+/*
+		{% assign travel_tracker = all_products[section.settings.travel_tracker] %}
+		$( "#builder_form" ).on( "submit", function() {
+			//CartJS.addItem({{ travel_tracker.id }});
+		});
+		
+		CartJS.addItem({{ current_variant.id }});
+*/
+		
 						
 	});      
 </script>
