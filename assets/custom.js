@@ -54,6 +54,8 @@ $( document ).ready(function() {
 		}
 		
 		input.val(value)
+		
+		input.trigger("change")
 
 		
 	});
