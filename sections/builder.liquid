@@ -52,7 +52,7 @@
 	    "default":   17,
 	    "info": "The day used to calculate when the month should be rolled over to the next."
 	},
-		{
+	{
 	   "type": "product",
 	   "id": "travel_tracker",
 	   "label": "Travel Tracker",
@@ -63,6 +63,8 @@
 {% endschema %}
 
 <div>
+
+{% assign travel_tracker = all_products[section.settings.travel_tracker] %}
 
 {% assign rollover = section.settings.rollover_day | plus: 0 %}	
 {% assign day = "now" | date: "%e" | plus: 0 %}
@@ -160,16 +162,16 @@ Calculate the correct variant index from the month
           </div>
         </div>
        
-        {% if section.settings.alternative %}
+        
         <div class="col-12 col-sm-9 col-lg-9">
-			
+			{% if section.settings.alternative != "" %}
 			<label class="checkbox-wrapper">{{ section.settings.alternative }}
 			  <input type="checkbox">
 			  <span class="checkmark"></span>
 			</label>
-
+			{% endif %}
         </div>
-        {% endif %}
+        
         <div class="col-12 col-sm-3 col-lg-3">
           <input class="btn w-full no-padding" type="submit" name="add" id="add" value="{{ section.settings.add-to-cart | escape }}">
         </div>
@@ -209,7 +211,7 @@ Calculate the correct variant index from the month
 			$("#subscriptions").val(numberOfSubscriptions)
 			$('#pupil_number').text(numberOfSubscriptions)
 			var packsRequired = calculatePacksFor(numberOfSubscriptions)
-			var price = (packsRequired * unitPrice) / 100
+			var price = ((packsRequired * unitPrice) + travelTrackerPrice) / 100
 			$('#product-price').text('£' + price.toFixed(2))
 			$('#quantity').val(packsRequired)
 					
@@ -217,6 +219,7 @@ Calculate the correct variant index from the month
 			
 		//Set unit price
 		var unitPrice = {{ current_variant.price }} //In pence
+		var travelTrackerPrice = {{ travel_tracker.variants.first.price }}
 		
 		//Set initial subscription number in the message
 		var initialSubscriptions = $('#subscriptions').val()
@@ -224,7 +227,7 @@ Calculate the correct variant index from the month
 		
 		//Set initial numbers, price etc.
 		var packsRequired = calculatePacksFor(initialSubscriptions)
-		var price = (packsRequired * unitPrice) / 100
+		var price = ((packsRequired * unitPrice) + travelTrackerPrice) / 100
 			
 		$('#product-price').text('£' + price.toFixed(2))
 		$('#quantity').val(packsRequired)
@@ -244,19 +247,7 @@ Calculate the correct variant index from the month
 		    
 		});
 		
-		jQuery(function() {
-           CartJS.init({{ cart | json }});
-        });
-		
-/*
-		{% assign travel_tracker = all_products[section.settings.travel_tracker] %}
-		$( "#builder_form" ).on( "submit", function() {
-			//CartJS.addItem({{ travel_tracker.id }});
-		});
-		
-		CartJS.addItem({{ current_variant.id }});
-*/
-		
+				
 						
 	});      
 </script>
