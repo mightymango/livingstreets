@@ -132,14 +132,14 @@ Calculate the correct variant index from the month
             <div class="col-12 col-sm-4 mb-20">
 	          <label class="d-block d-sm-none">{{ section.settings.number-on-roll }}</label>
               <div>
-                <input class="form-control form-control-light" type="number" id="numberOnRoll" min="1" step="1" value="200" placeholder=""/>
+                <input class="form-control form-control-light" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
                 <span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
               </div>
             </div>
             <div class="col-12 col-sm-4 mb-20">
 	          <label class="d-block d-sm-none">{{ section.settings.percentage }}</label>
               <div>
-                <input class="form-control form-control-light" type="number" id="percentage" min="1" max="100" step="1" value="65" placeholder=""/>
+                <input class="form-control form-control-light" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
                 <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
                 <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
@@ -150,7 +150,7 @@ Calculate the correct variant index from the month
             <div class="col-12 col-sm-4 mb-20">
 	          <label class="d-block d-sm-none">{{ section.settings.quantity }}</label>
               <div>
-               <input class="form-control form-control-light" type="number" id="subscriptions" min="1" step="1" value="130" placeholder=""/>
+               <input class="form-control form-control-light" type="number" id="subscriptions" name="properties[Subscriptions]" min="1" step="1" value="130" placeholder=""/>
                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                <span class="form-control-stepper-wrapper d-none">
                 	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
@@ -158,7 +158,7 @@ Calculate the correct variant index from the month
                </span>
               </div>
             </div>
-            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils </strong>and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>.</span></div> 
+            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils </strong>and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. You will receive <strong><span id="pack_number"></span> packs of 10 badges</strong> for each month plus access to <strong>TravelTracker</strong>.</div> 
           </div>
         </div>
        
@@ -214,6 +214,7 @@ Calculate the correct variant index from the month
 			var price = ((packsRequired * unitPrice) + travelTrackerPrice) / 100
 			$('#product-price').text('£' + price.toFixed(2))
 			$('#quantity').val(packsRequired)
+			$('#pack_number').text(packsRequired)
 					
 		}
 			
@@ -231,6 +232,8 @@ Calculate the correct variant index from the month
 			
 		$('#product-price').text('£' + price.toFixed(2))
 		$('#quantity').val(packsRequired)
+		$('#pack_number').text(packsRequired)
+		
 		
 		//Set listeners
 		$("#numberOnRoll").change(function(){
