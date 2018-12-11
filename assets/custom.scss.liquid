@@ -1,0 +1,665 @@
+/* Variables */
+$color-green: {{ settings.color_1 }};
+$color-pink: {{ settings.color_2 }};
+$color-orange: {{ settings.color_3 }};
+$color-yellow: {{ settings.color_4 }};
+$color-black: {{ settings.color_5 }};
+$color-white: {{ settings.color_6 }};
+
+$hover-change: 2%;
+$darken-caption: 25%;
+
+/* Backgrounds */
+.bg-green {
+	background-color: $color-green;	
+}
+.bg-pink {
+	background-color: $color-pink;	
+}
+.bg-orange {
+	background-color: $color-orange;
+}
+.bg-yellow {
+	background-color: $color-yellow;
+}
+.bg-black {
+	background-color: $color-black;	
+}
+.bg-white {
+	background-color: $color-white;	
+}
+.bg-light {
+	background-color: $color-yellow;
+}
+
+html,
+body {
+  color: {{ settings.font_color }};
+  font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+}
+h1, h2, h3 {
+  color: {{ settings.headings_color }};
+  font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }};	
+}
+
+a {
+  color: {{ settings.link_color }};
+  font-weight: 700;
+}
+a:hover {
+  color: {{ settings.hover_color }};
+}
+
+
+.panel {
+  border-radius: 2px;
+  background: $color-orange;
+}
+
+/* Buttons */
+.btn {
+	border-radius: 2px;
+	background-color:  $color-green;
+	color: darken( $color-green, $darken-caption );
+}
+.btn {
+	.btn-pink {
+		background-color:  $color-pink;
+		color: darken( $color-pink, $darken-caption );
+	}
+	.btn-orange {
+		background-color:  $color-orange;
+		color: darken( $color-orange, $darken-caption );
+	}
+	.btn-yellow {
+		background-color:  $color-yellow;
+		color: darken( $color-yellow, $darken-caption );
+	}
+	.btn-black {
+		background-color:  $color-black;
+		color: $color-white;
+	}
+	.btn-white {
+		background-color:  $color-white;
+		color: $color-black;
+	}
+}
+
+.btn:hover {
+	background-color:  darken( $color-green, $hover-change );
+	color: $color-white;
+}
+.btn {
+	.btn-pink:hover {
+		background-color:  darken( $color-pink, $hover-change );
+	}
+	.btn-orange:hover {
+		background-color:  darken( $color-orange, $hover-change );
+	}
+	.btn-yellow:hover {
+		background-color:  darken( $color-yellow, $hover-change );
+	}
+	.btn-black:hover {
+		background-color:  lighten( $color-black, $hover-change );
+	}
+	.btn-white:hover {
+		background-color:  darken( $color-white, $hover-change );
+	}
+}
+
+/* Navbar */
+#navbar {
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-left: 120px;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;	
+    font-size: 1.15em;
+    border-radius: 2px;
+}
+
+.logo {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100px;
+	background-color: $color-green;
+	padding: 5px;
+	margin-right: 20px;
+	border-radius: 2px;
+}
+
+.logo img {
+	width: 100%;
+	height: 100%;
+}
+
+.solid-navbar {
+	background-color: $color-white;
+	box-shadow: 0 4px 8px 0 RGBA(41, 127, 202, 0.2);
+	border-bottom-color: RGBA(41, 127, 202, 1.0);
+	opacity: 0.95;
+}
+
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    width: calc(100% - 40px);
+   
+    z-index: 1000;
+}
+@media (max-width: 992px) {
+  #navbar {
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	width: 100%;
+
+  }
+}
+
+.mobile-navbar {
+	display:none;
+    position: fixed;
+    top: 95px;
+    width: 100%;
+    z-index: 1001;
+	text-align: center;
+	background-color: $color-white;
+	box-shadow: 0 4px 8px 0 RGBA(41, 127, 202, 0.2);
+	border-bottom-color: RGBA(41, 127, 202, 1.0);
+	padding: 20px 20px;
+	opacity: 0.95;
+}
+
+
+.mobile-navbar p {
+	font-size: 1.2em;
+	line-height: 1.5em;
+	text-align: center;
+}
+
+.mobile-navbar a.active {
+	font-weight: bold;
+}
+
+.image {
+	background-color: $color-yellow;
+}
+
+/* Custom Checkbox */
+.checkbox-wrapper {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1.0em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: $color-black;
+    opacity: 0.2;
+    border-radius: 3px;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-wrapper:hover input ~ .checkmark {
+    background-color: $color-green;
+    opacity: 1;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-wrapper input:checked ~ .checkmark {
+    background-color: $color-green;
+    opacity: 1;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-wrapper input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-wrapper .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid $color-white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* No number spinners */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Replacement number spinners */
+.form-control-stepper-wrapper {
+  position: absolute;
+  top: 4px;
+  right: 9px;
+  opacity: 1;
+  width: 25px;
+  height: 50px;
+  text-align: center;
+}
+.stepper {
+  float: right;
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin-bottom: 2px;
+  border-radius: 3px;
+  line-height: 25px;
+  color: $color-black;
+}
+
+.stepper:hover {
+  color: white; 
+  background-color: $color-green;
+  opacity: 0.8;
+}
+
+.designer {
+	color: RGBA(227, 241, 253, 1.00);
+}
+
+.designer a {
+	color: RGBA(227, 241, 253, 1.00);
+	text-decoration: none;
+}
+
+.designer a:hover {
+	color: RGBA(41, 127, 202, 0.8);
+}
+
+/* Notification */
+#notification {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1002;
+	background-color: #3fa2f7;
+	color: #e3f1fd;
+	height: 50px;
+	padding: 10px;
+	text-align: center;
+	-webkit-transition: all 1.0s ease;
+    -moz-transition: all 1.0s ease;
+    -o-transition: all 1.0s ease;
+    transition: all 1.0s ease;	
+    border-style: solid;
+    border-bottom-color: #297FCA;
+    border-width: 0;
+    border-bottom-width: 2px;
+}
+
+#notification.hide {
+	display: none;
+}
+
+#notification.show {
+	display: block;
+}
+
+@media (max-width: 992px) {
+  #notification {
+    height: 30px;
+    padding: 3px;
+  }
+}
+
+/* Scrolling */
+
+.scroll-item {
+	padding: 25px 20px 50px 20px;
+}
+.scrolling-wrapper-flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 10px;
+}
+.scrolling-wrapper-flexbox .card {
+  flex: 0 0 auto;
+  margin-right: 3px;
+}
+
+.scrolling-wrapper, .scrolling-wrapper-flexbox {
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
+  display: none;
+}
+
+/* Catalogue */
+.title-box {
+	height: 100px;
+}
+
+.titlecase {
+    text-transform: capitalize;
+}
+
+.lowercase {
+  	text-transform: lowercase;
+}
+
+/* Product */ 
+
+.product-description > p {
+	padding-bottom: 15px;
+}
+
+.product-description > ul {
+ list-style: square url("{{ 'square-bullet.svg' | asset_url }}");
+}
+
+.hidden {
+	display: none;
+}
+
+/* divTable */
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	font-weight: bold;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: none;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableCell img {
+	padding-right: 10px;
+}
+.divTableFoot {
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+.slider-fixed-height-500 {
+	height: 600px;
+}
+.slider-fixed-height-600 {
+	height: 600px;
+}
+.slider-fixed-height-700 {
+	height: 600px;
+}
+.flickity-prev-next-button.previous
+{
+	position: absolute;
+	left: -50px;
+}
+.flickity-prev-next-button.next
+{
+	position: absolute;
+	right: -50px;	
+}
+.flickity-page-dots .dot {
+  background: #297FCA;
+}
+
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
+}
+
+.flickity-button-icon {
+  fill: HSLA(208, 67%, 47%, 0.20);
+}
+
+.flickity-button:hover .flickity-button-icon, .flickity-button-icon:hover {
+  fill: HSLA(208, 67%, 47%, 0.60);
+}
+
+
+
+/* no circle */
+.flickity-button {
+  background: transparent;
+}
+/* hide disabled button */
+.flickity-button:disabled {
+  display: none;
+}
+
+/* more link */
+.short-description p, .short-description ul {
+  display:none;
+}
+.short-description p:first-child {
+  display:block;
+}
+a.more-link {
+	font-weight: bold;
+}
+
+
+#tape{
+position: relative; /*lets us later position the tape relative to the box*/
+/* width:200px; */
+margin:20px; /*you need enough margin to accomodate the tape*/
+background:#ffdc00;
+padding:30px;
+border-radius: 2px;
+/*add a small drop shadow to the box*/
+-webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.2);
+box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.2);
+}
+#tape {
+color:#000;
+}
+
+
+#tape.tape-box-green {
+	background:$color-green;	
+}
+#tape.tape-box-pink {
+	background:$color-pink;	
+}
+#tape.tape-box-orange {
+	background:$color-orange;	
+}
+#tape.tape-box-yellow {
+	background:$color-yellow;	
+}
+#tape.tape-box-black {
+	background:$color-black;
+	color:$color-white;	
+}
+#tape.tape-box-white {
+	background:$color-white;
+	color: $color-black;	
+}
+
+#tape:before, #tape:after{
+content: ''; /*create a blank psuedo element, if you wanted something written on the tape, place it between the ' '*/
+display: block;
+position: absolute; /*positions the tape relative to the box created above rather than the whole page*/
+background-color: $color-green; 
+height: 25px; /*height of the tape*/
+/*add a small drop shadow to the tape*/
+-webkit-box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
+-moz-box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
+box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
+}
+
+
+#tape.tape-green:before, #tape.tape-green:after{
+	background-color: $color-green;	
+}
+#tape.tape-pink:before, #tape.tape-pink:after{
+	background-color: $color-pink;	
+}
+#tape.tape-orange:before, #tape.tape-orange:after{
+	background-color: $color-orange;	
+}
+#tape.tape-yellow:before, #tape.tape-yellow:after{
+	background-color: $color-yellow;	
+}
+#tape.tape-black:before, #tape.tape-black:after{
+	background-color: $color-black;	
+}
+#tape.tape-white:before, #tape.tape-white:after{
+	background-color: $color-white;	
+}
+
+#tape:before { /*using :before places the tape on the left of the box*/
+left:-10px; /*position from the left edge of the #tape div - a negative value moves the tape 5px to the left of the box's edge*/
+top: -15px; /*position from the top edge of the #tape div - a negative value moves the tape 15px above of the box's edge*/
+width: 60px; /*width of the tape*/
+/*rotate the tape 12 degrees anti-clockwise*/
+-webkit-transform: rotate(-12deg);
+-moz-transform: rotate(-12deg);
+-o-transform: rotate(-12deg);
+-ms-transform: rotate(-12deg);
+}
+
+#tape:after { /*using :after places the tape on the right of the box*/
+right:-20px; /*position from the left edge of the #tape div*/
+top: -10px; /*position from the top edge of the #tape div - a negative value moves the tape 10px above of the box's edge*/
+width: 70px; /*width of the tape*/
+/*rotate the tape 20 degrees clockwise*/
+-webkit-transform: rotate(20deg);
+-moz-transform: rotate(20deg);
+-o-transform: rotate(20deg);
+-ms-transform: rotate(20deg);
+}
+
+#tape.tape-thin {
+	padding:10px;
+	margin: 3px;
+	display: inline-block	
+}
+
+#tape.tape-thin:before, #tape.tape-thin:after{
+	height: 12px;
+}
+
+#tape.tape-thin:before {
+	left:-10px;
+	top: -8px;
+	width: 35px;
+	-webkit-transform: rotate(-16deg);
+	-moz-transform: rotate(-16deg);
+	-o-transform: rotate(-16deg);
+	-ms-transform: rotate(-16deg);
+}
+
+#tape.tape-thin:after{
+	top: -5px;
+	right:-12px;
+	width: 40px;
+}
+
+.tape-rotate-c-1 {
+/*rotate the div 1 degrees clockwise*/
+-webkit-transform: rotate(1deg);
+-moz-transform: rotate(1deg);
+-o-transform: rotate(1deg);
+-ms-transform: rotate(1deg);	
+}
+
+.tape-rotate-a-1 {
+/*rotate the div 1 degrees anticlockwise*/
+-webkit-transform: rotate(-1deg);
+-moz-transform: rotate(-1deg);
+-o-transform: rotate(-1deg);
+-ms-transform: rotate(-1deg);	
+}
+.tape-rotate-c-2 {
+/*rotate the div 2 degrees clockwise*/
+-webkit-transform: rotate(2deg);
+-moz-transform: rotate(2deg);
+-o-transform: rotate(2deg);
+-ms-transform: rotate(2deg);	
+}
+
+.tape-rotate-a-2 {
+/*rotate the div 2 degrees anticlockwise*/
+-webkit-transform: rotate(-2deg);
+-moz-transform: rotate(-2deg);
+-o-transform: rotate(-2deg);
+-ms-transform: rotate(-2deg);	
+}
+.tape-rotate-c-3 {
+/*rotate the div 3 degrees clockwise*/
+-webkit-transform: rotate(3deg);
+-moz-transform: rotate(3deg);
+-o-transform: rotate(3deg);
+-ms-transform: rotate(3deg);	
+}
+
+.tape-rotate-a-3 {
+/*rotate the div 3 degrees anticlockwise*/
+-webkit-transform: rotate(-3deg);
+-moz-transform: rotate(-3deg);
+-o-transform: rotate(-3deg);
+-ms-transform: rotate(-3deg);	
+}
+
+
+/* ---- page dots ---- */
+
+.flickity-page-dots .dot {
+  width: 25px;
+  background: $color-pink;
+  border-radius: 1px;
+  opacity: 0.4;
+}
+
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
+}
+
+

@@ -15,14 +15,13 @@
     <!-- Menu -->
 
     <section class="headers" id="headers-19">
-        <div id="navbar" class="bg-light ph-15 ph-sm-30 ph-lg-70 fixed-navbar fixed-navbar-notification">
+        <div id="navbar" class="bg-white ph-15 ph-sm-30 ph-lg-70 fixed-navbar fixed-navbar-notification">
+	        <div class="logo">
+		        <a href="{{ shop.url }}"><img src="{{ 'living-streets.png' | asset_url }}" /></a>
+	        </div>
             <div class="row justify-content-center align-items-center justify-content-sm-between h-100">
                 <div class="col-auto">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto" id="company-logo">
-                            <a href="{{ shop.url }}">{{ 'living-streets.svg' | asset_url | img_tag: shop.name }}</a>
-                        </div>
-                        
+                    <div class="row justify-content-center align-items-center">                        
                         <div class="col-auto d-none d-lg-block">
                             <nav class="navbar navbar-left">
 	                            {% for link in linklists[section.settings.main_nav].links %}
@@ -35,8 +34,9 @@
 
                 <div class="col-auto d-none d-lg-block">
                     <nav class="navbar">                       
-                        <a href="{{ shop.url }}/account" class="cart">{{ 'user-round-50-thick.svg' | asset_url | img_tag: '' }}</a>
-                        <a href="{{ shop.url }}/cart" class="cart">{{ 'cart.svg' | asset_url | img_tag: '' }}</a>
+                        <a href="{{ shop.url }}/account" class="cart"><img src="{{ 'profile-icon.svg' | asset_url }}"></a>
+                        <a href="{{ shop.url }}/search" class="cart"><img src="{{ 'search-icon.svg' | asset_url }}"></a>
+                        <a href="{{ shop.url }}/cart" class="cart"><img src="{{ 'basket-icon.svg' | asset_url }}"></a>
                     </nav>
                 </div>
 
@@ -50,12 +50,13 @@
     <div class="row justify-content-center align-items-center d-lg-none">
         <div id="mobile-navbar" class="mobile-navbar">
 
-            {% for link in section.settings.main_nav.links %}
+            {% for link in linklists[section.settings.main_nav].links %}
             <p><a class="{% if link.active %}active {% endif %}" href="{{ link.url }}">{{ link.title }}</a></p>
             {% endfor %}
 
-            <p><a href="">{{ 'user-round-50-thick.svg' | asset_url | img_tag: '' }}</a></p>
-            <p><a href="{{ shop.url }}/cartt">{{ 'cart.svg' | asset_url | img_tag: '' }}</a></p>
+            <p><a href="{{ shop.url }}/account"><img src="{{ 'profile-icon.svg' | asset_url }}"></a></p>
+            <p><a href="{{ shop.url }}/search"><img src="{{ 'search-icon.svg' | asset_url }}"></a></p>
+            <p><a href="{{ shop.url }}/cart"><img src="{{ 'basket-icon.svg' | asset_url }}"></a></p>
         </div>
     </div><!-- Menu -->
     

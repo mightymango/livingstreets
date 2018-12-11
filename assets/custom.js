@@ -4,7 +4,7 @@ function scrollFunction() {
 //   Navbar
   var element = document.getElementById("navbar");
   var h = document.getElementById('navbar').clientHeight;
-  if (document.body.scrollTop > h || document.documentElement.scrollTop > h) {
+  if (document.body.scrollTop > h || document.documentElement.scrollTop > 0) {
     element.classList.add("solid-navbar")
   } else {
     element.classList.remove("solid-navbar")

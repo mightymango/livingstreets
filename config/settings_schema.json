@@ -28,5 +28,88 @@
         "label": "Notification text"
       }
     ]
-  }
+  },
+    {
+    "name": "Colours",
+    "settings": [
+		{
+		   "type": "color",
+		   "id": "color_1",
+		   "label": "Colour 1",
+		   "default": "#a6d603"
+		},
+		{
+		   "type": "color",
+		   "id": "color_2",
+		   "label": "Colour 2",
+		   "default": "#de1994"
+		},
+		{
+		   "type": "color",
+		   "id": "color_3",
+		   "label": "Colour 3",
+		   "default": "#ff8e1d"
+		},
+		{
+		   "type": "color",
+		   "id": "color_4",
+		   "label": "Colour 4",
+		   "default": "#ffdb00"
+		},
+		{
+		   "type": "color",
+		   "id": "color_5",
+		   "label": "Colour 5",
+		   "default": "#000000"
+		},
+		{
+		   "type": "color",
+		   "id": "color_6",
+		   "label": "Colour 6",
+		   "default": "#ffffff"
+		}
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+        {
+            "type":    "font_picker",
+            "label":   "Headings font",
+            "id":      "headings_font",
+            "default": "swiss_721_n4"
+        },
+        {
+		   "type": "color",
+		   "id": "headings_color",
+		   "label": "Headings color",
+		   "default": "#000000"
+		},
+        {
+            "type":    "font_picker",
+            "label":   "Body font",
+            "id":      "body_font",
+            "default": "swiss_721_n4"
+        },
+        {
+		   "type": "color",
+		   "id": "font_color",
+		   "label": "Body color",
+		   "default": "#000000"
+		},
+        {
+		   "type": "color",
+		   "id": "link_color",
+		   "label": "Link color",
+		   "default": "#000000"
+		},
+        {
+		   "type": "color",
+		   "id": "hover_color",
+		   "label": "Link (hover) color",
+		   "default": "#000000"
+		}
+			
+    ]
+}
 ]

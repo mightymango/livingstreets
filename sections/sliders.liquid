@@ -34,16 +34,16 @@
     
     {% endschema %}
 
-<section class="sliders text-center bg-light p-50" id="sliders-1">
+<section class="sliders text-center bg-orange p-50" id="sliders-1" style="background-image: url('{{ 'walking-people.jpg' | asset_url }}');">
 	<div class="container">
     <div class="slider slider-rounded-buttons slider-fixed-height-500 transparent" id="sliders-1-slider">
       {% for block in section.blocks %}
       <div class="slider-item" {{ block.shopify_attributes }}>
         <div class="row justify-content-center p-70 p-lg-150">
-          <div class="col-12 col-sm-8 col-lg-6">
+          <div id="tape" class="col-12 col-sm-8 col-lg-6 tape-box-green tape-yellow tape-rotate-a-1">
             <h1 class="mb-20">{{ block.settings.title | escape }}</h1>
             <div class="mb-40">{{ block.settings.subtext | escape }}</div>
-            <a href="{{ block.settings.more_link }}" class="btn"><span>{{ block.settings.more_text }}</a>
+            <a href="{{ block.settings.more_link }}" class="btn btn-yellow"><span>{{ block.settings.more_text }}</a>
             </button>
           </div>
         </div>
