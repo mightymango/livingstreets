@@ -9,6 +9,13 @@ $color-white: {{ settings.color_6 }};
 $hover-change: 2%;
 $darken-caption: 25%;
 
+$shadow-size: {{ settings.shadow_size }}px;
+
+$tape-width: 100px;
+$tape-height: $tape-width / 4;
+
+$corner-radius: {{ settings.radius_size }}px;
+
 /* Backgrounds */
 .bg-green {
 	background-color: $color-green;	
@@ -52,60 +59,59 @@ a:hover {
 
 
 .panel {
-  border-radius: 2px;
+  border-radius: $corner-radius;
   background: $color-orange;
 }
 
 /* Buttons */
 .btn {
-	border-radius: 2px;
+	border-radius: $corner-radius;
 	background-color:  $color-green;
 	color: darken( $color-green, $darken-caption );
 }
-.btn {
-	.btn-pink {
-		background-color:  $color-pink;
-		color: darken( $color-pink, $darken-caption );
-	}
-	.btn-orange {
-		background-color:  $color-orange;
-		color: darken( $color-orange, $darken-caption );
-	}
-	.btn-yellow {
-		background-color:  $color-yellow;
-		color: darken( $color-yellow, $darken-caption );
-	}
-	.btn-black {
-		background-color:  $color-black;
-		color: $color-white;
-	}
-	.btn-white {
-		background-color:  $color-white;
-		color: $color-black;
-	}
+
+.btn.btn-pink {
+	background-color:  $color-pink;
+	color: darken( $color-pink, $darken-caption );
 }
+.btn.btn-orange {
+	background-color:  $color-orange;
+	color: darken( $color-orange, $darken-caption );
+}
+.btn.btn-yellow {
+	background-color:  $color-yellow;
+	color: darken( $color-yellow, $darken-caption );
+}
+.btn.btn-black {
+	background-color:  $color-black;
+	color: $color-white;
+}
+.btn.btn-white {
+	background-color:  $color-white;
+	color: $color-black;
+}
+
 
 .btn:hover {
 	background-color:  darken( $color-green, $hover-change );
 	color: $color-white;
 }
-.btn {
-	.btn-pink:hover {
-		background-color:  darken( $color-pink, $hover-change );
-	}
-	.btn-orange:hover {
-		background-color:  darken( $color-orange, $hover-change );
-	}
-	.btn-yellow:hover {
-		background-color:  darken( $color-yellow, $hover-change );
-	}
-	.btn-black:hover {
-		background-color:  lighten( $color-black, $hover-change );
-	}
-	.btn-white:hover {
-		background-color:  darken( $color-white, $hover-change );
-	}
+.btn.btn-pink:hover {
+	background-color:  darken( $color-pink, $hover-change );
 }
+.btn.btn-orange:hover {
+	background-color:  darken( $color-orange, $hover-change );
+}
+.btn.btn-yellow:hover {
+	background-color:  darken( $color-yellow, $hover-change );
+}
+.btn.btn-black:hover {
+	background-color:  lighten( $color-black, $hover-change );
+}
+.btn.btn-white:hover {
+	background-color:  darken( $color-white, $hover-change );
+}
+
 
 /* Navbar */
 #navbar {
@@ -118,7 +124,7 @@ a:hover {
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;	
     font-size: 1.15em;
-    border-radius: 2px;
+    border-radius: $corner-radius;
 }
 
 .logo {
@@ -130,7 +136,7 @@ a:hover {
 	background-color: $color-green;
 	padding: 5px;
 	margin-right: 20px;
-	border-radius: 2px;
+	border-radius: $corner-radius;
 }
 
 .logo img {
@@ -223,7 +229,7 @@ a:hover {
     width: 25px;
     background-color: $color-black;
     opacity: 0.2;
-    border-radius: 3px;
+    border-radius: $corner-radius;
 }
 
 /* On mouse-over, add a grey background color */
@@ -287,7 +293,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 25px;
   height: 25px;
   margin-bottom: 2px;
-  border-radius: 3px;
+  border-radius: $corner-radius;
   line-height: 25px;
   color: $color-black;
 }
@@ -484,17 +490,17 @@ a.more-link {
 }
 
 
+/* tape */
 #tape{
 position: relative; /*lets us later position the tape relative to the box*/
-/* width:200px; */
 margin:20px; /*you need enough margin to accomodate the tape*/
 background:#ffdc00;
 padding:30px;
-border-radius: 2px;
+border-radius: $corner-radius;
 /*add a small drop shadow to the box*/
--webkit-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.2);
--moz-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.2);
-box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.2);
+-webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 }
 #tape {
 color:#000;
@@ -527,11 +533,12 @@ content: ''; /*create a blank psuedo element, if you wanted something written on
 display: block;
 position: absolute; /*positions the tape relative to the box created above rather than the whole page*/
 background-color: $color-green; 
-height: 25px; /*height of the tape*/
+height: $tape-height; /*height of the tape*/
 /*add a small drop shadow to the tape*/
 -webkit-box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
 -moz-box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
 box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
+border-radius: $corner-radius;
 }
 
 
@@ -557,7 +564,7 @@ box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
 #tape:before { /*using :before places the tape on the left of the box*/
 left:-10px; /*position from the left edge of the #tape div - a negative value moves the tape 5px to the left of the box's edge*/
 top: -15px; /*position from the top edge of the #tape div - a negative value moves the tape 15px above of the box's edge*/
-width: 60px; /*width of the tape*/
+width: $tape-width; /*width of the tape*/
 /*rotate the tape 12 degrees anti-clockwise*/
 -webkit-transform: rotate(-12deg);
 -moz-transform: rotate(-12deg);
@@ -568,12 +575,26 @@ width: 60px; /*width of the tape*/
 #tape:after { /*using :after places the tape on the right of the box*/
 right:-20px; /*position from the left edge of the #tape div*/
 top: -10px; /*position from the top edge of the #tape div - a negative value moves the tape 10px above of the box's edge*/
-width: 70px; /*width of the tape*/
+width: 103px; /*width of the tape*/
 /*rotate the tape 20 degrees clockwise*/
 -webkit-transform: rotate(20deg);
 -moz-transform: rotate(20deg);
 -o-transform: rotate(20deg);
 -ms-transform: rotate(20deg);
+}
+
+#tape.tape-center:after {
+	width: $tape-width * 0.8;
+	height: $tape-height * 0.8;
+	left: calc(50% - 30px);
+	/*rotate the tape 5 degrees clockwise*/
+	-webkit-transform: rotate(4deg);
+	-moz-transform: rotate(4deg);
+	-o-transform: rotate(4deg);
+	-ms-transform: rotate(4deg);	
+}
+#tape.tape-center:before {
+	display: none;	
 }
 
 #tape.tape-thin {
@@ -583,13 +604,13 @@ width: 70px; /*width of the tape*/
 }
 
 #tape.tape-thin:before, #tape.tape-thin:after{
-	height: 12px;
+	height: $tape-height / 2;
 }
 
 #tape.tape-thin:before {
 	left:-10px;
 	top: -8px;
-	width: 35px;
+	width: $tape-height / 2;
 	-webkit-transform: rotate(-16deg);
 	-moz-transform: rotate(-16deg);
 	-o-transform: rotate(-16deg);
@@ -599,7 +620,7 @@ width: 70px; /*width of the tape*/
 #tape.tape-thin:after{
 	top: -5px;
 	right:-12px;
-	width: 40px;
+	width: $tape-height / 2;
 }
 
 .tape-rotate-c-1 {
@@ -649,12 +670,103 @@ width: 70px; /*width of the tape*/
 }
 
 
+/* box(like tape but without the tape) */
+#box{
+position: relative; 
+margin:20px; 
+background:#ffdc00;
+padding:30px;
+border-radius: $corner-radius;
+/*add a small drop shadow to the box*/
+-webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+}
+#box {
+color:#000;
+}
+
+
+#box.box-green {
+	background:$color-green;	
+}
+#box.box-pink {
+	background:$color-pink;	
+}
+#box.box-orange {
+	background:$color-orange;	
+}
+#box.box-yellow {
+	background:$color-yellow;	
+}
+#box.box-black {
+	background:$color-black;
+	color:$color-white;	
+}
+#box.box-white {
+	background:$color-white;
+	color: $color-black;	
+}
+
+.box-rotate-c-1 {
+/*rotate the div 1 degrees clockwise*/
+-webkit-transform: rotate(1deg);
+-moz-transform: rotate(1deg);
+-o-transform: rotate(1deg);
+-ms-transform: rotate(1deg);	
+}
+
+.box-rotate-a-1 {
+/*rotate the div 1 degrees anticlockwise*/
+-webkit-transform: rotate(-1deg);
+-moz-transform: rotate(-1deg);
+-o-transform: rotate(-1deg);
+-ms-transform: rotate(-1deg);	
+}
+.box-rotate-c-2 {
+/*rotate the div 2 degrees clockwise*/
+-webkit-transform: rotate(2deg);
+-moz-transform: rotate(2deg);
+-o-transform: rotate(2deg);
+-ms-transform: rotate(2deg);	
+}
+
+.box-rotate-a-2 {
+/*rotate the div 2 degrees anticlockwise*/
+-webkit-transform: rotate(-2deg);
+-moz-transform: rotate(-2deg);
+-o-transform: rotate(-2deg);
+-ms-transform: rotate(-2deg);	
+}
+.box-rotate-c-3 {
+/*rotate the div 3 degrees clockwise*/
+-webkit-transform: rotate(3deg);
+-moz-transform: rotate(3deg);
+-o-transform: rotate(3deg);
+-ms-transform: rotate(3deg);	
+}
+
+.box-rotate-a-3 {
+/*rotate the div 3 degrees anticlockwise*/
+-webkit-transform: rotate(-3deg);
+-moz-transform: rotate(-3deg);
+-o-transform: rotate(-3deg);
+-ms-transform: rotate(-3deg);	
+}
+
+
+/* ---- align with tape an box divs ---- */
+.box-align {
+margin-left:20px;
+}
+
+
 /* ---- page dots ---- */
 
 .flickity-page-dots .dot {
   width: 25px;
   background: $color-pink;
-  border-radius: 1px;
+  border-radius: $corner-radius;
   opacity: 0.4;
 }
 

@@ -111,5 +111,30 @@
 		}
 			
     ]
-}
+	},
+	{
+		"name": "Other",
+		"settings": [
+			{
+			    "type":      "range",
+			    "id":        "shadow_size",
+			    "min":       0,
+			    "max":       12,
+			    "step":       1,
+			    "unit":       "px",
+			    "label":     "Shadow size",
+			    "default":   10
+			},
+			{
+			    "type":      "range",
+			    "id":        "radius_size",
+			    "min":       0,
+			    "max":       5,
+			    "step":       1,
+			    "unit":       "px",
+			    "label":     "Corner size",
+			    "default":   1
+			}
+		]
+	}
 ]

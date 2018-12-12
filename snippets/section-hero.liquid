@@ -1,44 +1,16 @@
-	{% if block.settings.background_image == 'bg-poster' %}
-    <section class="headers {% if block.settings.coloured_background %}bg-light {% endif %}bg-poster" id="headers-14">
-        <div class="container text-center text-lg-left pt-130 pt-lg-220 pb-60 pb-lg-190">
-            <div class="row justify-content-center justify-content-lg-start">
-                <div class="col-12 col-sm-8 col-lg-6">
-                    <h1 class="mb-20">{{ block.settings.headline | escape}}</h1>
-
-                    <h4 class="mb-30">{{ block.settings.strapline | escape }}</h4>
-            
-	            <form class="mb-20">
-	                <div class="row justify-content-left">
-	                    {% if block.settings.show_more_button %}
-	                    <div class="col-12 col-sm-4 col-lg-4 mb-20">
-	                        <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
-	                    </div>
-						{% endif %}
-	                    <div class="col-12 col-sm-4 col-lg-4 mb-20">
-	                        <a href="{{ block.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
-	                    </div>
-	                </div>
-	            </form>
-            
-                </div>
-            </div>
-        </div>
-    </section>
     
-    {% else %}
-    
-    <section class="headers {% if block.settings.coloured_background %}bg-light {% endif %}pt-130 pt-sm-130 pt-lg-170" id="hero">
+    <section class="headers {% if block.settings.coloured_background %}bg-orange {% endif %}pt-130 pt-sm-130 pt-lg-170" id="hero">
         <div class="container">
-            <div class="row justify-content-center text-center">
+            <div class="row">
                 <div class="col-12 col-sm-10 col-lg-8">
-                    <h1 class="mb-20">{{ block.settings.headline | escape}}</h1>
+                    <h1 id="tape" class="mb-20 tape-box-green tape-yellow tape-rotate-a-1">{{ block.settings.headline | escape}}</h1>
 
-                    <h4 class="mb-60">{{ block.settings.strapline | escape }}</h4>
+                    <h4 id="box" class="mb-60 box-pink">{{ block.settings.strapline | escape }}</h4>
                 </div>
             </div>
 
-            <form class="mb-20">
-                <div class="row justify-content-center">
+            <form class="mt-20 mb-40 box-align">
+                <div class="row">
                     {% if block.settings.show_more_button %}
                     <div class="col-12 col-sm-4 col-lg-2 mb-20">
                         <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
@@ -50,14 +22,8 @@
                 </div>
             </form>
 
-			{% if block.settings.background_image == 'bg-browser' %}
-            <div class="row bg-browser justify-content-center align-items-center d-none d-sm-block">
-                <div class="col-12 col-lg-10"></div>
-            </div>
-            {% endif %}
         </div>
     </section>
-    {% endif %}
     
     <section id="more-info"></section>
     
