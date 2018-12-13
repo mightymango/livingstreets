@@ -1,34 +1,4 @@
 [
-  {
-    "name": "Notification",
-    "settings": [
-      {
-        "type": "radio",
-        "id": "display_notification",
-        "options": [
-          {
-            "value": "never",
-            "label": "Never"
-          },
-          {
-            "value": "home",
-            "label": "Home page only"
-          },
-          {
-            "value": "all",
-            "label": "All pages"
-          }
-        ],
-        "label": "Display"
-      },
-      {
-        "type": "text",
-        "id": "notification_text",
-        "default": "Say something here.",
-        "label": "Notification text"
-      }
-    ]
-  },
     {
     "name": "Colours",
     "settings": [
@@ -87,14 +57,14 @@
 		},
         {
             "type":    "font_picker",
-            "label":   "Body font",
+            "label":   "Text font",
             "id":      "body_font",
             "default": "swiss_721_n4"
         },
         {
 		   "type": "color",
 		   "id": "font_color",
-		   "label": "Body color",
+		   "label": "Text color",
 		   "default": "#000000"
 		},
         {
@@ -108,10 +78,46 @@
 		   "id": "hover_color",
 		   "label": "Link (hover) color",
 		   "default": "#000000"
+		},
+        {
+		   "type": "color",
+		   "id": "social_color",
+		   "label": "Social color",
+		   "default": "#000000"
 		}
 			
     ]
 	},
+	  {
+    "name": "Notification",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "display_notification",
+        "options": [
+          {
+            "value": "never",
+            "label": "Never"
+          },
+          {
+            "value": "home",
+            "label": "Home page only"
+          },
+          {
+            "value": "all",
+            "label": "All pages"
+          }
+        ],
+        "label": "Display"
+      },
+      {
+        "type": "text",
+        "id": "notification_text",
+        "default": "Say something here.",
+        "label": "Notification text"
+      }
+    ]
+  },
 	{
 		"name": "Other",
 		"settings": [
@@ -134,7 +140,22 @@
 			    "unit":       "px",
 			    "label":     "Corner size",
 			    "default":   1
-			}
+			},
+			{
+	        "type": "radio",
+	        "id": "show_designers",
+	        "options": [
+	          {
+	            "value": "yes",
+	            "label": "Yes"
+	          },
+	          {
+	            "value": "no",
+	            "label": "No"
+	          }
+	        ],
+	        "label": "Show designers"
+	      }
 		]
 	}
 ]
