@@ -58,13 +58,23 @@
 	   "label": "Travel Tracker",
 	   "info": "Select the Travel Tracker product so that it can be added automatically to the order."
 	}
+,
+	{
+	   "type": "product",
+	   "id": "wall_charts",
+	   "label": "Wallcharts",
+	   "info": "Select the Wallcharts product so that it can be added automatically to the order."
+	}
   ]
 }
 {% endschema %}
 
-<div>
+<div class="hidden">
 
 {% assign travel_tracker = all_products[section.settings.travel_tracker] %}
+{% assign travel_tracker_id = travel_tracker.variants.first.id %}
+
+{% assign wall_charts = all_products[section.settings.wall_charts] %}
 
 {% assign rollover = section.settings.rollover_day | plus: 0 %}	
 {% assign day = "now" | date: "%e" | plus: 0 %}
@@ -85,13 +95,21 @@ Calculate the correct variant index from the month
 {% assign v = m  %}
 {% endif %}
 
+{% for variant in wall_charts.variants %}
+{% increment chart_counter %}
+  {% if chart_counter == v %}
+  {% assign wall_charts_variant = variant %}
+  {% endif %}
+{% endfor %}
+
 </div>
 
 <section class="forms text-center pt-60 pt-lg-100 pb-40 pb-sm-60 pb-lg-80" id="builder">
   <div class="container">
     {% if section.settings.heading %}
-    <h2 class="mb-40 text-center">{{ section.settings.heading | escape }}</h2>
+    <h2 class="text-center">{{ section.settings.heading | escape }}</h2>
 	{% endif %}
+	<h3 class="mb-40">Using <span class="fadein" id="tt_title">Travel Tracker</span><span id="wc_title" class="fadein hidden">Wallcharts</span> to track progress</h3>
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="builder_form">
 	    
 	  <div id="product-variants" class="pb-20 hidden">
@@ -112,31 +130,37 @@ Calculate the correct variant index from the month
       <div class="row text-left">
         <div class="col-12">
           <div class="row">
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
               <div>
 	            <p>{{ section.settings.number-on-roll }}</p>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
               <div>
 	            <p>{{ section.settings.percentage }}</p>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block">
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
               <div>
 	              <p>{{ section.settings.quantity }}</p>
               </div>
             </div>
+            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
+              <div class="hidden fadein classes-input">
+	              <p>Number of classes</p>
+              </div>
+            </div>
           </div>
+
           <div class="row">
-            <div class="col-12 col-sm-4 mb-20">
+            <div class="col-12 col-sm-4 mb-20 resize-me">
 	          <label class="d-block d-sm-none">{{ section.settings.number-on-roll }}</label>
               <div>
                 <input class="form-control form-control-light" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
                 <span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20">
+            <div class="col-12 col-sm-4 mb-20 resize-me">
 	          <label class="d-block d-sm-none">{{ section.settings.percentage }}</label>
               <div>
                 <input class="form-control form-control-light" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
@@ -147,18 +171,31 @@ Calculate the correct variant index from the month
                 </span>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20">
+            <div class="col-12 col-sm-4 mb-20 resize-me">
 	          <label class="d-block d-sm-none">{{ section.settings.quantity }}</label>
               <div>
                <input class="form-control form-control-light" type="number" id="subscriptions" name="properties[Subscriptions]" min="1" step="1" value="130" placeholder=""/>
-               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-               <span class="form-control-stepper-wrapper d-none">
+               <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
+               <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
                 	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
                </span>
               </div>
             </div>
-            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils </strong>and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. You will receive <strong><span id="pack_number"></span> packs of 10 badges</strong> for each month plus access to <strong>TravelTracker</strong>.</div> 
+            
+            <div class="col-12 col-sm-4 mb-20 fadein hidden resize-me classes-input">
+	          <label class="d-block d-sm-none">Number of classes</label>
+              <div>
+               <input class="form-control form-control-light" type="number" id="classes" name="properties[Classes]" min="1" step="1" value="1" placeholder=""/>
+               <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
+               <span class="form-control-stepper-wrapper">
+                	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
+                	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
+               </span>
+              </div>
+            </div>
+            
+            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils </strong>and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges</strong> for each month plus <span id="traveltracker_info" class="fadein">access to <strong>TravelTracker</strong></span><span id="wallchart_info" class="fadein hidden">wall charts for your selected number of classes.</span>.</div> 
           </div>
         </div>
        
@@ -166,7 +203,7 @@ Calculate the correct variant index from the month
         <div class="col-12 col-sm-9 col-lg-9">
 			{% if section.settings.alternative != "" %}
 			<label class="checkbox-wrapper">{{ section.settings.alternative }}
-			  <input type="checkbox">
+			  <input type="checkbox" id="alternative">
 			  <span class="checkmark"></span>
 			</label>
 			{% endif %}
@@ -211,16 +248,54 @@ Calculate the correct variant index from the month
 			$("#subscriptions").val(numberOfSubscriptions)
 			$('#pupil_number').text(numberOfSubscriptions)
 			var packsRequired = calculatePacksFor(numberOfSubscriptions)
-			var price = ((packsRequired * unitPrice) + travelTrackerPrice) / 100
+			if (useAlternative) {
+				var classes = $("#classes").val()
+				var price = ((packsRequired * unitPrice) + (wallChartsPrice * classes)) / 100				
+			} else {
+				var price = ((packsRequired * unitPrice) + travelTrackerPrice) / 100				
+			}
 			$('#product-price').text('£' + price.toFixed(2))
 			$('#quantity').val(packsRequired)
 			$('#pack_number').text(packsRequired)
 					
 		}
+		
+		function addTravelTrackerToCart() {
+
+			var cartUpdates = { {{ travel_tracker_id }}: 1 }
+	
+		    var params = {
+		      async: false,
+		      type: 'POST',
+		      url: '/cart/update.js',	
+		      data: { updates: cartUpdates },	
+		      dataType: 'json'	
+		    };
+		    
+		    $.ajax(params);			
 			
+		}
+
+		function addWallchartsToCart(number) {
+
+			var cartUpdates = { {{ wall_charts_variant.id }}: number }
+	
+		    var params = {
+		      async: false,
+		      type: 'POST',
+		      url: '/cart/update.js',	
+		      data: { updates: cartUpdates },	
+		      dataType: 'json'	
+		    };
+		    
+		    $.ajax(params);			
+			
+		}
+					
 		//Set unit price
 		var unitPrice = {{ current_variant.price }} //In pence
 		var travelTrackerPrice = {{ travel_tracker.variants.first.price }}
+		var wallChartsPrice = {{ wall_charts_variant.price }}
 		
 		//Set initial subscription number in the message
 		var initialSubscriptions = $('#subscriptions').val()
@@ -234,6 +309,7 @@ Calculate the correct variant index from the month
 		$('#quantity').val(packsRequired)
 		$('#pack_number').text(packsRequired)
 		
+		var useAlternative = false
 		
 		//Set listeners
 		$("#numberOnRoll").change(function(){
@@ -247,9 +323,45 @@ Calculate the correct variant index from the month
 		});
 
 		$("#subscriptions").change(function(){
-		    
+		   calculateSubscriptions()
+		});
+
+		$("#classes").change(function(){
+		   calculateSubscriptions() 
 		});
 		
+		$("#alternative").change(function(){
+		    useAlternative = $(this).prop('checked')
+		    if (useAlternative) {
+			    $('.resize-me').addClass("col-sm-3")
+			    $('.resize-me').removeClass("col-sm-4")	
+			    $('.classes-input').removeClass("hidden")		    
+		    }
+		    else {
+				$('.resize-me').addClass("col-sm-4")
+			    $('.resize-me').removeClass("col-sm-3")
+			    $('.classes-input').addClass("hidden")			    
+		    }
+		    $('#wallchart_info').toggleClass("hidden")
+		    $('#traveltracker_info').toggleClass("hidden")
+		    $('#tt_title').toggleClass("hidden")
+		    $('#wc_title').toggleClass("hidden")
+		    calculateSubscriptions()
+		});
+				
+		
+		$( "#builder_form" ).submit(function( event ) {
+			
+			if (useAlternative) {
+				//Get classes number
+				var classes = $('#classes').val()
+				addWallchartsToCart(classes)	
+			} else 
+			{
+				addTravelTrackerToCart()	
+			}
+			
+		});
 				
 						
 	});      
