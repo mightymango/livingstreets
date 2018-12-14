@@ -19,12 +19,6 @@
 		"label": "Heading",
 		"default": "Add your text here",
 		"info": "Leave blank to hide the heading."
-	},			
-	{
-	  "type": 	"checkbox",
-	  "id": 	"coloured_background",
-	  "label": 	"Coloured background",
-	  "default":false
 	}
   ]
   }
@@ -66,7 +60,7 @@
 {% endcomment %}   
 
 {% if found_a_collection and section.settings.show_related == "yes" %}
-<section class="sliders text-center {% if section.settings.coloured_background %}bg-light {% endif %}p-50" id="sliders-1">
+<section class="sliders text-center p-50" id="sliders-1">
 	
 	<div class="container">
     <div class="slider slider-rounded-buttons" id="related-products-no-dots"> 
@@ -86,7 +80,7 @@
 		{% endfor %}
     </div>
 	    <div>
-		    <p><a href="{{ collection.url }}">View all related products</p>
+		    <p><a href="{{ collection.url }}">View all related products</a></p>
 	    </div>
 	</div>
 </section>       

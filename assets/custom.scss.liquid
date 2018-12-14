@@ -6,6 +6,8 @@ $color-yellow: {{ settings.color_4 }};
 $color-black: {{ settings.color_5 }};
 $color-white: {{ settings.color_6 }};
 
+$color-overlay: $color-black;
+
 $hover-change: 2%;
 $darken-caption: 25%;
 
@@ -15,9 +17,11 @@ $shadow-size-small: $shadow-size / 2;
 $tape-width: 100px;
 $tape-height: $tape-width / 3.92;
 
-$tape-scale: 2.2; /* How much smaller shouild the small tapes be? */
+$tape-scale: 2.2; /* How much smaller should the small tapes be? */
 
 $corner-radius: {{ settings.radius_size }}px;
+
+$product-box-footer-height: 100px;
 
 /* Backgrounds */
 .bg-green {
@@ -185,7 +189,8 @@ a:hover {
     position: fixed;
     top: 0;
     width: calc(100% - 40px);
-   
+    box-shadow: 0 $shadow-size $shadow-size 0 RGBA(41, 127, 202, 0.2);
+    
     z-index: 1000;
 }
 @media (max-width: 992px) {
@@ -330,7 +335,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .stepper:hover {
   color: white; 
-  background-color: $color-green;
+  background-color: $color-black;
   opacity: 0.8;
 }
 
@@ -830,9 +835,131 @@ margin-left:20px;
   opacity: 1;
 }
 
+/* ---- rounded and shadow helpers ---- */
+.rounded {
+	border-radius: $corner-radius;
+}
+.square {
+	border-radius: 0;
+}
+.shadow {
+	-webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+	box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+}
+
+.shadow-small {
+	-webkit-box-shadow: $shadow-size-small $shadow-size-small 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: $shadow-size-small $shadow-size-small 3px 0px rgba(0,0,0,0.2);
+	box-shadow: $shadow-size-small $shadow-size-small 3px 0px rgba(0,0,0,0.2);
+}
+
+/* ---- align input labels ---- */
+.label-div {
+  position: relative;
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 5px;
+}
+
+.label-div-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 /* ---- product box ---- */
 .product-box {
-		
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 10px;
+}
+
+.product-box-image {
+	position: relative;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: calc(100% - $product-box-footer-height);
+	padding: 5px;	
+}
+
+.product-box-button {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: calc(100% - $product-box-footer-height);
+	padding: 5px;
+	padding-top: 20%;
+}
+
+.product-box-image .product-box-button {
+    display: none;
+}
+.product-box-image:hover > img {
+    opacity: 0.5;
+}
+.product-box-image:hover .product-box-button {
+    display: inline;
+}
+
+
+.product-box-title {
+	padding-bottom: 10px;
+}
+.product-box-footer {
+	position: relative;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: $product-box-footer-height;	
+	padding: 5px;
+}
+
+/* ---- modal for cross-sell ---- */
+.cross-sell-overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 1000;
+}
+
+.cross-sell {
+  	opacity: 1;
+  	height: 600px;
+  	width: 800px;
+  	position: absolute;
+  	left: 50%;
+  	margin-left: -400px;
+  	top: 50%;
+  	margin-top: -300px;
+	background-color: rgba(255, 255, 255, 1.0);
+	padding: 15px;
+}
+
+.cross-sell .instruction {
+	position: absolute;	
+	bottom: 0;
+	left: 0;
+	padding: 10px;
+	opacity: 0.5;
+}
+
+.cross-sell .buttons {
+	position: absolute;	
+	bottom: 30px;
+	left: 0;
+	right: 0;
+	padding: 20px;
+	text-align: right;	
 }
 
 

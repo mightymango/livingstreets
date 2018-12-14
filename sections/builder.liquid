@@ -29,6 +29,13 @@
 		"default": "Subscriptions",
 		"info": "The label for the quantity."
 	},
+	{
+		"id": "classes",
+		"type": "text",
+		"label": "Classes",
+		"default": "Number of classes",
+		"info": "The label for the number of classes."
+	},
 		{
 		"id": "alternative",
 		"type": "text",
@@ -64,6 +71,35 @@
 	   "id": "wall_charts",
 	   "label": "Wallcharts",
 	   "info": "Select the Wallcharts product so that it can be added automatically to the order."
+	},
+	{
+	   "type": "radio",
+	   "id": "enable_crossell",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Enable cross-sell",
+	   "info": "Switch on to show additional products when the buy button is pressed."
+	},
+	{
+	  "type": "text",
+	  "id": "cross-sell-heading",
+	  "label": "Cross-Sell Heading",
+	  "default": "You might also be interested in these..."	,
+	  "info": "The heading that will be shown on the cross-sell dialog."
+	},
+	{
+	  "type": "text",
+	  "id": "cross-sell-instruction",
+	  "label": "Instruction",
+	  "default": "Click an item to add it to your cart."	
+	},	
+	{
+	   "type": "collection",
+	   "id": "cross_sell_collection",
+	   "label": "Cross-sell collection"
 	}
   ]
 }
@@ -130,24 +166,24 @@ Calculate the correct variant index from the month
       <div class="row text-left">
         <div class="col-12">
           <div class="row">
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
-              <div>
-	            <p>{{ section.settings.number-on-roll }}</p>
+            <div class="col-12 col-sm-4 d-none d-sm-block mt-10 resize-me">
+              <div class="label-div">
+	            <p class="label-div-content">{{ section.settings.number-on-roll }}</p>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
-              <div>
-	            <p>{{ section.settings.percentage }}</p>
+            <div class="col-12 col-sm-4 d-none d-sm-block mt-10 resize-me">
+              <div class="label-div">
+	            <p class="label-div-content">{{ section.settings.percentage }}</p>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
-              <div>
-	              <p>{{ section.settings.quantity }}</p>
+            <div class="col-12 col-sm-4 d-none d-sm-block mt-10 resize-me">
+              <div class="label-div">
+	              <p class="label-div-content">{{ section.settings.quantity }}</p>
               </div>
             </div>
-            <div class="col-12 col-sm-4 mb-20 d-none d-sm-block resize-me">
-              <div class="hidden fadein classes-input">
-	              <p>Number of classes</p>
+            <div class="col-12 col-sm-4 d-none d-sm-block mt-10 resize-me">
+              <div class="label-div hidden fadein classes-input">
+	              <p class="label-div-content">{{ section.settings.classes }}</p>
               </div>
             </div>
           </div>
@@ -156,14 +192,14 @@ Calculate the correct variant index from the month
             <div class="col-12 col-sm-4 mb-20 resize-me">
 	          <label class="d-block d-sm-none">{{ section.settings.number-on-roll }}</label>
               <div>
-                <input class="form-control form-control-light" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
+                <input class="form-control form-control-light bg-yellow text-black rounded shadow-small" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
                 <span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
               </div>
             </div>
             <div class="col-12 col-sm-4 mb-20 resize-me">
 	          <label class="d-block d-sm-none">{{ section.settings.percentage }}</label>
               <div>
-                <input class="form-control form-control-light" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
+                <input class="form-control form-control-light bg-green text-black rounded shadow-small" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
                 <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
                 <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
@@ -174,7 +210,7 @@ Calculate the correct variant index from the month
             <div class="col-12 col-sm-4 mb-20 resize-me">
 	          <label class="d-block d-sm-none">{{ section.settings.quantity }}</label>
               <div>
-               <input class="form-control form-control-light" type="number" id="subscriptions" name="properties[Subscriptions]" min="1" step="1" value="130" placeholder=""/>
+               <input class="form-control form-control-light bg-orange text-black rounded shadow-small" type="number" id="subscriptions" name="properties[Subscriptions]" min="1" step="1" value="130" placeholder=""/>
                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
                <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
@@ -184,9 +220,9 @@ Calculate the correct variant index from the month
             </div>
             
             <div class="col-12 col-sm-4 mb-20 fadein hidden resize-me classes-input">
-	          <label class="d-block d-sm-none">Number of classes</label>
+	          <label class="d-block d-sm-none">{{ section.settings.classes }}</label>
               <div>
-               <input class="form-control form-control-light" type="number" id="classes" name="properties[Classes]" min="1" step="1" value="1" placeholder=""/>
+               <input class="form-control form-control-light bg-orange text-black rounded shadow-small" type="number" id="classes" name="properties[Classes]" min="1" step="1" value="1" placeholder=""/>
                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span>
                <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
@@ -195,7 +231,8 @@ Calculate the correct variant index from the month
               </div>
             </div>
             
-            <div class="col-12 mb-40"><span class="form-control form-control-light"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils </strong>and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges</strong> for each month plus <span id="traveltracker_info" class="fadein">access to <strong>TravelTracker</strong></span><span id="wallchart_info" class="fadein hidden">wall charts for your selected number of classes.</span>.</div> 
+            <div class="col-12 mb-40"><span class="form-control form-control-light bg-pink text-white rounded shadow-small"><span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils </strong>and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges</strong> for each month plus <span id="traveltracker_info" class="fadein">access to <strong>TravelTracker</strong></span><span id="wallchart_info" class="fadein hidden">wall charts for your selected number of classes</span>.
+            </div> 
           </div>
         </div>
        
@@ -366,4 +403,72 @@ Calculate the correct variant index from the month
 						
 	});      
 </script>
+
+{% if section.settings.enable_crossell == "yes" %}
+
+{% assign collection = collections[section.settings.cross_sell_collection] %}
+
+	<div class="cross-sell-overlay">
+		<div class="cross-sell rounded shadow">
+			<h2 id="tape" class="tape-orange tape-rotate-a-1">{{ section.settings.cross-sell-heading }}</h2>
+			
+			<div class="row justify-content-center pt-20">
+				
+				{% for product in collection.products %}
+				{% assign product_id = product.variants.first.id %}
+				<div class="col-6 col-sm-4">
+					<div class="product-box text-center">
+						<div class="product-box-image">
+							<img src="{{ product | img_url: 'x150'}}" />
+							<div class="product-box-button">
+							<button class="btn add-to-cart" data-id="{{ product_id }}">Add to cart</button>
+							</div>
+						</div>
+						<div class="product-box-footer">
+							<p class="product-box-title">{{ product.title }}</p>
+							<p id="tape" class="tape-thin tape-box-pink tape-rotate-c-2">{{ product.price | money }} </p>
+						</div>
+					</div>
+				</div>						
+				{% endfor %}
+								
+			</div>
+			
+			<div class="buttons">
+				<a href="" class="btn btn-orange">Cancel</a> <a href="" class="btn btn-green">Continue</a>
+			</div>
+			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
+		</div>
+	</div>
+	
+	<script>
+		$( document ).ready(function() {
+			
+			function addCrossSell(id) {
+				
+				const jsonString = '{ "' + id + '" : 1 }' 
+				var cartUpdates = JSON.parse(jsonString)
+			
+				console.log(cartUpdates)
+		
+			    var params = {
+			      async: false,
+			      type: 'POST',
+			      url: '/cart/update.js',	
+			      data: { updates: cartUpdates },	
+			      dataType: 'json'	
+			    };
+			    
+			    $.ajax(params);			
+				
+			}
+		
+			$(".add-to-cart").on('click', function(){
+				addCrossSell($(this).data('id')) 
+			});
+			
+		});	
+	</script>
+
+{% endif %}
 
