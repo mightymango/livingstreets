@@ -1,0 +1,78 @@
+{% schema %}
+  {
+    "name": "Questions and Answers",
+    "max_blocks": 8,
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title",
+        "default": "FAQs"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "FAQ",
+        "settings": [
+          {
+            "id": "question",
+            "type": "text",
+            "label": "Question"
+          },
+          {
+            "id": "answer",
+            "type": "textarea",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+	
+<section class="pt-160 pt-lg-200 pb-40 pb-sm-60 pb-lg-80" id="faqs">
+  <div class="container">
+            
+	{%- if section.settings.title -%}
+	<h1 class="text-center mb-40 mb-lg-60">{{ section.settings.title | escape}}</h1>
+	{%- endif -%}
+	<div id="accordion">
+	  {% assign show_default = true %}			
+	  {% for block in section.blocks %}
+	  <div {{ block.shopify_attributes }}>
+
+	  <div class="mb-30">
+	  <h4 id="tape" class="accordion-toggle tape-yellow tape-box-orange tape-thin">{{ block.settings.question | escape }}</h4>
+	  <div class="accordion-content {% if show_default %}default {% endif %}box-align mb-20">
+	    <p>{{ block.settings.answer | escape | newline_to_br }}</p>
+	  </div>
+	  </div>	
+	
+	  </div>
+	  {% assign show_default = false %}
+	  {% endfor %}
+	</div>  	  
+  </div>
+</section>	
+
+
+
+<script type="text/javascript">
+  $(document).ready(function($) {
+    $('#accordion').find('.accordion-toggle').click(function(){
+
+      //Expand or collapse this panel
+      $(this).next().slideToggle('fast');
+
+      //Hide the other panels
+      $(".accordion-content").not($(this).next()).slideUp('fast');
+
+    });
+  });
+</script>	
+
+
+
+
+

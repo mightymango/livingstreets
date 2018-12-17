@@ -35,14 +35,20 @@
 
 </head>
 
-<body>
+<body class="main">
 
 {% include 'notification' %} 
 
 {% section 'navbar' %}
 
-
+<main class="main-content"
+	 
 {{content_for_layout}}
+	
+</main>
+ 
+
+
 
 
 {% section 'footer' %}

@@ -23,6 +23,8 @@ $corner-radius: {{ settings.radius_size }}px;
 
 $product-box-footer-height: 100px;
 
+$footer-height: 280px;
+
 /* Backgrounds */
 .bg-green {
 	background-color: $color-green;	
@@ -339,21 +341,6 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 0.8;
 }
 
-.designer {
-	font-size: 0.75em;
-	font-weight: 200;
-	color: $color-black;
-	opacity: 0.3;
-}
-
-.designer a {
-	font-weight: 400;
-	text-decoration: none;
-}
-
-.designer a:hover {
-	opacity: 0.85;
-}
 
 /* Notification */
 #notification {
@@ -961,6 +948,74 @@ margin-left:20px;
 	right: 0;
 	padding: 20px;
 	text-align: right;	
+}
+
+
+/* ---- accordion ---- */
+.accordion-toggle {
+	cursor: pointer;
+}
+.accordion-content {
+	display: none;
+	padding-top: 20px;
+}
+.accordion-content.default {
+	display: block;
+}
+
+/* ---- fixed footer ---- */
+footer {
+	width: 100%;
+	height: $footer-height;
+	position: fixed;
+	bottom: 0;
+	z-index: -2;
+	background-color: $color-green;
+/*
+	border-top-color: $color-white;
+	border-top-width: 10px;
+	border-top-style: dashed;
+*/
+}
+
+html,
+body {
+	background-color: $color-white;;
+}
+
+body {
+	margin-bottom: $footer-height;
+}
+
+footer a:hover {
+	color: $color-white;
+	opacity: 0.8;
+}
+
+/* ---- credits ---- */
+.designer {
+	font-size: 0.75em;
+	font-weight: 200;
+	color: $color-black;
+	opacity: 0.4;
+}
+
+.designer a {
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.designer a:hover {
+	color: $color-white;
+}
+
+#designer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: $color-green;
+	z-index: -1;
 }
 
 
