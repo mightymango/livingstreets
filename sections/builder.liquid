@@ -247,22 +247,89 @@ Calculate the correct variant index from the month
         </div>
         
         <div class="col-12 col-sm-3 col-lg-3">
-          <input class="btn w-full no-padding" type="submit" name="add" id="add" value="{{ section.settings.add-to-cart | escape }}">
+	      {% if section.settings.enable_crossell == "yes" %}
+	      <a href="#" id="show_addons" class="btn w-full no-padding">{{ section.settings.add-to-cart | escape }}</a>
+          {% else %}
+          <input class="btn w-full no-padding" type="submit" name="add" id="add" value="{{ section.settings.add-to-cart | escape }}">          
+          {% endif %}
         </div>
       </div>
+
+{% if section.settings.enable_crossell == "yes" %}
+
+{% assign collection = collections[section.settings.cross_sell_collection] %}
+
+	<div class="cross-sell-overlay">
+		<div class="cross-sell rounded shadow">
+			<h2 id="tape" class="tape-orange tape-rotate-a-1">{{ section.settings.cross-sell-heading }}</h2>
+			
+			<div class="row justify-content-center pt-20">
+				
+				{% for product in collection.products %}
+				{% assign product_id = product.variants.first.id %}
+				<div class="col-6 col-sm-4">
+					<div class="product-box text-center">
+						<div class="product-box-image">
+							<img src="{{ product | img_url: 'x150'}}" />
+							<div class="product-box-button">
+							<button class="btn add-to-cart" data-id="{{ product_id }}">Add to cart</button>
+							</div>
+						</div>
+						<div class="product-box-footer">
+							<p class="product-box-title">{{ product.title }}</p>
+							<p id="tape" class="tape-thin tape-box-pink tape-rotate-c-2">{{ product.price | money }} </p>
+						</div>
+					</div>
+				</div>						
+				{% endfor %}
+								
+			</div>
+			
+			<div class="buttons">
+				<button id="cancel" class="btn btn-orange">Cancel</button> 
+				<input class="btn btn-green" type="submit" name="add" id="add" value="Continue">
+			</div>
+			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
+		</div>
+	</div>
+
+{% endif %}
       
     </form>
   </div>
 </section>	
-	
-{% comment %}
-  Adding support for product options. See here for details:  
-  http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options
-{% endcomment %}
 
 <script>
 	$( document ).ready(function() {
 
+{% if section.settings.enable_crossell == "yes" %}
+
+		function addCrossSell(id) {
+			
+			const jsonString = '{ "' + id + '" : 1 }' 
+			var cartUpdates = JSON.parse(jsonString)
+		
+			console.log(cartUpdates)
+	
+		    var params = {
+		      async: false,
+		      type: 'POST',
+		      url: '/cart/update.js',	
+		      data: { updates: cartUpdates },	
+		      dataType: 'json'	
+		    };
+		    
+		    $.ajax(params);			
+			
+		}
+	
+		$(".add-to-cart").on('click', function(evt){
+			addCrossSell($(this).data('id'))
+			evt.preventDefault(); 
+		});
+
+{% endif %}
+			
 		function calculatePacksFor(subscriptions) {
 			var packSize = 10
 			var packs = 0
@@ -386,7 +453,16 @@ Calculate the correct variant index from the month
 		    calculateSubscriptions()
 		});
 				
-		
+		$("#show_addons").on('click', function(evt){
+			$(".cross-sell-overlay").show();
+			evt.preventDefault();
+		});
+
+		$("#cancel").on('click', function(evt){
+			$(".cross-sell-overlay").hide();
+			evt.preventDefault();
+		});
+						
 		$( "#builder_form" ).submit(function( event ) {
 			
 			if (useAlternative) {
@@ -404,71 +480,4 @@ Calculate the correct variant index from the month
 	});      
 </script>
 
-{% if section.settings.enable_crossell == "yes" %}
-
-{% assign collection = collections[section.settings.cross_sell_collection] %}
-
-	<div class="cross-sell-overlay">
-		<div class="cross-sell rounded shadow">
-			<h2 id="tape" class="tape-orange tape-rotate-a-1">{{ section.settings.cross-sell-heading }}</h2>
-			
-			<div class="row justify-content-center pt-20">
-				
-				{% for product in collection.products %}
-				{% assign product_id = product.variants.first.id %}
-				<div class="col-6 col-sm-4">
-					<div class="product-box text-center">
-						<div class="product-box-image">
-							<img src="{{ product | img_url: 'x150'}}" />
-							<div class="product-box-button">
-							<button class="btn add-to-cart" data-id="{{ product_id }}">Add to cart</button>
-							</div>
-						</div>
-						<div class="product-box-footer">
-							<p class="product-box-title">{{ product.title }}</p>
-							<p id="tape" class="tape-thin tape-box-pink tape-rotate-c-2">{{ product.price | money }} </p>
-						</div>
-					</div>
-				</div>						
-				{% endfor %}
-								
-			</div>
-			
-			<div class="buttons">
-				<a href="" class="btn btn-orange">Cancel</a> <a href="" class="btn btn-green">Continue</a>
-			</div>
-			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
-		</div>
-	</div>
-	
-	<script>
-		$( document ).ready(function() {
-			
-			function addCrossSell(id) {
-				
-				const jsonString = '{ "' + id + '" : 1 }' 
-				var cartUpdates = JSON.parse(jsonString)
-			
-				console.log(cartUpdates)
-		
-			    var params = {
-			      async: false,
-			      type: 'POST',
-			      url: '/cart/update.js',	
-			      data: { updates: cartUpdates },	
-			      dataType: 'json'	
-			    };
-			    
-			    $.ajax(params);			
-				
-			}
-		
-			$(".add-to-cart").on('click', function(){
-				addCrossSell($(this).data('id')) 
-			});
-			
-		});	
-	</script>
-
-{% endif %}
 
