@@ -18,16 +18,25 @@
         "label": "Strapline",
         "default": "Add your text here"
       },
-      {
-		   "type": "select",
-		   "id": "background_image",
-		   "options": [
-		      { "value": "", "label": "None"},
-		      { "value": "bg-browser", "label": "Browser"},
-		      { "value": "bg-poster", "label": "Poster"}
-		   ],
-		   "label": "Hero Image"
-		},
+      	    {
+	      "type": "image_picker",
+	      "id": "hero_image",
+	      "label": "Background image"
+	    },
+	    {
+	   "type": "select",
+	   "id": "hero_colour",
+	   "options": [
+	      { "value": "green", "label": "Green"},
+	      { "value": "orange", "label": "Orange"},
+	      { "value": "yellow", "label": "Yellow"},
+	      { "value": "pink", "label": "Pink"},
+	      { "value": "black", "label": "Black"},
+	      { "value": "white", "label": "White"}
+	   ],
+	   "label": "Background colour",
+	   "default": "white"
+	   },
       {
 	  "type": 	"checkbox",
 	  "id": 	"show_more_button",
@@ -38,12 +47,6 @@
 	  "id": "buy_url",
 	  "type": "url",
 	  "label": "Buy button link"
-	},
-      	{
-	  "type": 	"checkbox",
-	  "id": 	"coloured_background",
-	  "label": 	"Coloured background",
-	  "default":true
 	}
     ]
   },

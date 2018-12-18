@@ -707,6 +707,7 @@ margin:20px;
 background:#ffdc00;
 padding:30px;
 border-radius: $corner-radius;
+opacity: 1;
 /*add a small drop shadow to the box*/
 -webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 -moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
@@ -1014,8 +1015,23 @@ footer a:hover {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: $color-green;
 	z-index: -1;
+}
+
+/* ---- basket counter ---- */
+a.cart { 
+    overflow: hidden; 
+    text-align: center;
+}
+
+a.cart span {
+position: absolute;
+text-align: center;
+top: 0;
+left:0;
+right: 0;
+color: $color-black;
+font-size: 12px;
 }
 
 

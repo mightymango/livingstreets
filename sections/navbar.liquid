@@ -36,7 +36,7 @@
                     <nav class="navbar">                       
                         <a href="{{ shop.url }}/account" class="cart icon"><img src="{{ 'profile-icon.svg' | asset_url }}"></a>
                         <a href="{{ shop.url }}/search" class="cart"><img src="{{ 'search-icon.svg' | asset_url }}"></a>
-                        <a href="{{ shop.url }}/cart" class="cart"><img src="{{ 'basket-icon.svg' | asset_url }}"></a>
+                        <a href="{{ shop.url }}/cart" class="cart"><img src="{{ 'basket-icon.svg' | asset_url }}">{% if cart.item_count > 0 %}<span class="badge">{{ cart.item_count }}</span>{% endif %}</a>
                     </nav>
                 </div>
 
@@ -56,7 +56,7 @@
 
             <p><a href="{{ shop.url }}/account"><img src="{{ 'profile-icon.svg' | asset_url }}"></a></p>
             <p><a href="{{ shop.url }}/search"><img src="{{ 'search-icon.svg' | asset_url }}"></a></p>
-            <p><a href="{{ shop.url }}/cart"><img src="{{ 'basket-icon.svg' | asset_url }}"></a></p>
+            <p><a href="{{ shop.url }}/cart" class="cart"><img src="{{ 'basket-icon.svg' | asset_url }}">{% if cart.item_count > 0 %}<span class="badge">{{ cart.item_count }}</span>{% endif %}</a></p>
         </div>
     </div><!-- Menu -->
     
