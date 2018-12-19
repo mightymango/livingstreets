@@ -348,17 +348,18 @@ input[type=number]::-webkit-outer-spin-button {
 	top: 0;
 	width: 100%;
 	z-index: 1002;
-	background-color: #3fa2f7;
+	background-color: $color-green;
 	color: #e3f1fd;
 	height: 50px;
 	padding: 10px;
+	padding-top: 12px;
 	text-align: center;
 	-webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
     transition: all 1.0s ease;	
     border-style: solid;
-    border-bottom-color: #297FCA;
+    border-bottom-color: darken($color-green, 20%);
     border-width: 0;
     border-bottom-width: 2px;
 }
@@ -981,7 +982,7 @@ footer {
 
 html,
 body {
-	background-color: $color-white;;
+	background-color: $color-white;
 }
 
 body {
@@ -1035,4 +1036,17 @@ font-size: 12px;
 }
 
 
+/* ---- placeholder ---- */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $color-green !important;
+  opacity: 1 !important; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $color-green !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $color-green !important;
+}
 
