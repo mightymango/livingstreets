@@ -68,7 +68,7 @@
   If we have a relevant collection.
 {% endcomment %}
 
-    	           
+    	   <section class="mt-30">        
 	           
 	            <div class="row justify-content-left justify-content-lg-between">
 	                <div class="col-12 col-sm-10 col-lg-5 order-2 order-lg-1">
@@ -113,7 +113,7 @@
                         <div class="col-6 col-sm-4 mb-20">
                             <label class="d-block"><strong>Quantity</strong></label>
                             <div>
-			               <input class="form-control form-control-light" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
+			               <input class="form-control form-control-light bg-orange text-black rounded" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
 			               <span class="form-control-stepper-wrapper">
 			                	<span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span>
 			                	<span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span>
@@ -125,7 +125,7 @@
                         <div class="col-6 col-sm-4 mb-20">
 					      <label class="d-block">&nbsp;</label>
 					      <div id="product-add">
-						  <input class="btn" type="submit" name="add" id="add" value="{{ section.settings.add_to_cart | escape }}">
+						  <input class="btn" style="margin-top:2px;" type="submit" name="add" id="add" value="{{ section.settings.add_to_cart | escape }}">
 	      				  </div>
                         </div>
                                                
@@ -136,7 +136,7 @@
 	
 		
 	                <div class="col-12 col-sm-10 col-lg-6 order-1 order-lg-2 mb-40 mb-lg-0">
-	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'grande'}}" alt="">
+	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'x600'}}" alt="">
 	                    
 	                    {% if found_a_collection and section.settings.show_related == "yes" %}<div class="row">
 							<div class="col-12">
@@ -149,5 +149,5 @@
 	                
 	            </div>
 	  
-
+			</section>
        

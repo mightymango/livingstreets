@@ -2,8 +2,8 @@
   <meta property="og:type" content="product" />
   <meta property="og:title" content="{{ product.title | strip_html | escape }}" />
   {% for image in product.images %}
-  <meta property="og:image" content="http:{{ image | img_url: 'grande' }}" />
-  <meta property="og:image:secure_url" content="https:{{ image | img_url: 'grande' }}" />
+  <meta property="og:image" content="http:{{ image | img_url: 'x600' }}" />
+  <meta property="og:image:secure_url" content="https:{{ image | img_url: 'x600' }}" />
   {% endfor %}
   <meta property="og:price:amount" content="{{ product.price | money_without_currency }}" />
   <meta property="og:price:currency" content="{{ shop.currency }}" />

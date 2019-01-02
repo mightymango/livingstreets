@@ -348,17 +348,18 @@ input[type=number]::-webkit-outer-spin-button {
 	top: 0;
 	width: 100%;
 	z-index: 1002;
-	background-color: #3fa2f7;
+	background-color: $color-green;
 	color: #e3f1fd;
 	height: 50px;
 	padding: 10px;
+	padding-top: 12px;
 	text-align: center;
 	-webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
     transition: all 1.0s ease;	
     border-style: solid;
-    border-bottom-color: #297FCA;
+    border-bottom-color: darken($color-green, 20%);
     border-width: 0;
     border-bottom-width: 2px;
 }
@@ -707,6 +708,7 @@ margin:20px;
 background:#ffdc00;
 padding:30px;
 border-radius: $corner-radius;
+opacity: 1;
 /*add a small drop shadow to the box*/
 -webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 -moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
@@ -980,7 +982,7 @@ footer {
 
 html,
 body {
-	background-color: $color-white;;
+	background-color: $color-white;
 }
 
 body {
@@ -1014,9 +1016,37 @@ footer a:hover {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: $color-green;
 	z-index: -1;
 }
 
+/* ---- basket counter ---- */
+a.cart { 
+    overflow: hidden; 
+    text-align: center;
+}
 
+a.cart span {
+position: absolute;
+text-align: center;
+top: 0;
+left:0;
+right: 0;
+color: $color-black;
+font-size: 12px;
+}
+
+
+/* ---- placeholder ---- */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $color-green !important;
+  opacity: 1 !important; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $color-green !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $color-green !important;
+}
 

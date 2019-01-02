@@ -1,5 +1,6 @@
+   
     
-    <section class="headers {% if block.settings.coloured_background %}bg-orange {% endif %}pt-130 pt-sm-130 pt-lg-170" id="hero">
+    <section class="headers bg-{{ block.settings.hero_colour}} pt-130 pt-sm-130 pt-lg-170 pb-50" id="hero" {% if block.settings.hero_image %}style="background-image: url('{{ block.settings.hero_image | img_url: 'x1024' }}');"{% endif %}>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-10 col-lg-8">

@@ -1,6 +1,27 @@
 
     {% schema %} 
     { "name": "Sliders", 
+      "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+   "type": "select",
+   "id": "background_colour",
+   "options": [
+      { "value": "green", "label": "Green"},
+      { "value": "orange", "label": "Orange"},
+      { "value": "yellow", "label": "Yellow"},
+      { "value": "pink", "label": "Pink"},
+      { "value": "black", "label": "Black"},
+      { "value": "white", "label": "White"}
+   ],
+   "label": "Background colour",
+   "default": "white"
+   }
+  ],
     
     "blocks": [
       {
@@ -32,9 +53,10 @@
     ], 
     	"presets": [ { "name": "Sliders", "category": "Header" } ] } 
     
+    
     {% endschema %}
 
-<section class="sliders text-center bg-orange p-50" id="sliders-1" style="background-image: url('{{ 'walking-people.jpg' | asset_url }}');">
+<section class="sliders text-center bg-{{ section.settings.background_colour}} p-50" id="sliders-1" {% if section.settings.background_image %}style="background-image: url('{{ section.settings.background_image | img_url: 'x1024' }}');"{% endif %}>
 	<div class="container">
     <div class="slider slider-rounded-buttons slider-fixed-height-500 transparent" id="sliders-1-slider">
       {% for block in section.blocks %}

@@ -12,12 +12,32 @@ applied to the elements on this page; the 'searchresults' id is used in the CSS
 selectors inside search.css.
 {% endcomment %}
 
-<form action="/search" method="get" role="search">
-  <input name="q" type="search" id="search-field" placeholder="Search store..." value="{{ search.terms | escape }}" />
-  <input type="submit" value="Search" />
-</form>
-  
-{% comment %}
+<section class="forms text-center text-lg-left p-60 p-lg-100 mt-50" id="forms-5">
+  <div class="container">
+	  <form class="mb-20" action="/search" method="get" role="search">
+	  <input type="hidden" name="type" value="product">
+      <div class="row bg-orange rounded shadow justify-content-between align-items-center p-20">
+        <div class="col-12 col-lg-4 mb-40 mb-lg-0">
+          <h3>What do you want to search for?</h3>
+        </div>
+        <div class="col-12 col-lg-8">
+          <form>
+            <div class="row form-group no-gutters">
+              <div class="col-8">
+                <div>
+                  <input class="form-control text-black" name="q" type="text" id="search-field" placeholder="Search store..." value="{{ search.terms | escape }}" />                
+                </div>
+              </div>
+              <div class="col-4">
+	              <input class="btn w-full" type="submit" value="Search" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+	  </form>
+	  
+	  {% comment %}
 search.performed is false when accessing the /search page without a 'q' parameter set
 in the URL. A shop-owner can link to the /search page from one of his link lists.
 It is important to show a search form on that page if search.performed is false.
@@ -25,7 +45,7 @@ It is important to show a search form on that page if search.performed is false.
 
 {% if search.performed %}
   
-  {% paginate search.results by 10 %}
+  {% paginate search.results by 8 %}
   
     {% comment %}
     Common pitfall to avoid: search.results should never be accessed before the opening 
@@ -38,19 +58,23 @@ It is important to show a search form on that page if search.performed is false.
     {% if search.results_count == 0 %}  
       Your search for "{{ search.terms }}" did not yield any results.          
     {% else %}
-      <ol>
         {% for item in search.results %}      
-          <li>
+          <div class="row p-20">
+            <div class="col-12 text-left">
             <h3>{{ item.title | link_to: item.url }}</h3>
+            </div>
             {% if item.vendor %}
+              <div class="col-3 col-sm-2 text-left">
               <a href="{{ item.url }}" title="{{ item.title | escape }}">
-                {{ item | img_url: 'small' | img_tag: item.featured_image.alt }}
+                <img class="responsive" src="{{ item | img_url: 'small' }}" alt="{{ item.featured_image.alt }}"/>
               </a>
+              </div>
             {% endif %}
-            {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}   
-          </li>
+            <div class="col-9 col-sm-10 text-left">
+            {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }} 
+            </div>  
+          </div>
         {% endfor %}
-      </ol>
     {% endif %}    
     
     {% if paginate.pages > 1 %}
@@ -60,3 +84,6 @@ It is important to show a search form on that page if search.performed is false.
   {% endpaginate %}    
   
 {% endif %}  
+
+  </div>
+</section>
