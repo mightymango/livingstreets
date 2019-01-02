@@ -359,9 +359,13 @@ input[type=number]::-webkit-outer-spin-button {
     -o-transition: all 1.0s ease;
     transition: all 1.0s ease;	
     border-style: solid;
-    border-bottom-color: darken($color-green, 20%);
+    border-bottom-color: darken($color-green, 5%);
     border-width: 0;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;	
 }
 
 #notification.hide {
@@ -841,6 +845,18 @@ margin-left:20px;
 	-webkit-box-shadow: $shadow-size-small $shadow-size-small 3px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: $shadow-size-small $shadow-size-small 3px 0px rgba(0,0,0,0.2);
 	box-shadow: $shadow-size-small $shadow-size-small 3px 0px rgba(0,0,0,0.2);
+}
+
+.shadow-below {
+	-webkit-box-shadow: 0px $shadow-size 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px $shadow-size 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px $shadow-size 3px 0px rgba(0,0,0,0.2);
+}
+
+.shadow-below-small {
+	-webkit-box-shadow: 0px $shadow-size-small 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px $shadow-size-small 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px $shadow-size-small 3px 0px rgba(0,0,0,0.2);
 }
 
 /* ---- align input labels ---- */

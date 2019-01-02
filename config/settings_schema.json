@@ -115,7 +115,14 @@
         "id": "notification_text",
         "default": "Say something here.",
         "label": "Notification text"
-      }
+      },
+      {
+	   "type": "checkbox",
+	   "id": "auto_hide",
+	   "default": true,
+	   "label": "Auto hide",
+	   "info": "When selected, the notification will be hidden when the page scrolls up."
+	}
     ]
   },
 	{

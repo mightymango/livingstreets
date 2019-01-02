@@ -12,9 +12,37 @@
 	{% endcase %}
 
 	
+	
+	
 	{% if show_notification %}
 	<!-- Notification Bar -->
-    <div id="notification">
+    <div id="notification" class="shadow-below-small">
         <span class="vertical-align">{{ settings.notification_text | escape }}</span>
     </div>
+    
+    
+	<script>
+	$(document).ready(function() {
+		
+	  var navbar = document.getElementById("navbar")
+	  var notification = document.getElementById("notification")
+	  var h = document.getElementById('notification').clientHeight;
+	  navbar.style.top = h + "px"
+	  
+	  {% if settings.auto_hide %}
+	  $(window).scroll(function() {
+	    
+	    if ($(document).scrollTop() > 300) {
+	      notification.style.top = "-50px"
+		  navbar.style.top = 0		  
+	    } else {
+	      notification.style.top = "0px"
+	      navbar.style.top = h + "px"
+	    }
+	    
+	  });
+	  {% endif %}
+	});
+	</script>
+	
     {% endif %}

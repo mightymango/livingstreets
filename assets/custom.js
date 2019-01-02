@@ -12,14 +12,6 @@ function scrollFunction() {
   
 }
 
-//   Notification
-  var notification = document.getElementById("notification")
-  if (notification) {
-	  var navbar = document.getElementById("navbar")
-	  var h = document.getElementById('notification').clientHeight;
-	  navbar.style.top = h + "px"
-  }
-
 $( document ).ready(function() {
   
   	//Set mobile navbar
