@@ -1,51 +1,32 @@
-<!--
-<div class="col-12 col-sm-6 col-lg-3 mb-15 mb-sm-30">
-	<a href="{{ product.url }}">
-    <div class="h-400 with-overlay p-30 d-flex justify-content-center product-box">
-        <div class="align-self-end">
-            <img class="mb-70 image-box" src="{{ product | img_url: 'x150'}}" alt="">
 
-            <div class="pl-10 pr-10 title-box"><h3>{{ product.title }}</h3></div>
- 
-            <p id="tape" class="tape-center tape-thin">{{ product.price | money }}</p>
-            
-            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-        </div>
-
-        <div class="with-overlay__content d-flex justify-content-center">
-            <div class="align-self-centre ph-30">
-                
-                <h3 class="mb-10">{{ product.title }}</h3>
-                <div class="mb-20" itemprop="description">{{ product.description | truncatewords: 10 }}</div>
-
-                <p class="mb-60">{{ product.price | money }}</p><a href="{{ product.url }}" class="btn btn-small">More information</a>
-            </div>
-        </div>
-    </div>
-	</a>
-</div>
--->
-
-
-<div class="col-12 col-sm-6 col-lg-3 mb-15 mb-sm-30">
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-15 mb-sm-30">
     <div class="h-400 with-overlay p-30 d-flex justify-content-center">
-        <div class="align-self-end">
-            <img class="mb-120" src="{{ product | img_url: 'x150'}}" alt="">
+        <div class="product-box align-self-end">
+            
+            <div class="product-box-image">
+            	<img class="mb-50" src="{{ product | img_url: 'x160'}}" alt="">
+            	
+            	<div class="product-box-button">
 
-            <h3>{{ product.title }}</h3>
-
-            <p>{{ product.price | money }}</p>
-        </div>
-
-        <div class="with-overlay__content d-flex justify-content-center">
-            <div class="align-self-center ph-30">
-                <h3 class="mb-10">{{ product.title }}</h3>
-
-                <div class="mb-20" itemprop="description">{{ product.description | truncatewords: 10 }}</div>
-
-                <p class="mb-60">{{ product.price | money }}</p><a href="{{ product.url }}" class="btn btn-small">More information</a>
+	            	<div class="howmany">
+	            	<input class="form-control form-control-light bg-yellow text-black rounded mb-10" type="number" id="numberToAdd" name="numberToAdd" min="1" step="1" value="1" placeholder=""/>
+	            	<span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
+	            	</div>
+	            	{% assign variant = product.first_available_variant %}
+	            	<a href="#" class="btn mb-10 add-to-cart" data-id="{{ variant.id }}">Buy</a>
+	            	<a href="{{ product.url }}" class="btn btn-orange">Read more</a>
+            	</div>
+            
             </div>
+            
+            
+            <div class="product-box-footer">
+            	<h3>{{ product.title }}</h3>
+				<p id="tape" class="tape-thin tape-box-orange tape-green tape-rotate-a-2 tape-removed">{{ product.price | money }}</p>
+            </div>
+            
         </div>
+
     </div>
 </div>
-                        
+                     

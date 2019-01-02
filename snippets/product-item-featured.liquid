@@ -1,0 +1,19 @@
+<div class="col-12 col-sm-12 col-md-8 col-lg-6 mb-15 mb-sm-30 p-20 pt-30">
+    <div class="featured-product">
+	    <div class="featured-product-row">
+			<img class="featured-product-box-left" src="{{ product | img_url: 'x200'}}" alt="">
+			<div class="featured-product-box-right pl-20 text-left">
+			    <h4 class="featured-product-title"><strong>{{ product.title }}</strong></h4>
+			    <div class="product-description short-description product-description-small pt-10">{{ product.description }}</div>
+			</div>
+	    </div>
+	    <div class="featured-product-row">  
+			<img class="featured-product-box-left featured-product-box-30" src="{{ 'dashes.svg' | asset_url }}" alt="">
+			<div class="featured-product-box-right featured-product-box-60 pt-50 text-left">
+			    <a href="{{ product.url }}" class="btn btn-block" style="width:100%;">Order now</a>
+			</div>
+	    </div>
+	 </div>
+
+</div>
+                     

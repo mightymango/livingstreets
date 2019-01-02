@@ -7,14 +7,31 @@
       "id": "heading",
       "label": "Heading",
       "default": "Products"
-    }
+    },
+    {
+	   "type": "product",
+	   "id": "feature_product",
+	   "label": "Featured product",
+	   "info": "The featured product will be given more prominence on the page."
+	},
+	{
+	    "type":      "range",
+	    "id":        "featured_position",
+	    "min":       1,
+	    "max":       10,
+	    "step":       1,
+	    "label":     "Position",
+	    "default":   1,
+	    "info": "Select the position of the featured product in the grid."
+	}
   ]
 }
 {% endschema %}
     
+
     <section class="ecommerces p-60 p-lg-100 pt-160 text-center" id="ecommerces-1">
         <div class="container">
-            <h1>{{ section.settings.heading }}</h1>
+            <h1>{{ section.settings.heading }} </h1>
             
             {% if collection.description.size > 0 %}
 			{{ collection.description }}
@@ -22,11 +39,27 @@
 			
 
             <div class="tabs-content mb-30 mt-30" id="ecommerces-1-tabs">
-                <div class="tab-panel active" id="ecommerce-1-tab-0">
+                <div class="tab-panel active" id="ecommerce-1-tab-0"> 
                     <div class="row">
-	                
+
 						  {% for product in collection.products %}
+						      {% if product.handle == section.settings.feature_product %}
+						      {% capture featured %}
+						      {% include 'product-item-featured' %}
+						      {% endcapture %}
+						      {% endif %}
+						  {% endfor %}
+						  
+						  {%- assign count = 0 -%}
+						  {%- assign position = section.settings.featured_position -%}
+						  {% for product in collection.products %}
+						  	{%- if product.price > 0 -%}
+						      {% if product.handle != section.settings.feature_product %}
+						      {% assign count = count | plus: 1 %}
+						      {% if count == position %} {{ featured }} {% endif %}
 						      {% include 'product-item' %}
+						      {% endif %}
+						    {%- endif -%}
 						  {% else %}
 						    <h2>There are no products in this view.</h2>
 						  {% endfor %}
@@ -39,5 +72,37 @@
            
         </div>
     </section>
+    
+    <script>
+	$( document ).ready(function() {
+
+		function addToBasket(id, howMany) {
+			
+			const jsonString = '{ "' + id + '" : ' + howMany + ' }' 
+			var cartUpdates = JSON.parse(jsonString)
+	
+		    var params = {
+		      async: true,
+		      type: 'POST',
+		      url: '/cart/update.js',	
+		      data: { updates: cartUpdates },	
+		      dataType: 'json'	
+		    };
+		    
+		    $.ajax(params);			
+			
+		}
+	
+		$(".add-to-cart").on('click', function(evt){
+			var howMany = $(this).closest("div.product-box-button").find("input[name='numberToAdd']").val();
+			addToBasket($(this).data('id'), howMany)
+			evt.preventDefault() 
+		});
+				
+						
+	});      
+</script>
+
+
     
        
