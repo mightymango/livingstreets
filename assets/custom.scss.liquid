@@ -48,6 +48,12 @@ $footer-height: 280px;
 	background-color: $color-yellow;
 }
 
+.outline-black {
+	border-color: $color-black;
+	border-style: solid;
+	border-width: 3px;
+}
+
 
 html,
 body {
@@ -321,9 +327,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Replacement number spinners */
+input[type=number] {
+	font-size: 20px;
+}
 .form-control-stepper-wrapper {
   position: absolute;
-  top: 4px;
+  top: 3px;
   right: 9px;
   opacity: 1;
   width: 25px;
@@ -332,7 +341,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .stepper {
   float: right;
-  display: block;
   width: 25px;
   height: 25px;
   margin-bottom: 2px;
@@ -1098,6 +1106,11 @@ font-size: 12px;
   width: 100%;	
 }
 
+.featured-product-row-mobile {
+  float: left;
+  width: 100%;	
+}
+
 .featured-product-title {
 	font-size: 18px;
 	line-height: 100%;
@@ -1131,6 +1144,31 @@ font-size: 12px;
 
 .featured-product .featured-product-box-70 {
 	width: 70.00%;
+}
+
+.featured-product .featured-product-box-100 {
+	width: 100.00%;
+}
+
+.pathway {
+	border-color: $color-black;
+	border-width: 10px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: dotted;
+	height: 75px;
+	margin-left: calc(25% - 5px);
+}
+
+.featured-button-box {
+	height: 75px;
+}
+
+.featured-button {
+	position: absolute;
+	width:100%;
+	bottom: -25px;
 }
 
 /* ---- notification (toast) ---- */

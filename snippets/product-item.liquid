@@ -9,8 +9,8 @@
             	<div class="product-box-button">
 
 	            	<div class="howmany">
-	            	<input class="form-control form-control-light bg-yellow text-black rounded mb-10" type="number" id="numberToAdd" name="numberToAdd" min="1" step="1" value="1" placeholder=""/>
-	            	<span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-chevron-up" data-direction="up"></span><span class="stepper glyphicon glyphicon-chevron-down" data-direction="down"></span></span>
+	            	<input class="form-control form-control-light bg-white text-black outline-black rounded mb-10" type="number" id="numberToAdd" name="numberToAdd" min="1" step="1" value="1" placeholder="" />
+	            	<span class="form-control-stepper-wrapper"><span class="stepper glyphicon glyphicon-plus" data-direction="up"></span><span class="stepper glyphicon glyphicon-minus" data-direction="down"></span></span>
 	            	</div>
 	            	{% assign variant = product.first_available_variant %}
 	            	<a href="#" class="btn mb-10 add-to-cart" data-id="{{ variant.id }}">Buy</a>

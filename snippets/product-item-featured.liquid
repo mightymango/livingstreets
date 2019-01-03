@@ -7,12 +7,19 @@
 			    <div class="product-description short-description product-description-small pt-10">{{ product.description }}</div>
 			</div>
 	    </div>
-	    <div class="featured-product-row">  
-			<img class="featured-product-box-left featured-product-box-30" src="{{ 'dashes.svg' | asset_url }}" alt="">
-			<div class="featured-product-box-right featured-product-box-60 pt-50 text-left">
-			    <a href="{{ product.url }}" class="btn btn-block" style="width:100%;">Order now</a>
+	    <div class="featured-product-row d-none d-sm-none d-md-block">  
+			<div class="featured-product-box-left featured-product-box-60 pathway-box"><div class="pathway"></div></div>
+			<div class="featured-product-box-right featured-product-box-30 featured-button-box text-left">
+			    <a href="{{ product.url }}" class="btn btn-block featured-button">Order</a>
 			</div>
 	    </div>
+
+	    <div class="featured-product-row d-block d-sm-block d-md-none">  
+			<div class="featured-product-box-right featured-product-box-100 featured-button-box text-left">
+			    <a href="{{ product.url }}" class="btn btn-block featured-button">Order</a>
+			</div>
+	    </div>
+	    
 	 </div>
 
 </div>
