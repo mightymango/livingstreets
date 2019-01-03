@@ -76,6 +76,14 @@
     <script>
 	$( document ).ready(function() {
 
+		function updateCartCount(howMany) {
+			var desktopBadge = $('#count-desktop')
+			var mobileBadge = $('#count-mobile')
+			desktopBadge.text(howMany)
+			mobileBadge.text(howMany)
+			console.log(howMany)
+		}
+		
 		function addToBasket(id, howMany) {
 			
 			const jsonString = '{ "' + id + '" : ' + howMany + ' }' 
@@ -86,7 +94,12 @@
 		      type: 'POST',
 		      url: '/cart/update.js',	
 		      data: { updates: cartUpdates },	
-		      dataType: 'json'	
+		      dataType: 'json',
+		      success:function(data) {
+			      console.log(data)
+			   updateCartCount(data.item_count)
+			   notifyUser('Added', 'You selected product has been added to your basket.', 3000);		        
+		      }	
 		    };
 		    
 		    $.ajax(params);			

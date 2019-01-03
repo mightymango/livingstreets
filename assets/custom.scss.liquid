@@ -1132,3 +1132,44 @@ font-size: 12px;
 .featured-product .featured-product-box-70 {
 	width: 70.00%;
 }
+
+/* ---- notification (toast) ---- */
+.notification {
+
+  position: fixed;
+  right: 0;
+  top: 0;
+  /* background: linear-gradient(270deg, #6f2cd3, #8c2cd6); */
+  background: $color-pink;
+  border-radius: $corner-radius;
+  opacity: 1.0;
+  margin: 45px;
+  margin-top: 0px;
+  padding: 12px;
+  -webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+  box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+  -webkit-transition: margin-top 0.3s;
+  transition: margin-top 0.3s;
+  z-index: 1005;
+
+}
+
+.notification h2 {
+
+  color: #fff;
+  font-size: 22px;
+  font-weight: 200;
+  margin: 0;
+  margin-bottom: 4px;
+
+}
+
+.notification h3 {
+
+  color: #fff;
+  font-size: 18px;
+  font-weight: 200;
+  margin: 0;
+
+}
