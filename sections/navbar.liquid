@@ -19,7 +19,8 @@
 	        <div class="logo">
 		        <a href="{{ shop.url }}"><img src="{{ 'living-streets.png' | asset_url }}" /></a>
 	        </div>
-            <div class="row justify-content-center align-items-center justify-content-sm-between h-100">
+            <div class="row justify-content-end align-items-center justify-content-sm-between h-100">
+                
                 <div class="col-auto">
                     <div class="row justify-content-center align-items-center">                        
                         <div class="col-auto d-none d-lg-block">
@@ -33,7 +34,7 @@
                 </div>
 
                 <div class="col-auto d-none d-lg-block">
-                    <nav class="navbar">                       
+                    <nav class="navbar align-items-right">                       
                         <a href="{{ shop.url }}/account" class="cart icon"><img src="{{ 'profile-icon.svg' | asset_url }}"></a>
                         <a href="{{ shop.url }}/search" class="cart"><img src="{{ 'search-icon.svg' | asset_url }}"></a>
                         <a href="{{ shop.url }}/cart" class="cart"><img src="{{ 'basket-icon.svg' | asset_url }}"><span id="count-desktop" class="badge">{{ cart.item_count }}</span></a>
@@ -41,7 +42,9 @@
                 </div>
 
                 <div class="col-auto d-block d-lg-none">
-                    <nav class="navbar"><a class="hamburger" id="responsive">{{ 'hamburger.svg' | asset_url | img_tag: '' }}</a></nav>
+                    <nav class="navbar">                       
+                        <a class="hamburger" id="responsive">{{ 'hamburger.svg' | asset_url | img_tag: '' }}</a>
+                    </nav>                   
                 </div>
             </div>
         </div>

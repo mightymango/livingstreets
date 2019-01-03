@@ -203,8 +203,7 @@ a:hover {
     position: fixed;
     top: 0;
     width: calc(100% - 40px);
-    box-shadow: 0 $shadow-size $shadow-size 0 RGBA(41, 127, 202, 0.2);
-    
+    box-shadow: 0 $shadow-size $shadow-size 0 RGBA(41, 127, 202, 0.2);    
     z-index: 1000;
 }
 @media (max-width: 992px) {
@@ -943,6 +942,15 @@ margin-left:20px;
 }
 .product-box-image:hover .product-box-button {
     display: inline;
+}
+
+@media (max-width: 992px) {
+	.product-box-image:hover > img {
+	    opacity: 1.0;
+	}
+	.product-box-image:hover .product-box-button {
+	    display: none;
+	}	
 }
 
 
