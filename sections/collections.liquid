@@ -1,0 +1,114 @@
+{% schema %}
+{
+  "name": "Collections",
+  "settings": [
+	  	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "paragraph",
+      "content": "Some collections are for 'internal' use only. Select the collectiomns you wish to hide from the "
+    },
+    {
+      "type": "radio",
+      "id": "display_type",
+      "label": "Select collections to show",
+      "default": "all",
+      "options": [
+        {
+          "value": "all",
+          "label": "All"        },
+        {
+          "value": "selected",
+          "label": "Selected"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "label": "Sort collections by:",
+      "info": "Sorting only applies when 'All' is selected",
+      "default": "alphabetical",
+      "options": [
+        {
+          "value": "products_high",
+          "label": "Product count, high to low"
+        },
+        {
+          "value": "products_low",
+          "label": "Product count, low to high"
+        },
+        {
+          "value": "alphabetical",
+          "label": "Alphabetically, A-Z"
+        },
+        {
+          "value": "alphabetical_reversed",
+          "label": "Alphabetically, Z-A"
+        },
+        {
+          "value": "date",
+          "label": "Date, old to new"
+        },
+        {
+          "value": "date_reversed",
+          "label": "Date, new to old"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% assign hidden_collections = settings.hidden_collections | strip_newlines | split: ',' %}
+
+<section class="sliders text-center pt-130 pt-sm-130 pt-lg-170 pb-50">
+	
+	<div class="container">
+
+	<h1 class="mb-30">{{ section.settings.heading }} </h1>
+		
+    <div class="row justify-content-center">
+	      
+	  {%- assign collections = collections | sort: 'all_products_count' -%}
+
+      {% for collection in collections reversed %}
+      
+      {% unless hidden_collections contains collection.handle %}
+      
+  		    <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-50">
+	  		   <a href="{{ collection.url }}">
+		      {% if collection.image %}
+		        <img class="mb-30 responsive" src="{{ collection | img_url: '200x200' }}" alt="{{ collection.image.alt }}" />
+		      {% else %}
+		        <img class="mb-30 responsive" src="{{ collection.products.first | img_url: '200x200' }}" alt="{{ collection.title | escape  }}" />
+		      {% endif %}
+		      <p>{{ collection.title }}</p> 
+	  		   </a>   
+            </div>
+       {% endunless %}
+      {% endfor %}
+      
+    </div>
+	</div>
+
+</section>
+
+

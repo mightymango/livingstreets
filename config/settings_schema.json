@@ -88,6 +88,17 @@
 			
     ]
 	},
+  {
+    "name": "Collections",
+    "settings": [
+        {
+            "type":    "textarea",
+            "label":   "Hidden Collections",
+            "id":      "hidden_collections",
+            "info": "These collections are only for 'internal' use and will not be displayed in the catalogue."
+        }		
+    ]
+	},
 	  {
     "name": "Notification",
     "settings": [

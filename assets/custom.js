@@ -108,7 +108,8 @@ $( document ).ready(function() {
     autoPlay: 4000,
 	pauseAutoPlayOnHover: true
   	})	
-  	
+
+              	
   	$("#sliders-1-slider").removeClass('transparent')
   	$("#related-products").removeClass('transparent')
   	$("#related-products-dots").removeClass('transparent')

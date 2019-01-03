@@ -25,6 +25,9 @@ $product-box-footer-height: 100px;
 
 $footer-height: 280px;
 
+$outline-width: 2px;
+$outline-contrast: 10%;
+
 /* Backgrounds */
 .bg-green {
 	background-color: $color-green;	
@@ -48,12 +51,66 @@ $footer-height: 280px;
 	background-color: $color-yellow;
 }
 
+.outline {
+	border-style: solid;
+	border-width: $outline-width;	
+}
+.outline-green {
+	border-color: $color-green;
+}
+.outline-yellow {
+	border-color: $color-yellow;
+}
+.outline-orange {
+	border-color: $color-orange;
+}
+.outline-pink {
+	border-color: $color-pink;
+}
 .outline-black {
 	border-color: $color-black;
-	border-style: solid;
-	border-width: 3px;
+}
+.outline-white {
+	border-color: $color-white;
 }
 
+.outline-green-light {
+	border-color: lighten($color-green,$outline-contrast);
+}
+.outline-yellow-light {
+	border-color: lighten($color-yellow,$outline-contrast);
+}
+.outline-orange-light {
+	border-color: lighten($color-orange,$outline-contrast);
+}
+.outline-pink-light {
+	border-color: lighten($color-pink,$outline-contrast);
+}
+.outline-black-light {
+	border-color: lighten($color-black,$outline-contrast);
+}
+.outline-white-light {
+	border-color: lighten($color-white,$outline-contrast);
+}
+
+.outline-green-dark {
+	border-color: darken($color-green,$outline-contrast);
+}
+.outline-yellow-dark {
+	border-color: darken($color-yellow,$outline-contrast);
+}
+.outline-orange-dark {
+	border-color: darken($color-orange,$outline-contrast);
+}
+.outline-pink-dark {
+	border-color: darken($color-pink,$outline-contrast);
+}
+.outline-black-dark {
+	border-color: darken($color-black,$outline-contrast);
+}
+.outline-white-dark {
+	border-color: darken($color-white,$outline-contrast);
+}
 
 html,
 body {
@@ -331,18 +388,17 @@ input[type=number] {
 }
 .form-control-stepper-wrapper {
   position: absolute;
-  top: 3px;
+  top: 16px;
   right: 9px;
   opacity: 1;
-  width: 25px;
-  height: 50px;
-  text-align: center;
+  width: 75px;
+  height: 25px;
+  text-align: center;  
 }
 .stepper {
   float: right;
   width: 25px;
   height: 25px;
-  margin-bottom: 2px;
   border-radius: $corner-radius;
   line-height: 25px;
   color: $color-black;
