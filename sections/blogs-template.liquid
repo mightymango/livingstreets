@@ -1,0 +1,130 @@
+{% schema %}
+  {
+    "name": "Blogs",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title",
+        "info": "Leave blank to use the default title."
+      },
+	  {
+		  "type": 	"header",
+		  "content":"Cosmetic"
+	  },
+	  {
+		    "type":      "range",
+		    "id":        "posts_per_page",
+		    "min":       3,
+		    "max":       20,
+		    "step":      1,
+		    "label":     "Posts per page",
+		    "default":   3
+		},
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"use_tape",
+		  "label": 	"Use tape",
+		  "default":false
+	  },
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"show_images",
+		  "label": 	"Show images",
+		  "default":true
+	  },
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"show_dates",
+		  "label": 	"Show dates",
+		  "default":true
+	  },
+	  {
+		    "type":      "range",
+		    "id":        "word_count",
+		    "min":       20,
+		    "max":       120,
+		    "step":      1,
+		    "label":     "Word count",
+		    "default":   50,
+		    "info": "Maximum words to display in the extract."
+		}
+    ]
+  }
+{% endschema %}
+
+{% paginate blog.articles by section.settings.posts_per_page %}
+
+<section class="blogs text-center pt-120 pt-lg-160 pb-45 pb-sm-60 pb-lg-100" id="blogs-6">
+  <div class="container">
+        
+    {% if section.settings.title == ""%}
+	    {% if current_tags %}
+		  <h1 class="mb-60">{{ blog.title | link_to: blog.url }} - {{ current_tags.first }}</h1>
+		{% else %}
+		  <h1 class="mb-60">{{ blog.title }}</h1>
+		{% endif %}
+	{% else %}
+		<h1 class="mb-60">{{ section.settings.title }}</h1>
+	{% endif %}
+    
+    <div class="row text-center text-sm-left">
+      {% for article in blog.articles %}
+      <div class="col-12 col-sm-4 mb-15 mb-sm-30">
+        <div {% if section.settings.use_tape %}id="tape" {% endif %}class="card{% if section.settings.use_tape %} just-tape tape-orange{% endif %}">
+	    
+	    {% if article.image and section.settings.show_images %}   
+	    <img class="image pic-sm rounded-top" src="{{ article.image.src | img_url: '300x' }}" alt=""/>
+	    {% endif %}
+          <div class="bg-yellow ph-15 ph-lg-30 p-30 rounded-bottom shadow-below-small">
+            <h3 class="mb-10"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+            {% if section.settings.show_dates %}
+            <time class="text-orange" pubdate datetime="{{ article.published_at | date: settings.date_format }}">{{ article.published_at | date: settings.date_format }}</time>
+            {% endif %}
+              {% if article.excerpt.size > 0 %}
+			  <p class="mb-50">{{ article.excerpt | strip_html | truncatewords: section.settings.word_count }}</p> 
+			  {% else %}
+			  <p class="mb-50">{{ article.content | strip_html | truncatewords: section.settings.word_count }}</p>
+			  {% endif %}
+  
+            <a class="b-500 arrow" href="{{ article.url }}">Read more</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  {% if paginate.pages > 1 %}
+  {% comment %}
+    When paginating blog articles, a previous article is actually a newer article, not an older one,
+    because blog articles are shown and paginated in a reversed chronological order.
+    The word 'previous' can be confusing, hence we'll change it.
+  
+  {{ paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' }}
+  {% endcomment %}
+  
+
+  <ul class="pagination">
+  {% if paginate.previous.is_link %}
+    <li><a class="rounded" href="{{ paginate.previous.url }}">Newer articles</a></li>
+  {% endif %}
+  {% for part in paginate.parts %}
+    {% if part.is_link %}
+      <li><a class="rounded" href="{{part.url}}">{{ part.title }}</a></li>
+    {% elsif current_page %}
+      <li><a class="rounded active">{{ current_page }}</a></li>
+    {% endif %}
+  {% endfor %}
+  {% if paginate.next.is_link %}
+    <li><a class="rounded" href="{{ paginate.next.url }}">Older articles</a></li>
+  {% endif %}
+  </ul>
+
+  {% endif %}
+
+</section>
+
+{% endpaginate %}
+
+

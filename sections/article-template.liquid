@@ -1,0 +1,69 @@
+{% schema %}
+  {
+    "name": "Article",
+    "settings": [
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"show_dates",
+		  "label": 	"Date",
+		  "default":true
+	  },
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"show_buttons",
+		  "label": 	"Buttons",
+		  "default":true
+	  },
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"show_images",
+		  "label": 	"Image",
+		  "default":true
+	  },
+	  {
+		  "type": 	"checkbox",
+		  "id": 	"show_author",
+		  "label": 	"Author",
+		  "default":false
+	  }
+    ]
+  }
+{% endschema %}
+
+<section class="blogs text-center text-sm-left p-60 p-lg-100 pt-150 pt-lg-200 " id="blogs-7">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-4 mb-40 mb-sm-0">     
+        <h5 class="mb-15"><a href="{{ blog.url }}">{{ blog.title }}</a></h5>
+        {% if section.settings.show_dates %}
+        <time pubdate datetime="{{ article.published_at | date: settings.date_format }}">{{ article.published_at | date: settings.date_format }}</time>{% endif %}
+        <h1 class="mb-40">{{ article.title }}</h1>
+        {% if section.settings.show_buttons %}
+	        {% if blog.next_article or blog.previous_article %}
+			    {% if blog.previous_article %}
+			      <a class="btn btn-small btn-green" href="{{ blog.previous_article }}">Previous Article</a>
+			    {% endif %}    
+			    {% if blog.next_article %}
+			      <a class="btn btn-small btn-orange" href="{{ blog.next_article }}">Next Article</a>
+			    {% endif %}
+		    {% endif %}
+	    {% endif %}
+      </div>
+      <div class="col-12 col-sm-8">
+	    {% if article.image and section.settings.show_images %}   
+	    <img class="article image pic-sm mb-40 ml-40 rounded shadow" src="{{ article.image.src | img_url: '300x' }}"  alt=""/>
+	    {% endif %}
+	    <h4 class="article intro mb-20">{{ article.content }}</h4>
+        <div class="article content mb-40">
+          {{ article.content }}
+        </div>
+        {% if section.settings.show_author %}
+        <div class="article author mb-40">
+	        {{ article.author }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+</section>

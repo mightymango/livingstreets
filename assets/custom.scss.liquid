@@ -28,6 +28,32 @@ $footer-height: 280px;
 $outline-width: 2px;
 $outline-contrast: 10%;
 
+html,
+body {
+  color: {{ settings.font_color }};
+  font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+  background-color: $color-white;
+}
+
+body {
+	margin-bottom: 300px;
+	min-height: 100vh;
+}
+
+h1, h2, h3 {
+  color: {{ settings.headings_color }};
+  font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }};	
+}
+
+a {
+  color: {{ settings.link_color }};
+  font-weight: 700;
+}
+a:hover {
+  color: {{ settings.hover_color }};
+}
+
+
 /* Backgrounds */
 .bg-green {
 	background-color: $color-green;	
@@ -112,30 +138,6 @@ $outline-contrast: 10%;
 	border-color: darken($color-white,$outline-contrast);
 }
 
-html,
-body {
-  color: {{ settings.font_color }};
-  font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
-  background-color: $color-white;
-}
-
-body {
-	margin-bottom: 300px;
-}
-
-h1, h2, h3 {
-  color: {{ settings.headings_color }};
-  font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }};	
-}
-
-a {
-  color: {{ settings.link_color }};
-  font-weight: 700;
-}
-a:hover {
-  color: {{ settings.hover_color }};
-}
-
 .icon{
   height: 32px;
   width: 32px;
@@ -214,7 +216,7 @@ a:hover {
 	background-color:  lighten( $color-black, $hover-change );
 }
 .btn.btn-white:hover {
-	background-color:  darken( $color-white, $hover-change );
+	background-color:  $color-black;
 }
 
 
@@ -603,7 +605,7 @@ a.more-link {
 #tape{
 position: relative; /*lets us later position the tape relative to the box*/
 margin:20px; /*you need enough margin to accomodate the tape*/
-background:#ffdc00;
+background: $color-yellow;
 padding:30px;
 border-radius: $corner-radius;
 /*add a small drop shadow to the box*/
@@ -615,6 +617,15 @@ box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 color:#000;
 }
 
+#tape.just-tape {
+background: none;
+padding: 0;	
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+margin: 0;
+
+}
 
 #tape.tape-box-green {
 	background:$color-green;	
@@ -648,6 +659,7 @@ height: $tape-height; /*height of the tape*/
 -moz-box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
 box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .2);
 border-radius: $corner-radius;
+z-index: 500;
 }
 
 
@@ -914,6 +926,16 @@ margin-left:20px;
 /* ---- rounded and shadow helpers ---- */
 .rounded {
 	border-radius: $corner-radius;
+}
+.rounded-top {
+	border-radius: 0px;
+	border-top-left-radius: $corner-radius;
+	border-top-right-radius: $corner-radius;
+}
+.rounded-bottom {
+	border-radius: 0px;
+	border-bottom-left-radius: $corner-radius;
+	border-bottom-right-radius: $corner-radius;
 }
 .square {
 	border-radius: 0;
@@ -1274,4 +1296,81 @@ font-size: 12px;
   font-weight: 200;
   margin: 0;
 
+}
+
+/* ---- card ---- */
+.card {
+  border: none;
+  background: #fff;
+  border-radius: 0;
+  min-height: 100%;
+}
+.card time {
+	display: block;
+	margin-top: -15px;
+	padding-bottom: 10px;
+	font-size: smaller;
+	color: $color-white;
+}
+.card a {
+  color: $color-black;
+}
+.card a:hover {
+  color: $color-white;;
+}
+
+/* ---- pagination ---- */
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 5px;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.pagination li a.active {
+    background-color: $color-green;
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: $color-orange;}
+
+ul.pagination li a {
+    transition: background-color .5s;
+}
+
+/* ---- article ---- */
+.article.content > p {
+	font-size: large;
+	padding-bottom: 20px;
+	line-height: 1.5;
+}
+
+.article.content > p:first-of-type, .article.content > span:first-of-type {
+  display: none;
+}
+.article.intro p, .article.content.intro span, .article.content.intro ul {
+  display:none;
+}
+.article.intro p:first-child {
+  display:block;
+  font-size: larger;
+  line-height: 1.5;
+}
+
+.article.image {
+	width:300px;
+	float:right;
+}
+
+.article.author {
+	color: lighten($color-black, 60%);
+	font-size: small;
 }
