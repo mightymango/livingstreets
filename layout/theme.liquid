@@ -39,9 +39,11 @@
 
 <body class="main">
 
+{% if page_title contains 'Challenge' %}
+{% else %}
 {% include 'notification' %} 
-
 {% section 'navbar' %}
+{% endif %}
 
 <main class="main-content">
 	 
