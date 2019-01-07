@@ -1,24 +1,35 @@
 {% schema %}
 {
-  "name": "Product Grid",
+  "name": "Products",
   "settings": [
 	{
-		"id": "heading",
-		"type": "text",
-		"label": "Heading",
-		"default": "Heading"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Products"
+    },
+    {
+	   "type": "product",
+	   "id": "feature_product",
+	   "label": "Featured product",
+	   "info": "The featured product will be given more prominence on the page."
 	},
-		{
-		"id": "subheading",
-		"type": "text",
-		"label": "Subheading",
-		"default": "Add text here."
+	{
+	    "type":      "range",
+	    "id":        "featured_position",
+	    "min":       1,
+	    "max":       10,
+	    "step":       1,
+	    "label":     "Position",
+	    "default":   1,
+	    "info": "Select the position of the featured product in the grid."
 	},
-		{
-		"id": "price",
-		"type": "text",
-		"label": "Price"
-	}
+	{
+   "type": "collection",
+   "id": "feature_collection",
+   "label": "Featured collection"
+}
+
   ],
   "presets": [
     {
@@ -28,35 +39,43 @@
   ]
 }
 {% endschema %}
+     
+    {% assign collection = collections[section.settings.feature_collection] %}
 
-<section class="ecommerces p-60 p-lg-100 text-center" id="ecommerces-7">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-lg-8 mb-15 mb-sm-30">
-        <div class="image ratio-2-1 pic-md"></div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
-        <div class="image ratio-1-1 pic-md"></div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
-        <div class="image ratio-1-1 pic-md"></div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
-        <div class="card ratio-1-1">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-12">
-              <div class="ph-30"><img class="mb-20" src="{{ 'star-54.svg' | asset_url }}" alt=""/>
-                <h3 class="mb-10">{{ section.settings.heading }}</h3>
-                <p class="mb-40">{{ section.settings.subheading }}</p>
-                <p>{{ section.settings.price }}</p>
-              </div>
-            </div>
-          </div>
+    <section class="ecommerces pt-100 pt-lg-140" id="ecommerces-1">
+        <div class="container">
+	        
+            <h1>{{ section.settings.heading }}</h1>
+          
+            {% if collection.description.size > 0 %}
+			{{ collection.description }}
+			{% endif %}
+			
+            <div class="row">
+					
+				  {% for product in collection.products %}
+				      {% if product.handle == section.settings.feature_product %}
+				      {% capture featured %}
+				      {% include 'product-item-featured' %}
+				      {% endcapture %}
+				      {% endif %}
+				  {% endfor %}
+				  
+				  {%- assign count = 0 -%}
+				  {%- assign position = section.settings.featured_position -%}
+				  {% for product in collection.products %}
+				      {% if product.handle != section.settings.feature_product %}
+				      {% assign count = count | plus: 1 %}
+				      {% if count == position %} {{ featured }} {% endif %}
+				      {% include 'product-item-no-buttons' %}
+				      {% endif %}
+				  {% else %}
+				    <div class="col-12"><h2>There are no products in this view.</h2></div>
+				  {% endfor %}
+
+            </div>           
+           
         </div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
-        <div class="image ratio-1-1 pic-md"></div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+    
+

@@ -8,6 +8,10 @@ $color-white: {{ settings.color_6 }};
 
 $color-overlay: $color-black;
 
+$color-footer: $color-black;
+$color-footer-text: $color-white;
+$color-footer-text-hover: $color-green;
+
 $hover-change: 2%;
 $darken-caption: 25%;
 
@@ -23,7 +27,7 @@ $corner-radius: {{ settings.radius_size }}px;
 
 $product-box-footer-height: 100px;
 
-$footer-height: 280px;
+$footer-height: 320px;
 
 $outline-width: 2px;
 $outline-contrast: 10%;
@@ -39,6 +43,7 @@ body {
 	margin-bottom: 300px;
 	min-height: 100vh;
 }
+
 
 h1, h2, h3 {
   color: {{ settings.headings_color }};
@@ -803,6 +808,7 @@ width: 103px; /*width of the tape*/
 /* box(like tape but without the tape) */
 #box{
 position: relative; 
+display:block;
 margin:20px; 
 background:#ffdc00;
 padding:30px;
@@ -815,6 +821,12 @@ box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 }
 #box {
 color:#000;
+}
+
+#box.noshadow {
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;	
 }
 
 
@@ -1110,34 +1122,44 @@ footer {
 	position: fixed;
 	bottom: 0;
 	z-index: -2;
-	background-color: $color-green;
-/*
-	border-top-color: $color-white;
-	border-top-width: 10px;
-	border-top-style: dashed;
-*/
+	background-color: $color-footer;
+	color: $color-footer-text;
+	text-transform: uppercase;
+}
+
+footer a, footer h3 {
+	color: $color-footer-text;
+	opacity: 1;
 }
 
 footer a:hover {
 	color: $color-white;
-	opacity: 0.8;
+	opacity: 0.5;
+}
+
+footer .company-info {
+	font-size: smaller;
+	line-height: 1.1;
 }
 
 /* ---- credits ---- */
 .designer {
 	font-size: 0.75em;
 	font-weight: 200;
-	color: $color-black;
-	opacity: 0.4;
+	color: gray;
+	opacity: 1;
+	padding-top: 5px;
 }
 
 .designer a {
+	color: gray;
 	font-weight: 400;
 	text-decoration: none;
 }
 
 .designer a:hover {
 	color: $color-white;
+	opacity: 1;
 }
 
 #designer {

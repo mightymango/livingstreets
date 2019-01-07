@@ -3,14 +3,30 @@
     "name": "Footer",
     "settings": [
 		{
+			"type": "image_picker",
+			"id": "logo",
+			"label": "Logo image"
+		},
+		{
 		   "type": "link_list",
-		   "id": "footer_nav",
-		   "label": "Footer navigation"
+		   "id": "first_nav",
+		   "label": "First menu"
+		},
+		{
+		   "type": "link_list",
+		   "id": "second_nav",
+		   "label": "Second menu"
 		},
 		{
 		   "type": "text",
-		   "id": "address_title",
-		   "label": "Address title"
+		   "id": "contact_title",
+		   "label": "Contact title",
+		   "default": "Get in touch"
+		},
+		{
+		   "type": "textarea",
+		   "id": "company_info",
+		   "label": "Company information"
 		}
     ]
   }
@@ -18,56 +34,46 @@
 
     <footer class="footers" id="footer">
         <div class="container">
-            <div class="row justify-content-center align-items-stretch p-40 p-lg-40">
-                <div class="col-sm-8 col-lg-7 text-center text-sm-left">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 mb-20 mb-sm-0">
-                            <h3 class="mb-5">{{ section.settings.address_title }}</h3>
-
-                            <p>{{ shop.phone }}</p>
-
-                            <p><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>
-
-                            <p>{{ shop.address.street }}</p>
-
-                            <p>{{ shop.address.city }} {{ shop.address.zip }}</p>
-                            
-                            <p>{{ shop.address.country }}</p>
-                            
-                        </div>
-
-                        <div class="col-12 col-sm-6 mb-20 mb-sm-0">
-							<!-- Room for a second address -->
-                        </div>
+            <div class="row justify-content-center align-items-stretch p-40 p-lg-40 mt-10">
                         
-                    </div>
+                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0 text-center">
+                   <image src="{{ section.settings.logo | img_url: 'x500' }}" /> 
                 </div>
 
-                <div class="col-sm-4 col-lg-5 text-center text-sm-right d-flex flex-column justify-content-between">
-                    <div class="mb-15 mb-lg-0">
-
-                        {% for link in linklists[section.settings.footer_nav].links %}
-                        <div class="mb-5">
-                        <a class="{% if link.active %}active {% endif %}" href="{{ link.url }}">{{ link.title }}</a>
-                        </div>
-                        {% endfor %}
-	                            	                    
+                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0">
+                    <h5 class="mb-5">{{ linklists[section.settings.first_nav].title }}</h5>
+                    {% for link in linklists[section.settings.first_nav].links %}
+                    <div class="mb-5">
+                    <a class="{% if link.active %}active {% endif %}" href="{{ link.url }}">{{ link.title }}</a>
                     </div>
-
-                    <div class="row justify-content-end">
-                        <div class="col-12 col-lg-auto mb-20 mb-lg-0">
-                            <p>&copy; {{ "now" | date: "%Y" }} {{ shop.name }}</p>
-                        </div>
-
-                        <div class="col-12 col-lg-auto">
-                            <div class="socials">
-                                <a href=""><img src="{{ 'facebook.svg' | asset_url }}"></a><a href=""><img src="{{ 'twitter.svg' | asset_url }}"></a><a href=""><img src="{{ 'instagram.svg' | asset_url }}"></a><a href=""><img src="{{ 'youtube.svg' | asset_url }}"></a><a href=""><img src="{{ 'linkedin.svg' | asset_url }}"></a></div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}					
                 </div>
-            </div>
-        </div>
+
+                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0">
+                    <h5 class="mb-5">{{ linklists[section.settings.second_nav].title }}</h5>
+                    {% for link in linklists[section.settings.second_nav].links %}
+                    <div class="mb-5">
+                    <a class="{% if link.active %}active {% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+                    </div>
+                    {% endfor %}						
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0">
+					<h5 class="mb-5">{{ section.settings.contact_title }}</h5>
+                    <div class="mb-20">
+                    <a href="mailto:{{ shop.email }}">Email us</a>
+                    </div>
+                    <div class="socials">
+                     <a href=""><img src="{{ 'facebook.svg' | asset_url }}"></a><a href=""><img src="{{ 'twitter.svg' | asset_url }}"></a><a href=""><img src="{{ 'instagram.svg' | asset_url }}"></a><a href=""><img src="{{ 'youtube.svg' | asset_url }}"></a><a href=""><img src="{{ 'linkedin.svg' | asset_url }}"></a></div>						
+                </div>
+
+                <div class="col-12 mt-20 mb-10 company-info">
+					&copy; {{ shop.name }} {{ "now" | date: "%Y" }} {{ section.settings.company_info }}
+                </div>                                               
+
+                
+            </div> <!-- .row -->
+        </div> <!-- .container -->
     </footer>
 
 

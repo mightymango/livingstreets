@@ -1,5 +1,30 @@
 {% layout settings.customer_layout %}
 
+<section class="forms text-center p-60 p-lg-100" id="forms-9">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-lg-5"><img class="mb-40" src="img/pics/star-54.svg" alt=""/>
+        <h1 class="mb-15">Customer Login</h1>
+        <h4 class="mb-40">Add some more information here</h4>
+		{% form 'customer_login' %}
+		{{ form.errors | default_errors }}
+          <div>
+            <input class="form-control form-control-light mb-20" type="text" placeholder="Your email address"/>
+          </div>
+          
+          {% if form.password_needed %}<div>
+            <input class="form-control form-control-light mb-20" type="text" placeholder="Password"/><span class="glyphicon glyphicon-eye-open form-control-feedback"></span>
+          </div>
+          {% endif %}
+          
+          <button class="btn w-full no-padding"><span>Button</span></button>
+          <p class="mt-20"><a href="{{ shop.url }}">Return to the store</a></p>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="ecommerces p-60 p-lg-100 pt-160 text-center" id="ecommerces-1">
    <div class="container">
 	        

@@ -1,0 +1,39 @@
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Title"
+	},
+	{
+		"id": "about_text",
+		"type": "textarea",
+		"label": "Left column",
+		"default": "Add your text here"
+	}
+  ],
+  "presets": [
+    {
+      "name": "About",
+      "category": "Info"
+    }
+  ]
+}
+{% endschema %}
+
+    <section class="grids p-60 p-lg-100" id="info">
+        <div class="container">
+            {% if section.settings.heading %}
+            <div class="col-12 col-sm-6 col-md-4">
+            <h2 id="box" class="mb-40 box-yellow box-rotate-c-1">{{ section.settings.heading | escape }}</h2>
+            </div>
+			{% endif %}
+            <div class="col-12 mt-40 pl-40">
+                <h4>{{ section.settings.about_text | escape }}</h4>
+            </div>
+        </div>
+    </section>
+    

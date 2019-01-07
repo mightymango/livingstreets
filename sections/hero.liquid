@@ -14,33 +14,18 @@
         "label": "Strapline",
         "default": "Add your text here"
       },
-      {
-		   "type": "select",
-		   "id": "background_image",
-		   "options": [
-		      { "value": "", "label": "None"},
-		      { "value": "bg-browser", "label": "Browser"},
-		      { "value": "bg-poster", "label": "Poster"}
-		   ],
-		   "label": "Hero Image"
-		},
-      {
-	  "type": 	"checkbox",
-	  "id": 	"show_more_button",
-	  "label": 	"More info button",
-	  "default":true
-	},
-      	{
-	  "id": "buy_url",
-	  "type": "url",
-	  "label": "Buy button link"
-	},
-      	{
-	  "type": 	"checkbox",
-	  "id": 	"coloured_background",
-	  "label": 	"Coloured background",
-	  "default":false
-	}
+	    {
+	      "type": "image_picker",
+	      "id": "hero_image",
+	      "label": "Background image"
+	    },
+	  {
+	      "type": "checkbox",
+	      "id": "fixed_image",
+	      "label": "Fixed background image",
+	      "default": true,
+	      "info": "When enabled, the background image will not scroll."
+    }
     ],
   "presets": [
     {
@@ -51,65 +36,27 @@
   }
 {% endschema %}
 
-	{% if section.settings.background_image == 'bg-poster' %}
-    <section class="headers {% if section.settings.coloured_background %}bg-green {% endif %}bg-poster" id="headers-14">
+<style>
+#hero-box {
+  background: url("{{ section.settings.hero_image | img_url: 'x1024' }}") no-repeat center center{% if section.settings.fixed_image %} fixed{% endif %}; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}	
+</style>
+
+    <section class="headers" id="hero-box">
         <div class="container text-center text-lg-left pt-130 pt-lg-220 pb-60 pb-lg-190">
             <div class="row justify-content-center justify-content-lg-start">
-                <div id="tape" class="col-12 col-sm-8 col-lg-6">
-                    <h1 class="mb-20">{{ section.settings.headline | escape}}</h1>
+                <div class="col-12 col-sm-8 col-lg-6">
+                    <h1 id="tape" class="tape-box-green tape-yellow tape-rotate-a-1"><strong>{{ section.settings.headline | escape}}</strong></h1>
 
-                    <h4 class="mb-30">{{ section.settings.strapline | escape }}</h4>
-            
-	            <form class="mb-20">
-	                <div class="row justify-content-left">
-	                    {% if section.settings.show_more_button %}
-	                    <div class="col-12 col-sm-4 col-lg-4 mb-20">
-	                        <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
-	                    </div>
-						{% endif %}
-	                    <div class="col-12 col-sm-4 col-lg-4 mb-20">
-	                        <a href="{{ section.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
-	                    </div>
-	                </div>
-	            </form>
-            
+                    <h4 id="box" class="box-orange box-rotate-c-1 mb-30">{{ section.settings.strapline | escape }}</h4>
+         
                 </div>
             </div>
         </div>
     </section>
-    
-    {% else %}
-    
-    <section class="headers {% if section.settings.coloured_background %}bg-green {% endif %}pt-130 pt-sm-130 pt-lg-170" id="hero">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div id="tape" class="col-12 col-sm-10 col-lg-8">
-                    <h1 class="mb-20">{{ section.settings.headline | escape}}</h1>
-
-                    <h4 class="mb-60">{{ section.settings.strapline | escape }}</h4>
-                </div>
-            </div>
-
-            <form class="mb-20">
-                <div class="row justify-content-center">
-                    {% if section.settings.show_more_button %}
-                    <div class="col-12 col-sm-4 col-lg-2 mb-20">
-                        <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
-                    </div>
-					{% endif %}
-                    <div class="col-12 col-sm-4 col-lg-2 mb-20">
-                        <a href="{{ section.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
-                    </div>
-                </div>
-            </form>
-
-			{% if section.settings.background_image == 'bg-browser' %}
-            <div class="row bg-browser justify-content-center align-items-center d-none d-sm-block">
-                <div class="col-12 col-lg-10"></div>
-            </div>
-            {% endif %}
-        </div>
-    </section>
-    {% endif %}
     
     <section id="more-info"></section>
