@@ -45,13 +45,13 @@
     <section class="ecommerces pt-100 pt-lg-140" id="ecommerces-1">
         <div class="container">
 	        
-            <h1>{{ section.settings.heading }}</h1>
+            <h2 id="box" class="d-inline-block box-rotate-c-1">{{ section.settings.heading }}</h2>
           
             {% if collection.description.size > 0 %}
 			{{ collection.description }}
 			{% endif %}
 			
-            <div class="row">
+            <div class="row pl-20">
 					
 				  {% for product in collection.products %}
 				      {% if product.handle == section.settings.feature_product %}
