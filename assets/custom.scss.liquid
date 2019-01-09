@@ -32,6 +32,10 @@ $footer-height: 320px;
 $outline-width: 2px;
 $outline-contrast: 10%;
 
+$track-thickness: 10px;
+$track-style: dotted;
+$track-rotate: 10deg;
+
 html,
 body {
   color: {{ settings.font_color }};
@@ -58,6 +62,17 @@ a:hover {
   color: {{ settings.hover_color }};
 }
 
+
+/* Make sure navbar does not overlap first section */
+main div:first-of-type section:first-of-type {
+	padding-top: 130px !important;
+}
+
+@media (min-width: 992px) {
+  main div:first-of-type section:first-of-type {
+    padding-top: 220px !important;
+  }
+}
 
 /* Backgrounds */
 .bg-green {
@@ -1395,4 +1410,96 @@ ul.pagination li a {
 .article.author {
 	color: lighten($color-black, 60%);
 	font-size: small;
+}
+
+/* ---- nav-tabs ---- */
+.nav-tabs {
+  border: none;
+  font-weight: 500;
+  padding: 0;
+  margin-left: -2px;
+  margin-right: -2px;
+}
+.nav-tabs > li,
+.nav-tabs > li.active {
+  position: relative; 
+  float: none;
+  background: $color-green;
+  display: inline-block;
+  margin: 0 2px 0;
+  color: $color-black;
+}
+@media (min-width: 576px) {
+  .nav-tabs > li,
+  .nav-tabs > li.active {
+    margin: 0 50px 10px;
+  }
+}
+
+.nav-tabs > li::after,
+.nav-tabs > li.active::after {
+	content: ''; 
+	display: block;
+	position: absolute; 
+	background-color: transparent; 
+	height: 60px;
+	left: calc(100% + 5px); 
+	top: -10px; 
+	width: 100px;
+	border-top-color: $color-black;
+	border-top-width: $track-thickness;
+	border-top-style: $track-style;
+	margin-top: 25px;
+	
+	-webkit-transform: rotate(-$track-rotate);
+	-moz-transform: rotate(-$track-rotate);
+	-o-transform: rotate(-$track-rotate);
+	-ms-transform: rotate(-$track-rotate);
+	transform: rotate(-$track-rotate);
+
+}
+
+.nav-tabs > li:last-child::after {  
+	display: none;
+}
+
+.nav-tabs > li:nth-child(2n+1)::after {  
+	-webkit-transform: rotate($track-rotate);
+	-moz-transform: rotate($track-rotate);
+	-o-transform: rotate($track-rotate);
+	-ms-transform: rotate($track-rotate);
+	transform: rotate($track-rotate);
+}
+
+.nav-tabs > li > a {
+  color: $color-black;
+  border-radius: $corner-radius;
+  border-color: $color-green;
+  background-color: $color-green;
+  font-weight: 500;
+}
+.nav-tabs > li.active > a {
+  color: $color-white; 
+  border-radius: $corner-radius;
+  border-color: $color-pink;
+  background-color: $color-pink;
+  font-weight: 500;
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  color: $color-white;
+  border-radius: $corner-radius;
+  border-color: darken( $color-green, $hover-change );
+  background-color: darken( $color-green, $hover-change );
+  font-weight: 500;
+}
+
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: $color-white; 
+  border-radius: $corner-radius;
+  border-color: darken( $color-pink, $hover-change );
+  background-color: darken( $color-pink, $hover-change );
+  font-weight: 500;
 }
