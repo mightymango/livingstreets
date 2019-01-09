@@ -1,0 +1,57 @@
+{% schema %}
+{
+  "name": "Tags",
+  "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"info": "Leave blank to hide the title."
+	}
+  ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Collections",
+        "settings": [
+			{
+			   "type": "collection",
+			   "id": "tag",
+			   "label": "Collection"
+			}
+        ]
+      }
+    ]
+}
+{% endschema %}
+
+<section>
+	<div class="container pt-100 pt-lg-160">
+	    {% if section.settings.heading.size > 0 %}
+	    <h2 id="box" class="box-rotate-a-1 d-inline-block">{{ section.settings.heading }} </h2>
+        {% endif %}
+        {% if collection.description.size > 0 %}
+		{{ collection.description }}
+		{% endif %}
+		
+		<ul class="nav-tabs mb-40 text-center" id="ecommerces-tabs">
+          
+          {% assign all_collection = collections['all'] %}
+          <li class="{% if all_collection.id == collection.id %}active {% endif %}"><a href="{{ collection.url }}">All Products</a></li>
+          
+          {% for block in section.blocks %}
+          	{% assign tag_collection = collections[block.settings.tag] %}
+		  	<li class="{% if tag_collection.id == collection.id %}active {% endif %}"><a href="{{ tag_collection.url }}">{{ tag_collection.title  }}</a></li>
+		  {% endfor %}
+ 
+<!--
+	      <li class="active"><a href="#">All Products</a></li>
+	      <li><a href="#">Tag two</a></li>
+	      <li><a href="#">Tag three</a></li>
+	      <li><a href="#">Tag four</a></li>
+-->
+	    </ul>
+    
+	</div>
+	
+</section>
