@@ -1,11 +1,12 @@
-    <section class="features {% if block.settings.coloured_background %}bg-yellow {% endif %}text-center pt-60 pt-lg-100 pb-45 pb-sm-30 pb-lg-70" id="features">
+    <section class="features {% if block.settings.coloured_background %}bg-orange {% endif %}text-center pt-60 pt-lg-100 pb-45 pb-sm-30 pb-lg-70" id="features">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 mb-15 mb-sm-30">
-                    <div class="d-flex p-30 bg-yellow justify-content-center">
+                    <div class="d-flex p-30 bg-orange justify-content-center">
                         <div class="align-self-center ph-15 ph-lg-100">
-                            <img class="mb-30" src="{{ 'pic-70.svg' | asset_url }}">
-
+                            {% if block.settings.buy_image %}
+                            <img class="mb-30" src="{{ block.settings.buy_image | img_url: 'x150' }}">
+							{% endif %}
                             <h2 class="mb-15">{{ block.settings.heading | escape}}</h2>
 
                             <p class="mb-30 mb-lg-50">{{ block.settings.strapline | escape }}</p><a href="{{ block.settings.buy_url }}" class="btn btn-small">Buy</a>

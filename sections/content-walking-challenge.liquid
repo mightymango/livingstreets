@@ -18,7 +18,7 @@
         "label": "Strapline",
         "default": "Add your text here"
       },
-	    {
+      	    {
 	      "type": "image_picker",
 	      "id": "hero_image",
 	      "label": "Background image"
@@ -37,7 +37,6 @@
 	   "label": "Background colour",
 	   "default": "white"
 	   },
-
       {
 	  "type": 	"checkbox",
 	  "id": 	"show_more_button",
@@ -91,6 +90,11 @@
         "label": "Headline",
         "default": "Title"
       },
+      {
+        "id": "intro",
+        "type": "textarea",
+        "label": "Intro"
+      },
 	  {
 		  "type": 	"checkbox",
 		  "id": 	"coloured_background",
@@ -101,6 +105,7 @@
 	   "type": "select",
 	   "id": "tape_type",
 	   "options": [
+	      { "value": "plain", "label": "Plain"},
 	      { "value": "tape-removed", "label": "None"},
 	      { "value": "tape-center", "label": "One"},
 	      { "value": "", "label": "Two"}
@@ -186,6 +191,11 @@
   "type" : "purchase",
   "name": "Purchase",
   "settings": [
+	 {
+	      "type": "image_picker",
+	      "id": "buy_image",
+	      "label": "Image"
+	    },
 	{
 		"id": "heading",
 		"type": "text",
@@ -210,7 +220,25 @@
 	  "default":false
 	}  
   ]
-}
+},
+  {
+  "type": "callout",
+  "name": "Call Out",
+  "settings": [
+	{
+		"id": "text",
+		"type": "textarea",
+		"label": "Text",
+		"default": "Add your text here"
+	},
+	{
+	  "type": 	"checkbox",
+	  "id": 	"coloured_background",
+	  "label": 	"Coloured background",
+	  "default":true
+	}
+    ]
+  }
 
     ]
   }

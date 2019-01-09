@@ -3,35 +3,57 @@
         <div class="container">
 
 	        {%- if block.settings.headline -%}
-            <h1 class="text-center mb-40 mb-lg-60">{{ block.settings.headline | escape}}</h1>
+            <div class="ml--20">
+            <h2 id="box" class="text-left mb-40 mb-lg-60 d-inline-block">{{ block.settings.headline | escape}}</h2>
+            </div>
 			{%- endif -%}
-					        
+
+	        {%- if block.settings.intro -%}
+            <div class="row">
+            	<div class="col-12">
+            	<h4 class="text-left mb-30">{{ block.settings.intro | escape | newline_to_br }}</h4>
+            	</div>
+            </div>
+			{%- endif -%}
+								        
             <div class="row">
                 {%- if block.settings.name1 -%}
                 <div class="col-12 col-sm-6 mb-40 mb-lg-70">
+                    {% if block.settings.tape_type != "plain" %}
                     <h3 id="tape" class="mb-20 tape-thin tape-box-orange tape-green tape-rotate-c-3 {{ block.settings.tape_type }}"><span class="">{{ block.settings.name1 | escape }}</span></h3>
-
+					{% else %}
+					<h3 class="mb-20"><span class="">{{ block.settings.name1 | escape }}</span></h3>
+					{% endif %}	
                     <h4>{{ block.settings.info1 | escape }}</h4>
                 </div>
                 {%- endif -%}
                 {%- if block.settings.name2 -%}
                 <div class="col-12 col-sm-6 mb-40 mb-lg-70">
+                    {% if block.settings.tape_type != "plain" %}
                     <h3 id="tape" class="mb-20 tape-thin tape-box-pink tape-yellow tape-rotate-c-1 {{ block.settings.tape_type }}"><span class="">{{ block.settings.name2 | escape }}</span></h3>
-
+                    {% else %}
+                    <h3 class="mb-20"><span class="">{{ block.settings.name2 | escape }}</span></h3>
+                    {% endif %}
                     <h4>{{ block.settings.info2 | escape }}</h4>
                 </div>
                 {%- endif -%}
                 {%- if block.settings.name3 -%}
                 <div class="col-12 col-sm-6 mb-40 mb-lg-70">
+                    {% if block.settings.tape_type != "plain" %}
                     <h3 id="tape" class="mb-20 tape-thin tape-box-green tape-orange tape-rotate-a-1 {{ block.settings.tape_type }}"><span class="">{{ block.settings.name3 | escape }}</span></h3>
-
+                    {% else %}
+                    <h3 class="mb-20"><span class="">{{ block.settings.name3 | escape }}</span></h3>
+                    {% endif %}
                     <h4>{{ block.settings.info3 | escape }}</h4>
                 </div>
                 {%- endif -%}
                 {%- if block.settings.name4 -%}
                 <div class="col-12 col-sm-6 mb-40 mb-lg-70">
+                    {% if block.settings.tape_type != "plain" %}
                     <h3 id="tape" class="mb-20 tape-thin tape-box-yellow tape-pink tape-rotate-c-3 {{ block.settings.tape_type }}"><span class="">{{ block.settings.name4 | escape }}</span></h3>
-
+					{% else %}
+					 <h3 class="mb-20"><span class="">{{ block.settings.name4 | escape }}</span></h3>
+					{% endif %}
                     <h4>{{ block.settings.info4 | escape }}</h4>
                 </div>
                 {%- endif -%}

@@ -71,7 +71,23 @@
     	   <section class="mt-30">        
 	           
 	            <div class="row justify-content-left justify-content-lg-between">
-	                <div class="col-12 col-sm-10 col-lg-5 order-2 order-lg-1">
+
+	                <div class="col-12 col-sm-10 col-lg-6 mb-40 mb-lg-0">
+
+	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'x600'}}" alt="">
+	                    
+	                    {% if found_a_collection and section.settings.show_related == "yes" %}
+	                    <div class="row">
+							<div class="col-12">
+							{% include 'related' %}
+							</div> 
+						</div>
+						{% endif %}
+						
+	                </div>
+	                	                
+	                <div class="col-12 col-sm-10 col-lg-5">
+	                    
 	                    <form action="/cart/add" method="post" enctype="multipart/form-data">
 	                    <h1 class="mb-20">{{ product.title }}</h1>
 	
@@ -122,6 +138,7 @@
                             </div>
                         </div>
 						{% endif %} 
+						
                         <div class="col-6 col-sm-4 mb-20">
 					      <label class="d-block">&nbsp;</label>
 					      <div id="product-add">
@@ -129,21 +146,10 @@
 	      				  </div>
                         </div>
                                                
-					    </div>
+					    </div> <!-- .row -->
 					      
 	                    </form>
-	                </div>
-	
-		
-	                <div class="col-12 col-sm-10 col-lg-6 order-1 order-lg-2 mb-40 mb-lg-0">
-	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'x600'}}" alt="">
-	                    
-	                    {% if found_a_collection and section.settings.show_related == "yes" %}<div class="row">
-							<div class="col-12">
-							{% include 'related' %}
-							</div> 
-						{% endif %}
-						</div>
+	                
 	                </div>
 	                
 	                

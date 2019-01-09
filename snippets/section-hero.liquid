@@ -1,6 +1,16 @@
-   
+{% if block.settings.hero_image %}
+<style>
+#hero-box {
+  background: url("{{ block.settings.hero_image | img_url: 'x1024' }}") no-repeat center center{% if section.settings.fixed_image %} fixed{% endif %}; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}	
+</style>   
+{% endif %}
     
-    <section class="headers bg-{{ block.settings.hero_colour}} pt-130 pt-sm-130 pt-lg-170 pb-50" id="hero" {% if block.settings.hero_image %}style="background-image: url('{{ block.settings.hero_image | img_url: 'x1024' }}');"{% endif %}>
+    <section class="headers bg-{{ block.settings.hero_colour}} pt-130 pt-sm-130 pt-lg-170 pb-50" id="hero-box">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-10 col-lg-8">
@@ -17,9 +27,11 @@
                         <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
                     </div>
 					{% endif %}
+					{% if block.settings.buy_url%}
                     <div class="col-12 col-sm-4 col-lg-2 mb-20">
                         <a href="{{ block.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
                     </div>
+                    {% endif %}
                 </div>
             </form>
 
