@@ -11,8 +11,13 @@
 	{
 		"id": "about_text",
 		"type": "textarea",
-		"label": "Left column",
+		"label": "Content",
 		"default": "Add your text here"
+	},
+	{
+	      "type": "image_picker",
+	      "id": "people_image",
+	      "label": "People"
 	}
   ],
   "presets": [
@@ -24,16 +29,24 @@
 }
 {% endschema %}
 
-    <section class="grids p-60 p-lg-100" id="info">
+    <section class="grids" id="info">
         <div class="container">
+	        <div class="row">   
+            <div class="col-10">
             {% if section.settings.heading %}
-            <div class="col-12 col-sm-6 col-md-4">
-            <h2 id="box" class="mb-40 box-yellow box-rotate-c-1">{{ section.settings.heading | escape }}</h2>
+            <h2 id="box" class="mb-40 box-yellow box-rotate-c-1 d-inline-block">{{ section.settings.heading | escape }}</h2>
+            {% endif %}
+            </div>
+            {% if section.settings.people_image %}
+            <div class="col-1 col-sm-2">
+<!-- 	            Add people and move up 100 and left 150 -->
+				<img class="mt--100 ml--150" src="{{ section.settings.people_image | img_url: 'x100' }}">
             </div>
 			{% endif %}
             <div class="col-12 mt-40 pl-40">
                 <h4>{{ section.settings.about_text | escape }}</h4>
             </div>
+	        </div> <!-- .row -->
         </div>
     </section>
     

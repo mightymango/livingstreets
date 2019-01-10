@@ -24,7 +24,8 @@
     ]
 }
 {% endschema %}
-
+<section>
+</section>
 <section>
 	<div class="container">
 	    {% if section.settings.heading.size > 0 %}
@@ -34,7 +35,7 @@
 		{{ collection.description }}
 		{% endif %}
 		
-		<ul class="nav-tabs mb-40 text-center" id="ecommerces-tabs">
+		<ul class="nav-tabs text-center mt-50" id="ecommerces-tabs">
           
           {% assign all_collection = collections['all'] %}
           <li class="{% if all_collection.id == collection.id %}active {% endif %}"><a href="{{ collection.url }}">All Products</a></li>

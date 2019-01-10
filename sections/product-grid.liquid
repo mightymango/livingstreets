@@ -8,6 +8,11 @@
       "label": "Heading",
       "default": "Products"
     },
+	{
+	      "type": "image_picker",
+	      "id": "people_image",
+	      "label": "People"
+	},
     {
 	   "type": "product",
 	   "id": "feature_product",
@@ -42,16 +47,27 @@
      
     {% assign collection = collections[section.settings.feature_collection] %}
 
-    <section class="ecommerces pt-100 pt-lg-140" id="ecommerces-1">
+    <section class="ecommerces" id="ecommerces-1">
         <div class="container">
 	        
-            <h2 id="box" class="d-inline-block box-rotate-c-1">{{ section.settings.heading }}</h2>
-          
+	        <div class="row">
+	            <div class="col-12 col-sm-6">
+	            <h2 id="box" class="d-inline-block box-rotate-c-1">{{ section.settings.heading }}</h2>
+	            </div>
+	            <div class="col-12 col-sm-2">
+		            <img class="mt--30" src="{{ section.settings.people_image | img_url: 'x100' }}">
+	            </div>
+	            <div class="col-12 col-sm-4 text-right pt-40">
+		            <a class="btn d-block" href="{{ shop.url}}/collections/all">View Full Catalogue</a>
+	            </div>
+	        </div>
+
+	        
             {% if collection.description.size > 0 %}
 			{{ collection.description }}
 			{% endif %}
 			
-            <div class="row pl-20">
+            <div class="row">
 					
 				  {% for product in collection.products %}
 				      {% if product.handle == section.settings.feature_product %}
