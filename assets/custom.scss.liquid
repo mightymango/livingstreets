@@ -18,6 +18,8 @@ $darken-caption: 25%;
 $shadow-size: {{ settings.shadow_size }}px;
 $shadow-size-small: $shadow-size / 2;
 
+$section-padding: {{ settings.section_spacing }}px;
+
 $tape-width: 100px;
 $tape-height: $tape-width / 3.92;
 
@@ -33,7 +35,7 @@ $outline-width: 2px;
 $outline-contrast: 10%;
 
 $track-thickness: 10px;
-$track-style: dotted;
+$track-style: dashed;
 $track-rotate: 10deg;
 
 html,
@@ -48,7 +50,6 @@ body {
 	min-height: 100vh;
 }
 
-
 h1, h2, h3 {
   color: {{ settings.headings_color }};
   font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }};	
@@ -62,14 +63,20 @@ a:hover {
   color: {{ settings.hover_color }};
 }
 
+/* Padding for all sections in main */
+main section {
+	padding-top: $section-padding;
+	padding-bottom: $section-padding;
+}
 
 /* Make sure navbar does not overlap first section */
-main div:first-of-type section:first-of-type {
+/* Includes a workaround for the code added by shopify */
+main div.shopify-section  div:first-of-type section {
 	padding-top: 130px !important;
 }
 
 @media (min-width: 992px) {
-  main div:first-of-type section:first-of-type {
+  main div.shopify-section  div:first-of-type section {
     padding-top: 220px !important;
   }
 }
@@ -407,22 +414,28 @@ input[type=number]::-webkit-outer-spin-button {
 /* Replacement number spinners */
 input[type=number] {
 	font-size: 20px;
+	text-align: center;
+	display: inline;
 }
 .form-control-stepper-wrapper {
   position: absolute;
-  top: 16px;
-  right: 9px;
+  top: 15px;
+  right: 10px;
   opacity: 1;
-  width: 75px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   text-align: center;  
+  display: inline;
+}
+.form-control-stepper-left {
+  right: 0;
+  left: 10px; 
 }
 .stepper {
-  float: right;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: $corner-radius;
-  line-height: 25px;
+  line-height: 30px;
   color: $color-black;
 }
 
@@ -635,6 +648,11 @@ box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 }
 #tape {
 color:#000;
+}
+
+#tape.tape-light-padding {
+	padding-top:15px;
+	padding-bottom:15px;	
 }
 
 #tape.just-tape {
@@ -1503,3 +1521,5 @@ ul.pagination li a {
   background-color: darken( $color-pink, $hover-change );
   font-weight: 500;
 }
+
+

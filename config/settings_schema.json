@@ -159,6 +159,16 @@
         "default": 1
       },
       {
+        "type": "range",
+        "id": "section_spacing",
+        "min": 0,
+        "max": 200,
+        "step": 10,
+        "unit": "px",
+        "label": "Section spacing",
+        "default": 30
+      },
+      {
         "type": "radio",
         "id": "show_designers",
         "options": [

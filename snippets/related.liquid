@@ -1,7 +1,11 @@
 
-<section class="sliders text-center p-50" id="sliders-1">
+<div class="sliders text-center p-50" id="sliders-1">
 	
 	<div class="container">
+		
+	<div class="text-left pb-20 ml--30">
+		<h2 id="tape" class="tape-box-green tape-removed tape-light-padding tape-rotate-c-1 d-inline-block">Related Products</h2>
+	</div>
     <div class="slider slider-rounded-buttons" id="related-products-no-dots">    
 	    {% for related in collection.products %}
 		  	{% unless related.handle == product.handle %}     
@@ -21,4 +25,4 @@
 		    <p><a href="{{ collection.url }}">View all related products</a></p>
 	    </div>
 	</div>
-</section>
+</div>

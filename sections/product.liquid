@@ -68,29 +68,16 @@
   If we have a relevant collection.
 {% endcomment %}
 
-    	   <section class="mt-30">        
+    	   <section>        
 	           
 	            <div class="row justify-content-left justify-content-lg-between">
-
-	                <div class="col-12 col-sm-10 col-lg-6 mb-40 mb-lg-0">
-
-	                    <img class="responsive mb-10 mb-sm-30" src="{{ product | img_url: 'x600'}}" alt="">
-	                    
-	                    {% if found_a_collection and section.settings.show_related == "yes" %}
-	                    <div class="row">
-							<div class="col-12">
-							{% include 'related' %}
-							</div> 
-						</div>
-						{% endif %}
-						
-	                </div>
 	                	                
-	                <div class="col-12 col-sm-10 col-lg-5">
+	                <div class="col-12 col-sm-8">
 	                    
 	                    <form action="/cart/add" method="post" enctype="multipart/form-data">
-	                    <h1 class="mb-20">{{ product.title }}</h1>
-	
+	                    <div class="ml--20">
+	                    <h2 id="tape" class="tape-green tape-box-orange mb-20 d-inline-block">{{ product.title }}</h2>
+	                    </div>
 	                    <div class="mb-30">
 	                        {{ product.price | money }} (Ex. Vat)
 	                    </div>
@@ -129,12 +116,13 @@
                         <div class="col-6 col-sm-4 mb-20">
                             <label class="d-block"><strong>Quantity</strong></label>
                             <div>
-			               <input class="form-control form-control-light bg-orange text-black rounded" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
-			               <span class="form-control-stepper-wrapper">
-			                	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
-			                	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
-			               </span>
-               
+				               <input class="form-control form-control-light bg-white outline outline-black text-black rounded" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
+				               <span class="form-control-stepper-wrapper form-control-stepper-left">
+				                	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
+				               </span>
+				               <span class="form-control-stepper-wrapper">
+				                	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
+				               </span>               
                             </div>
                         </div>
 						{% endif %} 
@@ -151,7 +139,18 @@
 	                    </form>
 	                
 	                </div>
+
+	                <div class="col-12 col-sm-4">
+
+	                    <img class="responsive" src="{{ product | img_url: 'x600'}}" alt="">
+	                    
+	                </div>
 	                
+	                {% if found_a_collection and section.settings.show_related == "yes" %}
+	                 <div class="col-12">
+					 	{% include 'related' %}	                 
+	                 </div>	
+	                 {% endif %}                
 	                
 	            </div>
 	  
