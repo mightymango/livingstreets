@@ -3,33 +3,17 @@
 {
   "name": "Introduction",
   "settings": [
-	  {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image",
-      "info": "Select an image for the product or leave blank to use the image linked to the product."
-    },
-    {
-	   "type": "radio",
-	   "id": "image_position",
-	   "options": [
-	      { "value": "left", "label": "Left"},
-	      { "value": "right", "label": "Right"}
-	   ],
-	   "label": "Image position"
-	},
 	{
 		"id": "heading",
 		"type": "text",
 		"label": "Heading",
 		"default": "Title"
 	},
-	{
-		"id": "subheading",
-		"type": "text",
-		"label": "Subheading",
-		"default": "Subheading"
-	},
+	  {
+      "type": "image_picker",
+      "id": "people_image",
+      "label": "People"
+    },
 	{
 		"id": "text",
 		"type": "textarea",
@@ -40,57 +24,21 @@
 }
 {% endschema %}
 
-<section class="contents text-center text-sm-left pt-160 pt-lg-200" id="image-with-text">
+<section class="contents text-center text-sm-left pt-100 pt-lg-140" id="image-with-text">
   <div class="container">
     <div class="row justify-content-between align-items-center">
-      {% if section.settings.image_position  == 'left' %}
-      <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
-	      {% if section.settings.image %}
-	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
-		  {% else %}
-	      <img class="image pic-md" src="{{ product | img_url: 'x600'}}" alt=""/>
-	      {% endif %}
-      </div>
-      <div class="col-12 col-sm-6 col-lg-5">
+      <div class="col-12">
         {% if section.settings.heading %} 
-        <h1 class="mb-20">
+        <div class="ml--20">
+        <h2 id="box" class="d-inline-block box-rotate-c-1 mb-20">
 	        {{ section.settings.heading | escape }}  
-        </h1>
-        {% endif %}
-        {% if section.settings.subheading %} 
-        <h2 class="mb-20">        
-	        {{ section.settings.subheading | escape }} 
         </h2>
+        </div>
         {% endif %}
         <h4>
           {{ section.settings.text | escape | newline_to_br }}
         </h4>
       </div>
-      
-      {% else %}
-      <div class="col-12 col-sm-6 col-lg-5">
-        {% if section.settings.heading %} 
-        <h1 class="mb-20">
-	        {{ section.settings.heading | escape }}  
-        </h1>
-        {% endif %}
-        {% if section.settings.subheading %} 
-        <h2 class="mb-20">        
-	        {{ section.settings.subheading | escape }} 
-        </h2>
-        {% endif %}
-        <h4>
-          {{ section.settings.text | escape | newline_to_br }}
-        </h4>
-      </div>
-          <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
-	      {% if section.settings.image %}
-	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
-		  {% else %}
-	      <img class="image pic-md" src="{{ product | img_url: 'grande'}}" alt=""/>
-	      {% endif %}
-      </div>     
-      {% endif %}
     </div>
   </div>
 </section>

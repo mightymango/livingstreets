@@ -87,8 +87,38 @@ main div.shopify-section  div:first-of-type section {
   }
 }
 
+.w-p-25 {
+	width: 25%;
+}
+.w-p-50 {
+	width: 50%;
+}
+.w-p-75 {
+	width: 75%;
+}
+.w-p-100 {
+	width: 100%;
+}
+
+@media (min-width: $size-sm) {
+
+	.w-p-25-sm {
+		width: 25%;
+	}
+	.w-p-50-sm {
+		width: 50%;
+	}
+	.w-p-75-sm {
+		width: 75%;
+	}
+	.w-p-100-sm {
+		width: 100%;
+	}	
+	
+}
+
 /* Backgrounds */
-.bg-green {
+.bg-green { 
 	background-color: $color-green;	
 }
 .bg-pink {
@@ -425,30 +455,32 @@ input[type=number] {
 }
 .form-control-stepper-wrapper {
   position: absolute;
-  top: 15px;
-  right: 10px;
+  top: 1px;
+  right: 0;
   opacity: 1;
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   text-align: center;  
   display: inline;
 }
 .form-control-stepper-left {
-  right: 0;
-  left: 10px; 
+  left: 0; 
 }
 .stepper {
-  width: 30px;
-  height: 30px;
+  height: 60px;
+  width: 60px;
   border-radius: $corner-radius;
-  line-height: 30px;
+  border-width: $outline-width;
+  border-style: solid;
+  border-color: $color-black;
+  line-height: 55px;
   color: $color-black;
+  font-size: x-large;
 }
 
 .stepper:hover {
   color: white; 
   background-color: $color-black;
-  opacity: 0.8;
 }
 
 

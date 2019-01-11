@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "Builder",
+  "name": "Selection",
   "settings": [
 	{
 		"id": "heading",
@@ -153,9 +153,11 @@ Calculate the correct variant index from the month
 	<div class="col-12 col-sm-6">
 			
     {% if section.settings.heading %}
-    <h2 class="text-center">{{ section.settings.heading | escape }}</h2>
+    <div class="ml--20 text-left">
+    <h2 id="box" class="d-inline-block box-rotate-c-1">{{ section.settings.heading | escape }}</h2>
+    </div>
 	{% endif %}
-	<h3 class="mb-40">Using <span class="fadein" id="tt_title">Travel Tracker</span><span id="wc_title" class="fadein hidden">Wallcharts</span> to track progress</h3>
+	<h3 class="mb-40 text-left">Using <span class="text-green" id="tt_title"><strong>Travel Tracker</strong></span><span id="wc_title" class="text-orange hidden"><strong>Wallcharts</strong></span> to track progress</h3>
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="builder_form">
 	    
 	  <div id="product-variants" class="pb-20 hidden">
@@ -177,7 +179,7 @@ Calculate the correct variant index from the month
        
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.number-on-roll }}</label>
-              <div>
+              <div class="w-p-100 w-p-50-sm">
                 <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
@@ -190,7 +192,7 @@ Calculate the correct variant index from the month
             
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.percentage }}</label>
-              <div>
+              <div class="w-p-100 w-p-50-sm">
                 <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
@@ -203,7 +205,7 @@ Calculate the correct variant index from the month
             
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.quantity }}</label>
-              <div>
+              <div class="w-p-100 w-p-50-sm">
                <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="subscriptions" name="properties[Subscriptions]" min="1" step="1" value="130" placeholder=""/>
 <!--                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span> -->
                <span class="form-control-stepper-wrapper form-control-stepper-left">
@@ -215,9 +217,9 @@ Calculate the correct variant index from the month
               </div>
             </div>
             
-            <div class="mb-20 fadein hidden classes-input">
+            <div class="mb-20 hidden classes-input">
 	          <label class="d-block">{{ section.settings.classes }}</label>
-              <div>
+              <div class="w-p-100 w-p-50-sm">
                <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="classes" name="properties[Classes]" min="1" step="1" value="1" placeholder=""/>
 <!--                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span> -->
                <span class="form-control-stepper-wrapper form-control-stepper-left">
@@ -231,7 +233,7 @@ Calculate the correct variant index from the month
             
             <div class="mb-40">
 	            <p class="form-control form-control-light form-control-no-max bg-green text-black rounded shadow-small">
-		            <span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils</strong> and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/><br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges for each month</strong> plus <span id="traveltracker_info" class="fadein"><strong>access to TravelTracker</strong></span><span id="wallchart_info" class="fadein hidden"><strong>wall charts for your selected number of classes</strong>.</span></p>
+		            <span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils</strong> and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/><br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges for each month</strong> plus <span id="traveltracker_info" class=""><strong>access to TravelTracker</strong></span><span id="wallchart_info" class="hidden"><strong>wall charts for your selected number of classes</strong>.</span></p>
 	            
             </div> <!-- div -->
         
@@ -248,10 +250,12 @@ Calculate the correct variant index from the month
         
         <div>
 	      {% if section.settings.enable_crossell == "yes" %}
+	      <div class="w-p-100 w-p-50-sm">
 	      <a href="#" id="show_addons" class="btn w-full no-padding">{{ section.settings.add-to-cart | escape }}</a>
           {% else %}
           <input class="btn w-full no-padding" type="submit" name="add" id="add" value="{{ section.settings.add-to-cart | escape }}">          
           {% endif %}
+	      </div>
         </div>
       </div>
 
@@ -442,19 +446,19 @@ Calculate the correct variant index from the month
 		$("#alternative").change(function(){
 		    useAlternative = $(this).prop('checked')
 		    if (useAlternative) {
-			    $('.resize-me').addClass("col-sm-3")
-			    $('.resize-me').removeClass("col-sm-4")	
-			    $('.classes-input').removeClass("hidden")		    
+			    $('.classes-input').fadeIn("slow")
+			    $('#tt_title').hide()
+			    $('#wc_title').fadeIn("slow")		    
 		    }
 		    else {
-				$('.resize-me').addClass("col-sm-4")
-			    $('.resize-me').removeClass("col-sm-3")
-			    $('.classes-input').addClass("hidden")			    
+			    $('.classes-input').fadeOut("slow")
+			    $('#wc_title').hide()
+			    $('#tt_title').fadeIn("slow")			    
 		    }
-		    $('#wallchart_info').toggleClass("hidden")
-		    $('#traveltracker_info').toggleClass("hidden")
-		    $('#tt_title').toggleClass("hidden")
-		    $('#wc_title').toggleClass("hidden")
+		    $('#wallchart_info').fadeToggle("slow")
+		    $('#traveltracker_info').fadeToggle("slow")
+		    
+		    
 		    calculateSubscriptions()
 		});
 				

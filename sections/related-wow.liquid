@@ -64,7 +64,9 @@
 	
 	<div class="container">
     <div class="slider slider-rounded-buttons" id="related-products-no-dots"> 
-	    <h2 class="mb-40 mb-lg-60">{{ section.settings.heading }}</h2>   
+	    <div class="text-left">
+	    <h2 id="box" class="box-rotate-a-1 mb-40 mb-lg-60 d-inline-block">{{ section.settings.heading }}</h2>  
+	    </div> 
 	    {% for related in collection.products %}
 		  	{% unless related.handle == product.handle %}     
 	  		    <div class="col-12 col-sm-6 col-md-4 col-lg-3 slider-item">
@@ -80,7 +82,7 @@
 		{% endfor %}
     </div>
 	    <div>
-		    <p><a href="{{ collection.url }}">View all related products</a></p>
+		    <p class="mt-30"><a href="{{ collection.url }}">View all related products</a></p>
 	    </div>
 	</div>
 </section>       
