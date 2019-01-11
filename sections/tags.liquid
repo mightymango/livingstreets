@@ -7,7 +7,29 @@
 		"type": "text",
 		"label": "Heading",
 		"info": "Leave blank to hide the title."
+	},
+	{
+	      "type": "image_picker",
+	      "id": "people_image_left",
+	      "label": "People (left)"
+	},
+	{
+	      "type": "image_picker",
+	      "id": "people_image_right",
+	      "label": "People (right)"
+	},
+	{
+	   "type": "radio",
+	   "id": "hide_tracks",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Hide tracks",
+	   "info": "Switch off to hide the tracks between tags."
 	}
+	
   ],
     "blocks": [
       {
@@ -35,7 +57,11 @@
 		{{ collection.description }}
 		{% endif %}
 		
-		<ul class="nav-tabs text-center mt-50" id="ecommerces-tabs">
+		<div class="nav-tabs-wrapper">
+		{% if section.settings.people_image_left %}
+		<img class="nav-img-left d-none d-md-block" src="{{ section.settings.people_image_left | img_url: 'x50' }}">
+		{% endif %}
+		<ul class="nav-tabs {% if section.settings.hide_tracks == "yes" %}no-tracks {% endif %}text-center mt-50" id="ecommerces-tabs">
           
           {% assign all_collection = collections['all'] %}
           <li class="{% if all_collection.id == collection.id %}active {% endif %}"><a href="{{ collection.url }}">All Products</a></li>
@@ -45,13 +71,11 @@
 		  	<li class="{% if tag_collection.id == collection.id %}active {% endif %}"><a href="{{ tag_collection.url }}">{{ tag_collection.title  }}</a></li>
 		  {% endfor %}
  
-<!--
-	      <li class="active"><a href="#">All Products</a></li>
-	      <li><a href="#">Tag two</a></li>
-	      <li><a href="#">Tag three</a></li>
-	      <li><a href="#">Tag four</a></li>
--->
 	    </ul>
+	    {% if section.settings.people_image_right %}
+	    <img class="nav-img-right d-none d-md-block" src="{{ section.settings.people_image_right | img_url: 'x50' }}">
+	    {% endif %}
+		</div>
     
 	</div>
 	
