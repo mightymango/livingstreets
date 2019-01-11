@@ -1,6 +1,7 @@
 {% schema %}
 {
   "name": "Product",
+  "max_blocks": 3,
   "settings": [
 	{
 		"id": "add_to_cart",
@@ -28,6 +29,19 @@
 	   "default":   "no",
 	   "label": "Show related products",
 	   "info": "Related products will only be shown if there is a collection that contains the product."
+	}
+  ], 
+  "blocks": [
+	  {
+		"type": "text",
+		"name": "Images",
+		"settings": [
+		{
+		      "type": "image_picker",
+		      "id": "people_image",
+		      "label": "People"
+		}
+	]
 	}
   ]
 }
@@ -113,7 +127,7 @@
 					    <div class="row">
 						    
 						{% if section.settings.show_quantity == "yes" %}    
-                        <div class="col-6 col-sm-4 mb-20">
+                        <div class="col-12 col-sm-6 mb-20">
                             <label class="d-block"><strong>Quantity</strong></label>
                             <div>
 				               <input class="form-control form-control-light bg-white outline outline-black text-black rounded" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
@@ -127,7 +141,7 @@
                         </div>
 						{% endif %} 
 						
-                        <div class="col-6 col-sm-4 mb-20">
+                        <div class="col-12 col-sm-6 mb-20">
 					      <label class="d-block">&nbsp;</label>
 					      <div id="product-add">
 						  <input class="btn" style="margin-top:2px;" type="submit" name="add" id="add" value="{{ section.settings.add_to_cart | escape }}">
@@ -141,13 +155,28 @@
 	                </div>
 
 	                <div class="col-12 col-sm-4">
-
-	                    <img class="responsive" src="{{ product | img_url: 'x600'}}" alt="">
-	                    
+	                    <img class="responsive" src="{{ product | img_url: 'x600'}}" alt=""> 
+	                    <div class="ml-50">
+	                    {% if section.blocks.size > 0 %}
+	                    <div class="mt-50">
+	                    <img src="{{ section.blocks[0].settings.people_image | img_url: 'x100'}}" alt="">									</div>
+	                    {% endif %}
+	                    <div class="d-none d-lg-block mt-50 ml--150">
+	                    {% if section.blocks.size > 1 %}
+	                    <img src="{{ section.blocks[1].settings.people_image | img_url: 'x100'}}" alt="">
+	                    </div>
+	                    {% endif %}
+	                    {% if section.blocks.size > 2 %}
+	                    <div class="d-none d-lg-block ml-200">
+	                    <img src="{{ section.blocks[2].settings.people_image | img_url: 'x150'}}" alt="">
+	                    </div>
+	                    {% endif %}	
+	                    </div>                        
 	                </div>
-	                
+
+	                	                
 	                {% if found_a_collection and section.settings.show_related == "yes" %}
-	                 <div class="col-12">
+	                 <div class="col-12{% if section.blocks.size < 2 %} mt--30{% endif %}">
 					 	{% include 'related' %}	                 
 	                 </div>	
 	                 {% endif %}                

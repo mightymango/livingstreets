@@ -39,6 +39,7 @@ $footer-height: 320px;
 
 $outline-width: 2px;
 $outline-contrast: 10%;
+$background-contrast: 5%;
 
 $track-thickness: 10px;
 $track-style: dashed;
@@ -59,6 +60,10 @@ body {
 h1, h2, h3 {
   color: {{ settings.headings_color }};
   font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }};	
+}
+
+p {
+  opacity: 1.0;
 }
 
 a {
@@ -138,6 +143,25 @@ main div.shopify-section  div:first-of-type section {
 }
 .bg-light {
 	background-color: $color-yellow;
+}
+
+.bg-green-dark { 
+	background-color: darken($color-green,$background-contrast);	
+}
+.bg-pink-dark {
+	background-color: darken($color-pink,$background-contrast);	
+}
+.bg-orange-dark {
+	background-color: darken($color-orange,$background-contrast);
+}
+.bg-yellow-dark {
+	background-color: darken($color-yellow,$background-contrast);
+}
+.bg-white-dark {
+	background-color: darken($color-white,$background-contrast);
+}
+.bg-black-dark {
+	background-color: $color-black;
 }
 
 .outline {
@@ -704,23 +728,23 @@ margin: 0;
 }
 
 #tape.tape-box-green {
-	background:$color-green;	
+	background-color:$color-green;	
 }
 #tape.tape-box-pink {
-	background:$color-pink;	
+	background-color:$color-pink;	
 }
 #tape.tape-box-orange {
-	background:$color-orange;	
+	background-color:$color-orange;	
 }
 #tape.tape-box-yellow {
-	background:$color-yellow;	
+	background-color:$color-yellow;	
 }
 #tape.tape-box-black {
-	background:$color-black;
+	background-color:$color-black;
 	color:$color-white;	
 }
 #tape.tape-box-white {
-	background:$color-white;
+	background-color:$color-white;
 	color: $color-black;	
 }
 
@@ -881,7 +905,6 @@ width: 103px; /*width of the tape*/
 position: relative; 
 display:block;
 margin:20px; 
-background:#ffdc00;
 padding:30px;
 border-radius: $corner-radius;
 opacity: 1;
@@ -889,8 +912,6 @@ opacity: 1;
 -webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 -moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
-}
-#box {
 color:#000;
 }
 
@@ -998,7 +1019,7 @@ margin-left:20px;
   bottom: 0;
   -webkit-transition: 0.3s ease all;
   transition: 0.3s ease all;
-  background: $color-white;
+  background: $color-green;
   margin: 0;
   border-radius: 4px;
 }
@@ -1098,7 +1119,7 @@ margin-left:20px;
 .product-box-image .product-box-button {
     display: none;
 }
-.product-box-image:hover > img {
+.product-box-image:hover img {
     opacity: 0.2;
 }
 .product-box-image:hover .product-box-button {
