@@ -1,6 +1,7 @@
 {% schema %}
 {
   "name": "Selection",
+  "max_blocks": 3,
   "settings": [
 	{
 		"id": "heading",
@@ -95,18 +96,48 @@
 	  "id": "cross-sell-instruction",
 	  "label": "Instruction",
 	  "default": "Click an item to add it to your cart."	
+	},
+	{
+	  "type": "text",
+	  "id": "cross-sell-button",
+	  "label": "Button",
+	  "default": "Continue"	
+	},
+	{
+	   "type": "radio",
+	   "id": "enable_crossell_cancel",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Enable cancel button",
+	   "info": "Switch on to allow users to cancel."
 	},	
 	{
 	   "type": "collection",
 	   "id": "cross_sell_collection",
 	   "label": "Cross-sell collection"
 	}
-  ]
+  ],
+  "blocks": [
+      {
+        "type": "text",
+        "name": "Images",
+        "settings": [
+          {
+	      "type": "image_picker",
+	      "id": "people_image",
+	      "label": "People"
+          }
+        ]
+      }
+    ]
 }
 {% endschema %}
 
 <div class="hidden">
-
+	
 {% assign travel_tracker = all_products[section.settings.travel_tracker] %}
 {% assign travel_tracker_id = travel_tracker.variants.first.id %}
 
@@ -138,6 +169,13 @@ Calculate the correct variant index from the month
   {% endif %}
 {% endfor %}
 
+
+{% for block in section.blocks %}
+ 	{% if forloop.index == 1 %} {% assign first_image = block.settings.people_image %} {% endif %}
+ 	{% if forloop.index == 2 %} {% assign second_image = block.settings.people_image %} {% endif %}
+ 	{% if forloop.index == 3 %} {% assign third_image = block.settings.people_image %} {% endif %}
+{% endfor %}
+
 </div>
 
 <section class="forms text-center pb-40 pb-sm-60 pb-lg-80" id="builder">
@@ -148,13 +186,16 @@ Calculate the correct variant index from the month
 	
 	<div class="col-12 col-sm-6">
 		<img class="image pic-md" src="{{ product | img_url: 'x600'}}" alt=""/>
+		{% if first_image %}
+		<img class="d-none d-md-block pt-50" src="{{ first_image | img_url: 'x50' }}">
+		{% endif %}
 	</div>
 	
 	<div class="col-12 col-sm-6">
 			
     {% if section.settings.heading %}
     <div class="ml--20 text-left">
-    <h2 id="box" class="d-inline-block box-rotate-c-1">{{ section.settings.heading | escape }}</h2>
+    <h2 id="box" class="d-inline-block box-yellow box-slim box-rotate-c-1">{{ section.settings.heading | escape }}</h2>
     </div>
 	{% endif %}
 	<h3 class="mb-40 text-left">Using <span class="text-green" id="tt_title"><strong>Travel Tracker</strong></span><span id="wc_title" class="text-orange hidden"><strong>Wallcharts</strong></span> to track progress</h3>
@@ -192,7 +233,7 @@ Calculate the correct variant index from the month
             
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.percentage }}</label>
-              <div class="w-p-100 w-p-50-sm">
+              <div id="percentage-input" class="w-p-100 w-p-50-sm">
                 <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
@@ -200,20 +241,30 @@ Calculate the correct variant index from the month
                <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
                </span>  
+               
+               <span class="form-control-lock-wrapper">
+                	<span id="percentage-lock" class="stepper glyphicon glyphicon-lock stepper-no-border"></span>
+               </span>
+               
               </div>
             </div>
             
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.quantity }}</label>
-              <div class="w-p-100 w-p-50-sm">
-               <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="subscriptions" name="properties[Subscriptions]" min="1" step="1" value="130" placeholder=""/>
-<!--                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span> -->
+              <div id="quantity-input" class="w-p-100 w-p-50-sm locked">
+               <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="subscriptions" name="properties[Subscriptions]" min="10" step="10" value="130" placeholder="" readonly />
+                              
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
                </span>
                <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
-               </span>  
+               </span> 
+               
+               <span class="form-control-lock-wrapper">
+                	<span id="quantity-lock" class="stepper glyphicon glyphicon-lock stepper-no-border"></span>
+               </span>
+                
               </div>
             </div>
             
@@ -264,9 +315,18 @@ Calculate the correct variant index from the month
 {% assign collection = collections[section.settings.cross_sell_collection] %}
 
 	<div class="cross-sell-overlay">
-		<div class="cross-sell rounded shadow">
-			<h2 id="tape" class="tape-orange tape-rotate-a-1">{{ section.settings.cross-sell-heading }}</h2>
-			
+		<div class="cross-sell rounded shadow text-left">
+
+		<h3 id="tape" class="tape-orange tape-removed tape-slim tape-rotate-a-1 d-inline-block">{{ section.settings.cross-sell-heading }}</h3>
+
+		{% if second_image %}
+		<img class="d-none d-md-block image1" src="{{ second_image | img_url: 'x75' }}">
+		{% endif %}
+
+		{% if third_image %}
+		<img class="d-none d-md-block image2" src="{{ third_image | img_url: 'x75' }}">
+		{% endif %}
+						
 			<div class="row justify-content-center pt-20">
 				
 				{% for product in collection.products %}
@@ -275,13 +335,13 @@ Calculate the correct variant index from the month
 					<div class="product-box text-center">
 						<div class="product-box-image">
 							<img src="{{ product | img_url: 'x150'}}" />
-							<div class="product-box-button">
+							<div class="product-box-button mt-40">
 							<button class="btn add-to-cart" data-id="{{ product_id }}">Add to cart</button>
 							</div>
 						</div>
 						<div class="product-box-footer">
 							<p class="product-box-title">{{ product.title }}</p>
-							<p id="tape" class="tape-thin tape-box-pink tape-rotate-c-2">{{ product.price | money }} </p>
+							<p id="tape" class="tape-thin tape-box-pink tape-removed tape-rotate-c-2">{{ product.price | money }} </p>
 						</div>
 					</div>
 				</div>						
@@ -290,8 +350,10 @@ Calculate the correct variant index from the month
 			</div>
 			
 			<div class="buttons">
+				{% if section.settings.enable_crossell_cancel == 'yes' %}
 				<button id="cancel" class="btn btn-orange">Cancel</button> 
-				<input class="btn btn-green" type="submit" name="add" id="add" value="Continue">
+				{% endif %}
+				<input class="btn btn-green" type="submit" name="add" id="add" value="{{ section.settings.cross-sell-button }}">
 			</div>
 			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
 		</div>
@@ -310,6 +372,8 @@ Calculate the correct variant index from the month
 
 <script>
 	$( document ).ready(function() {
+		
+		var quantityActive = false
 
 {% if section.settings.enable_crossell == "yes" %}
 
@@ -338,7 +402,24 @@ Calculate the correct variant index from the month
 		});
 
 {% endif %}
-			
+		
+		function unlockQuantity() {
+			$( "#quantity-input" ).removeClass("locked")
+			$( "#subscriptions" ).attr("readonly", false)
+			$( "#percentage-input" ).addClass("locked")
+			$( "#percentage" ).attr("readonly", true)
+			quantityActive = true
+		}
+
+		function unlockPercentage() {
+			$( "#percentage-input" ).removeClass("locked")
+			$( "#percentage" ).attr("readonly", false)	
+			$( "#quantity-input" ).addClass("locked")
+			$( "#subscriptions" ).attr("readonly", true)
+			quantityActive = false
+		
+		}
+					
 		function calculatePacksFor(subscriptions) {
 			var packSize = 10
 			var packs = 0
@@ -371,6 +452,27 @@ Calculate the correct variant index from the month
 			$('#quantity').val(packsRequired)
 			$('#pack_number').text(packsRequired)
 					
+		}
+		
+		function calculatePercentage() {
+			
+			var numberOnRoll = $("#numberOnRoll").val()
+			var numberOfSubscriptions = $("#subscriptions").val()
+			
+			var percentageWalkIn = Math.floor((numberOfSubscriptions / numberOnRoll) * 100)
+			$("#percentage").val(percentageWalkIn)
+			$('#pupil_number').text(numberOfSubscriptions)
+			
+			var packsRequired = calculatePacksFor(numberOfSubscriptions)
+			if (useAlternative) {
+				var classes = $("#classes").val()
+				var price = ((packsRequired * unitPrice) + (wallChartsPrice * classes)) / 100				
+			} else {
+				var price = ((packsRequired * unitPrice) + travelTrackerPrice) / 100				
+			}
+			$('#product-price').text('£' + price.toFixed(2))
+			$('#pack_number').text(packsRequired)			
+			
 		}
 		
 		function addTravelTrackerToCart() {
@@ -431,17 +533,25 @@ Calculate the correct variant index from the month
 		});
 
 		$("#percentage").change(function(){
-		   calculateSubscriptions()
-		    
+		   if (!quantityActive) calculateSubscriptions()		    
 		});
 
 		$("#subscriptions").change(function(){
-		   calculateSubscriptions()
+		   if (quantityActive) calculatePercentage()
 		});
 
 		$("#classes").change(function(){
 		   calculateSubscriptions() 
 		});
+
+		$("#percentage-lock").on('click', function(){
+			unlockPercentage() 
+		});
+		
+		$("#quantity-lock").on('click', function(){
+			unlockQuantity() 
+		});
+						
 		
 		$("#alternative").change(function(){
 		    useAlternative = $(this).prop('checked')

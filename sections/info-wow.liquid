@@ -30,9 +30,12 @@
       <div class="col-12">
         {% if section.settings.heading %} 
         <div class="ml--20">
-        <h2 id="box" class="d-inline-block box-rotate-c-1 mb-20">
+        <h2 id="box" class="d-inline-block box-yellow box-slim box-rotate-c-1 mb-20">
 	        {{ section.settings.heading | escape }}  
         </h2>
+        {% if section.settings.people_image %}
+		<img class="d-none d-md-block pt-50 mr-200 float-right" src="{{ section.settings.people_image | img_url: 'x50' }}">
+		{% endif %}
         </div>
         {% endif %}
         <h4>

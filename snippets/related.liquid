@@ -6,7 +6,7 @@
 	<div class="text-left pb-20 ml--30">
 		<h2 id="tape" class="tape-box-green tape-removed tape-light-padding tape-rotate-c-1 d-inline-block">Related Products</h2>
 	</div>
-    <div class="slider slider-rounded-buttons" id="related-products-no-dots">    
+    <div class="slider slider-rounded-buttons mb-40" id="related-products-{% if section.settings.show_dots == 'no' %}no-{% endif %}dots">    
 	    {% for related in collection.products %}
 		  	{% unless related.handle == product.handle %}     
 	  		    <div class="col-12 col-sm-6 col-lg-4 slider-item">
@@ -21,8 +21,10 @@
 			 {% endunless %}			
 		{% endfor %}
     </div>
+	    {% if section.settings.show_all == 'yes' %}
 	    <div class="mt-20">
 		    <p><a href="{{ collection.url }}">View all related products</a></p>
 	    </div>
+	    {% endif %}
 	</div>
 </div>

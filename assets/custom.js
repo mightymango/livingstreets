@@ -26,9 +26,10 @@ $( document ).ready(function() {
 	});
 	
 	$( ".stepper" ).on( "click", function() {
-		
+				
 		var direction = $(this).data('direction')
 		var input = $(this).parent().parent().children('input').first()
+		
 		var value = parseInt(input.val())
 		var minValue = parseInt(input.attr('min'))
 		var stepValue = parseInt(input.attr('step'))
@@ -46,7 +47,7 @@ $( document ).ready(function() {
 		}
 		
 		input.val(value)
-		
+	
 		input.trigger("change")
 
 		
@@ -74,7 +75,7 @@ $( document ).ready(function() {
             contain: true,
             imagesLoaded: true,
             wrapAround: false,
-            adaptiveHeight: true,
+            adaptiveHeight: false,
             pageDots: true,
             groupCells: false,
             prevNextButtons: false

@@ -29,6 +29,31 @@
 	   "default":   "no",
 	   "label": "Show related products",
 	   "info": "Related products will only be shown if there is a collection that contains the product."
+	},
+	{
+	   "type": "radio",
+	   "id": "show_dots",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Show dots",
+	   "info": "Show the dot indicators."
+		
+	}
+,
+	{
+	   "type": "radio",
+	   "id": "show_all",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Show related link",
+	   "info": "Show link to all related products."
+		
 	}
   ], 
   "blocks": [
@@ -92,9 +117,6 @@
 	                    <div class="ml--20">
 	                    <h2 id="tape" class="tape-green tape-box-orange mb-20 d-inline-block">{{ product.title }}</h2>
 	                    </div>
-	                    <div class="mb-30">
-	                        {{ product.price | money }} (Ex. Vat)
-	                    </div>
 	
 						{%- if product.description.size > 800 -%}
 						{%- assign should_truncate = true -%}
@@ -102,7 +124,7 @@
 						{%- assign should_truncate = false -%}
 						{%- endif -%}
 
-						  <div class="mb-40 product-description{% if should_truncate %} short-description{% endif %}" itemprop="description">
+						  <div class="mb-20 product-description{% if should_truncate %} short-description{% endif %}" itemprop="description">
 					        {{ product.description }}
 					        {% if should_truncate %}
 					        <a class="more-link" href="#">More...</a>
@@ -125,6 +147,11 @@
 					      </div> 
 					    
 					{% if product.available %}
+					
+					 	<div class="mb-30">
+	                        {{ product.price | money }} (Ex. Vat)
+	                    </div>
+	                    
 					    <div class="row">
 						    
 						{% if section.settings.show_quantity == "yes" %}    
@@ -181,7 +208,7 @@
 
 	                	                
 	                {% if found_a_collection and section.settings.show_related == "yes" %}
-	                 <div class="col-12">
+	                 <div class="col-12 mt--100">
 					 	{% include 'related' %}	                 
 	                 </div>	
 	                 {% endif %}                

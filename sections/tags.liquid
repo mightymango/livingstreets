@@ -69,7 +69,7 @@
 		
 		<div class="nav-tabs-wrapper">
 		{% if section.settings.people_image_left %}
-		<img class="nav-img-left d-none d-md-block mt--50" src="{{ section.settings.people_image_left | img_url: 'x50' }}">
+		<img class="nav-img-left d-none d-md-block" src="{{ section.settings.people_image_left | img_url: 'x50' }}">
 		{% endif %}
 		<ul class="nav-tabs {% if section.settings.hide_tracks == "yes" %}no-tracks {% endif %}text-center mt-50" id="ecommerces-tabs">
           
@@ -82,10 +82,17 @@
           	{% assign tag_collection = collections[block.settings.tag] %}
 		  	<li class="{% if tag_collection.id == collection.id %}active {% endif %}"><a href="{{ tag_collection.url }}">{{ tag_collection.title  }}</a></li>
 		  {% endfor %}
+		  
+		  <li class="active"><a href="#">Test</a></li>
+		  <li><a href="#">Test</a></li>
+		  <li><a href="#">Test</a></li>
+		  <li><a href="#">Test</a></li>
+		  <li><a href="#">Test</a></li>
+		  <li><a href="#">Test</a></li>
  
 	    </ul>
 	    {% if section.settings.people_image_right %}
-	    <img class="nav-img-right d-none d-md-block mt-50" src="{{ section.settings.people_image_right | img_url: 'x50' }}">
+	    <img class="nav-img-right d-none d-md-block" src="{{ section.settings.people_image_right | img_url: 'x50' }}">
 	    {% endif %}
 		</div>
     

@@ -510,6 +510,30 @@ input[type=number] {
   background-color: $color-black;
 }
 
+.stepper.stepper-no-border {
+  border-style: none;
+}
+
+/* Locked input */
+.form-control-lock-wrapper {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  opacity: 1;
+  width: 60px;
+  height: 60px;
+  text-align: center;  
+  display: none;	
+}
+
+div.locked  > .form-control-stepper-wrapper {
+  display: none;
+}
+
+div.locked  > .form-control-lock-wrapper {
+  display: inline;
+}
+
 
 /* Notification */
 #notification {
@@ -713,6 +737,10 @@ box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 }
 #tape {
 color:#000;
+}
+
+#tape.tape-slim {
+	padding:20px;
 }
 
 #tape.tape-light-padding {
@@ -924,7 +952,9 @@ color:#000;
 box-shadow: none;	
 }
 
-
+#box.box-slim {
+	padding:20px;
+}
 #box.box-green {
 	background:$color-green;	
 }
@@ -1187,6 +1217,19 @@ margin-left:20px;
 	padding: 10px;
 	opacity: 0.5;
 }
+
+.cross-sell .image1 {
+	position: absolute;	
+	top: 30px;
+	right: 30px;
+}
+
+.cross-sell .image2 {
+	position: absolute;	
+	bottom: 60px;
+	left: 40px;
+}
+
 
 .cross-sell .buttons {
 	position: absolute;	
@@ -1501,6 +1544,8 @@ ul.pagination li a {
   border: none;
   font-weight: 500;
   padding: 0;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-left: -2px;
   margin-right: -2px;
 }
@@ -1600,6 +1645,18 @@ ul.pagination li a {
 	top: 0;
 }
 
+.nav-tabs.no-tracks > li,
+.nav-tabs.no-tracks > li.active {
+	margin: 0 10px 10px;
+}
+.nav-tabs.no-tracks > li::before,
+.nav-tabs.no-tracks > li::after,
+.nav-tabs.no-tracks > li.active::before,
+.nav-tabs.no-tracks > li.active::after {
+	display: none;
+}
+	
+
 @media (max-width: $size-md) {
 	.nav-tabs > li,
 	.nav-tabs > li.active {
@@ -1612,7 +1669,7 @@ ul.pagination li a {
 		border-top-style: dotted;
 	}
 }
-
+	
 @media (max-width: $size-sm) {
 	.nav-tabs > li,
 	.nav-tabs > li.active {
@@ -1624,18 +1681,13 @@ ul.pagination li a {
 	.nav-tabs > li.active::after {
 		display: none;
 	}
-}
-
+	
 	.nav-tabs.no-tracks > li,
 	.nav-tabs.no-tracks > li.active {
 		margin: 0 2px 10px;
 	}
-	.nav-tabs.no-tracks > li::before,
-	.nav-tabs.no-tracks > li::after,
-	.nav-tabs.no-tracks > li.active::before,
-	.nav-tabs.no-tracks > li.active::after {
-		display: none;
-	}
+	
+}
 
 
 /* ---- extra margins ---- */
