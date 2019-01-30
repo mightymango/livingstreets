@@ -20,6 +20,16 @@
 	},
 	{
 	   "type": "radio",
+	   "id": "show_all",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Show all products button"
+	},
+	{
+	   "type": "radio",
 	   "id": "hide_tracks",
 	   "options": [
 	      { "value": "yes", "label": "Yes"},
@@ -63,8 +73,10 @@
 		{% endif %}
 		<ul class="nav-tabs {% if section.settings.hide_tracks == "yes" %}no-tracks {% endif %}text-center mt-50" id="ecommerces-tabs">
           
+          {% if section.settings.show_all == "yes" %}
           {% assign all_collection = collections['all'] %}
           <li class="{% if all_collection.id == collection.id %}active {% endif %}"><a href="{{ collection.url }}">All Products</a></li>
+          {% endif %}
           
           {% for block in section.blocks %}
           	{% assign tag_collection = collections[block.settings.tag] %}

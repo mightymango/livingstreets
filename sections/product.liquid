@@ -123,7 +123,8 @@
 					        {% endfor %}
 					        </select>
 					      </div> 
-					      
+					    
+					{% if product.available %}
 					    <div class="row">
 						    
 						{% if section.settings.show_quantity == "yes" %}    
@@ -149,6 +150,10 @@
                         </div>
                                                
 					    </div> <!-- .row -->
+					
+					{% else %}
+						<p id="tape" class="tape-thin tape-box-black tape-green tape-removed">Out of Stock</p>
+					{% endif %}
 					      
 	                    </form>
 	                
@@ -176,7 +181,7 @@
 
 	                	                
 	                {% if found_a_collection and section.settings.show_related == "yes" %}
-	                 <div class="col-12{% if section.blocks.size < 2 %} mt--30{% endif %}">
+	                 <div class="col-12">
 					 	{% include 'related' %}	                 
 	                 </div>	
 	                 {% endif %}                

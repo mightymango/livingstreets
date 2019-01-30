@@ -24,6 +24,11 @@
 		   "default": "Get in touch"
 		},
 		{
+		   "type": "url",
+		   "id": "catalogue_url",
+		   "label": "Catalogue"
+		},
+		{
 		   "type": "textarea",
 		   "id": "company_info",
 		   "label": "Company information"
@@ -63,8 +68,11 @@
                     <div class="mb-20">
                     <a href="mailto:{{ shop.email }}">Email us</a>
                     </div>
-                    <div class="socials">
-                     <a href=""><img src="{{ 'facebook.svg' | asset_url }}"></a><a href=""><img src="{{ 'twitter.svg' | asset_url }}"></a><a href=""><img src="{{ 'instagram.svg' | asset_url }}"></a><a href=""><img src="{{ 'youtube.svg' | asset_url }}"></a><a href=""><img src="{{ 'linkedin.svg' | asset_url }}"></a></div>						
+                    <div class="socials mb-20">
+                     <a href=""><img src="{{ 'facebook.svg' | asset_url }}"></a><a href=""><img src="{{ 'twitter.svg' | asset_url }}"></a><a href=""><img src="{{ 'instagram.svg' | asset_url }}"></a><a href=""><img src="{{ 'youtube.svg' | asset_url }}"></a><a href=""><img src="{{ 'linkedin.svg' | asset_url }}"></a></div>
+                    <div class="mb-20">
+                    <a href="{{ section.settings.catalogue_url }}">Catalogue</a>
+                    </div>						
                 </div>
 
                 <div class="col-12 mt-20 mb-10 company-info">

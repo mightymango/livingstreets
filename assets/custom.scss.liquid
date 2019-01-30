@@ -45,6 +45,9 @@ $track-thickness: 10px;
 $track-style: dashed;
 $track-rotate: 10deg;
 
+$pathway-style: dashed;
+$pathway-thickness: 10px;
+
 html,
 body {
   color: {{ settings.font_color }};
@@ -479,7 +482,7 @@ input[type=number] {
 }
 .form-control-stepper-wrapper {
   position: absolute;
-  top: 1px;
+  top: -1px;
   right: 0;
   opacity: 1;
   width: 60px;
@@ -1352,11 +1355,11 @@ font-size: 12px;
 
 .pathway {
 	border-color: $color-black;
-	border-width: 10px;
+	border-width: $pathway-thickness;
 	border-top-style: none;
 	border-right-style: none;
-	border-bottom-style: dotted;
-	border-left-style: dotted;
+	border-bottom-style: $pathway-style;
+	border-left-style: $pathway-style;
 	height: 75px;
 	margin-left: calc(25% - 5px);
 }

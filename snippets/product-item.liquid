@@ -8,6 +8,7 @@
             	
             	<div class="product-box-button">
 
+					{% if product.available %}
 	            	<div class="howmany">
 	            	<input class="form-control form-control-light bg-white text-black outline outline-black-light rounded mb-10" type="number" id="numberToAdd" name="numberToAdd" min="1" step="1" value="1" placeholder="" />
 		               <span class="form-control-stepper-wrapper form-control-stepper-left">
@@ -19,6 +20,7 @@
 	            	</div>
 	            	{% assign variant = product.first_available_variant %}
 	            	<a href="#" class="btn mb-10 add-to-cart" data-id="{{ variant.id }}">Buy</a>
+	            	{% endif %}
 	            	<a href="{{ product.url }}" class="btn btn-orange">Read more</a>
             	</div>
             
@@ -26,7 +28,11 @@
                       
             <div class="product-box-footer">
             	<h3>{{ product.title }}</h3>
+            	{% if product.available %}
 				<p id="tape" class="tape-thin tape-box-orange tape-green tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} tape-removed">{{ product.price | money }}</p>
+				{% else %}
+				<p id="tape" class="tape-thin tape-box-black tape-green tape-removed">Out of Stock</p>
+				{% endif %}
             </div>
             
         </div>
