@@ -14,7 +14,7 @@
       },
       {
         "id": "strapline",
-        "type": "text",
+        "type": "textarea",
         "label": "Strapline",
         "default": "Add your text here"
       },
@@ -50,6 +50,25 @@
 	}
     ]
   },
+  
+    {
+  "type": "collection",
+  "name": "Collection",
+  "settings": [
+	{
+		"type": "collection",
+		"id": "collection",
+		"label": "Collection"
+   },
+	{
+	  "type": 	"text",
+	  "id": 	"collection_info",
+	  "label": 	"Button text",
+	  "default": "Take a Look"
+	}
+    ]
+  },
+  
       {
           "type": "info",
           "name": "Information",
@@ -255,7 +274,10 @@
 
       {% when 'hero' %}
       {% include 'section-hero' %}
-      
+
+      {% when 'collection' %}
+      {% include 'section-collection' %}
+            
       {% when 'info' %}
       {% include 'section-info' %}
 

@@ -26,8 +26,22 @@
                         <div class="col-auto d-none d-lg-block">
                             <nav class="navbar navbar-left">
 	                            {% for link in linklists[section.settings.main_nav].links %}
-	                            <a class="{% if link.active %}active {% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+	                            
+	                            {% if link.levels > 0 %}
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ link.title }}</a>
+								<div class="dropdown-menu text-left" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item{% if link.active %} active{% endif %}" href="{{ link.url }}">All</a><div class="dropdown-divider"></div>		
+								  {% for sub-link in link.links %}
+								  <a class="dropdown-item{% if sub-link.active %} active{% endif %}" href="{{ sub-link.url }}">{{ sub-link.title }}</a>
+								  {% endfor %}
+								</div>
+								</li>
+						      	                            
+	                            {% else %}
+	                            <a class="{% if link.active %}active {% endif %}" href="{{ link.url }}">{{ link.title }}</a>								{% endif %}
 	                            {% endfor %}
+	                            
 	                        </nav>       
                         </div>
                     </div>

@@ -149,7 +149,7 @@
 					{% if product.available %}
 					
 					 	<div class="mb-30">
-	                        {{ product.price | money }} (Ex. Vat)
+	                        {{ product.price | money }} (Ex. VAT)
 	                    </div>
 	                    
 					    <div class="row">
@@ -208,7 +208,7 @@
 
 	                	                
 	                {% if found_a_collection and section.settings.show_related == "yes" %}
-	                 <div class="col-12 mt--100">
+	                 <div class="col-12 mt--50">
 					 	{% include 'related' %}	                 
 	                 </div>	
 	                 {% endif %}                

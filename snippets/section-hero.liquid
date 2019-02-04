@@ -14,9 +14,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-10 col-lg-8">
-                    <h1 id="tape" class="mb-20 tape-box-green tape-yellow tape-rotate-a-1">{{ block.settings.headline | escape}}</h1>
-
-                    <h4 id="box" class="mb-60 box-pink text-white">{{ block.settings.strapline | escape }}</h4>
+                    <h1 id="tape" class="mb-20 tape-box-green tape-yellow tape-rotate-a-1">{{ block.settings.headline | escape }}</h1>
+                    
+                    {% if block.settings.strapline %}
+                    {% capture string_with_newlines %}{{ block.settings.strapline }}{% endcapture %}
+                    <h4 id="box" class="mb-60 box-orange text-black lighter">{{ string_with_newlines | newline_to_br }}</h4>
+                    {% endif %}
                 </div>
             </div>
 
@@ -27,7 +30,7 @@
                         <a href="#more-info" class="btn w-full no-padding"><span>Find out more</span></a>
                     </div>
 					{% endif %}
-					{% if block.settings.buy_url%}
+					{% if block.settings.buy_url %}
                     <div class="col-12 col-sm-4 col-lg-2 mb-20">
                         <a href="{{ block.settings.buy_url }}" class="btn w-full no-padding"><span>Buy</span></a>
                     </div>

@@ -1,34 +1,14 @@
-<!--
-<section class="sliders text-center p-50" id="sliders-1">
-	
-	<div class="container">
-    <div class="slider slider-rounded-buttons" id="sliders-1-slider">
-
-      {% for i in (1..5) %}
-  		    <div class="col-12 col-sm-6 col-lg-4 slider-item">
-		    <img class="image mb-30 pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt="">
-
-            <h3>Related Item {{ i }}</h3>
-
-            <p>£348</p>
-            </div>
-      {% endfor %}
-      
-    </div>
-	</div>
-
-</section>
--->
-
 {% assign collection = collections[block.settings.feature_collection] %}
+
+{% if block.settings.scrolling %}
 <section class="sliders text-left" id="sliders-1">
 	
 	<div class="container pl-30 pr-30">
-    <div class="slider slider-rounded-buttons" id="related-products-no-dots"> 
+    <div class="slider slider-rounded-buttons text-center" id="related-products-no-dots"> 
 	    
-	    {%- if block.settings.heading -%}
+	    {%- if block.settings.heading != "" -%}
             <div class="ml--20">
-            <h2 id="box" class="box-rotate-c-1 text-left mb-40 mb-lg-60 d-inline-block">{{ block.settings.heading | escape}}</h2>
+            <h2 id="box" class="box-rotate-c-1 box-yellow text-left mb-40 mb-lg-60 d-inline-block">{{ block.settings.heading | escape}}</h2>
             </div>
 		{%- endif -%}
 			
@@ -52,3 +32,37 @@
 	    </div>
 	</div>
 </section>
+
+{% else %}
+<section class="text-left">
+	
+	<div class="container pl-30 pr-30">
+
+	    {%- if block.settings.heading != "" -%}
+            <div class="ml--20">
+            <h2 id="box" class="box-rotate-c-1 box-yellow text-left mb-40 mb-lg-60 d-inline-block">{{ block.settings.heading | escape}}</h2>
+            </div>
+		{%- endif -%}
+				
+    <div class="row text-center"> 
+	    
+	    {% for related in collection.products %}
+		  	{% unless related.handle == product.handle %}     
+	  		    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+			    <a href="{{ related.url }}">
+			    <img class="mb-30 pic-md" src="{{ related | img_url: 'x100'}}" alt="">
+	
+	            <h4>{{ related.title }}</h4>
+	            <div class="mt-10">
+	            <p id="tape" class="tape-box-orange tape-thin tape-removed tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} d-inline-block">{{ related.price | money }}</p>
+	            </div>
+			    </a>
+	            </div>
+			 {% endunless %}			
+		{% endfor %}
+    </div>
+
+	</div>
+</section>
+
+{% endif %}

@@ -1,0 +1,20 @@
+<section class="grids p-60 p-lg-100 text-left">
+  <div class="container">
+	{% assign collection = collections[block.settings.collection] %}
+	{% assign should_truncate = false %}
+    {% for product in collection.products %}
+    <div class="row mb-60">
+      <div class="col-12 col-sm-3">
+        <img class="responsive" src="{{ product | img_url: 'x600'}}" alt=""> 
+      </div>
+      <div class="col-12 col-sm-9">
+        <h4><strong>{{ product.title }}</strong></h4>
+        <div class="product-description{% if should_truncate %} short-description{% endif %}" itemprop="description">
+        {{ product.description }}
+        </div>
+        <a class="btn btn-green" href="{{ product.url }}">{{ block.settings.collection_info }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

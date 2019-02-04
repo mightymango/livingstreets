@@ -29,6 +29,8 @@ $section-padding: {{ settings.section_spacing }}px;
 $tape-width: 100px;
 $tape-height: $tape-width / 3.92;
 
+$heading-weight: 600;
+
 $tape-scale: 2.2; /* How much smaller should the small tapes be? */
 
 $corner-radius: {{ settings.radius_size }}px;
@@ -324,6 +326,16 @@ main div.shopify-section  div:first-of-type section {
     border-radius: $corner-radius;
 }
 
+.dropdown-item {
+	font-weight: 400;
+}
+
+.dropdown-menu > a:hover {
+    background-color: $color-green;
+    color: $color-white;
+}
+
+
 .logo {
 	position: absolute;
 	left: 0;
@@ -576,6 +588,11 @@ div.locked  > .form-control-lock-wrapper {
   }
 }
 
+/* Social */
+.social {
+	width: 30px;
+}
+
 /* Scrolling */
 
 .scroll-item {
@@ -734,9 +751,14 @@ border-radius: $corner-radius;
 -webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 -moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+font-weight: $heading-weight;
 }
 #tape {
 color:#000;
+}
+
+#tape.lighter {
+	font-weight: 400;
 }
 
 #tape.tape-slim {
@@ -944,6 +966,11 @@ opacity: 1;
 -moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
 color:#000;
+font-weight: $heading-weight;
+}
+
+#box.lighter {
+	font-weight: 400;
 }
 
 #box.noshadow {
@@ -1239,6 +1266,29 @@ margin-left:20px;
 	padding: 20px;
 	text-align: right;	
 }
+
+/* ---- people ---- */
+.people {
+	position: absolute;
+	display: block;	
+}
+
+@media (max-width: $size-md) {
+  .people  {
+    display: none;
+  }
+}
+
+.people.people1 {
+	top: 30px;
+	right: 400px;
+}
+.people.people2 {		
+	top: 15px;
+	right: 50px;
+}
+
+
 
 
 /* ---- accordion ---- */

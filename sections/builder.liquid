@@ -102,17 +102,6 @@
 	  "id": "cross-sell-button",
 	  "label": "Button",
 	  "default": "Continue"	
-	},
-	{
-	   "type": "radio",
-	   "id": "enable_crossell_cancel",
-	   "options": [
-	      { "value": "yes", "label": "Yes"},
-	      { "value": "no", "label": "No"}
-	   ],
-	   "default":   "no",
-	   "label": "Enable cancel button",
-	   "info": "Switch on to allow users to cancel."
 	},	
 	{
 	   "type": "collection",
@@ -335,14 +324,22 @@ Calculate the correct variant index from the month
 					<div class="product-box text-center">
 						<div class="product-box-image">
 							<img src="{{ product | img_url: 'x150'}}" />
+							{% if product.available %}
 							<div class="product-box-button mt-40">
 							<button class="btn add-to-cart" data-id="{{ product_id }}">Add to cart</button>
 							</div>
+							{% endif %}	
 						</div>
 						<div class="product-box-footer">
 							<p class="product-box-title">{{ product.title }}</p>
-							<p id="tape" class="tape-thin tape-box-pink tape-removed tape-rotate-c-2">{{ product.price | money }} </p>
+							{% if product.available %}
+							<p id="tape" class="tape-thin tape-box-orange tape-removed tape-rotate-c-2">{{ product.price | money }} </p>
+							{% else %}
+							<p id="tape" class="tape-thin tape-box-black tape-removed">Out of Stock</p>
+							{% endif %}							
 						</div>
+						
+				
 					</div>
 				</div>						
 				{% endfor %}
@@ -350,9 +347,6 @@ Calculate the correct variant index from the month
 			</div>
 			
 			<div class="buttons">
-				{% if section.settings.enable_crossell_cancel == 'yes' %}
-				<button id="cancel" class="btn btn-orange">Cancel</button> 
-				{% endif %}
 				<input class="btn btn-green" type="submit" name="add" id="add" value="{{ section.settings.cross-sell-button }}">
 			</div>
 			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
@@ -374,6 +368,9 @@ Calculate the correct variant index from the month
 	$( document ).ready(function() {
 		
 		var quantityActive = false
+		
+		//Set cookie to track wow type
+		Cookies.set('wowType', 'unknown');
 
 {% if section.settings.enable_crossell == "yes" %}
 
@@ -385,7 +382,7 @@ Calculate the correct variant index from the month
 			console.log(cartUpdates)
 	
 		    var params = {
-		      async: false,
+		      async: true,
 		      type: 'POST',
 		      url: '/cart/update.js',	
 		      data: { updates: cartUpdates },	
@@ -476,7 +473,9 @@ Calculate the correct variant index from the month
 		}
 		
 		function addTravelTrackerToCart() {
-
+			
+			Cookies.set('wowType', 'tracker')
+			
 			var cartUpdates = { {{ travel_tracker_id }}: 1 }
 	
 		    var params = {
@@ -493,6 +492,9 @@ Calculate the correct variant index from the month
 
 		function addWallchartsToCart(number) {
 
+			Cookies.set('wowType', 'wallcharts')
+			Cookies.set('wallchartsCount', number)
+			
 			var cartUpdates = { {{ wall_charts_variant.id }}: number }
 	
 		    var params = {
@@ -577,10 +579,6 @@ Calculate the correct variant index from the month
 			evt.preventDefault();
 		});
 
-		$("#cancel").on('click', function(evt){
-			$(".cross-sell-overlay").hide();
-			evt.preventDefault();
-		});
 						
 		$( "#builder_form" ).submit(function( event ) {
 			
@@ -594,6 +592,13 @@ Calculate the correct variant index from the month
 			}
 			
 		});
+
+/*
+		$(".cross-sell-overlay").on('click', function(evt){
+			$(".cross-sell-overlay").hide();
+			evt.preventDefault();
+		});
+*/
 				
 						
 	});      

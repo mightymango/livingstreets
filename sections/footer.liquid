@@ -69,7 +69,22 @@
                     <a href="mailto:{{ shop.email }}">Email us</a>
                     </div>
                     <div class="socials mb-20">
-                     <a href=""><img src="{{ 'facebook.svg' | asset_url }}"></a><a href=""><img src="{{ 'twitter.svg' | asset_url }}"></a><a href=""><img src="{{ 'instagram.svg' | asset_url }}"></a><a href=""><img src="{{ 'youtube.svg' | asset_url }}"></a><a href=""><img src="{{ 'linkedin.svg' | asset_url }}"></a></div>
+                     {% if settings.facebook_url != blank %}
+                     <a href="{{ settings.facebook_url }}" class="mr--20"><img class="social" src="{{ 'facebook-white.svg' | asset_url }}"></a>
+                     {% endif %}
+                     {% if settings.twitter_url != blank %}
+                     <a href="{{ settings.twitter_url }}" class="mr--20"><img class="social" src="{{ 'twitter-white.svg' | asset_url }}"></a>
+                     {% endif %}
+                     {% if settings.instagram_url != blank %}
+                     <a href="{{ settings.instagram_url }}" class="mr--20"><img class="social" src="{{ 'instagram-white.svg' | asset_url }}"></a>
+                     {% endif %}
+                     {% if settings.youtube_url != blank %}
+                     <a href="{{ settings.youtube_url }}" class="mr--20"><img class="social" src="{{ 'youtube-white.svg' | asset_url }}"></a>
+                     {% endif %}
+                     {% if settings.linkedin_url != blank %}
+                     <a href="{{ settings.linkedin_url }}" class="mr--20"><img class="social" src="{{ 'linkedin-white.svg' | asset_url }}"></a>
+                     {% endif %}
+                    </div>
                     <div class="mb-20">
                     <a href="{{ section.settings.catalogue_url }}">Catalogue</a>
                     </div>						

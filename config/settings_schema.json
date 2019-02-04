@@ -191,5 +191,34 @@
         "info": "See [http:\/\/strfti.me](http:\/\/www.strfti.me)"
       }
     ]
+  },{
+    "name": "Social",
+    "settings": [
+		{
+		  "id": "facebook_url",
+		  "type": "url",
+		  "label": "Facebook"
+		},
+		{
+		  "id": "twitter_url",
+		  "type": "url",
+		  "label": "Twitter"
+		},
+		{
+		  "id": "instagram_url",
+		  "type": "url",
+		  "label": "Instagram"
+		},
+		{
+		  "id": "youtube_url",
+		  "type": "url",
+		  "label": "Youtube"
+		},
+		{
+		  "id": "linkedin_url",
+		  "type": "url",
+		  "label": "LinkedIn"
+		}
+    ]
   }
 ]
