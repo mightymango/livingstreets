@@ -41,11 +41,11 @@
         <div class="container">
             <div class="row justify-content-center align-items-stretch p-40 p-lg-40 mt-10">
                         
-                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0 text-center">
+                <div class="col-12 col-sm-6 col-md-3 mb-40 text-center text-sm-left text-md-center">
                    <image src="{{ section.settings.logo | img_url: 'x500' }}" /> 
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0">
+                <div class="col-12 col-sm-6 col-md-3 mb-40 text-center text-sm-left">
                     <h5 class="mb-5">{{ linklists[section.settings.first_nav].title }}</h5>
                     {% for link in linklists[section.settings.first_nav].links %}
                     <div class="mb-5">
@@ -54,7 +54,7 @@
                     {% endfor %}					
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0">
+                <div class="col-12 col-sm-6 col-md-3 mb-40 text-center text-sm-left">
                     <h5 class="mb-5">{{ linklists[section.settings.second_nav].title }}</h5>
                     {% for link in linklists[section.settings.second_nav].links %}
                     <div class="mb-5">
@@ -63,7 +63,7 @@
                     {% endfor %}						
                 </div>
                 
-                <div class="col-12 col-sm-6 col-md-3 mb-20 mb-sm-0">
+                <div class="col-12 col-sm-6 col-md-3 mb-40 text-center text-sm-left">
 					<h5 class="mb-5">{{ section.settings.contact_title }}</h5>
                     <div class="mb-20">
                     <a href="mailto:{{ shop.email }}">Email us</a>
@@ -90,7 +90,7 @@
                     </div>						
                 </div>
 
-                <div class="col-12 mt-20 mb-10 company-info">
+                <div class="col-12 mt-20 mb-10 company-info text-center text-sm-left">
 					&copy; {{ shop.name }} {{ "now" | date: "%Y" }} {{ section.settings.company_info }}
                 </div>                                               
 
