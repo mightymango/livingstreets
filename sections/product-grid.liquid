@@ -20,16 +20,6 @@
 	   "info": "The featured product will be given more prominence on the page."
 	},
 	{
-	    "type":      "range",
-	    "id":        "featured_position",
-	    "min":       1,
-	    "max":       10,
-	    "step":       1,
-	    "label":     "Position",
-	    "default":   1,
-	    "info": "Select the position of the featured product in the grid."
-	},
-	{
    "type": "collection",
    "id": "feature_collection",
    "label": "Featured collection"
@@ -49,16 +39,21 @@
 
     <section class="ecommerces" id="ecommerces-1">
         <div class="container">
-	        
+            	        
+        	{% for product in collection.products %}
+			      {% if product.handle == section.settings.feature_product %}
+			      <div class="row justify-content-center mb-30">
+			      {% include 'product-item-featured-front' %}
+			      </div>
+			      {% endif %}
+			{% endfor %}
+				  
 	        <div class="row">
 	            <div class="col-12 col-sm-6">
-	            <h2 id="box" class="d-inline-block box-rotate-c-1">{{ section.settings.heading }}</h2>
+	            <h2 id="box" class="d-inline-block box-yellow box-rotate-c-1">{{ section.settings.heading }}</h2>
 	            </div>
 	            <div class="col-12 col-sm-2">
 		            <img class="mt--30" src="{{ section.settings.people_image | img_url: 'x100' }}">
-	            </div>
-	            <div class="col-12 col-sm-4 text-right pt-40">
-		            <a class="btn d-block" href="{{ shop.url}}/collections/all">View Full Catalogue</a>
 	            </div>
 	        </div>
 
@@ -67,22 +62,11 @@
 			{{ collection.description }}
 			{% endif %}
 			
-            <div class="row">
-					
-				  {% for product in collection.products %}
-				      {% if product.handle == section.settings.feature_product %}
-				      {% capture featured %}
-				      {% include 'product-item-featured' %}
-				      {% endcapture %}
-				      {% endif %}
-				  {% endfor %}
+            <div class="row justify-content-center">
 				  
-				  {%- assign count = 0 -%}
 				  {%- assign position = section.settings.featured_position -%}
 				  {% for product in collection.products %}
 				      {% if product.handle != section.settings.feature_product %}
-				      {% assign count = count | plus: 1 %}
-				      {% if count == position %} {{ featured }} {% endif %}
 				      {% include 'product-item-no-buttons' %}
 				      {% endif %}
 				  {% else %}

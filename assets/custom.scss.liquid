@@ -1389,6 +1389,139 @@ font-size: 12px;
   color: $color-green !important;
 }
 
+/* ---- featured product front page---- */
+.featured-product-front {
+	margin-bottom: 100px;
+	width: 100%;
+	min-height: 350px;
+}
+
+.featured-product-front-left {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+.featured-product-front-right {
+	width: 50%;
+	height: 100%;
+	float: right;
+}
+
+.featured-product-front > .featured-product-front-left > img,
+.featured-product-front > .featured-product-front-right > img {
+	width: 80%;
+	background-color: $color-green;
+}
+
+.featured-product-front > .featured-product-front-right > .path-left {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 40%;
+	margin-left: -20%;
+	z-index: 20;
+}
+
+.featured-product-front > .featured-product-front-right > .path-right {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	width: 20%;
+	z-index: 0;
+}
+
+	
+.featured-product-front > .featured-product-front-right > .path-left > img,
+.featured-product-front > .featured-product-front-right > .path-right > img {
+	width:100%;
+	height:100%;
+}
+	
+.featured-product-front > .featured-product-front-left > .title-box,
+.featured-product-front > .featured-product-front-right > .title-box {
+	width: 80%;
+	height: auto;
+	padding: 20px;
+	float: right;
+	/*add a small drop shadow to the box*/
+	-webkit-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+	box-shadow: $shadow-size $shadow-size 3px 0px rgba(0,0,0,0.2);
+	z-index: 10;
+}
+
+.title-box > h4 {
+	line-height: 1.0em;
+}
+
+.title-box > div > p {
+	line-height: 1.4em;
+}
+
+.featured-product-front > .featured-product-front-left > .button-box,
+.featured-product-front > .featured-product-front-right > .button-box {
+	position: absolute;
+	bottom: 25px;
+	width: 80%;
+	height: auto;
+}
+
+.featured-product-front > .button-box > .featured-button {
+	width:100%;
+	position: static;
+}
+
+@media (max-width: $size-sm) {
+
+	.featured-product-front-left,
+	.featured-product-front-right {
+		width: 100%;
+		height: auto;
+		float: none;
+		margin-bottom: 20px;
+	}
+	
+	.featured-product-front > .featured-product-front-left > img,
+	.featured-product-front > .featured-product-front-right > img {
+		width: 100%;
+	}
+
+	.featured-product-front > .featured-product-front-right > .path-left,
+	.featured-product-front > .featured-product-front-right > .path-right {
+		display: none;
+	}
+		
+	.featured-product-front > .featured-product-front-left > .title-box,
+	.featured-product-front > .featured-product-front-right > .title-box {
+		width: 100%;
+		height: auto;
+		padding: 20px;
+		margin-right: 0px;
+		margin-left: 0px;
+		margin-bottom: 20px;
+		/*add a small drop shadow to the box*/
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+
+	.featured-product-front > .featured-product-front-left > .button-box,
+	.featured-product-front > .featured-product-front-right > .button-box {
+		position: static;
+		width: 100%;
+		height: auto;
+	}
+	.featured-product-front > .featured-product-front-left > .button-box > .featured-button,
+	.featured-product-front > .featured-product-front-right > .button-box > .featured-button {
+		width:100%;
+		position: static;
+	}
+
+}
+
 
 /* ---- featured product ---- */
 .featured-product {
