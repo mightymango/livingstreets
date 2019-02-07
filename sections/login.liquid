@@ -1,0 +1,139 @@
+<section class="forms text-center mt-100 pt-60 pt-lg-100 pb-40 pb-sm-60 pb-lg-80" id="login-form">
+  <div class="container">
+	
+	<div class="form-message form-message--success hidden" id="ResetSuccess">
+        {{ 'customer.recover_password.success' | t }}
+    </div>
+    
+    <h1 class="mb-10">{{ 'customer.login.title' | t }}</h1>
+      
+	{%- if form.errors -%}
+	<div class="form-message form-message--error">
+	  {{ form.errors | default_errors }}
+	</div>
+	{%- endif -%}
+          
+    {% form 'customer_login' %}
+    
+    <div class="row justify-content-center">
+	   <div class="col-12 col-md-9 col-lg-6"> 
+
+      <div class="row justify-content-center">
+       
+        <div class="col-12">
+
+            <div class="col-12 mb-20">           
+            <input class="form-control form-control-light bg-yellow outline outline-black-light text-black rounded placeholder-white shadow-small" type="email" name="customer[email]" id="CustomerEmail" placeholder="Your email address"  autofocus>
+            </div>
+                      
+           {% if form.password_needed %}
+            <div class="col-12 mb-20">
+                  <input class="form-control form-control-light bg-orange outline {% if form.errors contains 'password' %}outline-red{% else %}outline-black-light{% endif %} text-black rounded placeholder-white shadow-small"  type="password" name="customer[password]" id="CustomerPassword" placeholder="Password" ><span class="glyphicon glyphicon-eye-open form-control-feedback mr-20"></span>
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="col-12 ">
+          <input type="submit" value="{{ 'customer.login.sign_in' | t }}" class="btn"><p class="mt-20"><a href="#" id="reset-password">Reset my password</a></p>
+        </div>
+      </div>
+      	   
+	   
+	   </div>
+    </div>
+    
+      
+    {% endform %}
+    
+  </div>
+</section>
+
+
+<section class="forms text-center mt-100 pt-60 pt-lg-100 pb-40 pb-sm-60 pb-lg-80 hidden" id="reset-form">
+  <div class="container">
+    
+    <h1 class="mb-10">{{ 'customer.recover_password.title' | t }}</h1>
+    <p class="mb-10">{{ 'customer.recover_password.subtext' | t }}</p>
+    
+	{%- if form.errors -%}
+	<div class="form-message form-message--error">
+	  {{ form.errors | default_errors }}
+	</div>
+	{%- endif -%}
+          
+    {% form 'recover_customer_password' %}
+    
+    <div class="row justify-content-center">
+	   <div class="col-12 col-md-9 col-lg-6"> 
+
+      <div class="row justify-content-center">
+       
+        <div class="col-12">
+
+            <div class="col-12 mb-20">           
+            <input class="form-control form-control-light bg-yellow outline outline-black-light text-black rounded placeholder-white shadow-small" type="email" name="email" id="RecoverEmail" placeholder="Your email address"  autocorrect="off" autocapitalize="off">
+            </div>
+
+        </div>
+        <div class="col-12 ">
+          <input type="submit" value="{{ 'customer.recover_password.submit' | t }}" class="btn">
+          <p class="mt-20"><a href="#" id="cancel-reset">Cancel</a></p>
+        </div>
+      </div>
+      	   
+	   
+	   </div>
+    </div>
+    
+      
+    {% endform %}
+    
+      {% comment %}
+      If accounts are set as optional, the following will be shown as an option
+      during checkout, not on the default /login page.
+      {% endcomment %}
+      {% if shop.checkout.guest_login %}
+	  	
+	  	<div class="mt-30"
+          <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+          {% form 'guest_login' %}
+            <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+          {% endform %}
+		</div>
+      {% endif %}
+      
+    
+  </div>
+
+      
+</section>
+
+
+<script>
+	$( document ).ready(function() {
+		
+		function showLogin() {
+			$( "#login-form" ).removeClass("hidden")
+			$( "#reset-form" ).addClass("hidden")
+		}
+
+		function showReset() {
+			$( "#login-form" ).addClass("hidden")
+			$( "#reset-form" ).removeClass("hidden")
+		}
+					
+		
+		//Set listeners	
+		$("#reset-password").on('click', function(){
+			showReset() 
+		});
+
+		$("#cancel-reset").on('click', function(){
+			showLogin() 
+		});						
+					
+						
+	});      
+</script>
+

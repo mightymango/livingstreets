@@ -12,6 +12,10 @@ $color-yellow: {{ settings.color_4 }};
 $color-black: {{ settings.color_5 }};
 $color-white: {{ settings.color_6 }};
 
+$color-red: RGBA(190, 37, 60, 1.00);
+$color-grey: rgba(16,1,0,0.5);
+
+
 $color-overlay: $color-black;
 
 $color-footer: $color-black;
@@ -86,6 +90,34 @@ a {
 a:hover {
   color: {{ settings.hover_color }};
 }
+
+hr {
+  border: none;
+  width: 100%;
+  height: 2px;
+  background: $color-grey;
+  margin: 0;
+}
+
+.hr-green {
+  background: $color-green;
+}
+.hr-orange {
+  background: $color-orange;
+}
+.hr-yellow {
+  background: $color-yellow;
+}
+.hr-pink {
+  background: $color-pink;
+}
+.hr-black {
+  background: $color-black;
+}
+.hr-white {
+  background: $color-white;
+}
+
 
 /* Padding for all sections in main */
 main section {
@@ -289,7 +321,7 @@ main div.shopify-section  div:first-of-type section {
 	color: $color-white !important;	
 }
 .text-grey {
-	color: rgba(16,1,0,0.5) !important;	
+	color: $color-grey !important;	
 }
 
 .panel {
@@ -2146,6 +2178,81 @@ ul.pagination li a {
   }
 }
 
+
+/*================ Order ================*/
+.status {
+	color: $color-black;
+	text-transform: capitalize;
+	font-size: small;
+}
+.status-pending {
+	background-color: $color-orange;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+.status-authorized {
+	background-color: $color-green;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+.status-paid {
+	background-color: $color-green;
+	color: $color-white;
+}
+.status-paid {
+	background-color: $color-green;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+.status-partially_paid {
+	background-color: $color-orange;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+.status-refunded {
+	background-color: $color-green;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+.status-partially_refunded {
+	background-color: $color-orange;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+.status-voided {
+	background-color: $color-red;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+
+
+.status-unfulfilled {
+	background-color: $color-orange;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+
+.status-partially_fulfilled {
+	background-color: $color-orange;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
+
+.status-fulfilled {
+	background-color: $color-green;
+	color: $color-white;
+	padding: 5px;
+	border-radius: $corner-radius;
+}
 
 
 

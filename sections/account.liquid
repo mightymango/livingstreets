@@ -1,0 +1,72 @@
+{% layout settings.customer_layout %}
+
+<section class="mt-120">
+	
+<div class="container">
+ 
+<h2 class="title">Account Details and Order History</h2>
+<h4>{{ customer.name }} <small>{{ customer.email }}</small></h4>
+
+<hr class="hr-orange mt-10 mb-30" />
+ 
+
+  {% if customer.default_address != nil %}
+  <div class="d-inline-block mr-60 d-inline-block">
+    <h3>Default Address</h3>
+    <div class="mt-10">
+        <p>{{ customer.default_address.address1 }}</p>
+        {% if customer.default_address.address2 != "" %}
+          <p>{{ customer.default_address.address2 }}</p>
+        {% endif %}
+        <p>{{ customer.default_address.city}}, {% if address.province_code %}{{customer.default_address.province_code}}, {% endif %}{{customer.default_address.country}}</p>
+        <p>{{ customer.default_address.zip}}</p>
+        <p>{{ customer.default_address.phone }}</p>
+    </div>
+  </div>
+  {% endif %}
+  
+</div>
+</section>
+
+<section class="mt--50">
+	
+
+	
+<div id="customer_orders">
+	<div class="container">
+  {% if customer.orders.size != 0 %}
+  
+  <h3 class="mb-20">Orders</h3>
+  
+  <table class="w-full">
+    <thead>
+      <tr>
+        <th class="text-left">Order</th>
+        <th class="text-left">Date</th>
+        <th class="text-left">Payment</th>
+        <th class="text-left">Fulfillment</th>
+        <th class="text-right">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in customer.orders %}
+      <tr>
+        <td class="text-left">{{ order.name | link_to: order.customer_url }}</td>
+        <td class="text-left">{{ order.created_at | date: settings.date_format }}</td>
+        <td class="text-left"><span class="status status-{{ order.financial_status }}">{{ order.financial_status }}</span></td>
+        <td class="text-left"><span class="status status-{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></td>
+        <td class="text-right">{{ order.total_price | money }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>You haven't placed any orders yet.</p>
+  {% endif %}
+  
+  <div class="mt-50" id='return_to_store'><a class="btn btn-small" href="{{ shop.url }}">Return to Store</a></div>
+  
+	</div>
+</div>
+
+</section>
