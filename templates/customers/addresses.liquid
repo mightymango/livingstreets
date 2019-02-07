@@ -1,5 +1,9 @@
 {% layout settings.customer_layout %}
 
+<section>
+</section>
+
+<section>
 <div id="admin_header">
   <div class="action_link action_return note" id='return_to_account'><a href="/account">Return to Account page</a></div>
   <h2 class="title">Manage Account Address</h2>
@@ -161,3 +165,5 @@
     new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
   {% endfor %}
 </script>
+
+</section>

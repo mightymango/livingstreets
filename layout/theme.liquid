@@ -18,9 +18,9 @@
  
    {% include 'open-graph-tags' %}
    {% include 'twitter-card' %}
-  
-   {{ content_for_header }}
    
+   {{content_for_header}} 
+  
    {{ 'bootstrap-grid.min.css' | asset_url | stylesheet_tag }}
    {{ 'bootstrap-carousel.css' | asset_url | stylesheet_tag }}
    {{ 'main.css' | asset_url | stylesheet_tag }}
@@ -55,7 +55,8 @@
 {% if settings.show_designers == "yes" %}
 {% include 'designer' %}
 {% endif %}
-    
+ 
+   
     {{ 'custom.js' | asset_url | script_tag }}
 
 </body>

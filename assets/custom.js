@@ -14,6 +14,8 @@ function scrollFunction() {
 
 $( document ).ready(function() {
   
+  	$('[data-toggle="tooltip"]').tooltip()
+    
   	//Set mobile navbar
 	$( "#responsive" ).click(function() {
 	  $( "#mobile-navbar" ).slideToggle( "fast")
