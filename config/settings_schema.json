@@ -189,36 +189,44 @@
         "label": "Date format",
         "default": "%Y-%m-%d",
         "info": "See [http:\/\/strfti.me](http:\/\/www.strfti.me)"
+      },
+      {
+        "type": "text",
+        "id": "long_date_format",
+        "label": "Long date format",
+        "default": "%B %e, %Y at %H:%M",
+        "info": "See [http:\/\/strfti.me](http:\/\/www.strfti.me)"
       }
     ]
-  },{
+  },
+  {
     "name": "Social",
     "settings": [
-		{
-		  "id": "facebook_url",
-		  "type": "url",
-		  "label": "Facebook"
-		},
-		{
-		  "id": "twitter_url",
-		  "type": "url",
-		  "label": "Twitter"
-		},
-		{
-		  "id": "instagram_url",
-		  "type": "url",
-		  "label": "Instagram"
-		},
-		{
-		  "id": "youtube_url",
-		  "type": "url",
-		  "label": "Youtube"
-		},
-		{
-		  "id": "linkedin_url",
-		  "type": "url",
-		  "label": "LinkedIn"
-		}
+      {
+        "id": "facebook_url",
+        "type": "url",
+        "label": "Facebook"
+      },
+      {
+        "id": "twitter_url",
+        "type": "url",
+        "label": "Twitter"
+      },
+      {
+        "id": "instagram_url",
+        "type": "url",
+        "label": "Instagram"
+      },
+      {
+        "id": "youtube_url",
+        "type": "url",
+        "label": "Youtube"
+      },
+      {
+        "id": "linkedin_url",
+        "type": "url",
+        "label": "LinkedIn"
+      }
     ]
   }
 ]

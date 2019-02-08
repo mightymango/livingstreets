@@ -174,7 +174,7 @@ Calculate the correct variant index from the month
 	<div class="row">
 	
 	<div class="col-12 col-sm-6">
-		<img class="image pic-md" src="{{ product | img_url: 'x600'}}" alt=""/>
+		<img class="image" src="{{ product | img_url: 'x600'}}" alt=""/>
 		{% if first_image %}
 		<img class="d-none d-md-block pt-50" src="{{ first_image | img_url: 'x50' }}">
 		{% endif %}
@@ -232,7 +232,7 @@ Calculate the correct variant index from the month
                </span>  
                
                <span class="form-control-lock-wrapper">
-                	<span id="percentage-lock" class="stepper glyphicon glyphicon-lock stepper-no-border"></span>
+                	<span id="percentage-lock" class="stepper glyphicon glyphicon-lock stepper-no-border" data-toggle="tooltip" data-placement="right" title="Click to manually set the percentage."></span>
                </span>
                
               </div>
@@ -249,9 +249,9 @@ Calculate the correct variant index from the month
                <span class="form-control-stepper-wrapper">
                 	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
                </span> 
-               
+              
                <span class="form-control-lock-wrapper">
-                	<span id="quantity-lock" class="stepper glyphicon glyphicon-lock stepper-no-border"></span>
+                	<span id="quantity-lock" class="stepper glyphicon glyphicon-lock stepper-no-border" data-toggle="tooltip" data-placement="right" title="Click to manually set the number of badges."></span>
                </span>
                 
               </div>
@@ -261,7 +261,6 @@ Calculate the correct variant index from the month
 	          <label class="d-block">{{ section.settings.classes }}</label>
               <div class="w-p-100 w-p-50-sm">
                <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="classes" name="properties[Classes]" min="1" step="1" value="1" placeholder=""/>
-<!--                <span class="glyphicon glyphicon-lock form-control-feedback d-none"></span> -->
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
                </span>

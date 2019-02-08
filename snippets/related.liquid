@@ -11,11 +11,15 @@
 		  	{% unless related.handle == product.handle %}     
 	  		    <div class="col-12 col-sm-6 col-lg-4 slider-item">
 			    <a href="{{ related.url }}">
-			    <img class="mb-30 pic-md" src="{{ related | img_url: 'x100'}}" alt="">
+			    <img class="mb-30" src="{{ related | img_url: 'x100'}}" alt="">
 	
 	            <h4>{{ related.title }}</h4>
 	
-	            <p>{{ related.price | money }} </p>
+				{% if related.price > 0 %}
+	            <div class="mt-10">
+	            <p id="tape" class="tape-box-orange tape-thin tape-removed tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} d-inline-block">{{ related.price | money }}</p>
+	            </div>
+	            {% endif %}
 			    </a>
 	            </div>
 			 {% endunless %}			
@@ -23,7 +27,7 @@
     </div>
 	    {% if section.settings.show_all == 'yes' %}
 	    <div class="mt-20">
-		    <p><a href="{{ collection.url }}">View all related products</a></p>
+		    <p><a class="btn btn-small" href="{{ collection.url }}">View all related products</a></p>
 	    </div>
 	    {% endif %}
 	</div>

@@ -44,9 +44,9 @@
       {% if section.settings.image_position  == 'left' %}
       <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
 	      {% if section.settings.image %}
-	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
+	      <img class="image" src="{{ section.settings.image | img_url }}" alt=""/>      
 		  {% else %}
-	      <img class="image pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt=""/>
+	      <img class="image" src="{{ 'img-4-3.png' | asset_url }}" alt=""/>
 	      {% endif %}
       </div>
       <div class="col-12 col-sm-6 col-lg-5">
@@ -65,9 +65,9 @@
       </div> 
             <div class="col-12 col-sm-6 col-lg-6 mb-30 mb-sm-0">
 	      {% if section.settings.image %}
-	      <img class="image pic-md" src="{{ section.settings.image | img_url }}" alt=""/>      
+	      <img class="image" src="{{ section.settings.image | img_url }}" alt=""/>      
 		  {% else %}
-	      <img class="image pic-md" src="{{ 'img-4-3.png' | asset_url }}" alt=""/>
+	      <img class="image" src="{{ 'img-4-3.png' | asset_url }}" alt=""/>
 	      {% endif %}
       </div>     
       {% endif %}
