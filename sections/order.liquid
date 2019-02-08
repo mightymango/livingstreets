@@ -51,6 +51,7 @@
   <thead>
     <tr>
       <th class="text-left"></th>
+      <th class="text-left"></th>
       <th class="text-right">Price</th>
       <th class="text-right">Quantity</th>
       <th class="text-right">Total</th>
@@ -59,8 +60,19 @@
   <tbody>
     {% for line_item in order.line_items %}
     <tr id="{{ line_item.id }}">
+	   <td class="text-center">
+		  <img class="pr-20" src="{{ line_item | img_url: 'x50' }}"  alt="{{ item.title | escape }}" />  
+	   </td>
       <td class="text-left">
-        <img class="pr-20" src="{{ line_item | img_url: 'x50' }}"  alt="{{ item.title | escape }}" /> {{ line_item.title | link_to: line_item.product.url }} 
+       {{ line_item.title | link_to: line_item.product.url }} 
+        {% unless line_item.properties == empty %}
+		<br/><small class="d-block text-grey">
+		  {% for property in line_item.properties %}
+		  {{ property.first }}: {{ property.last }}&nbsp;&nbsp;
+		  {% endfor %}
+		</small>
+		{% endunless %}
+							
       </td>
       <td class="text-right">{{ line_item.price | money }}</td>
       <td class="text-right">{{ line_item.quantity }}</td>
