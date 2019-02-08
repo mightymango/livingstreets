@@ -1,0 +1,70 @@
+{% schema %}
+{
+  "name": "Register",
+  "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Create Account"
+    },
+	{
+      "type": "text",
+      "id": "info",
+      "label": "Information",
+      "default": "To create your account, please enter the details below."
+    }
+  ]
+}
+{% endschema %}
+
+<section class="forms text-center mt-100 pt-60 pt-lg-100 pb-40 pb-sm-60 pb-lg-80" id="forms-2">
+  <div class="container">
+    <h1 class="mb-10">{{ section.settings.heading | escape }}</h1>
+    <p class="mb-40">{{ section.settings.info | escape }}</hp>
+    
+	{%- if form.errors -%}
+	<div class="form-message form-message--error">
+	  {{ form.errors | default_errors }}
+	</div>
+	{%- endif -%}
+          
+    {% form 'create_customer' %}
+    
+    <div class="row justify-content-center">
+	   <div class="col-12 col-md-9 col-lg-6"> 
+
+      <div class="row justify-content-center">
+       
+        <div class="col-12">
+
+            <div class="col-12 mb-20">
+                <input class="form-control form-control-light bg-yellow outline outline-black-light text-black rounded placeholder-white shadow-small" type="text" name="customer[first_name]" id="FirstName" placeholder="First name" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autofocus required>
+            </div>
+            <div class="col-12 mb-20">
+                <input class="form-control form-control-light bg-yellow outline outline-black-light text-black rounded placeholder-white shadow-small" type="text" name="customer[last_name]" id="LastName" placeholder="Last name" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} required>
+            </div>
+             <div class="col-12 mb-20">
+                <input class="form-control form-control-light bg-green outline outline-black-light text-black rounded placeholder-white shadow-small" type="email" name="customer[email]" id="Email" placeholder="Email" class="{% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off" required>
+            </div>
+            <div class="col-12 mb-20">
+                  <input class="form-control form-control-light bg-orange outline outline-black-light text-black rounded placeholder-white shadow-small"  type="password" name="customer[password]" id="CreatePassword" placeholder="Password" class="{% if form.errors contains 'password' %} input--error{% endif %}" required><span class="glyphicon glyphicon-eye-open form-control-feedback"></span>
+            </div>
+
+        </div>
+        <div class="col-12 ">
+          <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+        </div>
+      </div>
+      	   
+	   
+	   </div>
+    </div>
+    
+      
+    {% endform %}
+    
+  </div>
+</section>
+
+
