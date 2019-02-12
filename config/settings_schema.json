@@ -195,6 +195,17 @@
         "label": "Long date format",
         "default": "%B %e, %Y at %H:%M",
         "info": "See [http:\/\/strfti.me](http:\/\/www.strfti.me)"
+      },
+      {
+        "type": "range",
+        "id": "character_limit",
+        "min": 500,
+        "max": 2000,
+        "step": 100,
+        "unit": "chr",
+        "label": "Description characters",
+        "default": 800,
+        "info": "The number of characters used to decide if the product description should be truncated."
       }
     ]
   },

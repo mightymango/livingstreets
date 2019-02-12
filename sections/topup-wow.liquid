@@ -1,0 +1,72 @@
+{% schema %}
+  {
+    "name": "Top-up Products",
+    "settings": [
+	{
+		"id": "heading",
+		"type": "text",
+		"label": "Heading",
+		"default": "Add your text here",
+		"info": "Leave blank to hide the heading."
+	},
+	{
+		"id": "intro_text",
+		"type": "textarea",
+		"label": "Information",
+		"info": "Leave blank to hide the text."
+	},
+		{
+		"type": "collection",
+		"id": "topup_collection",
+		"label": "Top-up Collection"
+		},
+		{
+		"id": "view_all",
+		"type": "text",
+		"label": "Link",
+		"default": "View All",
+		"info": "Leave blank to hide the link."
+		}
+  ]
+  }
+{% endschema %}
+
+{% assign collection = collections[section.settings.topup_collection] %}
+
+{% if section.settings.topup_collection != blank %}
+<section class="sliders text-center p-50" id="sliders-1">
+		
+	<div class="container text-left">
+	    <h2 id="box" class="box-yellow box-slim box-rotate-a-1 {% if section.settings.intro_text == blank %}mb-40 mb-lg-60{% endif %} d-inline-block">{{ section.settings.heading | escape }}</h2>  
+	    {% unless section.settings.intro_text == blank %} 
+	    <h4 class="text-left mb-30 box-align">{{ section.settings.intro_text | escape | newline_to_br }}</h4> 
+	    {% endunless %} 
+	</div> 
+	
+	<div class="container mb-40">
+		    
+    <div class="slider slider-rounded-buttons" id="related-products-no-dots"> 
+	    {% for related in collection.products %}
+		  	{% unless related.handle == product.handle %}     
+	  		    <div class="col-12 col-sm-6 col-md-4 col-lg-3 slider-item">
+			    <a href="{{ related.url }}">
+			    <img class="mb-30" src="{{ related | img_url: 'x100'}}" alt="">
+	
+	            <h4>{{ related.title }}</h4>
+	
+	            <p>{{ related.price | money }} </p>
+			    </a>
+	            </div>
+			 {% endunless %}			
+		{% endfor %}
+    </div>
+	    {% if section.settings.view_all != blank %}
+	    <div>
+		    <p class="mt-30"><a class="btn" href="{{ collection.url }}">{{ section.settings.view_all }}</a></p>
+	    </div>
+	    {% endif %}
+	</div>
+</section>       
+{% endif %}
+
+

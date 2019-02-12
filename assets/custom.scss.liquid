@@ -577,7 +577,7 @@ input[type=number] {
 }
 .form-control-stepper-wrapper {
   position: absolute;
-  top: 1px;
+  top: -1px;
   right: 0;
   opacity: 1;
   width: 60px;
@@ -612,7 +612,7 @@ input[type=number] {
 /* Locked input */
 .form-control-lock-wrapper {
   position: absolute;
-  top: 1px;
+  top: -1px;
   right: 0;
   opacity: 1;
   width: 60px;
@@ -731,6 +731,10 @@ div.locked  > .form-control-lock-wrapper {
 .product-description-small > p {
 	font-size: 16px;
 	line-height: 1.1;
+}
+
+.badge-image {
+	cursor: pointer;
 }
 
 .hidden {
@@ -2272,4 +2276,42 @@ ul.pagination li a {
 
 .policy > p {
 	padding-bottom: 20px;
+}
+
+/*================ Margin (Fine) ================*/
+.mt-1 {
+  margin-top: 1px;
+}
+.mt-2 {
+  margin-top: 2px;
+}
+.mt-3 {
+  margin-top: 3px;
+}
+.mt-4 {
+  margin-top: 4px;
+}
+.mt-5 {
+  margin-top: 5px;
+}
+
+/*================ Image ================*/
+.image {
+  background: $color-white;
+  border-radius: $corner-radius;
+}
+.image-yellow {
+  background: $color-yellow;
+}
+.image-green {
+  background: $color-green;
+}
+.image-pink {
+  background: $color-pink;
+}
+.image-orange {
+  background: $color-orange;
+}
+.image-black {
+  background: $color-black;
 }

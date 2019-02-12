@@ -50,7 +50,7 @@
                 <div class="divTableHeading">
                     <div class="divTableRow">
                         {% if section.settings.cart_images_enabled %}
-                        <div class="divTableCell">
+                        <div class="divTableCell" style="max-width: 50px;">
 							<!-- image -->
                         </div>
                         {% endif %}
@@ -90,7 +90,7 @@
       					
                     <div class="divTableRow">
                        {% if section.settings.cart_images_enabled %}
-                        <div class="divTableCell">
+                        <div class="divTableCell" style="max-width: 50px;">
                             <img src="{{ item | img_url: 'x80' }}"  alt="{{ item.title | escape }}" />
                         </div>
                         {% endif %}
@@ -131,6 +131,10 @@
                         <div class="divTableCell">
                             &nbsp;
                         </div>
+                        
+                        <div class="divTableCell">
+                            &nbsp;
+                        </div>
 
                         <div class="divTableCell text-right">
                             Subtotal:
@@ -148,14 +152,30 @@
             <div class="text-right">
 	            <p>{{ section.settings.comment }}</p>
             </div>
-                        
+
+            <div class="row justify-content-end mt-20">
+	            
+	            <div class="col-12 col-sm-4">
+		            <p class="cart-attribute__field text-right text-grey">
+						If you <strong>intend paying by Purchase Order</strong>, please enter the number before checking out
+						<input class="form-control form-control-light form-control-small bg-yellow text-black text-center" id="purchase-order-number" type="text" name="attributes[Purchase Order Number]" value="{{ cart.attributes["Purchase Order Number"] }}">
+					</p>
+	            </div>
+			
+			</div>
+			                        
             <div class="p-30 p-lg-50 text-right">
 	            <a href="{{ continue_shopping_url }}" class="btn btn-light mr-15"><span>Continue Shopping</span></a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
             </div>
             
+
+
+            
 			</form>
             
         </div>
+       
+
     </section>
 
 {% else %}

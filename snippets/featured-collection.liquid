@@ -1,0 +1,28 @@
+    <div class="col-12 featured-product-front">
+    
+    <div class="featured-product-front-left">
+    <img src="{{ collection | img_url: 'x200'}}" alt="">
+    </div>
+    
+    <div class="featured-product-front-right">
+		
+		<div class="path-left">
+		<img src="{{ 'left-path.svg' | asset_url }}">
+		</div>
+				
+		<div class="title-box bg-yellow text-left rounded">
+		    <h4><strong>{{ collection.title }}</strong></h4>
+		    <div class="product-description short-description product-description-small pt-10" >{{ collection.description }}</div>
+		</div>
+		
+		<div class="button-box">
+			<a href="{{ collection.url }}" class="btn btn-block featured-button">{{ section.settings.button-text }}</a>
+		</div>
+		
+		<div class="path-right">
+			<img src="{{ 'right-path.svg' | asset_url }}">
+		</div>
+			
+    </div>
+			
+</div>              

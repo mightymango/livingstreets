@@ -443,7 +443,7 @@ h5 {
   line-height: 20px;
   padding: 20px;
   font-weight: 400;
-  max-height: 60px;
+  min-height: 60px;
   color: #3fa2f7;
   border: none;
   -webkit-box-shadow: none;
@@ -455,7 +455,16 @@ h5 {
   resize: none;
 }
 .form-control-no-max {
- max-height: none;	
+ min-height: none;	
+}
+.form-control-fixed {
+ height: 60px;	
+}
+.form-control-half {
+ width: 50%;
+}
+.form-control-quarter {
+ width: 25%;
 }
 .form-control-light {
   background: #e4f1fd;

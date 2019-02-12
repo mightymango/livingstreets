@@ -118,7 +118,7 @@
 	                    <h2 id="tape" class="tape-green tape-box-orange mb-20 d-inline-block">{{ product.title }}</h2>
 	                    </div>
 	
-						{%- if product.description.size > 800 -%}
+						{%- if product.description.size > settings.character_limit -%}
 						{%- assign should_truncate = true -%}
 						{%- else -%}
 						{%- assign should_truncate = false -%}
@@ -157,8 +157,8 @@
 						{% if section.settings.show_quantity == "yes" %}    
                         <div class="col-12 col-sm-6 mb-20">
                             <label class="d-block"><strong>Quantity</strong></label>
-                            <div>
-				               <input class="form-control form-control-light bg-white outline outline-black text-black rounded shadow-small" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
+                            <div class="mt-1">
+				               <input class="form-control form-control-light form-control-fixed bg-white outline outline-black text-black rounded shadow-small" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
 				               <span class="form-control-stepper-wrapper form-control-stepper-left">
 				                	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
 				               </span>

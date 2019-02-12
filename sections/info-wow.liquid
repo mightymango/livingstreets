@@ -18,7 +18,7 @@
 		"id": "text",
 		"type": "textarea",
 		"label": "Text",
-		"default": "Add your text here"
+		"info": "Leave blank to use the product description."
 	}
   ]
 }
@@ -38,8 +38,12 @@
 		{% endif %}
         </div>
         {% endif %}
-        <h4>
+        <h4 class="product-description">
+          {% if section.settings.text != empty %}
           {{ section.settings.text | escape | newline_to_br }}
+          {% else %}
+          {{ product.description }}
+          {% endif %}
         </h4>
       </div>
     </div>

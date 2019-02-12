@@ -174,7 +174,18 @@ Calculate the correct variant index from the month
 	<div class="row">
 	
 	<div class="col-12 col-sm-6">
-		<img class="image" src="{{ product | img_url: 'x600'}}" alt=""/>
+		<img class="image big-image" src="{{ product | img_url: 'x600'}}" alt=""/>
+		
+		<div class="row">
+			{% for image in product.images %}
+			{% if forloop.first != true %}
+			<div class="col-2 text-center">
+				<img class="d-none d-md-block pt-50 w-50 badge-image" src="{{ image | img_url: 'x600' }}">
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+		
 		{% if first_image %}
 		<img class="d-none d-md-block pt-50" src="{{ first_image | img_url: 'x50' }}">
 		{% endif %}
@@ -210,7 +221,7 @@ Calculate the correct variant index from the month
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.number-on-roll }}</label>
               <div class="w-p-100 w-p-50-sm">
-                <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
+                <input class="form-control form-control-light form-control-fixed bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="numberOnRoll" name="properties[Number on roll]" min="1" step="1" value="200" placeholder=""/>
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
                </span>
@@ -223,7 +234,7 @@ Calculate the correct variant index from the month
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.percentage }}</label>
               <div id="percentage-input" class="w-p-100 w-p-50-sm">
-                <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
+                <input class="form-control form-control-light form-control-fixed bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="percentage" name="properties[Percentage]" min="1" max="100" step="1" value="65" placeholder=""/>
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
                </span>
@@ -241,7 +252,7 @@ Calculate the correct variant index from the month
             <div class="mb-20">
 	          <label class="d-block">{{ section.settings.quantity }}</label>
               <div id="quantity-input" class="w-p-100 w-p-50-sm locked">
-               <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="subscriptions" name="properties[Badges]" min="10" step="10" value="130" placeholder="" readonly />
+               <input class="form-control form-control-light form-control-fixed bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="subscriptions" name="properties[Badges]" min="10" step="10" value="130" placeholder="" readonly />
                               
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
@@ -260,7 +271,7 @@ Calculate the correct variant index from the month
             <div class="mb-20 hidden classes-input">
 	          <label class="d-block">{{ section.settings.classes }}</label>
               <div class="w-p-100 w-p-50-sm">
-               <input class="form-control form-control-light bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="classes" min="1" step="1" value="1" placeholder=""/>
+               <input class="form-control form-control-light form-control-fixed bg-white outline outline-black-light text-black rounded shadow-small" type="number" id="classes" min="1" step="1" value="1" placeholder=""/>
                <span class="form-control-stepper-wrapper form-control-stepper-left">
                 	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
                </span>
@@ -415,6 +426,15 @@ Calculate the correct variant index from the month
 			quantityActive = false
 		
 		}
+		
+		function swapImages(image){
+			var bigSource = $(".big-image").attr('src')
+			var smallSource = image.attr('src')
+			
+			$(".big-image").attr('src', smallSource)
+			image.attr('src', bigSource)
+			
+		}
 					
 		function calculatePacksFor(subscriptions) {
 			var packSize = 10
@@ -552,7 +572,11 @@ Calculate the correct variant index from the month
 		$("#quantity-lock").on('click', function(){
 			unlockQuantity() 
 		});
-						
+
+		$(".badge-image").on('click', function(){
+			swapImages($(this)) 
+		});
+								
 		
 		$("#alternative").change(function(){
 		    useAlternative = $(this).prop('checked')

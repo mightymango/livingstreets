@@ -1,0 +1,39 @@
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+	{
+	"type": "collection",
+	"id": "feature_collection",
+	"label": "Featured collection"
+   },
+      {
+        "id": "button-text",
+        "type": "text",
+        "label": "Button Text",
+        "default": "Take a Look"
+      }
+
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+     
+    {% assign collection = collections[section.settings.feature_collection] %}
+
+    <section class="ecommerces" id="ecommerces-1">
+        <div class="container">
+            	        
+	      <div class="row justify-content-center mb-30">
+	      {% include 'featured-collection' %}
+	      </div>
+			          
+        </div>
+    </section>
+    
+
