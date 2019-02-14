@@ -82,33 +82,33 @@
   </tbody>
   <tfoot>
     <tr>
-      <td class="text-right" colspan="3"><strong>Sub-total:</strong></td>
+      <td class="text-right" colspan="4"><strong>Sub-total:</strong></td>
       <td class="text-right">{{ order.subtotal_price | money }}</td>
     </tr>
 
     {% for discount in order.discounts %}
       <tr>
-        <td class="text-right" colspan="3"><strong>{{ discount.code }} Discount:</strong></td>
+        <td class="text-right" colspan="4"><strong>{{ discount.code }} Discount:</strong></td>
         <td class="text-right">{{ discount.savings | money }}</td>
       </tr>
     {% endfor %}
 
     {% for shipping_method in order.shipping_methods %}
     <tr>
-      <td class="text-right" colspan="3"><strong>Shipping ({{ shipping_method.title }}):</strong></td>
+      <td class="text-right" colspan="4"><strong>Shipping ({{ shipping_method.title }}):</strong></td>
       <td class="text-right">{{ shipping_method.price | money }}</td>
     </tr>
     {% endfor %}
 
     {% for tax_line in order.tax_lines %}
       <tr>
-        <td class="text-right" colspan="3"><strong>{{ tax_line.title }} {{ tax_line.rate | times: 100 }}%:</strong></td>
+        <td class="text-right" colspan="4"><strong>{{ tax_line.title }} {{ tax_line.rate | times: 100 }}%:</strong></td>
         <td class="text-right">{{ tax_line.price | money }}</td>
       </tr>
     {% endfor %}
 
     <tr>
-      <td class="text-right" colspan="3"><strong>Total:</strong></td>
+      <td class="text-right" colspan="4"><strong>Total:</strong></td>
       <td class="text-right">{{ order.total_price | money }}</td>
     </tr>
   </tfoot>

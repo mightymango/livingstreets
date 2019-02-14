@@ -36,7 +36,28 @@
 	   ],
 	   "label": "Background colour",
 	   "default": "white"
-	   }
+	   },
+	{
+		"id": "added",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Added",
+		"info": "Title for the message displayed when a product is added to the cart. Leave blank to hide the title."
+	},
+	{
+		"id": "message",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Your selected product has been added to your basket.",
+		"info": "The message displayed when a product is added to the cart."
+	},
+		{
+		"id": "empty_collection",
+		"type": "text",
+		"label": "Empty message",
+		"default": "There are no products in this view.",
+		"info": "The message displayed when collection is empty."
+	}
   ]
 }
 {% endschema %}
@@ -61,15 +82,17 @@
 						  {%- assign count = 0 -%}
 						  {%- assign position = section.settings.featured_position -%}
 						  {% for product in collection.products %}
-						  	{%- if product.price > 0 -%}
-						      {% if product.handle != section.settings.feature_product %}
-						      {% assign count = count | plus: 1 %}
-						      {% if count == position %} {{ featured }} {% endif %}
-						      {% include 'product-item' %}
-						      {% endif %}
-						    {%- endif -%}
+						  	{%- unless product.type == "Hidden" -%}
+							  	{%- if product.price > 0 -%}
+							      {% if product.handle != section.settings.feature_product %}
+							      {% assign count = count | plus: 1 %}
+							      {% if count == position %} {{ featured }} {% endif %}
+							      {% include 'product-item' %}
+							      {% endif %}
+							    {%- endif -%}
+						    {%- endunless -%}
 						  {% else %}
-						    <h2>There are no products in this view.</h2>
+						    <h2>{{ section.settings.empty_collection }}</h2>
 						  {% endfor %}
 
                     </div>
@@ -108,7 +131,7 @@
 		      success:function(data) {
 			      console.log(data)
 			   updateCartCount(data.item_count)
-			   notifyUser('Added', 'You selected product has been added to your basket.', 3000);		        
+			   notifyUser('{{ section.settings.added }}', '{{ section.settings.message }}', 3000);		        
 		      }	
 		    };
 		    

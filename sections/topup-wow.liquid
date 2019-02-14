@@ -54,7 +54,7 @@
 	
 	            <h4 class="mb-20">{{ related.title }}</h4>
 	
-	            <p id="tape" class="tape-box-orange tape-thin tape-removed tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} d-inline-block">{{ related.price | money }}</p>
+	            <p id="tape" class="tape-box-orange tape-thin tape-removed tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} d-inline-block">{{ related.price | money }} {{ settings.tax_format }}</p>
 			    </a>
 	            </div>
 			 {% endunless %}			

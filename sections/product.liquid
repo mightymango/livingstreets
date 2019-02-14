@@ -149,7 +149,7 @@
 					{% if product.available %}
 					
 					 	<div class="mb-30">
-	                        {{ product.price | money }} (Ex. VAT)
+	                        {{ product.price | money }}  {{ settings.tax_format }}
 	                    </div>
 	                    
 					    <div class="row">

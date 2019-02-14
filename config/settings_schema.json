@@ -127,6 +127,12 @@
     "name": "Display",
     "settings": [
       {
+        "type": "text",
+        "id": "tax_format",
+        "label": "VAT label",
+        "default": "(Ex. VAT)"
+      },
+      {
         "type": "range",
         "id": "shadow_size",
         "min": 0,

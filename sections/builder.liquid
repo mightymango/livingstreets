@@ -107,6 +107,20 @@
 	   "type": "collection",
 	   "id": "cross_sell_collection",
 	   "label": "Cross-sell collection"
+	},
+	{
+		"id": "added",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Added",
+		"info": "Title for the message displayed when a product is added to the cart. Leave blank to hide the title."
+	},
+	{
+		"id": "message",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Your selected product has been added to your basket.",
+		"info": "The message displayed when a product is added to the cart."
 	}
   ],
   "blocks": [
@@ -343,7 +357,7 @@ Calculate the correct variant index from the month
 						<div class="product-box-footer">
 							<p class="product-box-title">{{ product.title }}</p>
 							{% if product.available %}
-							<p id="tape" class="tape-thin tape-box-orange tape-removed tape-rotate-c-2">{{ product.price | money }} </p>
+							<p id="tape" class="tape-thin tape-box-orange tape-removed tape-rotate-c-2">{{ product.price | money }}  {{ settings.tax_format }}</p>
 							{% else %}
 							<p id="tape" class="tape-thin tape-box-black tape-removed">Out of Stock</p>
 							{% endif %}							
@@ -390,13 +404,16 @@ Calculate the correct variant index from the month
 			var cartUpdates = JSON.parse(jsonString)
 		
 			console.log(cartUpdates)
-	
+
 		    var params = {
 		      async: true,
 		      type: 'POST',
 		      url: '/cart/update.js',	
 		      data: { updates: cartUpdates },	
-		      dataType: 'json'	
+		      dataType: 'json',
+		      success:function(data) {
+			   notifyUser('{{ section.settings.added }}', '{{ section.settings.message }}', 3000);		        
+		      }	
 		    };
 		    
 		    $.ajax(params);			
