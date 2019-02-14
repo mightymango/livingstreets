@@ -15,16 +15,16 @@
       "label": "People"
     },
 	{
-		"id": "text",
-		"type": "textarea",
-		"label": "Text",
-		"info": "Leave blank to use the product description."
+		"type": "html",
+		"id": "html_area",
+		"label": "Custom HTML",
+		"info": "This code will appear below the product description."
 	}
   ]
 }
 {% endschema %}
 
-<section class="contents text-center text-sm-left pt-100 pt-lg-140" id="image-with-text">
+<section class="contents text-center text-sm-left pt-100 pt-lg-140 mb-20" id="image-with-text">
   <div class="container">
     <div class="row justify-content-between align-items-center">
       <div class="col-12">
@@ -38,13 +38,9 @@
 		{% endif %}
         </div>
         {% endif %}
-        <h4 class="product-description">
-          {% if section.settings.text != empty %}
-          {{ section.settings.text | escape | newline_to_br }}
-          {% else %}
+        <div class="product-description">
           {{ product.description }}
-          {% endif %}
-        </h4>
+        </div>
       </div>
     </div>
   </div>

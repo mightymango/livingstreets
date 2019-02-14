@@ -1,0 +1,46 @@
+{% schema %}
+{
+  "name": "Related Collection",
+  "settings": [
+	{
+		"id": "text",
+		"type": "text",
+		"label": "Text"
+	},
+	{
+		"id": "button",
+		"type": "text",
+		"label": "Button",
+		"default": "View products"
+	},
+	{
+		"type": "collection",
+		"id": "related_collection",
+		"label": "Collection",
+		"info": "The section will only be visible if a collection has been set."
+		}
+  ]
+}
+{% endschema %}
+
+{% unless section.settings.related_collection == blank %}
+{% assign collection = collections[section.settings.related_collection] %}
+
+<section class="call-to-actions text-center mt--100" id="call-to-actions-2">
+  <div class="container">
+    <div class="row justify-content-center bg-orange pt-40 rounded shadow-below">
+      
+      <div class="col-12 col-md-8">
+        <h4 class="mb-40 text-center text-white">
+          {{ section.settings.text | escape }}
+        </h4>
+      </div>
+       
+      <div class="col-12 col-md-4">
+        <a href="{{ collection.url }}" class="btn btn-yellow"><span>{{ section.settings.button | escape }}</span></a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+{% endunless %}

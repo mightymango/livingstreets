@@ -1,0 +1,160 @@
+{% schema %}
+  {
+    "name": "Donations",
+    "max_blocks": 3,
+    "settings": [
+	    {
+        "id": "gift_title",
+        "type": "text",
+        "label": "Gift-aid title"
+      },
+	    {
+        "id": "gift_sub_title",
+        "type": "text",
+        "label": "Gift-aid sub-title"
+      },
+	    {
+        "id": "gift_conditions",
+        "type": "textarea",
+        "label": "Gift-aid conditions"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "card",
+        "name": "Cards",
+        "settings": [
+          {
+	      "type": "image_picker",
+	      "id": "image",
+	      "label": "Card image"
+	    },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          },
+			{
+			    "type":   "range",
+			    "id":     "amount",
+			    "min":       1,
+			    "max":       100,
+			    "step":      1,
+			    "unit":      "GBP",
+			    "label":     "Amount",
+			    "default":   5
+			}
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<section class="mt-100 pt-60 pt-lg-100 pb-45 pt-sm-30 pb-lg-70" id="donate">
+  <div class="container">
+    <div class="row ml--30">
+      <div class="col-12">
+        <h2 id="tape" class="tape-slim tape-center tape-orange box-rotate-a-1 mb-20 d-inline-block">{{ product.title }}</h2>
+        <h4 class="product-description text-left mb-40 pl-20">{{ product.description }}</h4>
+      </div>
+    </div>
+    <div class="row">
+	    
+	    {% for block in section.blocks %}
+
+	      <div class="col-12 col-sm-6 col-lg-4 mb-15 mb-sm-30">
+	        <div class="card shadow-below" data-amount="{{ block.settings.amount }}">
+		      
+		      <img class="image image-square" src="{{ block.settings.image | img_url: 'x1024' }}"/>
+
+			  <h3 class="card-amount card-amount-right card-amount-{% cycle 'orange', 'pink', 'yellow' %}">&pound;{{ block.settings.amount }}</h3>
+		      
+	          <div class="p-20 ph-20 text-left">
+	            <p>{{ block.settings.text }}</p>
+	          </div>
+	        </div>
+	      </div>
+      
+		{% endfor %}
+		
+    </div> <!-- .row -->
+    
+<form action="/cart/add" method="post" enctype="multipart/form-data" class="forms">    
+    <div class="row">   
+    
+    <div class="col-12 col-sm-4 mb-20">
+        <label class="d-block"><strong>Donation (£)</strong></label>
+        <div class="mt-1">
+           <input class="form-control form-control-light form-control-fixed bg-white outline outline-black text-black rounded shadow-small" type="number" id="quantity" name="quantity" min="1" step="1" value="1" placeholder=""/>
+
+           <span class="form-control-stepper-wrapper form-control-stepper-left">
+            	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
+           </span>
+           <span class="form-control-stepper-wrapper">
+            	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
+           </span>               
+        </div>
+    </div>
+    
+	<div class="col-12 col-sm-8 mb-20">
+
+	<h3 class="pt-20">{{ section.settings.gift_title | escape }}</h3>
+	<p class="mb-20">{{ section.settings.gift_sub_title | escape }}</p>
+	
+	<label class="checkbox mb-40">
+            <input type="checkbox" id="gift-aid" name="properties[Gift Aid]" value="yes" />
+            <div class="check-pointer mt-5"></div>
+            <div class="checkbox-label"><small>{{ section.settings.gift_conditions | escape | newline_to_br }}</small></div>
+    </label>
+          
+		
+	</div>
+	
+    <div class="col-12 col-sm-6 mb-20">
+	  <input class="btn w-full" style="margin-top:2px;" type="submit" name="add" id="add" value="Add a £1 donation">
+    </div>
+    
+
+    </div><!-- .row --> 
+
+      <div id="product-variants" class="pb-20 hidden">
+        <select id="product-select" name="id">
+        {% for variant in product.variants %}
+          <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money }}
+          </option>
+        {% endfor %}
+        </select>
+      </div> 
+					      
+</form>						
+  </div>
+</section>
+
+<script>
+	$( document ).ready(function() {	
+
+		function updateQuantity(amount){
+			$("#quantity").val(amount)		
+		}
+
+		function updateButton(amount){
+			$("#add").val("Add a £" + amount + " donation")		
+		}
+						
+		$(".card").on('click', function(){
+			updateQuantity($(this).data('amount'))
+			updateButton($(this).data('amount')) 
+		});
+
+		$("#quantity").on('change', function(){
+			updateButton($(this).val()) 
+		});
+			
+		updateButton($("#quantity").val())											
+						
+	});      
+</script>
+
+
+

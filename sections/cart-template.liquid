@@ -33,7 +33,12 @@
       "id": "empty_url",
       "label": "Continue link",
       "info": "The page for the 'Continue' link."
-    }
+    },
+    {
+	   "type": "product",
+	   "id": "donation_product",
+	   "label": "Donations"
+	}
   ]
 }
 {% endschema %}
@@ -42,6 +47,7 @@
     <section class="p-60 p-lg-100 pt-160" id="cart">
         <div class="container">
             <h1>{{ section.settings.heading }}</h1>
+          
 
 			<form action="/cart" method="post">
 				
@@ -50,7 +56,7 @@
                 <div class="divTableHeading">
                     <div class="divTableRow">
                         {% if section.settings.cart_images_enabled %}
-                        <div class="divTableCell" style="max-width: 50px;">
+                        <div class="divTableCell">
 							<!-- image -->
                         </div>
                         {% endif %}
@@ -90,7 +96,7 @@
       					
                     <div class="divTableRow">
                        {% if section.settings.cart_images_enabled %}
-                        <div class="divTableCell" style="max-width: 50px;">
+                        <div class="divTableCell">
                             <img src="{{ item | img_url: 'x80' }}"  alt="{{ item.title | escape }}" />
                         </div>
                         {% endif %}
@@ -158,14 +164,17 @@
 	            <div class="col-12 col-sm-4">
 		            <p class="cart-attribute__field text-right text-grey">
 						If you <strong>intend paying by Purchase Order</strong>, please enter the number before checking out
-						<input class="form-control form-control-light form-control-small bg-yellow text-black text-center" id="purchase-order-number" type="text" name="attributes[Purchase Order Number]" value="{{ cart.attributes["Purchase Order Number"] }}">
+						<input class="form-control form-control-light form-control-small bg-white outline outline-grey text-black text-center" id="purchase-order-number" type="text" name="attributes[Purchase Order Number]" value="{{ cart.attributes["Purchase Order Number"] }}">
 					</p>
 	            </div>
 			
 			</div>
-			                        
+			                    
+                        
             <div class="p-30 p-lg-50 text-right">
-	            <a href="{{ continue_shopping_url }}" class="btn btn-light mr-15"><span>Continue Shopping</span></a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
+	            {% unless section.settings.donation_product == blank%}
+	            {% assign donations = all_products[section.settings.donation_product] %}	            
+	            <a href="{{ donations.url }}" class="btn btn-orange mr-15">Make a donation</a>{% endunless %}<a href="{{ continue_shopping_url }}" class="btn btn-light mr-15"><span>Continue Shopping</span></a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
             </div>
             
 

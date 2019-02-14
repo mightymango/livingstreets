@@ -7,7 +7,7 @@
       "id": "addon_enabled",
       "label": "Enable add-on product",
       "default": false,
-      "info": "When enabled, the add-on product will be added to the cart if it contains the main product."
+      "info": "When enabled, the add-on product will be removed from the cart if it does not contain the main product."
     },
   	{
 	   "type": "product",
@@ -19,7 +19,7 @@
 	   "type": "product",
 	   "id": "addon_product",
 	   "label": "Add-on Product",
-	   "info": "Select the product to add."
+	   "info": "Select the product to remove."
 	}
   ]
 }
@@ -27,108 +27,6 @@
 
 
 {% if section.settings.addon_enabled and section.settings.main_product and section.settings.addon_product %}
-
-{% comment %}
-
-The following adds an add-on product if the main product is in the cart.
-
-{% endcomment %}
-
-{% for item in cart.items %} 
-
-{% if item.product.handle == section.settings.main_product %}
-
-{% assign product = all_products[section.settings.addon_product] %}
-
-
-{% assign variant_id = product.variants.first.id %}
-
-  <script>
-
-  (function($) {
-
-
-
-    var cartItems = {{ cart.items | json }},
-
-        qtyInTheCart = 0,
-
-        cartUpdates = {};
-
-
-
-    for (var i=0; i<cartItems.length; i++) {
-
-      if ( cartItems[i].id === {{ variant_id }} ) {
-
-        qtyInTheCart = cartItems[i].quantity;
-
-        break;
-
-      }
-
-    }
-
-
-
-    if ( ( cartItems.length === 1 ) && ( qtyInTheCart > 0 ) ) {
-
-      cartUpdates = { {{ variant_id }}: 0 }
-
-    }
-
-    else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) ) {
-
-      cartUpdates = { {{ variant_id }}: 1 }
-
-    }
-
-    else {
-
-      return;
-
-    }
-
-
-
-    var params = {
-
-      type: 'POST',
-
-      url: '/cart/update.js',
-
-      data: { updates: cartUpdates },
-
-      dataType: 'json',
-
-      success: function(stuff) { 
-
-        window.top.location.href = '/cart';
-
-      }
-
-    };
-
-
-
-    $.ajax(params);
-
-
-
-  })(jQuery);
-  
-  
-
-
-  </script>
-
-
-
-
-
-{% endif %}
-
-{% endfor %}
 
 {% comment %}
 

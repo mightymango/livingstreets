@@ -44,22 +44,10 @@
     "name": "Typography",
     "settings": [
       {
-        "type": "font_picker",
-        "label": "Headings font",
-        "id": "headings_font",
-        "default": "swiss_721_n4"
-      },
-      {
         "type": "color",
         "id": "headings_color",
         "label": "Headings color",
         "default": "#000000"
-      },
-      {
-        "type": "font_picker",
-        "label": "Text font",
-        "id": "body_font",
-        "default": "swiss_721_n4"
       },
       {
         "type": "color",

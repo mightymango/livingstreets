@@ -1,6 +1,6 @@
 {% schema %}
   {
-    "name": "Top-up Products",
+    "name": "Related Products",
     "settings": [
 	{
 		"id": "heading",
@@ -17,8 +17,8 @@
 	},
 		{
 		"type": "collection",
-		"id": "topup_collection",
-		"label": "Top-up Collection"
+		"id": "products_collection",
+		"label": "Collection"
 		},
 		{
 		"id": "view_all",
@@ -31,9 +31,9 @@
   }
 {% endschema %}
 
-{% assign collection = collections[section.settings.topup_collection] %}
+{% assign collection = collections[section.settings.products_collection] %}
 
-{% if section.settings.topup_collection != blank %}
+{% if section.settings.products_collection != blank %}
 <section class="sliders text-center p-50" id="sliders-1">
 		
 	<div class="container text-left">
@@ -52,9 +52,9 @@
 			    <a href="{{ related.url }}">
 			    <img class="mb-30" src="{{ related | img_url: 'x100'}}" alt="">
 	
-	            <h4>{{ related.title }}</h4>
+	            <h4 class="mb-20">{{ related.title }}</h4>
 	
-	            <p>{{ related.price | money }} </p>
+	            <p id="tape" class="tape-box-orange tape-thin tape-removed tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} d-inline-block">{{ related.price | money }}</p>
 			    </a>
 	            </div>
 			 {% endunless %}			

@@ -1,3 +1,19 @@
+/* Fonts */
+@font-face {
+  font-family: Swiss721;
+  src: url({{ 'swiss721roman.ttf' | asset_url }} );
+}
+@font-face {
+  font-family: Swiss721;
+  src: url({{ 'swiss721bold.ttf' | asset_url }});
+  font-weight: bold;
+}
+@font-face {
+  font-family: Swiss721Black;
+  src: url({{ 'swiss721black.ttf' | asset_url }});
+  font-weight: bold;
+}
+
 /* Variables */
 
 $size-xs: 576px;
@@ -57,7 +73,8 @@ $pathway-thickness: 10px;
 html,
 body {
   color: {{ settings.font_color }};
-  font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+/*   font-family: Swiss721, {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }}; */
+  font-family: Swiss721, Arial, Helvetica, sans-serif;
   background-color: $color-white;
 }
 
@@ -76,7 +93,8 @@ body {
 
 h1, h2, h3 {
   color: {{ settings.headings_color }};
-  font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }};	
+/*   font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }}; */
+  font-family: Swiss721Black, Swiss721, Arial, Helvetica, sans-serif;	
 }
 
 p {
@@ -254,6 +272,9 @@ main div.shopify-section  div:first-of-type section {
 }
 .outline-white {
 	border-color: $color-white;
+}
+.outline-grey {
+	border-color: $color-grey;
 }
 
 .outline-green-light {
@@ -563,6 +584,9 @@ input {
 	text-align: left;
 	display: block;
 }
+input.input-60 {
+	height: 60px;
+}
 /* No number spinners */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -717,6 +741,7 @@ div.locked  > .form-control-lock-wrapper {
 
 .product-description > p {
 	padding-bottom: 15px;
+	font-size: 1.2em;
 }
 
 .product-description > ul {
@@ -729,7 +754,7 @@ div.locked  > .form-control-lock-wrapper {
 }
 
 .product-description-small > p {
-	font-size: 16px;
+	font-size: 1.1em;
 	line-height: 1.1;
 }
 
@@ -2314,4 +2339,89 @@ ul.pagination li a {
 }
 .image-black {
   background: $color-black;
+}
+
+/*================ Cards ================*/
+.card {
+  background: $color-green;
+  border: $color-green;
+  border-width: $outline-width;
+  border-style: solid;
+  border-radius: $corner-radius;
+  cursor: pointer;	
+}
+
+.card .card-amount {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: $color-white;
+	color: $color-black;
+	padding: 10px;
+	display: inline;
+	border-radius: $corner-radius;
+	width: 70px;
+	font-weight: 600;
+	font-size: x-large;
+	text-align: center;
+}
+
+.card.card-yellow {
+	background-color: $color-yellow;
+	color: $color-white;
+}
+.card.card-green {
+	background-color: $color-green;
+	color: $color-white;
+}
+.card.card-orange {
+	background-color: $color-orange;
+	color: $color-white;
+}
+.card.card-pink {
+	background-color: $color-pink;
+	color: $color-white;
+}
+.card.card-white {
+	background-color: $color-white;
+	color: $color-black;
+}
+.card.card-black {
+	background-color: $color-black;
+	color: $color-white;
+}
+
+.card-amount.card-amount-yellow {
+	background-color: $color-yellow;
+	color: $color-white;
+}
+.card-amount.card-amount-green {
+	background-color: $color-green;
+	color: $color-white;
+}
+.card-amount.card-amount-orange {
+	background-color: $color-orange;
+	color: $color-white;
+}
+.card-amount.card-amount-pink {
+	background-color: $color-pink;
+	color: $color-white;
+}
+.card-amount.card-amount-white {
+	background-color: $color-white;
+	color: $color-white;
+}
+.card-amount.card-amount-black {
+	background-color: $color-black;
+	color: $color-white;
+}
+
+
+/*================ Checkbox ================*/
+.forms .checkbox .check-pointer {
+  width: 25px;
+  height: 25px;
+  border-radius: $corner-radius;
+  border: solid 2px $color-black;
+  position: absolute;
 }
