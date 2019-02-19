@@ -45,7 +45,12 @@
 <main class="main-content">
 	 
 {{content_for_layout}}
-	
+
+{%- unless show_tax_message == false -%}
+<div class="container pb-30">
+	<p class="small-print text-center">{{ settings.tax_message }}</p>
+</div>
+{%- endunless -%}	
 </main>
 
 {% section 'footer' %}
@@ -58,6 +63,8 @@
     {{ 'notifications.js' | asset_url | script_tag }}
     
     {{ 'custom.js' | asset_url | script_tag }}
+
+{% include 'cookies-banner' %}
 
 </body>
 </html>
