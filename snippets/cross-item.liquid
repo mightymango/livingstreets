@@ -1,0 +1,21 @@
+<div class="scrolling-card--content outline outline-thin outline-grey rounded shadow-below-small">
+					<div class="product-box text-center">
+						<div class="product-box-image">
+							<img src="{{ crossitem | img_url: 'x150'}}" />
+							{% if crossitem.available %}
+							<div class="product-box-button mt-40">
+							<button class="btn add-to-cart-btn" data-id="{{ product_id }}">Add to cart</button>
+							</div>
+							{% endif %}	
+						</div>
+						<div class="product-box-footer">
+							<p class="product-box-title">{{ crossitem.title }}</p>
+							{% if crossitem.available %}
+							<p id="tape" class="tape-thin tape-box-orange tape-removed tape-rotate-c-2">{{ crossitem.price | money }}  {{ settings.tax_format }}</p>
+							{% else %}
+							<p id="tape" class="tape-thin tape-box-black tape-removed">Out of Stock</p>
+							{% endif %}							
+						</div>
+				
+					</div>
+				</div>	

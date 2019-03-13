@@ -258,6 +258,11 @@ main div.shopify-section  div:first-of-type section {
 	border-style: solid;
 	border-width: $outline-width;	
 }
+
+.outline-thin {
+  border-width: 1px; 
+}
+
 .outline-green {
 	border-color: $color-green;
 }
@@ -277,7 +282,7 @@ main div.shopify-section  div:first-of-type section {
 	border-color: $color-white;
 }
 .outline-grey {
-	border-color: $color-grey;
+	border-color: #F4F8FA;
 }
 
 .outline-green-light {
@@ -1464,7 +1469,7 @@ margin-left:20px;
 .product-box-image:hover img {
     opacity: 0.2;
 }
-.product-box-image:hover .product-box-button {
+.product-box:hover .product-box-button {
     display: inline;
 }
 
@@ -1472,9 +1477,9 @@ margin-left:20px;
 	.product-box-image:hover > img {
 	    opacity: 1.0;
 	}
-	.product-box-image:hover .product-box-button {
+{% comment %}	.product-box-image:hover .product-box-button {
 	    display: none;
-	}	
+	}	{% endcomment %}
 }
 
 
@@ -1509,14 +1514,17 @@ margin-left:20px;
 .cross-sell {
   	opacity: 1;
   	height: 600px;
-  	width: 800px;
-  	position: absolute;
-  	left: 50%;
-  	margin-left: -400px;
-  	top: 50%;
-  	margin-top: -300px;
-	background-color: rgba(255, 255, 255, 1.0);
-	padding: 15px;
+  	width: 60%;
+    margin: auto;
+    margin-top: 40px;
+	  background-color: rgba(255, 255, 255, 1.0);
+	  padding: 15px;
+}
+
+@media (max-width: $size-sm) {
+.cross-sell {
+    width: 100%;
+}
 }
 
 .cross-sell .instruction {
@@ -2609,4 +2617,23 @@ ul.pagination li a {
   width: 100%;
   }
 }
+
+/*==== Scrolling cards ====*/
+.scrolling-card {
+  display: flex;
+  min-width: 100%;
+  min-height: 300px;
+  overflow-x: auto; 
+}
+
+.scrolling-card::-webkit-scrollbar {
+  display: none;
+}
+
+.scrolling-card--content {
+  min-width: 250px;
+  margin: 5px;
+}
+
+
 

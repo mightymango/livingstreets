@@ -339,38 +339,13 @@ Calculate the correct variant index from the month
 
 		{% if third_image %}
 		<img class="d-none d-md-block image2" src="{{ third_image | img_url: 'x75' }}">
-		{% endif %}
-						
-			<div class="row justify-content-center pt-20">
-				
-				{% for product in collection.products %}
-				{% assign product_id = product.variants.first.id %}
-				<div class="col-6 col-sm-4">
-					<div class="product-box text-center">
-						<div class="product-box-image">
-							<img src="{{ product | img_url: 'x150'}}" />
-							{% if product.available %}
-							<div class="product-box-button mt-40">
-							<button class="btn add-to-cart-btn" data-id="{{ product_id }}">Add to cart</button>
-							</div>
-							{% endif %}	
-						</div>
-						<div class="product-box-footer">
-							<p class="product-box-title">{{ product.title }}</p>
-							{% if product.available %}
-							<p id="tape" class="tape-thin tape-box-orange tape-removed tape-rotate-c-2">{{ product.price | money }}  {{ settings.tax_format }}</p>
-							{% else %}
-							<p id="tape" class="tape-thin tape-box-black tape-removed">Out of Stock</p>
-							{% endif %}							
-						</div>
-						
-				
-					</div>
-				</div>						
+		{% endif %}		
+			<div class="scrolling-card">		
+				{% for crossitem in collection.products %}
+				{% assign product_id = crossitem.variants.first.id %}
+					{% include 'cross-item' %}						
 				{% endfor %}
-								
 			</div>
-			
 			<div class="buttons">
 				<input class="btn btn-green" type="submit" name="add" id="add" value="{{ section.settings.cross-sell-button }}">
 			</div>
@@ -646,5 +621,4 @@ Calculate the correct variant index from the month
 						
 	});      
 </script>
-
 
