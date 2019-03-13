@@ -45,105 +45,86 @@
 
 {% if cart.item_count > 0 %}
     <section class="p-60 p-lg-100 pt-160" id="cart">
-        <div class="container">
-            <h1>{{ section.settings.heading }}</h1>
-          
+    <div class="container">
+      <h1>{{ section.settings.heading }}</h1>
 
 			<form action="/cart" method="post">
-				
-            <div class="divTable pt-40">
-                
-                <div class="divTableHeading">
-                    <div class="divTableRow">
+            <div class="table pt-40">  
+                <div class="theader">
                         {% if section.settings.cart_images_enabled %}
-                        <div class="divTableCell">
-							<!-- image -->
-                        </div>
+                        <div class="table_header"></div> 
                         {% endif %}
-                        <div class="divTableCell">
-							<!-- product -->
-                        </div>
-                        <div class="divTableCell">
-                            Price
-                        </div>
-
-                        <div class="divTableCell text-right">
-                            Quantity
-                        </div>
-
-                        <div class="divTableCell text-right">
-                            Total
-                        </div>
-                    </div>
-                </div>
-
-				<div class="divTableBody">
+                        <div class="table_header"></div> 
+                        <div class="table_header">Price</div>
+                        <div class="table_header text-right">Quantity</div>
+                        <div class="table_header text-right">Cost</div>
+                  </div> <!-- .theader -->
 					
 					{% for item in cart.items %}      					
-                    <div class="divTableRow">
+                    <div class="table_row">
                        {% if section.settings.cart_images_enabled %}
-                        <div class="divTableCell">
-                            <img src="{{ item | img_url: 'x80' }}"  alt="{{ item.title | escape }}" />
-                        </div>
+                        <div class="table_small_single">
+                            <div class='table_cell'></div>
+                            <div class='table_cell text-center text-sm-left'><img src="{{ item | img_url: 'x80' }}"  alt="{{ item.title | escape }}" /></div>
+                        </div> <!-- .table_small_single -->
                         {% endif %}
-                        <div class="divTableCell">
-                           {{ item.title }} <a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a> 
-                           {% unless item.properties == empty %}
-							<br/><small class="d-block text-grey">
-							  {% for property in item.properties %}
-							  {{ property.first }}: {{ property.last }}&nbsp;&nbsp;
-							  {% endfor %}
-							</small>
-							{% endunless %}
-                        </div>
+                        <div class="table_small_single">
+                          <div class='table_cell'></div>
+                           <div class='table_cell text-center text-sm-left'>
+                           {{ item.title }} <a class="btn btn-tiny d-none d-sm-inline" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>{% unless item.properties == empty %}
+          							<br/><small class="d-block text-grey">
+          							  {% for property in item.properties %}
+          							  {{ property.first }}: {{ property.last }}&nbsp;&nbsp;
+          							  {% endfor %}
+          							</small>
+          							{% endunless %}</div>
+                      </div> <!-- .table_small_single -->
 
-                        <div class="divTableCell">
-                            {{ item.price | money }}
-                        </div>
+                        <div class="table_small_single text-center text-sm-right">
+                            <div class='table_cell'>Price</div>
+                            <div class='table_cell'><span class="d-inline d-sm-none"><a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a><br/></span><span class="d-md-none">Price: </span>{{ item.price | money }}</div>
+                        </div> <!-- .table_small_single -->
 
-                        <div class="divTableCell text-right">
-                            {{ item.quantity }}
-                        </div>
+                        <div class="table_small_single text-center text-sm-right">
+                            <div class='table_cell'>Quantity</div>
+                            <div class='table_cell'><span class="d-md-none">Quantity: </span>{{ item.quantity }}</div>
+                        </div> <!-- .table_small_single -->
 
-                        <div class="divTableCell text-right">
-                            {{ item.line_price | money }}
-                        </div>
-                    </div>
+                        <div class="table_small_single text-center text-sm-right">
+                            <div class='table_cell'>Cost</div>
+                            <div class='table_cell'><span class="d-md-none">Cost: </span>{{ item.line_price | money }}</div>
+                        </div> <!-- .table_small_single -->
+                    </div> <!-- .table_row -->
 
 					{% endfor %}
-					
-                </div>
-				
-				<div class="divTableFoot">
-                    <div class="divTableRow">
-                        <div class="divTableCell">
-                            &nbsp;
-                        </div>
 
-                        <div class="divTableCell">
-                            &nbsp;
-                        </div>
-                        
-                        <div class="divTableCell">
-                            &nbsp;
-                        </div>
-
-                        <div class="divTableCell text-right">
-                            Subtotal:
-                        </div>
-
-                        <div class="divTableCell text-right">
-                            {{ cart.total_price | money }}
-                        </div>
-                    </div>
-
-                </div>
-                
-            </div><!-- divTable -->
+          <div class="table_row">
+            <div class="table_small_single">
+              <div class='table_cell'></div>
+              <div class='table_cell'></div>             
+            </div>
+            <div class="table_small_single">
+              <div class='table_cell'></div>
+              <div class='table_cell'></div>             
+            </div>
+            <div class="table_small_single">
+              <div class='table_cell'></div>
+              <div class='table_cell'></div>             
+            </div>
+            <div class="table_small_single">
+              <div class='table_cell'></div>
+              <div class='table_cell text-right'><span class="d-none d-md-display"><strong>Sub-total:</strong></span></div>             
+            </div>
+            <div class="table_small_single text-center text-sm-right">
+              <div class='table_cell'><strong></strong></div>
+              <div class='table_cell'><span class="d-md-none"><strong>Sub-total:</strong> </span>{{ cart.total_price | money }}</div>             
+            </div>
+          </div> <!-- .table_row-->   
+       </div><!-- divTable -->
 
             <div class="text-right">
 	            <p>{{ section.settings.comment }}</p>
-            </div>
+            </div> <!-- .text-right -->
 
             <div class="row justify-content-end mt-20">
 	            
@@ -155,6 +136,7 @@
                   </label>
                 </p>
               </div>
+
               <div class="col-12 col-md-4">
 		            <p id="po_number" class="cart-attribute__field text-right mt-20" style="display:none;">
     						<strong>Please enter your PO number:</strong>
@@ -162,30 +144,26 @@
     					  </p>
 	            </div>
 			
-			</div>
+			</div> <!-- .row-->
 			                    
                         
             <div class="p-30 p-lg-50 text-right">
 	            {% unless section.settings.donation_product == blank%}
 	            {% assign donations = all_products[section.settings.donation_product] %}	            
-	            <a href="{{ donations.url }}" class="btn btn-orange mr-15">Make a donation</a>{% endunless %}
+	            <a href="{{ donations.url }}" class="btn btn-orange mr-md-15 mb-15 d-block d-md-inline">Make a donation</a>{% endunless %}
               {% if section.settings.continue_url  %}
-              <a href="{{ section.settings.continue_url }}" class="btn btn-yellow mr-15"><span>Continue Shopping</span>
+              <a href="{{ section.settings.continue_url }}" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
               {% else %}
-              <a href="#" onclick="goBack()" class="btn btn-yellow mr-15"><span>Continue Shopping</span>
+              <a href="#" onclick="goBack()" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
               {% endif %}
-              </a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
-            </div>
+              <input type="submit" name="checkout" value="Checkout" class="btn btn-green mb-15 block">
+            </div> <!-- buttons -->
             
-
-
+			</form> <!-- form-->
             
-			</form>
-            
-        </div>
-       
+      </div> <!-- .container -->
 
-    </section>
+    </section> <!-- #cart -->
 
 <script>
   $( document ).ready(function() {
@@ -209,7 +187,7 @@
       $( "#show_po_number" ).prop('checked', true)
       $( "#po_number" ).show()
       $( "#purchase-order-number" ).val(PONumber)
-    }
+    } 
 
   });
 </script>

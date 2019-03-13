@@ -165,31 +165,31 @@ main div.shopify-section  div:first-of-type section {
 }
 
 .w-p-25 {
-	width: 25%;
+	width: 25% !important;
 }
 .w-p-50 {
-	width: 50%;
+	width: 50% !important;
 }
 .w-p-75 {
-	width: 75%;
+	width: 75% !important;
 }
 .w-p-100 {
-	width: 100%;
+	width: 100% !important;
 }
 
 @media (min-width: $size-sm) {
 
 	.w-p-25-sm {
-		width: 25%;
+		width: 25% !important;
 	}
 	.w-p-50-sm {
-		width: 50%;
+		width: 50% !important;
 	}
 	.w-p-75-sm {
-		width: 75%;
+		width: 75% !important;
 	}
 	.w-p-100-sm {
-		width: 100%;
+		width: 100% !important;
 	}	
 	
 }
@@ -394,10 +394,10 @@ main div.shopify-section  div:first-of-type section {
   padding: 3px;
   line-height:normal;
   height: 20px;
-  margin-left: 10px;
+  margin-left: 0px;
   background-color: $color-red;
   color: $color-white;
-  opacity: 0.3;
+  opacity: 1;
 }
 .btn:hover {
   background: $color-red;
@@ -813,34 +813,153 @@ div.locked  > .form-control-lock-wrapper {
 	display: none;
 }
 
-/* divTable */
-.divTable{
-	display: table;
-	width: 100%;
-}
-.divTableRow {
-	display: table-row;
-}
-.divTableHeading {
-	font-weight: bold;
-	display: table-header-group;
-}
-.divTableCell, .divTableHead {
-	border: none;
-	display: table-cell;
-	padding: 3px 10px;
-}
-.divTableCell img {
-	padding-right: 10px;
-}
-.divTableFoot {
-	display: table-footer-group;
-	font-weight: bold;
-}
-.divTableBody {
-	display: table-row-group;
+/* Table */
+.table {
+  display: table;
+  width: 100%;
+  margin: 10% auto 0;
+  border-collapse: separate;
 }
 
+.table_row {
+  display: table-row;
+}
+
+.theader {
+  display: table-row;
+}
+
+.table_header {
+  display: table-cell;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.table_header:first-child {
+}
+
+.table_header:last-child {
+}
+
+.table_small,
+.table_small_single {
+  display: table-cell;
+}
+
+.table_row > .table_small > .table_cell:nth-child(odd),
+.table_row > .table_small_single > .table_cell:nth-child(odd) {
+  display: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.table_row > .table_small > .table_cell,
+.table_row > .table_small_single > .table_cell {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.table_row > .table_small:first-child > .table_cell,
+.table_row > .table_small_single:first-child > .table_cell {
+
+}
+
+.table_row > .table_small:last-child > .table_cell,
+.table_row > .table_small_single:last-child > .table_cell {
+
+}
+
+.table_row:last-child > .table_small:last-child > .table_cell:last-child,
+.table_row:last-child > .table_small_single:last-child > .table_cell:last-child {
+
+}
+
+.table_row:last-child > .table_small:first-child > .table_cell:last-child,
+.table_row:last-child > .table_small_single:first-child > .table_cell:last-child  {
+
+}
+
+.table_row:nth-child(2n+3) {
+
+}
+
+@media screen and (max-width: $size-sm) {
+  .table {
+    display: block;
+  }
+  .table_row:nth-child(2n+3) {
+    background: none;
+  }
+  .theader {
+    display: none;
+  }
+  .table_cell {
+    display: table-cell;
+    width: 50%;
+  }
+  .table_row > .table_small > .table_cell:nth-child(odd) {
+    display: table-cell;
+    width: 50%;
+  }
+  .table_row > .table_small_single > .table-cell {
+    display: block;
+    width: 100%;
+  }
+  .table_row > .table_small_single > .table_cell:nth-child(odd) {
+    display: none;
+  }
+
+  .table_row {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    padding-bottom: 20px;
+    margin: 5% auto 0;
+  }
+  .table_small, .table_small_single {
+    display: table-row;
+    width: 100%;
+  }
+  .table_row > .table_small:first-child > .table_cell:last-child,
+  .table_row > .table_small_single:first-child > .table_cell:last-child {
+
+  }
+  .table_row > .table_small > .table_cell:first-child,
+  .table_row > .table_small_single > .table_cell:first-child {
+
+  }
+  .table_row > .table_small:first-child > .table_cell:first-child,
+  .table_row > .table_small_single:first-child > .table_cell:first-child {
+
+  }
+  .table_row > .table_small:first-child > .table_cell:last-child,
+  .table_row > .table_small_single:first-child > .table_cell:last-child {
+
+  }
+  .table_row > .table_small:last-child > .table_cell:first-child,
+  .table_row > .table_small_single:last-child > .table_cell:first-child {
+
+  }
+  .table_row > .table_small > .table_cell:last-child,
+  .table_row > .table_small_single > .table_cell:last-child {
+
+  }
+  .table_row > .table_small:last-child > .table_cell:first-child,
+  .table_row > .table_small_single:last-child > .table_cell:first-child {
+
+  }
+  .table_row > .table_small:last-child > .table_cell:last-child,
+  .table_row > .table_small_single:last-child > .table_cell:last-child {
+
+  }
+}
+
+@media screen and (max-width: $size-xs) {
+  .table {
+    width: 95%;
+  }
+}
 .slider-fixed-height-500 {
 	height: 600px;
 }
@@ -2482,3 +2601,12 @@ ul.pagination li a {
 	color: rgba(204,204,204,1.00);
 	font-size: 1.0em;
 }
+
+/*==== Workaround for problem with Checkout button====*/
+@media (max-width: $size-sm) {
+ .block {
+  display: block;
+  width: 100%;
+  }
+}
+
