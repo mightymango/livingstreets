@@ -41,8 +41,7 @@
 	   "label": "Show dots",
 	   "info": "Show the dot indicators."
 		
-	}
-,
+	},
 	{
 	   "type": "radio",
 	   "id": "show_all",
@@ -54,6 +53,20 @@
 	   "label": "Show related link",
 	   "info": "Show link to all related products."
 		
+	},
+		{
+		"id": "added",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Added",
+		"info": "Title for the message displayed when a related product is added to the cart. Leave blank to hide the title."
+	},
+	{
+		"id": "message",
+		"type": "text",
+		"label": "Notification title",
+		"default": "The related product has been added to your basket.",
+		"info": "The message displayed when a related product is added to the cart."
 	}
   ], 
   "blocks": [
@@ -216,4 +229,48 @@
 	            </div>
 	  
 			</section>
+
+   <script>
+	$( document ).ready(function() {
+
+		function updateCartCount(howMany) {
+			var desktopBadge = $('#count-desktop')
+			var mobileBadge = $('#count-mobile')
+			desktopBadge.text(howMany)
+			mobileBadge.text(howMany)
+			console.log(howMany)
+		}
+		
+		function addToBasket(id, howMany) {
+			
+			const jsonString = '{ "' + id + '" : ' + howMany + ' }' 
+			var cartUpdates = JSON.parse(jsonString)
+	
+		    var params = {
+		      async: true,
+		      type: 'POST',
+		      url: '/cart/update.js',	
+		      data: { updates: cartUpdates },	
+		      dataType: 'json',
+		      success:function(data) {
+			      console.log(data)
+			   updateCartCount(data.item_count)
+			   notifyUser('{{ section.settings.added }}', '{{ section.settings.message }}', 3000);		        
+		      }	
+		    };
+		    
+		    $.ajax(params);			
+			
+		}
+	
+		$(".add-to-cart").on('click', function(evt){
+			var howMany = $(this).closest("div.product-box-button").find("input[name='numberToAdd']").val();
+			addToBasket($(this).data('id'), howMany)
+			evt.preventDefault() 
+		});
+				
+						
+	});      
+</script>
+
        

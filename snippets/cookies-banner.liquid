@@ -21,9 +21,9 @@
             transform:translateY(0)
         }
     }
-    #se-cookies-message {
-        color: #000; /* Change text color here */
-        background-color: #fff; /* Change background color here */
+    #cookies-message {
+        color: #000; 
+        background-color: #fff; 
         padding: 10px;
         text-align: left;
         position: fixed;
@@ -36,7 +36,7 @@
         visibility: hidden;
         font-size: 12px;
     }
-    #se-cookies-message.se-cookies-message-open {
+    #cookies-message.cookies-message-open {
         opacity: 1;
         visibility: visible;
 
@@ -66,9 +66,9 @@
         -o-justify-content: space-between;
         justify-content: space-between;
     }
-    #se-accept-cookies-checkbox {
-        color: #fff; /* Change button text color here */
-        background-color: rgba(222,25,148,1.00); /* Change button background color here */
+    #accept-cookies-checkbox {
+        color: {{ settings.cookies_button_text }}; 
+        background-color: {{ settings.cookies_button_color }};
         transition: background 200ms ease-in-out,color 200ms ease-in-out,box-shadow 200ms ease-in-out;
         -webkit-transition: background 200ms ease-in-out,color 200ms ease-in-out,box-shadow 200ms ease-in-out;
         border-radius: 2px;
@@ -76,34 +76,35 @@
         text-decoration: none;
         font-size: 12px;
         padding: 8px 15px;
+        font-weight: 500;
     }
-    #se-accept-cookies-checkbox:hover {
+    #accept-cookies-checkbox:hover {
         opacity: 0.8;
     }
-    .se-cookies-text {
+    .cookies-text {
         padding-right: 15px;
     }
     @media screen and (min-width: 768px) {
-        #se-cookies-message {
+        #cookies-message {
             padding: 15px 30px;
             font-size: 17px;
         }
-        #se-accept-cookies-checkbox {
+        #accept-cookies-checkbox {
             font-size: 16px;
             padding: 8px 30px;
         }
-        .se-cookies-text {
+        .cookies-text {
             padding-right: 0;
         }
     }
 </style>
 
-<div id="se-cookies-message-container">
-    <div id="se-cookies-message">
-        <div class="se-cookies-text">
-            {{ settings.cookies_message }} <a href="{{ settings.cookies_url }}">{{ settings.cookies_link }}</a>
+<div id="cookies-message-container">
+    <div id="cookies-message">
+        <div class="cookies-text">
+            {{ settings.cookies_message }} <a href="{{ settings.cookies_url }}"><br/>{{ settings.cookies_link }}</a>
         </div>
-        <a href="javascript:SE_CloseCookiesWindow();" id="se-accept-cookies-checkbox">{{ settings.cookies_button }}</a>
+        <a href="javascript:SE_CloseCookiesWindow();" id="accept-cookies-checkbox">{{ settings.cookies_button }}</a>
     </div>
 </div>
 
@@ -124,17 +125,18 @@
   }
 
   var cookiesName = 'cookies_accepted';
+  var year = 365;
 
   function SE_CheckCookies () {
     if(!SE_getCookie(cookiesName)) {
-      var cookies_message = document.getElementById("se-cookies-message");
-      cookies_message.className += " se-cookies-message-open";
+      var cookies_message = document.getElementById("cookies-message");
+      cookies_message.className += " cookies-message-open";
     }
   }
 
   function SE_CloseCookiesWindow () {
-    SE_setCookie(cookiesName, true, 9999);
-    document.getElementById("se-cookies-message-container").removeChild(document.getElementById("se-cookies-message"));
+    SE_setCookie(cookiesName, true, year);
+    document.getElementById("cookies-message-container").removeChild(document.getElementById("cookies-message"));
   }
 
   document.addEventListener('DOMContentLoaded', function () {

@@ -75,7 +75,7 @@
           
           {% if section.settings.show_all == "yes" %}
           {% assign all_collection = collections['all'] %}
-          <li class="{% if all_collection.id == collection.id %}active {% endif %}"><a href="{{ collection.url }}">All Products</a></li>
+          <li class="{% if all_collection.id == collection.id %}active {% endif %}"><a href="all">All Products</a></li>
           {% endif %}
           
           {% for block in section.blocks %}

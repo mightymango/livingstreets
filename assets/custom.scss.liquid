@@ -73,7 +73,6 @@ $pathway-thickness: 10px;
 html,
 body {
   color: {{ settings.font_color }};
-/*   font-family: Swiss721, {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }}; */
   font-family: Swiss721, Arial, Helvetica, sans-serif;
   background-color: $color-white;
 }
@@ -93,9 +92,13 @@ body {
 
 h1, h2, h3 {
   color: {{ settings.headings_color }};
-/*   font-family: {{ settings.headings_font.family }}, {{ settings.headings_font.fallback_families }}; */
   font-family: Swiss721Black, Swiss721, Arial, Helvetica, sans-serif;	
 }
+
+h4 {
+	font-family: Swiss721, Arial, Helvetica, sans-serif;
+}
+
 
 p {
   opacity: 1.0;
@@ -294,6 +297,9 @@ main div.shopify-section  div:first-of-type section {
 }
 .outline-white-light {
 	border-color: lighten($color-white,$outline-contrast);
+}
+.outline-grey-light {
+  border-color: lighten($color-grey,$outline-contrast);
 }
 
 .outline-green-dark {
@@ -539,6 +545,11 @@ main div.shopify-section  div:first-of-type section {
     user-select: none;
 }
 
+.checkbox-wrapper-right {
+    padding-left: none;
+    padding-right: 35px;
+}
+
 /* Hide the browser's default checkbox */
 .checkbox-wrapper input {
     position: absolute;
@@ -560,32 +571,48 @@ main div.shopify-section  div:first-of-type section {
     border-radius: $corner-radius;
 }
 
+.checkmark-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    background-color: $color-black;
+    opacity: 0.2;
+    border-radius: $corner-radius;
+}
+
 /* On mouse-over, add a grey background color */
-.checkbox-wrapper:hover input ~ .checkmark {
+.checkbox-wrapper:hover input ~ .checkmark,
+.checkbox-wrapper:hover input ~ .checkmark-right {
     background-color: $color-green;
     opacity: 1;
 }
 
-/* When the checkbox is checked, add a blue background */
-.checkbox-wrapper input:checked ~ .checkmark {
+/* When the checkbox is checked, add a green background */
+.checkbox-wrapper input:checked ~ .checkmark,
+.checkbox-wrapper input:checked ~ .checkmark-right {
     background-color: $color-green;
     opacity: 1;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
+.checkmark:after,
+.checkmark-right:after  {
     content: "";
     position: absolute;
     display: none;
 }
 
 /* Show the checkmark when checked */
-.checkbox-wrapper input:checked ~ .checkmark:after {
+.checkbox-wrapper input:checked ~ .checkmark:after,
+.checkbox-wrapper input:checked ~ .checkmark-right:after {
     display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkbox-wrapper .checkmark:after {
+.checkbox-wrapper .checkmark:after,
+.checkbox-wrapper .checkmark-right:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -1102,7 +1129,11 @@ font-weight: $heading-weight;
 }
 
 #box.lighter {
-	font-weight: 400;
+	font-weight: 500;
+}
+
+#box.much-lighter {
+	font-weight: 300;
 }
 
 #box.noshadow {

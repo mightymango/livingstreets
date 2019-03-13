@@ -1,0 +1,47 @@
+
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-15 mb-sm-30 slider-item">
+    <div class="h-400 with-overlay p-30 d-flex justify-content-center">
+        <div class="product-box align-self-end">
+            
+            <div class="product-box-image">
+            	<img class="mb-50" src="{{ related | img_url: 'x160'}}" alt="">
+            	
+            	<div class="product-box-button">
+
+					{% unless related.type == "Linked" %}
+					{% if related.available and related.price > 0 %}
+	            	<div class="howmany">
+	            	<input class="form-control form-control-light bg-white text-black outline outline-black-light rounded mb-10 input-60" type="number" id="numberToAdd" name="numberToAdd" min="1" step="1" value="1" placeholder="" />
+		               <span class="form-control-stepper-wrapper form-control-stepper-left">
+		                	<span class="stepper glyphicon glyphicon-minus" data-direction="down"></span>
+		               </span>
+		               <span class="form-control-stepper-wrapper">
+		                	<span class="stepper glyphicon glyphicon-plus" data-direction="up"></span>
+		               </span>  
+	            	</div>
+	            	{% assign variant = related.first_available_variant %}
+	            	<a href="#" class="btn mb-10 add-to-cart" data-id="{{ variant.id }}">Buy</a>
+	            	{% endif %}
+	            	{% else %}
+	            	<div class="mb-50"></div>
+	            	{% endunless %}
+	            	<a href="{{ related.url }}" class="btn btn-orange{% if related.price == 0 %} mt-50 {% endif %}">Read more</a>
+            	</div>
+            
+            </div>
+                      
+            <div class="product-box-footer">
+            	<h3>{{ related.title }}</h3>
+            	{% if related.available %}
+            		{% if related.price > 0 %}
+					<p id="tape" class="tape-thin tape-box-orange tape-green tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} tape-removed">{{ related.price | money }} {{ settings.tax_format }}</p>
+					{% endif %}
+					{% else %}
+					<p id="tape" class="tape-thin tape-box-black tape-green tape-removed">Out of Stock</p>
+					{% endif %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+                     

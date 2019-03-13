@@ -297,7 +297,8 @@ Calculate the correct variant index from the month
             
             <div class="mb-40">
 	            <p class="form-control form-control-light form-control-no-max bg-green text-black rounded shadow-small">
-		            <span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils</strong> and will run from <strong><span id="start_month">{{ current_variant.title }}</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/><br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges for each month</strong> plus <span id="traveltracker_info" class=""><strong>access to TravelTracker</strong></span><span id="wallchart_info" class="hidden"><strong>wall charts for your selected number of classes</strong>.</span></p>
+					<span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils</strong> to earn badges, and will run from <strong><span id="start_month">September</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/><br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges for each month</strong> plus <span id="traveltracker_info" ><strong>access to TravelTracker</strong></span><span id="wallchart_info" style="display:none;"><strong>wall charts for your selected number of classes</strong>.</span>	            
+		        </p>
 	            
             </div> <!-- div -->
         
@@ -350,7 +351,7 @@ Calculate the correct variant index from the month
 							<img src="{{ product | img_url: 'x150'}}" />
 							{% if product.available %}
 							<div class="product-box-button mt-40">
-							<button class="btn add-to-cart" data-id="{{ product_id }}">Add to cart</button>
+							<button class="btn add-to-cart-btn" data-id="{{ product_id }}">Add to cart</button>
 							</div>
 							{% endif %}	
 						</div>
@@ -391,6 +392,8 @@ Calculate the correct variant index from the month
 <script>
 	$( document ).ready(function() {
 		
+		$('#start_month').text("{{ current_variant.title }}")
+
 		var quantityActive = false
 		
 		//Set cookie to track wow type
@@ -420,7 +423,7 @@ Calculate the correct variant index from the month
 			
 		}
 	
-		$(".add-to-cart").on('click', function(evt){
+		$(".add-to-cart-btn").on('click', function(evt){
 			addCrossSell($(this).data('id'))
 			evt.preventDefault(); 
 		});
@@ -595,25 +598,22 @@ Calculate the correct variant index from the month
 		});
 								
 		
-		$("#alternative").change(function(){
+		$("#alternative").on("change", function(){
 		    useAlternative = $(this).prop('checked')
 		    if (useAlternative) {
 			    $('.classes-input').fadeIn("slow")
 			    $('#tt_title').hide()
 			    $('#wc_title').fadeIn("slow")
-			    $('#classes').addAttr("name")
-			    $('#classes').attr("name", "properties[Classes]")		    
+			    $('#classes').attr("name", "properties[Classes]")
 		    }
 		    else {
 			    $('.classes-input').fadeOut("slow")
 			    $('#wc_title').hide()
 			    $('#tt_title').fadeIn("slow")
-			    $('#classes').removeAttr("name")			    
+			    $('#classes').removeAttr("name")		  			    
 		    }
-		    $('#wallchart_info').fadeToggle("slow")
-		    $('#traveltracker_info').fadeToggle("slow")
-		    
-		    
+		    $('#wallchart_info').toggle()
+		    $('#traveltracker_info').toggle()	 
 		    calculateSubscriptions()
 		});
 				

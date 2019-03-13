@@ -40,90 +40,50 @@ The following removes an add-on product if the main product is not in the cart.
 
 {% assign product = all_products[section.settings.main_product] %}
 
-
+{% assign product_title = product.title%}
 {% assign variant_id = product.variants.first.id %}
 {% assign product_id = item.product.variants.first.id %}
 
   <script>
 
   (function($) {
-
-
-
     var cartItems = {{ cart.items | json }},
-
         qtyInTheCart = 0,
-
-        cartUpdates = {};
-
-
+        cartUpdates = {},
+        productTitle = "{{ product_title }}";
 
     for (var i=0; i<cartItems.length; i++) {
-
-      if ( cartItems[i].id === {{ variant_id }} ) {
-
+      if ( cartItems[i].title.startsWith(productTitle) ) {
         qtyInTheCart = cartItems[i].quantity;
-
         break;
-
       }
-
     }
-
-
 
     if ( ( cartItems.length === 1 ) && ( qtyInTheCart == 0 ) ) {
-
       cartUpdates = { {{ product_id }}: 0 }
-
     }
-
     else {
-
       return;
-
     }
-
-
 
     var params = {
-
       type: 'POST',
-
       url: '/cart/update.js',
-
       data: { updates: cartUpdates },
-
       dataType: 'json',
-
       success: function(stuff) { 
-
         window.top.location.href = '/cart';
-
       }
-
     };
-
-
 
     $.ajax(params);
 
-
-
   })(jQuery);
-  
-  
-
 
   </script>
-
-
-
-
 
 {% endif %}
 
 {% endfor %}
-
 
 {% endif %}

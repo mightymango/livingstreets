@@ -1,7 +1,7 @@
 {% if block.settings.hero_image %}
 <style>
 #hero-box {
-  background: url("{{ block.settings.hero_image | img_url: 'x1024' }}") no-repeat center center{% if section.settings.fixed_image %} fixed{% endif %}; 
+  background: url("{{ block.settings.hero_image | img_url: 'x1024' }}") no-repeat center center{% if block.settings.fixed_image %} fixed{% endif %}; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,7 +18,7 @@
                     
                     {% if block.settings.strapline %}
                     {% capture string_with_newlines %}{{ block.settings.strapline }}{% endcapture %}
-                    <h4 id="box" class="mb-60 box-orange text-black lighter">{{ string_with_newlines | newline_to_br }}</h4>
+                    <h4 id="box" class="mb-60 box-orange much-lighter text-black lighter">{{ string_with_newlines | newline_to_br }}</h4>
                     {% endif %}
                 </div>
             </div>

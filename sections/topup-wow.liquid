@@ -26,7 +26,21 @@
 		"label": "Link",
 		"default": "View All",
 		"info": "Leave blank to hide the link."
-		}
+		},
+	{
+		"id": "added",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Added",
+		"info": "Title for the message displayed when a product is added to the cart. Leave blank to hide the title."
+	},
+	{
+		"id": "message",
+		"type": "text",
+		"label": "Notification title",
+		"default": "Your selected product has been added to your basket.",
+		"info": "The message displayed when a product is added to the cart."
+	}
   ]
   }
 {% endschema %}
@@ -48,15 +62,7 @@
     <div class="slider slider-rounded-buttons" id="related-products-no-dots"> 
 	    {% for related in collection.products %}
 		  	{% unless related.handle == product.handle %}     
-	  		    <div class="col-12 col-sm-6 col-md-4 col-lg-3 slider-item">
-			    <a href="{{ related.url }}">
-			    <img class="mb-30" src="{{ related | img_url: 'x100'}}" alt="">
-	
-	            <h4 class="mb-20">{{ related.title }}</h4>
-	
-	            <p id="tape" class="tape-box-orange tape-thin tape-removed tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} d-inline-block">{{ related.price | money }} {{ settings.tax_format }}</p>
-			    </a>
-	            </div>
+				{% include 'related-item' %}
 			 {% endunless %}			
 		{% endfor %}
     </div>
@@ -68,5 +74,47 @@
 	</div>
 </section>       
 {% endif %}
+
+    <script>
+	$( document ).ready(function() {
+
+		function updateCartCount(howMany) {
+			var desktopBadge = $('#count-desktop')
+			var mobileBadge = $('#count-mobile')
+			desktopBadge.text(howMany)
+			mobileBadge.text(howMany)
+		}
+		
+		function addToBasket(id, howMany) {
+			
+			const jsonString = '{ "' + id + '" : ' + howMany + ' }' 
+			var cartUpdates = JSON.parse(jsonString)
+	
+		    var params = {
+		      async: true,
+		      type: 'POST',
+		      url: '/cart/update.js',	
+		      data: { updates: cartUpdates },	
+		      dataType: 'json',
+		      success:function(data) {
+			      console.log(data)
+			   updateCartCount(data.item_count)
+			   notifyUser('{{ section.settings.added }}', '{{ section.settings.message }}', 3000);		        
+		      }	
+		    };
+		    
+		    $.ajax(params);			
+			
+		}
+	
+		$(".add-to-cart").on('click', function(evt){
+			var howMany = $(this).closest("div.product-box-button").find("input[name='numberToAdd']").val();
+			addToBasket($(this).data('id'), howMany)
+			evt.preventDefault() 
+		});
+				
+						
+	});      
+</script>ß
 
 

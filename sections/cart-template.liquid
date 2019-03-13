@@ -30,9 +30,9 @@
     },
 	{
       "type": "url",
-      "id": "empty_url",
+      "id": "continue_url",
       "label": "Continue link",
-      "info": "The page for the 'Continue' link."
+      "info": "Leave blank to go back to the previous page."
     },
     {
 	   "type": "product",
@@ -79,21 +79,7 @@
 
 				<div class="divTableBody">
 					
-					{% for item in cart.items %}
-
-					{% comment %}
-					Determining the handle of the collection that was last seen for the 'continue shopping' link.
-					{% endcomment %}
-					
-					{% assign collection_url = item.product.collections.last.url %}
-					{% if collection_url == '/collections/frontpage' or collection_url == blank %}
-					{% assign collection_url = '/collections/all' %}
-					{% endif %}
-					
-					{% if forloop.first %}
-					{% assign continue_shopping_url = collection_url %}
-					{% endif %}
-      					
+					{% for item in cart.items %}      					
                     <div class="divTableRow">
                        {% if section.settings.cart_images_enabled %}
                         <div class="divTableCell">
@@ -161,11 +147,19 @@
 
             <div class="row justify-content-end mt-20">
 	            
-	            <div class="col-12 col-sm-4">
-		            <p class="cart-attribute__field text-right text-grey">
-						If you <strong>intend paying by Purchase Order</strong>, please enter the number before checking out
-						<input class="form-control form-control-light form-control-small bg-white outline outline-grey text-black text-center" id="purchase-order-number" type="text" name="attributes[Purchase Order Number]" value="{{ cart.attributes["Purchase Order Number"] }}">
-					</p>
+	            <div class="col-12">
+                <p class="text-right">
+                  <label class="checkbox-wrapper checkbox-wrapper-right">My organisation uses purchase orders
+                  <input id="show_po_number" type="checkbox" id="alternative">
+                  <span class="checkmark-right"></span>
+                  </label>
+                </p>
+              </div>
+              <div class="col-12 col-md-4">
+		            <p id="po_number" class="cart-attribute__field text-right mt-20" style="display:none;">
+    						<strong>Please enter your PO number:</strong>
+      						<input class="form-control form-control-light form-control-small bg-white outline outline-grey text-black text-right" id="purchase-order-number" type="text" name="attributes[Purchase Order Number]" value="{{ cart.attributes["Purchase Order Number"] }}">
+    					  </p>
 	            </div>
 			
 			</div>
@@ -174,7 +168,13 @@
             <div class="p-30 p-lg-50 text-right">
 	            {% unless section.settings.donation_product == blank%}
 	            {% assign donations = all_products[section.settings.donation_product] %}	            
-	            <a href="{{ donations.url }}" class="btn btn-orange mr-15">Make a donation</a>{% endunless %}<a href="{{ continue_shopping_url }}" class="btn btn-light mr-15"><span>Continue Shopping</span></a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
+	            <a href="{{ donations.url }}" class="btn btn-orange mr-15">Make a donation</a>{% endunless %}
+              {% if section.settings.continue_url  %}
+              <a href="{{ section.settings.continue_url }}" class="btn btn-yellow mr-15"><span>Continue Shopping</span>
+              {% else %}
+              <a href="#" onclick="goBack()" class="btn btn-yellow mr-15"><span>Continue Shopping</span>
+              {% endif %}
+              </a> <input class ="btn" type="submit" name="checkout" value="Checkout" /> 
             </div>
             
 
@@ -187,15 +187,53 @@
 
     </section>
 
+<script>
+  $( document ).ready(function() {
+    //Cookies.remove('usePONumber')
+    var usePONumber = Cookies.get('usePONumber')
+    var PONumber = Cookies.get('PONumber')
+    console.log(PONumber)
+    $( "#show_po_number" ).on( "change", function() {
+      $( "#po_number" ).toggle()
+      if ($( "#show_po_number" ).prop('checked')) {
+      Cookies.set('usePONumber', 1)} 
+      else {
+      Cookies.set('usePONumber', 0)}
+    });
+
+    $( "#purchase-order-number" ).on( "change", function() {
+      Cookies.set('PONumber', $( this ).val())
+    });
+
+    if (usePONumber == 1){
+      $( "#show_po_number" ).prop('checked', true)
+      $( "#po_number" ).show()
+      $( "#purchase-order-number" ).val(PONumber)
+    }
+
+  });
+</script>
 {% else %}
 
 <section class="p-60 p-lg-100 pt-200" id="cart">
   <div class="container">
   <h2>{{ section.settings.empty_comment | escape }}</h2>
-  <h3 class="pt-30"><a href="{{ section.settings.empty_url }}">Continue...</a></h3>
+  {% if section.settings.continue_url %}
+  <h3 class="pt-30"><a href="{{ section.settings.continue_url }}">Continue...</a></h3>
+  {% else %}
+  <h3 class="pt-30"><a href="#" onclick="goBack()">Continue...</a></h3>
+  {% endif %}
   </div>
 </section>
 {% endif %}
+
+<script>
+  function goBack() {
+  window.history.back();
+}
+</script>
+
+
 
 
 

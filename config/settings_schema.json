@@ -76,6 +76,25 @@
     ]
   },
   {
+    "name": {
+      "de": "Favicon",
+      "en": "Favicon",
+      "es": "Favicon",
+      "fr": "Favicon",
+      "it": "Favicon",
+      "ja": "ファビコン",
+      "pt-BR": "Favicon"
+    },
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
     "name": "Collections",
     "settings": [
       {
@@ -263,7 +282,20 @@
         "id": "cookies_button",
         "label": "Button text",
         "default": "Accept"
+      },
+      {
+        "type": "color",
+        "id": "cookies_button_color",
+        "label": "Button color",
+        "default": "#de1994"
+      },
+      {
+        "type": "color",
+        "id": "cookies_button_text",
+        "label": "Text color",
+        "default": "#ffffff"
       }
+      
     ]
   }
 ]
