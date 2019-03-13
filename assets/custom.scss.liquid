@@ -1521,12 +1521,6 @@ margin-left:20px;
 	  padding: 15px;
 }
 
-@media (max-width: $size-sm) {
-.cross-sell {
-    width: 100%;
-}
-}
-
 .cross-sell .instruction {
 	position: absolute;	
 	bottom: 0;
@@ -1555,6 +1549,18 @@ margin-left:20px;
 	right: 0;
 	padding: 20px;
 	text-align: right;	
+}
+
+@media (max-width: $size-sm) {
+.cross-sell {
+    width: 96%;
+}
+.cross-sell .buttons {
+  text-align: center; 
+}
+.cross-sell .instruction {
+  display: none;
+}
 }
 
 /* ---- people ---- */
