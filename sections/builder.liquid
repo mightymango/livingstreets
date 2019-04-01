@@ -10,6 +10,36 @@
 		"default": "Title"
 	},
 	{
+	   "type": "radio",
+	   "id": "enable_test",
+	   "options": [
+	      { "value": "yes", "label": "Yes"},
+	      { "value": "no", "label": "No"}
+	   ],
+	   "default":   "no",
+	   "label": "Enable testing",
+	   "info": "Switch on to select month to test. Remember to switch off once testing is complete."
+	},
+	{
+	   "type": "select",
+	   "id": "test_month",
+	   "options": [
+	      { "value": "9", "label": "September"},
+	      { "value": "10", "label": "October"},
+	      { "value": "11", "label": "November"},
+	      { "value": "12", "label": "December"},
+	      { "value": "1", "label": "January"},
+	      { "value": "2", "label": "February"},
+	      { "value": "3", "label": "March"},
+	      { "value": "4", "label": "April"},
+	      { "value": "5", "label": "May"},
+	      { "value": "6", "label": "June"},
+	      { "value": "7", "label": "July"},
+	      { "value": "8", "label": "August"}
+	   ],
+	   "label": "Test month"
+	},
+	{
 		"id": "number-on-roll",
 		"type": "text",
 		"label": "Number on roll",
@@ -44,7 +74,7 @@
 		"default": "I'd like to use wall charts instead of TravelTracker",
 		"info": "Leave blank if you do not want to display the alternative option."
 	},
-		{
+	{
 		"id": "add-to-cart",
 		"type": "text",
 		"label": "Button text",
@@ -156,6 +186,10 @@
 {% assign m = month | plus: 0 %}
 {% endif %}
 
+{% if section.settings.enable_test == "yes" %}
+{% assign m = section.settings.test_month | plus: 0 %}
+{% endif %}
+
 {% comment %}
 Calculate the correct variant index from the month
 {% endcomment %}
@@ -165,12 +199,62 @@ Calculate the correct variant index from the month
 {% assign v = m  %}
 {% endif %}
 
+{%- comment -%}Capture an array of SKUs for badge packs{% endcomment %}
+{%- capture skus -%}
+ {%- comment -%}First loop from Sept to Dec{% endcomment %}
+ {%- if m > 8 -%}
+ {%- for variant in product.variants -%}
+	{%- if forloop.index >= m -%}
+	{{ variant.sku | append: " "}}
+	{%- endif -%}
+ {%- endfor -%}
+  {%- for variant in product.variants -%}
+	{%- if forloop.index < 8 -%}
+	{{ variant.sku | append: " "}}
+	{%- endif -%}
+ {%- endfor -%}
+ {%- endif -%}
+ {%- comment -%}Next loop from month to July{%- endcomment -%}
+ {%- if m < 9 -%}
+ {%- for variant in product.variants -%}
+	{%- if forloop.index >= m and forloop.index < 8 -%}
+	{{ variant.sku | append: " "}}
+	{%- endif -%}
+ {%- endfor -%}
+ {%- endif -%}
+{%- endcapture -%}
+
 {% for variant in wall_charts.variants %}
 {% increment chart_counter %}
   {% if chart_counter == v %}
   {% assign wall_charts_variant = variant %}
   {% endif %}
 {% endfor %}
+
+{%- comment -%}Capture an array of SKUs for walchart packs{% endcomment %}
+{%- capture skus_wallcharts -%}
+ {%- comment -%}First loop from Sept to Dec{% endcomment %}
+ {%- if m > 8 -%}
+ {%- for variant in wall_charts.variants -%}
+	{%- if forloop.index >= m -%}
+	{{ variant.sku | append: " "}}
+	{%- endif -%}
+ {%- endfor -%}
+  {%- for variant in wall_charts.variants -%}
+	{%- if forloop.index < 8 -%}
+	{{ variant.sku | append: " "}}
+	{%- endif -%}
+ {%- endfor -%}
+ {%- endif -%}
+ {%- comment -%}Next loop from month to July{%- endcomment -%}
+ {%- if m < 9 -%}
+ {%- for variant in wall_charts.variants -%}
+	{%- if forloop.index >= m and forloop.index < 8 -%}
+	{{ variant.sku | append: " "}}
+	{%- endif -%}
+ {%- endfor -%}
+ {%- endif -%}
+{%- endcapture -%}
 
 
 {% for block in section.blocks %}
@@ -214,20 +298,20 @@ Calculate the correct variant index from the month
 	{% endif %}
 	<h3 class="mb-40 text-left">Using <span class="text-green" id="tt_title"><strong>Travel Tracker</strong></span><span id="wc_title" class="text-orange hidden"><strong>Wallcharts</strong></span> to track progress</h3>
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="builder_form">
-	    
+
 	  <div id="product-variants" class="pb-20 hidden">
         <select id="product-select" name="id">
         {% for variant in product.variants %}
-        {% increment variant_counter %}
-          <option{% if variant_counter == v %} selected{% endif %} value="{{ variant.id }}">
+          <option{% if forloop.index == v %} selected{% endif %} value="{{ variant.id }}">
           {{ variant.title }}
-          {% if variant_counter == v %}
+          {% if forloop.index == v %}
           {% assign current_variant = variant %}
           {% endif %}
           </option>
         {% endfor %}
         </select>
         <input type="hidden" id="quantity" name="quantity" value="1">
+        <input type="hidden" id="skus" name="properties[Packs]" value="{{ skus | strip | strip_newlines }}">
       </div> 
       
       <div class="text-left">
@@ -318,7 +402,8 @@ Calculate the correct variant index from the month
 	      <div class="w-p-100 w-p-50-sm">
 	      <a href="#" id="show_addons" class="btn w-full no-padding">{{ section.settings.add-to-cart | escape }}</a>
           {% else %}
-          <input class="btn w-full no-padding" type="submit" name="add" id="add" value="{{ section.settings.add-to-cart | escape }}">          
+          <a href="#" class="btn w-full no-padding" id="dummy_submit">{{ section.settings.add-to-cart | escape }}</a>
+          <input class="btn w-full no-padding hidden" type="submit" name="add" id="real_submit" value="{{ section.settings.add-to-cart | escape }}">          
           {% endif %}
 	      </div>
         </div>
@@ -347,7 +432,8 @@ Calculate the correct variant index from the month
 				{% endfor %}
 			</div>
 			<div class="buttons">
-				<input class="btn btn-green" type="submit" name="add" id="add" value="{{ section.settings.cross-sell-button }}">
+				<a href="#" class="btn btn-green" id="dummy_submit">{{ section.settings.cross-sell-button | escape }}</a>
+          		<input class="btn btn-green hidden" type="submit" name="add" id="real_submit" value="{{ section.settings.cross-sell-button }}">
 			</div>
 			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
 		</div>
@@ -404,7 +490,12 @@ Calculate the correct variant index from the month
 		});
 
 {% endif %}
-		
+	     
+	     $("#dummy_submit").on("click", function(){
+		    $("#real_submit").click(); 
+		    return false;
+		  });	
+
 		function unlockQuantity() {
 			$( "#quantity-input" ).removeClass("locked")
 			$( "#subscriptions" ).attr("readonly", false)
@@ -510,14 +601,21 @@ Calculate the correct variant index from the month
 			Cookies.set('wallchartsCount', number)
 			
 			var cartUpdates = { {{ wall_charts_variant.id }}: number }
+			var wallChartSKUs = "{{ skus_wallcharts | strip_newlines | strip }}"
 	
 		    var params = {
 		      async: false,
 		      type: 'POST',
-		      url: '/cart/update.js',	
-		      data: { updates: cartUpdates },	
+		      url: '/cart/add.js',	
+		      data: {
+			  quantity: number,
+			  id: {{ wall_charts_variant.id }},
+			  properties: {
+			    'Packs': wallChartSKUs
+			  }
+			  },	
 		      dataType: 'json'	
-		    };
+		      };
 		    
 		    $.ajax(params);			
 			

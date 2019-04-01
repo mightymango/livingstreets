@@ -122,14 +122,14 @@
           </div> <!-- .table_row-->   
        </div><!-- divTable -->
 
-            <div class="text-right">
+            <div class="text-center text-sm-right">
 	            <p>{{ section.settings.comment }}</p>
             </div> <!-- .text-right -->
 
             <div class="row justify-content-end mt-20">
 	            
 	            <div class="col-12">
-                <p class="text-right">
+                <p class="text-center text-sm-right">
                   <label class="checkbox-wrapper checkbox-wrapper-right">My organisation uses purchase orders
                   <input id="show_po_number" type="checkbox" id="alternative">
                   <span class="checkmark-right"></span>
@@ -156,7 +156,8 @@
               {% else %}
               <a href="#" onclick="goBack()" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
               {% endif %}
-              <input type="submit" name="checkout" value="Checkout" class="btn btn-green mb-15 block">
+              <a id="dummy_submit" href="#" class="btn btn-green mb-15 block">Checkout</a>
+              <input id="real_submit" class="hidden" type="submit" name="checkout" value="Checkout" class="btn btn-green mb-15 block">
             </div> <!-- buttons -->
             
 			</form> <!-- form-->
@@ -208,7 +209,11 @@
 <script>
   function goBack() {
   window.history.back();
-}
+  }
+  $("#dummy_submit").on("click", function(){
+    $("#real_submit").click(); 
+    return false;
+  });
 </script>
 
 

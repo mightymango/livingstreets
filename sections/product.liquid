@@ -185,7 +185,8 @@
                         <div class="col-12 col-sm-6 mb-20">
 					      <label class="d-block">&nbsp;</label>
 					      <div id="product-add">
-						  <input class="btn" style="margin-top:2px;" type="submit" name="add" id="add" value="{{ section.settings.add_to_cart | escape }}">
+					      <a href="#" id="dummy_submit" class="btn" style="margin-top:2px;">{{ section.settings.add_to_cart | escape }}</a>
+						  <input class="btn hidden" type="submit" name="add" id="real_submit" value="{{ section.settings.add_to_cart | escape }}">
 	      				  </div>
                         </div>
                                                
@@ -268,6 +269,11 @@
 			addToBasket($(this).data('id'), howMany)
 			evt.preventDefault() 
 		});
+
+		  $("#dummy_submit").on("click", function(){
+		    $("#real_submit").click(); 
+		    return false;
+		  });
 				
 						
 	});      
