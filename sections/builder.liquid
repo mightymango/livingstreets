@@ -191,6 +191,13 @@
 {% endif %}
 
 {% comment %}
+Move on in August
+{% endcomment %}
+{% if m == 8 %}
+{% assign m = 9 | plus: 0 %}
+{% endif %}
+
+{% comment %}
 Calculate the correct variant index from the month
 {% endcomment %}
 {% if m > 12 %}
