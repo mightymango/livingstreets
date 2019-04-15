@@ -10,36 +10,6 @@
 		"default": "Title"
 	},
 	{
-	   "type": "radio",
-	   "id": "enable_test",
-	   "options": [
-	      { "value": "yes", "label": "Yes"},
-	      { "value": "no", "label": "No"}
-	   ],
-	   "default":   "no",
-	   "label": "Enable testing",
-	   "info": "Switch on to select month to test. Remember to switch off once testing is complete."
-	},
-	{
-	   "type": "select",
-	   "id": "test_month",
-	   "options": [
-	      { "value": "9", "label": "September"},
-	      { "value": "10", "label": "October"},
-	      { "value": "11", "label": "November"},
-	      { "value": "12", "label": "December"},
-	      { "value": "1", "label": "January"},
-	      { "value": "2", "label": "February"},
-	      { "value": "3", "label": "March"},
-	      { "value": "4", "label": "April"},
-	      { "value": "5", "label": "May"},
-	      { "value": "6", "label": "June"},
-	      { "value": "7", "label": "July"},
-	      { "value": "8", "label": "August"}
-	   ],
-	   "label": "Test month"
-	},
-	{
 		"id": "number-on-roll",
 		"type": "text",
 		"label": "Number on roll",
@@ -184,10 +154,6 @@
 {% assign m = month | plus: 1 %}
 {% else %}
 {% assign m = month | plus: 0 %}
-{% endif %}
-
-{% if section.settings.enable_test == "yes" %}
-{% assign m = section.settings.test_month | plus: 0 %}
 {% endif %}
 
 {% comment %}
