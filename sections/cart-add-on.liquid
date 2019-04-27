@@ -34,38 +34,29 @@ The following removes an add-on product if the main product is not in the cart.
 
 {% endcomment %}
 
+{% assign main_product = section.settings.main_product %}
+{% assign addon_product = section.settings.addon_product %}
+{% assign main_product_not_found = true %}
+
 {% for item in cart.items %} 
+  
+  {% if item.product.handle == main_product %}
+    {% assign main_product_not_found = false %}
+  {% endif %}
 
-{% if item.product.handle == section.settings.addon_product %}
+  {% if item.product.handle == addon_product %}
+    {% assign addon_product_found = true %}
+    {% assign product = all_products[addon_product] %}
+    {% assign add_on_id = product.variants.first.id %}
+  {% endif %}
 
-{% assign product = all_products[section.settings.main_product] %}
+{% endfor %}
 
-{% assign product_title = product.title%}
-{% assign variant_id = product.variants.first.id %}
-{% assign product_id = item.product.variants.first.id %}
-
-  <script>
-
+{% if addon_product_found and main_product_not_found %}
+<script>
   (function($) {
-    var cartItems = {{ cart.items | json }},
-        qtyInTheCart = 0,
-        cartUpdates = {},
-        productTitle = "{{ product_title }}";
-
-    for (var i=0; i<cartItems.length; i++) {
-      if ( cartItems[i].title.startsWith(productTitle) ) {
-        qtyInTheCart = cartItems[i].quantity;
-        break;
-      }
-    }
-
-    if ( ( cartItems.length === 1 ) && ( qtyInTheCart == 0 ) ) {
-      cartUpdates = { {{ product_id }}: 0 }
-    }
-    else {
-      return;
-    }
-
+  console.log('Need to remove')
+  var cartUpdates = { {{ add_on_id }}: 0 }
     var params = {
       type: 'POST',
       url: '/cart/update.js',
@@ -79,11 +70,9 @@ The following removes an add-on product if the main product is not in the cart.
     $.ajax(params);
 
   })(jQuery);
-
-  </script>
-
+</script>
+{% else %}
+<script>console.log('Nothing to remove')</script>
 {% endif %}
-
-{% endfor %}
 
 {% endif %}
