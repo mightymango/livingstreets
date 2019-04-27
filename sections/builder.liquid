@@ -250,8 +250,8 @@ Calculate the correct variant index from the month
 		<div class="row">
 			{% for image in product.images %}
 			{% if forloop.first != true %}
-			<div class="col-2 text-center">
-				<img class="d-none d-md-block pt-50 w-50 badge-image" src="{{ image | img_url: 'x600' }}">
+			<div class="col-3 text-center">
+				<img class="d-none d-md-block pt-50 w-100 badge-image" src="{{ image | img_url: 'x600' }}">
 			</div>
 			{% endif %}
 			{% endfor %}
