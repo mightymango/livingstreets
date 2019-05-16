@@ -10,30 +10,32 @@
 	  {% else %}
 	     {% assign show_notification = false %}
 	{% endcase %}
-
-	
-	
 	
 	{% if show_notification %}
 	<!-- Notification Bar -->
-    <div id="notification" class="shadow-below-small">
-        <span class="vertical-align">{{ settings.notification_text | escape }}</span>
+    <div id="notification" class="bg-{{ settings.notification_colour }} outline-bottom-{{ settings.notification_colour }} text-{{ settings.notification_text_colour }} shadow-below-small text-{{ settings.notification_text_align }}">
+        <span class="vertical-align text-{{ settings.notification_text_size }}">
+        	{%- if settings.text_bold -%}
+        	<strong>{{ settings.notification_text | escape }}</strong>
+        	{%- else -%}
+        	{{ settings.notification_text | escape }}
+        	{%- endif -%}
+        </span>
     </div>
-    
     
 	<script>
 	$(document).ready(function() {
 		
 	  var navbar = document.getElementById("navbar")
 	  var notification = document.getElementById("notification")
-	  var h = document.getElementById('notification').clientHeight;
+	  var h = notification.clientHeight;
 	  navbar.style.top = h + "px"
 	  
 	  {% if settings.auto_hide %}
 	  $(window).scroll(function() {
 	    
 	    if ($(document).scrollTop() > 300) {
-	      notification.style.top = "-50px"
+	      notification.style.top = "-200px"
 		  navbar.style.top = 0		  
 	    } else {
 	      notification.style.top = "0px"

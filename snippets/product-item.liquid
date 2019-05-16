@@ -33,7 +33,9 @@
             <div class="product-box-footer">
             	<h3>{{ product.title }}</h3>
             	{% if product.available %}
+            	{%- if product.price > 0 -%}
 				<p id="tape" class="tape-thin tape-box-orange tape-green tape-rotate-{% cycle 'c-1', 'a-2', 'c-2', 'c-1', 'a-1', 'a-3' %} tape-removed">{{ product.price | money }} {{ settings.tax_format }}</p>
+				{% endif %}
 				{% else %}
 				<p id="tape" class="tape-thin tape-box-black tape-green tape-removed">Out of Stock</p>
 				{% endif %}

@@ -128,6 +128,60 @@
         "label": "Display"
       },
       {
+         "type": "select",
+         "id": "notification_colour",
+         "options": [
+            { "value": "green", "label": "Green"},
+            { "value": "pink", "label": "Pink"},
+            { "value": "orange", "label": "Orange"},
+            { "value": "yellow", "label": "Yellow"},
+            { "value": "white", "label": "White"},
+            { "value": "black", "label": "Black"}
+         ],
+         "label": "Background Colour"
+      },
+      {
+         "type": "select",
+         "id": "notification_text_colour",
+         "options": [
+            { "value": "white", "label": "White"},
+            { "value": "black", "label": "Black"},
+            { "value": "green", "label": "Green"},
+            { "value": "pink", "label": "Pink"},
+            { "value": "orange", "label": "Orange"},
+            { "value": "yellow", "label": "Yellow"}
+         ],
+         "label": "Text Colour"
+      },
+      {
+         "type": "select",
+         "id": "notification_text_align",
+         "default": "center",
+         "options": [
+            { "value": "left", "label": "Left"},
+            { "value": "center", "label": "Centre"},
+            { "value": "right", "label": "Right"}
+         ],
+         "label": "Text Position"
+      },
+      {
+         "type": "select",
+         "id": "notification_text_size",
+         "default": "normal",
+         "options": [
+            { "value": "small", "label": "Small"},
+            { "value": "normal", "label": "Normal"},
+            { "value": "large", "label": "Large"}
+         ],
+         "label": "Text Size"
+      },
+      {
+        "type": "checkbox",
+        "id": "text_bold",
+        "default": false,
+        "label": "Bold"
+      },
+      {
         "type": "text",
         "id": "notification_text",
         "default": "Say something here.",

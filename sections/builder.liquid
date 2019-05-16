@@ -41,7 +41,7 @@
 		"id": "alternative",
 		"type": "text",
 		"label": "Alternative option",
-		"default": "I'd like to use wall charts instead of TravelTracker",
+		"default": "I'd like to use wall charts instead of WOW Travel Tracker",
 		"info": "Leave blank if you do not want to display the alternative option."
 	},
 	{
@@ -61,10 +61,20 @@
 	    "info": "The day used to calculate when the month should be rolled over to the next."
 	},
 	{
+	    "type":      "range",
+	    "id":        "end_month",
+	    "min":        1,
+	    "max":        12,
+	    "step":       1,
+	    "label":     "End month",
+	    "default":   6,
+	    "info": "The month used to decide when to start a new year."
+	},
+	{
 	   "type": "product",
 	   "id": "travel_tracker",
-	   "label": "Travel Tracker",
-	   "info": "Select the Travel Tracker product so that it can be added automatically to the order."
+	   "label": "WOW Travel Tracker",
+	   "info": "Select the WOW Travel Tracker product so that it can be added automatically to the order."
 	}
 ,
 	{
@@ -157,11 +167,13 @@
 {% endif %}
 
 {% comment %}
-Move on in August
+Move on in end_month
 {% endcomment %}
-{% if m == 8 %}
-{% assign m = 9 | plus: 0 %}
+{% assign september = 9 %}
+{% if m >= end_month and m < september %}
+{% assign m = september | plus: 0 %}
 {% endif %}
+
 
 {% comment %}
 Calculate the correct variant index from the month
@@ -269,7 +281,7 @@ Calculate the correct variant index from the month
     <h2 id="box" class="d-inline-block box-yellow box-slim box-rotate-c-1">{{ section.settings.heading | escape }}</h2>
     </div>
 	{% endif %}
-	<h3 class="mb-40 text-left">Using <span class="text-green" id="tt_title"><strong>Travel Tracker</strong></span><span id="wc_title" class="text-orange hidden"><strong>Wallcharts</strong></span> to track progress</h3>
+	<h3 class="mb-40 text-left">Using <span class="text-green" id="tt_title"><strong>WOW Travel Tracker</strong></span><span id="wc_title" class="text-orange hidden"><strong>Wallcharts</strong></span> to track progress</h3>
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="builder_form">
 
 	  <div id="product-variants" class="pb-20 hidden">
@@ -354,7 +366,7 @@ Calculate the correct variant index from the month
             
             <div class="mb-40">
 	            <p class="form-control form-control-light form-control-no-max bg-green text-black rounded shadow-small">
-					<span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils</strong> to earn badges, and will run from <strong><span id="start_month">September</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/><br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges for each month</strong> plus <span id="traveltracker_info" ><strong>access to TravelTracker</strong></span><span id="wallchart_info" style="display:none;"><strong>wall charts for your selected number of classes</strong>.</span>	            
+					<span class="glyphicon glyphicon-info-sign"></span> Your selection will be enough for <strong><span id="pupil_number">?</span> pupils</strong> to earn badges, and will run from <strong><span id="start_month">September</span></strong> until the end of the school year, at a cost of <strong><span id="product-price" itemprop="price"></span></strong>. <br/><br/>You will receive <strong><span id="pack_number"></span> packs of 10 badges for each month</strong> plus <span id="traveltracker_info" ><strong>access to WOW Travel Tracker</strong></span><span id="wallchart_info" style="display:none;"><strong>wall charts for your selected number of classes</strong>.</span>	            
 		        </p>
 	            
             </div> <!-- div -->

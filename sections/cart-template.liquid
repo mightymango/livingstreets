@@ -8,11 +8,29 @@
       "label": "Heading",
       "default": "Cart"
     },
+    {
+      "type": "checkbox",
+      "id": "show_properties",
+      "label": "Show line item properties",
+      "default": false
+    },
 	{
       "type": "text",
       "id": "comment",
       "label": "Comment",
       "default": "VAT and shipping will be calculated at checkout."
+    },
+  {
+      "type": "text",
+      "id": "po_prompt",
+      "label": "Purchase Orders",
+      "default": "My organisation uses purchases orders"
+    },
+  {
+      "type": "text",
+      "id": "po_input",
+      "label": "PO Label",
+      "default": "Please enter your PO number"
     },
     {
       "type": "checkbox",
@@ -38,7 +56,13 @@
 	   "type": "product",
 	   "id": "donation_product",
 	   "label": "Donations"
-	}
+	},
+    {
+     "type": "checkbox",
+     "id": "enable_donations",
+     "default": true,
+     "label": "Show donations button"
+  }  
   ]
 }
 {% endschema %}
@@ -60,7 +84,19 @@
                         <div class="table_header text-right">Cost</div>
                   </div> <!-- .theader -->
 					
-					{% for item in cart.items %}      					
+					{% for item in cart.items %} 
+          {% comment %}Checks if the item ends in a month{% endcomment %}
+          {% assign stringToCheck = item.title %}
+          {% assign startsWith = 'WOW - ' %}
+          {% assign checkArray = stringToCheck | split:startsWith %}
+          {% assign startsWith2 = 'A Year of Wallcharts' %}
+          {% assign checkArray2 = stringToCheck | split:startsWith2 %}
+
+          {% if checkArray[0] == blank or checkArray2[0] == blank %}
+            {% assign extraText = " to July" %}
+          {% else %}
+            {% assign extraText = " " %}
+          {% endif %}     					
                     <div class="table_row">
                        {% if section.settings.cart_images_enabled %}
                         <div class="table_small_single">
@@ -71,13 +107,13 @@
                         <div class="table_small_single">
                           <div class='table_cell'></div>
                            <div class='table_cell text-center text-sm-left'>
-                           {{ item.title }} <a class="btn btn-tiny d-none d-sm-inline" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>{% unless item.properties == empty %}
+                           <a class="cart_item" href="{{ item.url }}">{{ item.title }}{{ extraText }}</a> <span class="ml-15"><a class="btn btn-tiny d-none d-sm-inline" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></span>{% if section.settings.show_properties == true %}{% unless item.properties == empty %}
           							<br/><small class="d-block text-grey">
           							  {% for property in item.properties %}
           							  {{ property.first }}: {{ property.last }}&nbsp;&nbsp;
           							  {% endfor %}
           							</small>
-          							{% endunless %}</div>
+          							{% endunless %}{% endif %}</div>
                       </div> <!-- .table_small_single -->
 
                         <div class="table_small_single text-center text-sm-right">
@@ -130,7 +166,8 @@
 	            
 	            <div class="col-12">
                 <p class="text-center text-sm-right">
-                  <label class="checkbox-wrapper checkbox-wrapper-right">My organisation uses purchase orders
+                  <label class="checkbox-wrapper checkbox-wrapper-right">
+                    {{ section.settings.po_prompt }}
                   <input id="show_po_number" type="checkbox" id="alternative">
                   <span class="checkmark-right"></span>
                   </label>
@@ -139,7 +176,7 @@
 
               <div class="col-12 col-md-4">
 		            <p id="po_number" class="cart-attribute__field text-right mt-20" style="display:none;">
-    						<strong>Please enter your PO number:</strong>
+    						<strong>{{ section.settings.po_input }}:</strong>
       						<input class="form-control form-control-light form-control-small bg-white outline outline-grey text-black text-right" id="purchase-order-number" type="text" name="attributes[Purchase Order Number]" value="{{ cart.attributes["Purchase Order Number"] }}">
     					  </p>
 	            </div>
@@ -148,9 +185,10 @@
 			                    
                         
             <div class="p-30 p-lg-50 text-right">
-	            {% unless section.settings.donation_product == blank%}
+	            {% if section.settings.enable_donations %}
+              {% unless section.settings.donation_product == blank%}
 	            {% assign donations = all_products[section.settings.donation_product] %}	            
-	            <a href="{{ donations.url }}" class="btn btn-orange mr-md-15 mb-15 d-block d-md-inline">Make a donation</a>{% endunless %}
+	            <a href="{{ donations.url }}" class="btn btn-orange mr-md-15 mb-15 d-block d-md-inline">Make a donation</a>{% endunless %}{% endif %}
               {% if section.settings.continue_url  %}
               <a href="{{ section.settings.continue_url }}" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
               {% else %}

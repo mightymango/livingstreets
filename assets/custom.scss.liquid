@@ -28,7 +28,7 @@ $color-yellow: {{ settings.color_4 }};
 $color-black: {{ settings.color_5 }};
 $color-white: {{ settings.color_6 }};
 
-$color-red: RGBA(190, 37, 60, 1.00);
+$color-red: rgba(190, 37, 60, 1.00);
 $color-grey: rgba(16,1,0,0.5);
 
 
@@ -326,6 +326,43 @@ main div.shopify-section  div:first-of-type section {
 	border-color: darken($color-white,$outline-contrast);
 }
 
+.outline-bottom-green {
+  border-style: solid;
+  border-bottom-color: darken($color-green, 5%);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.outline-bottom-yellow {
+  border-style: solid;
+  border-bottom-color: darken($color-yellow, 5%);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.outline-bottom-orange {
+  border-style: solid;
+  border-bottom-color: darken($color-orange, 5%);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.outline-bottom-pink {
+  border-style: solid;
+  border-bottom-color: darken($color-pink, 5%);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.outline-bottom-black {
+  border-style: solid;
+  border-bottom-color: lighten($color-black, 5%);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.outline-bottom-white {
+  border-style: solid;
+  border-bottom-color: darken($color-white, 5%);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+
 .icon{
   height: 32px;
   width: 32px;
@@ -354,6 +391,19 @@ main div.shopify-section  div:first-of-type section {
 }
 .text-grey {
 	color: $color-grey !important;	
+}
+
+.text-small {
+  font-size: 0.75em;  
+}
+.text-normal {
+  font-size: 1.0em;  
+}
+.text-large {
+  font-size: 1.5em;  
+}
+.text-big {
+  font-size: 2.0em;  
 }
 
 .panel {
@@ -629,6 +679,68 @@ main div.shopify-section  div:first-of-type section {
     transform: rotate(45deg);
 }
 
+/* The select container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-size: 1.2em;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: $color-yellow;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  border-color: $color-orange transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent $color-orange transparent;
+  top: 3px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: $color-black;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  border-radius: $corner-radius;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: $color-orange;
+  color: $color-black;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 
 /* Input */
 input {
@@ -712,24 +824,15 @@ div.locked  > .form-control-lock-wrapper {
 	top: 0;
 	width: 100%;
 	z-index: 1002;
-	background-color: $color-green;
-	color: #e3f1fd;
-	height: 50px;
-	padding: 10px;
-	padding-top: 12px;
+	height: auto;
+	padding: 20px;
+	padding-top: 22px;
 	text-align: center;
+  font-size: 1.5em;
 	-webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
-    transition: all 1.0s ease;	
-    border-style: solid;
-    border-bottom-color: darken($color-green, 5%);
-    border-width: 0;
-    border-bottom-width: 1px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;	
+    transition: all 1.0s ease;		
 }
 
 #notification.hide {
@@ -742,8 +845,7 @@ div.locked  > .form-control-lock-wrapper {
 
 @media (max-width: $size-md) {
   #notification {
-    height: 30px;
-    padding: 3px;
+    padding: 10px;
   }
 }
 
@@ -2641,5 +2743,9 @@ ul.pagination li a {
   margin: 5px;
 }
 
+.cart_item {
+  font-weight: 500;
+  font-size: 1.1em;
+}
 
 
