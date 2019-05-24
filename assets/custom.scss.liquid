@@ -1702,12 +1702,16 @@ margin-left:20px;
 }
 
 /* ---- fixed footer ---- */
+.main-content {
+  z-index: 2;
+  background: $color-white;
+}
 footer {
 	width: 100%;
 	height: $footer-height;
 	position: fixed;
 	bottom: 0;
-	z-index: -2;
+	z-index: 1;
 	background-color: $color-footer;
 	color: $color-footer-text;
 	text-transform: uppercase;
