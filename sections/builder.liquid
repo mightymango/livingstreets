@@ -160,6 +160,7 @@
 {% assign day = "now" | date: "%e" | plus: 0 %}
 {% assign month = "now" | date: "%-m" | plus: 0 %}
 
+
 {% if day >= rollover %}
 {% assign m = month | plus: 1 %}
 {% else %}
@@ -170,7 +171,7 @@
 Move on in end_month
 {% endcomment %}
 {% assign september = 9 %}
-{% if m >= end_month and m < september %}
+{% if m > section.settings.end_month and m < september %}
 {% assign m = september | plus: 0 %}
 {% endif %}
 
@@ -387,8 +388,7 @@ Calculate the correct variant index from the month
 	      <div class="w-p-100 w-p-50-sm">
 	      <a href="#" id="show_addons" class="btn w-full no-padding">{{ section.settings.add-to-cart | escape }}</a>
           {% else %}
-          <a href="#" class="btn w-full no-padding" id="dummy_submit">{{ section.settings.add-to-cart | escape }}</a>
-          <input class="btn w-full no-padding hidden" type="submit" name="add" id="real_submit" value="{{ section.settings.add-to-cart | escape }}">          
+          <a href="#" class="btn w-full no-padding" id="dummy_submit">{{ section.settings.add-to-cart | escape }}</a>        
           {% endif %}
 	      </div>
         </div>
@@ -398,7 +398,7 @@ Calculate the correct variant index from the month
 
 {% assign collection = collections[section.settings.cross_sell_collection] %}
 
-	<div class="cross-sell-overlay">
+	<div id="cross-sell-overlay" class="cross-sell-overlay" style="z-index:1005;">
 		<div class="cross-sell rounded shadow text-left">
 
 		<h3 id="tape" class="tape-orange tape-removed tape-slim tape-rotate-a-1 d-inline-block">{{ section.settings.cross-sell-heading }}</h3>
@@ -418,7 +418,6 @@ Calculate the correct variant index from the month
 			</div>
 			<div class="buttons">
 				<a href="#" class="btn btn-green" id="dummy_submit">{{ section.settings.cross-sell-button | escape }}</a>
-          		<input class="btn btn-green hidden" type="submit" name="add" id="real_submit" value="{{ section.settings.cross-sell-button }}">
 			</div>
 			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
 		</div>
@@ -477,7 +476,7 @@ Calculate the correct variant index from the month
 {% endif %}
 	     
 	     $("#dummy_submit").on("click", function(){
-		    $("#real_submit").click(); 
+		    $( "#builder_form" ).submit(); 
 		    return false;
 		  });	
 
@@ -694,13 +693,11 @@ Calculate the correct variant index from the month
 			
 		});
 
-/*
-		$(".cross-sell-overlay").on('click', function(evt){
-			$(".cross-sell-overlay").hide();
-			evt.preventDefault();
-		});
-*/
-				
+		{% if section.settings.enable_crossell == "yes" %}
+		//Move Overlay outside of main-content
+  		$('#main').append( $('#cross-sell-overlay') );
+		{% endif %}
+		
 						
 	});      
 </script>

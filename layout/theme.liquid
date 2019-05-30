@@ -41,13 +41,12 @@
 
 </head>
 
-<body class="main">
+<body id="main" class="main">
 
 {% include 'notification' %} 
 {% section 'navbar' %}
 
-<main class="main-content">
-	 
+<main id="main-content" class="main-content"> 
 {{content_for_layout}}
 
 {%- unless show_tax_message == false -%}

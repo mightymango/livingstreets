@@ -107,7 +107,11 @@
                         <div class="table_small_single">
                           <div class='table_cell'></div>
                            <div class='table_cell text-center text-sm-left'>
-                           <a class="cart_item" href="{{ item.url }}">{{ item.title }}{{ extraText }}</a> <span class="ml-15"><a class="btn btn-tiny d-none d-sm-inline" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></span>{% if section.settings.show_properties == true %}{% unless item.properties == empty %}
+                           <a class="cart_item" href="{{ item.url }}">{{ item.title }}{{ extraText }}</a> 
+                           {% unless item.title contains "Travel Tracker" %}
+                           <span class="ml-15"><a class="btn btn-tiny d-none d-sm-inline" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></span>
+                           {% endunless %}
+                           {% if section.settings.show_properties == true %}{% unless item.properties == empty %}
           							<br/><small class="d-block text-grey">
           							  {% for property in item.properties %}
           							  {{ property.first }}: {{ property.last }}&nbsp;&nbsp;
@@ -118,7 +122,7 @@
 
                         <div class="table_small_single text-center text-sm-right">
                             <div class='table_cell'>Price</div>
-                            <div class='table_cell'><span class="d-inline d-sm-none"><a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a><br/></span><span class="d-md-none">Price: </span>{{ item.price | money }}</div>
+                            <div class='table_cell'><span class="d-inline d-sm-none">{% unless item.title contains "Travel Tracker" %}<a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>{% endunless %}<br/></span><span class="d-md-none">Price: </span>{{ item.price | money }}</div>
                         </div> <!-- .table_small_single -->
 
                         <div class="table_small_single text-center text-sm-right">
@@ -192,7 +196,7 @@
               {% if section.settings.continue_url  %}
               <a href="{{ section.settings.continue_url }}" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
               {% else %}
-              <a href="#" onclick="goBack()" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
+              <a href="{{ shop.url }}" class="btn btn-yellow mr-md-15 mb-15 d-block d-md-inline"><span>Continue Shopping</span></a>
               {% endif %}
               <a id="dummy_submit" href="#" class="btn btn-green mb-15 block">Checkout</a>
               <input id="real_submit" class="hidden" type="submit" name="checkout" value="Checkout" class="btn btn-green mb-15 block">
@@ -237,7 +241,7 @@
   {% if section.settings.continue_url %}
   <h3 class="pt-30"><a href="{{ section.settings.continue_url }}">Continue...</a></h3>
   {% else %}
-  <h3 class="pt-30"><a href="javascript: history.go(-1)">Continue...</a></h3>
+  <h3 class="pt-30"><a href="{{ shop.url }}">Continue...</a></h3>
   {% endif %}
   </div>
 </section>
