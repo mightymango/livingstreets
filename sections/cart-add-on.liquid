@@ -7,26 +7,20 @@
       "id": "addon_enabled",
       "label": "Enable add-on product",
       "default": false,
-      "info": "When enabled, the add-on product will be removed from the cart if it does not contain the main product."
+      "info": "When enabled, any product with an 'add-on' tag will be removed from the cart if it does not contain the main product."
     },
   	{
 	   "type": "product",
 	   "id": "main_product",
 	   "label": "Main Product",
 	   "info": "Select the main product."
-	},
-  	{
-	   "type": "product",
-	   "id": "addon_product",
-	   "label": "Add-on Product",
-	   "info": "Select the product to remove."
 	}
   ]
 }
 {% endschema %}
 
 
-{% if section.settings.addon_enabled and section.settings.main_product and section.settings.addon_product %}
+{% if section.settings.addon_enabled and section.settings.main_product %}
 
 {% comment %}
 
@@ -35,19 +29,20 @@ The following removes an add-on product if the main product is not in the cart.
 {% endcomment %}
 
 {% assign main_product = section.settings.main_product %}
-{% assign addon_product = section.settings.addon_product %}
 {% assign main_product_not_found = true %}
+{% assign removal_tag = "add-on" %}
 
 {% for item in cart.items %} 
   
+  {% comment %}Check for Main product{% endcomment %}
   {% if item.product.handle == main_product %}
     {% assign main_product_not_found = false %}
   {% endif %}
-
-  {% if item.product.handle == addon_product %}
+  
+  {% comment %}Check for an add-on{% endcomment %}
+  {% if item.product.tags contains removal_tag %}
     {% assign addon_product_found = true %}
-    {% assign product = all_products[addon_product] %}
-    {% assign add_on_id = product.variants.first.id %}
+    {% assign add_on_id = item.variant_id %} 
   {% endif %}
 
 {% endfor %}
@@ -71,8 +66,6 @@ The following removes an add-on product if the main product is not in the cart.
 
   })(jQuery);
 </script>
-{% else %}
-<script>console.log('Nothing to remove')</script>
 {% endif %}
 
 {% endif %}

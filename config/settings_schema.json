@@ -199,6 +199,13 @@
   {
     "name": "Display",
     "settings": [
+       {
+         "type": "checkbox",
+         "id": "fixed_footer",
+         "default": false,
+         "label": "Fixed footer",
+         "info": "Fixing the footer avoids display issues on IE version 11 and earlier."
+      },
       {
         "type": "text",
         "id": "tax_format",

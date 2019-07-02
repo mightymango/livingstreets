@@ -14,6 +14,11 @@
       "label": "Show line item properties",
       "default": false
     },
+    {
+      "type": "text",
+      "id": "addon_text",
+      "label": "Text to show for add-on items."
+    },
 	{
       "type": "text",
       "id": "comment",
@@ -50,7 +55,7 @@
       "type": "url",
       "id": "continue_url",
       "label": "Continue link",
-      "info": "Leave blank to go back to the previous page."
+      "info": "Leave blank to go back to the store."
     },
     {
 	   "type": "product",
@@ -89,14 +94,20 @@
           {% assign stringToCheck = item.title %}
           {% assign startsWith = 'WOW - ' %}
           {% assign checkArray = stringToCheck | split:startsWith %}
-          {% assign startsWith2 = 'A Year of Wallcharts' %}
-          {% assign checkArray2 = stringToCheck | split:startsWith2 %}
+          {% assign startsWith2 = 'a year of wallcharts' %}
+          {% assign checkArray2 = stringToCheck | downcase | split:startsWith2 %}
 
           {% if checkArray[0] == blank or checkArray2[0] == blank %}
             {% assign extraText = " to July" %}
           {% else %}
             {% assign extraText = " " %}
-          {% endif %}     					
+          {% endif %}   
+
+          {% comment %}Hide remove button {% endcomment %}
+          {% if item.product.tags contains "add-on" %}
+            {% assign hideRemove = true %} 
+          {% endif %}
+
                     <div class="table_row">
                        {% if section.settings.cart_images_enabled %}
                         <div class="table_small_single">
@@ -108,9 +119,11 @@
                           <div class='table_cell'></div>
                            <div class='table_cell text-center text-sm-left'>
                            <a class="cart_item" href="{{ item.url }}">{{ item.title }}{{ extraText }}</a> 
-                           {% unless item.title contains "Travel Tracker" %}
+                           {% if hideRemove == true %}
+                           <br/><span class="text-muted"><small>{{ section.settings.addon_text }}</small></span>
+                           {% else %}
                            <span class="ml-15"><a class="btn btn-tiny d-none d-sm-inline" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></span>
-                           {% endunless %}
+                           {% endif %}
                            {% if section.settings.show_properties == true %}{% unless item.properties == empty %}
           							<br/><small class="d-block text-grey">
           							  {% for property in item.properties %}
@@ -122,7 +135,7 @@
 
                         <div class="table_small_single text-center text-sm-right">
                             <div class='table_cell'>Price</div>
-                            <div class='table_cell'><span class="d-inline d-sm-none">{% unless item.title contains "Travel Tracker" %}<a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>{% endunless %}<br/></span><span class="d-md-none">Price: </span>{{ item.price | money }}</div>
+                            <div class='table_cell'><span class="d-inline d-sm-none">{% unless hideRemove %}<a class="btn btn-tiny" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>{% endunless %}<br/></span><span class="d-md-none">Price: </span>{{ item.price | money }}</div>
                         </div> <!-- .table_small_single -->
 
                         <div class="table_small_single text-center text-sm-right">
