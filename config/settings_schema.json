@@ -199,12 +199,16 @@
   {
     "name": "Display",
     "settings": [
-       {
-         "type": "checkbox",
-         "id": "fixed_footer",
-         "default": false,
+      {
+         "type": "radio",
+         "id": "fixed_footer_display",
+         "options": [
+            { "value": "off", "label": "Off"},
+            { "value": "ie", "label": "IE10+"},
+            { "value": "all", "label": "All browsers"}
+         ],
          "label": "Fixed footer",
-         "info": "Fixing the footer avoids display issues on IE version 11 and earlier."
+         "info": "Fixing the footer avoids display issues on IE10+."
       },
       {
         "type": "text",
