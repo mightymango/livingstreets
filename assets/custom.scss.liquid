@@ -686,6 +686,20 @@ main div.shopify-section  div:first-of-type section {
     transform: rotate(45deg);
 }
 
+/* Make it pink */
+.checkmark-pink {
+    background-color: $color-pink;
+}
+
+.checkbox-wrapper:hover input ~ .checkmark-pink {
+    background-color: $color-pink;
+    opacity: 1;
+}
+.checkbox-wrapper input:checked ~ .checkmark-pink {
+    background-color: $color-pink;
+    opacity: 1;
+}
+
 /* The select container must be positioned relative: */
 .custom-select {
   position: relative;
