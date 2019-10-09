@@ -132,6 +132,12 @@
 	  "default": "Continue"	
 	},	
 	{
+	  "type": "text",
+	  "id": "cross-sell-cancel",
+	  "label": "Cancel",
+	  "default": "Cancel"	
+	},
+	{
 	   "type": "collection",
 	   "id": "cross_sell_collection",
 	   "label": "Cross-sell collection"
@@ -439,6 +445,7 @@ Calculate the correct variant index from the month
 				{% endfor %}
 			</div>
 			<div class="buttons">
+				<button class="btn btn-yellow" id="cancel_button">{{ section.settings.cross-sell-cancel | escape }}</button>
 				<a href="#" class="btn btn-green" id="dummy_submit">{{ section.settings.cross-sell-button | escape }}</a>
 			</div>
 			<p class="instruction">{{ section.settings.cross-sell-instruction }}</p>
@@ -720,7 +727,21 @@ Calculate the correct variant index from the month
 				}	
 			} 
 			if (showOverlay) {
+				//Show the overlay
 				$(".cross-sell-overlay").show();
+				//Listen for click to hide overlay
+				$(".cross-sell-overlay").on('click', function(e){
+					$(".cross-sell-overlay").hide();
+				})
+
+				$(".cross-sell-overlay").on('click', function(e){
+					e.stopPropagation();
+				})
+
+				$("#cancel_button").on('click', function(e){
+					$(".cross-sell-overlay").hide();
+				})
+
 			}
 			evt.preventDefault();
 		});
