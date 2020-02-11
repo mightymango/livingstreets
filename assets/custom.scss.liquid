@@ -1623,8 +1623,13 @@ margin-left:20px;
 }
 
 /* ---- modal for cross-sell ---- */
+
+/* to the body element */
+.noscroll { overflow-y: hidden; }
+
 .cross-sell-overlay {
-	position: fixed;
+  	position: fixed;
+  	overflow-y: scroll;
 	left: 0;
 	top: 0;
 	right: 0;
@@ -1632,6 +1637,7 @@ margin-left:20px;
 	background-color: rgba(0, 0, 0, 0.4);
 	display:none;
 }
+
 
 .cross-sell {
     opacity: 1;
@@ -2780,6 +2786,7 @@ ul.pagination li a {
 /*==== Scrolling cards ====*/
 .scrolling-card {
   display: flex;
+  justify-content: center;
   min-width: 100%;
   min-height: 300px;
   overflow-x: auto; 

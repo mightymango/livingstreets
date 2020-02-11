@@ -128,52 +128,106 @@
         "label": "Display"
       },
       {
-         "type": "select",
-         "id": "notification_colour",
-         "options": [
-            { "value": "green", "label": "Green"},
-            { "value": "pink", "label": "Pink"},
-            { "value": "orange", "label": "Orange"},
-            { "value": "yellow", "label": "Yellow"},
-            { "value": "white", "label": "White"},
-            { "value": "black", "label": "Black"}
-         ],
-         "label": "Background Colour"
+        "type": "select",
+        "id": "notification_colour",
+        "options": [
+          {
+            "value": "green",
+            "label": "Green"
+          },
+          {
+            "value": "pink",
+            "label": "Pink"
+          },
+          {
+            "value": "orange",
+            "label": "Orange"
+          },
+          {
+            "value": "yellow",
+            "label": "Yellow"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          },
+          {
+            "value": "black",
+            "label": "Black"
+          }
+        ],
+        "label": "Background Colour"
       },
       {
-         "type": "select",
-         "id": "notification_text_colour",
-         "options": [
-            { "value": "white", "label": "White"},
-            { "value": "black", "label": "Black"},
-            { "value": "green", "label": "Green"},
-            { "value": "pink", "label": "Pink"},
-            { "value": "orange", "label": "Orange"},
-            { "value": "yellow", "label": "Yellow"}
-         ],
-         "label": "Text Colour"
+        "type": "select",
+        "id": "notification_text_colour",
+        "options": [
+          {
+            "value": "white",
+            "label": "White"
+          },
+          {
+            "value": "black",
+            "label": "Black"
+          },
+          {
+            "value": "green",
+            "label": "Green"
+          },
+          {
+            "value": "pink",
+            "label": "Pink"
+          },
+          {
+            "value": "orange",
+            "label": "Orange"
+          },
+          {
+            "value": "yellow",
+            "label": "Yellow"
+          }
+        ],
+        "label": "Text Colour"
       },
       {
-         "type": "select",
-         "id": "notification_text_align",
-         "default": "center",
-         "options": [
-            { "value": "left", "label": "Left"},
-            { "value": "center", "label": "Centre"},
-            { "value": "right", "label": "Right"}
-         ],
-         "label": "Text Position"
+        "type": "select",
+        "id": "notification_text_align",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centre"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "label": "Text Position"
       },
       {
-         "type": "select",
-         "id": "notification_text_size",
-         "default": "normal",
-         "options": [
-            { "value": "small", "label": "Small"},
-            { "value": "normal", "label": "Normal"},
-            { "value": "large", "label": "Large"}
-         ],
-         "label": "Text Size"
+        "type": "select",
+        "id": "notification_text_size",
+        "default": "normal",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ],
+        "label": "Text Size"
       },
       {
         "type": "checkbox",
@@ -200,15 +254,24 @@
     "name": "Display",
     "settings": [
       {
-         "type": "radio",
-         "id": "fixed_footer_display",
-         "options": [
-            { "value": "off", "label": "Off"},
-            { "value": "ie", "label": "IE10+"},
-            { "value": "all", "label": "All browsers"}
-         ],
-         "label": "Fixed footer",
-         "info": "Fixing the footer avoids display issues on IE10+."
+        "type": "radio",
+        "id": "fixed_footer_display",
+        "options": [
+          {
+            "value": "off",
+            "label": "Off"
+          },
+          {
+            "value": "ie",
+            "label": "IE10+"
+          },
+          {
+            "value": "all",
+            "label": "All browsers"
+          }
+        ],
+        "label": "Fixed footer",
+        "info": "Fixing the footer avoids display issues on IE10+."
       },
       {
         "type": "text",
@@ -216,7 +279,7 @@
         "label": "VAT label",
         "default": "(Ex. VAT)"
       },
-       {
+      {
         "type": "text",
         "id": "tax_message",
         "label": "VAT message"
@@ -360,7 +423,6 @@
         "label": "Text color",
         "default": "#ffffff"
       }
-      
     ]
   }
 ]
